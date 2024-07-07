@@ -1,0 +1,277 @@
+:root {
+    --foreground: rgb(255, 213, 42);
+    --background: rgba(36, 31, 28, .3);
+    --background-wot: rgb(36, 31, 28);
+    color: rgb(245, 245, 245);
+    line-height: 45px;
+    font-size: 16px;
+    font-family: arial, "Microsoft YaHei UI", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif, "simsun", "Mongolian Baiti";
+}
+:root * {
+    box-sizing: border-box;
+}
+
+body {
+    min-width: 440px;
+    background: url("backgroundImage.jpg") no-repeat fixed center / cover;
+}
+
+p {
+    display: inline;
+}
+
+::selection {
+    color: var(--background-wot);
+    background: var(--foreground);
+}
+:disabled::selection {
+    color: #000000;
+    background: #888888;
+}
+
+.part {
+    width: 420px;
+    outline: 0;
+    margin: 5px auto 0 auto;
+    padding: 15px 25px;
+    border: 1px solid var(--foreground);
+    border-radius: 12px;
+    box-shadow: 0 0 3px var(--foreground);
+    background: var(--background);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    transition: .5s;
+}
+.parting {
+    height: 1px;
+    margin: 10px 0;
+    border: solid var(--foreground);
+    border-width: 1px 0 0 0;
+    box-shadow: 0 0 3px var(--foreground);
+}
+.partTitle {
+    font-size: 23px;
+    line-height: 45px;
+}
+
+.topBar {
+    height: 50px;
+    text-align: center;
+    position: sticky;
+    top: 0px;
+    z-index: 1;
+    pointer-events: none;
+}
+.topBar > * {
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    pointer-events: auto;
+}
+
+.button {
+    color: var(--md-accent-color-secondary, var(--ncm-text));
+    font-size: 16px;
+    width: 120px;
+    height: 40px;
+    padding: 0 10px;
+    line-height: 0;
+    outline: 0;
+    box-shadow: 0 0 3px var(--foreground);
+    border: 1px solid var(--foreground);
+    border-radius: 10px;
+    background: var(--background);
+    transition: .1s;
+}
+.button:hover {
+    box-shadow: 0 0 6px var(--foreground);
+}
+.button:active {
+    font-size: 14px;
+    border-width: 4px;
+    box-shadow: 0 0 8px var(--foreground);
+}
+
+.button:disabled {
+    color: #888888;
+    box-shadow: 0 0 3px #888888;
+    border: 1px solid #888888;
+    background: var(--background);
+}
+.button:disabled:hover {
+    box-shadow: 0 0 6px #888888;
+}
+.button:disabled:active {
+    font-size: 16px;
+    border-width: 1px;
+    box-shadow: 0 0 6px #888888;
+}
+
+.textBox {
+    padding: 10px;
+}
+.textBox:focus {
+    font-size: 15px;
+    border-width: 3px;
+    box-shadow: 0 0 8px var(--foreground);
+}
+[type=number] {
+    width: 90px;
+}
+[type=search] {
+    width: 100%;
+}
+
+
+.switch {
+    position: relative;
+    margin: 0 50px 0 0;
+    display: inline-block;
+}
+.radio {
+    position: relative;
+    margin: 0 25px 0 0;
+    display: inline-block;
+}
+.switch input, .radio input{ 
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    width: 50px;
+    height: 25px;
+    margin: 10px 0;
+    border-radius: 8px;
+    transition: .2s, box-shadow .1s;
+}
+.slider:active {
+    border-width: 3px;
+    transition: .1s;
+}
+
+.radio .slider {
+    width: 25px;
+}
+.radio .slider:active {
+    border-width: 4px;
+    transition: .1s;
+}
+
+input:checked + .slider {
+    border: 1px solid var(--background);
+    background: var(--foreground);
+}
+input:checked + .slider:active {
+    border-width: 3px;
+}
+
+.radio input:checked + .slider {
+    border-color: var(--foreground);
+    background: var(--background);
+}
+
+input:disabled + .slider {
+    border: 1px solid #888888;
+    box-shadow: 0 0 3px #888888;
+}
+input:disabled + .slider:hover {
+    box-shadow: 0 0 6px #888888; 
+}
+input:disabled + .slider:active {
+    border-width: 1px;
+    box-shadow: 0 0 6px #888888;
+}
+input:disabled:checked + .slider {
+    border: 1px solid #909090;
+    background: #888888;
+}
+.radio input:disabled:checked + .slider {
+    border-color: #888888;
+    background: var(--background);
+}
+
+.slider::before {
+    position: absolute;
+    content: "";
+    height: 15px;
+    width: 15px;
+    left: 4px;
+    bottom: 4px;
+    border-radius: 4px;
+    background: var(--foreground);
+    transition: .2s;
+}
+.slider:active::before {
+    height: 11px;
+    width: 11px;
+    border-radius: 3px;
+    transition: .1s;
+}
+
+.radio .slider::before {
+    opacity: 0;
+    height: 3px;
+    width: 3px;
+    left: 10px;
+    bottom: 10px;
+}
+.radio .slider:active::before {
+    opacity: 0;
+    height: 27px;
+    width: 27px;
+    left: -5px;
+    bottom: -5px;
+    transition: .2s;
+}
+
+input:checked + .slider::before {
+    background: var(--background-wot);
+    transform: translateX(25px);
+}
+
+.radio input:checked + .slider::before {
+    opacity: 1;
+    height: 15px;
+    width: 15px;
+    left: 4px;
+    bottom: 4px;
+    background: var(--foreground);
+    transform: translateX(0px);
+}
+.radio input:checked + .slider:active::before {
+    height: 11px;
+    width: 11px;
+    left: 4px;
+    bottom: 4px;
+}
+
+input:disabled + .slider::before {
+    background: #888888;
+}
+input:disabled + .slider:active::before {
+    height: 15px;
+    width: 15px;
+    border-radius: 4px;
+}
+
+input:disabled:checked + .slider::before {
+    background: var(--background-wot);
+}
+
+.radio input:disabled:checked + .slider::before {
+    background: #888888;
+}
+.radio input:disabled:checked + .slider:active::before {
+    height: 15px;
+    width: 15px;
+}
+
+.link {
+    text-decoration: underline;
+    cursor: pointer;
+    color: var(--foreground);
+    background: rgba(0, 0, 0, 0);
+    border: 0 solid;
+}
