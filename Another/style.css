@@ -16,7 +16,7 @@
 
 body {
     min-width: 440px;
-    background: url("backgroundImage.jpg") no-repeat fixed center / cover;
+    background: url("../backgroundImage.jpg") no-repeat fixed center / cover;
 }
 
 p {
