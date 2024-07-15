@@ -1,8 +1,9 @@
 :root {
     --foreground: rgb(255, 213, 42);
+    --text: rgb(245, 245, 245);
     --background: rgba(36, 31, 28, .3);
     --background-wot: rgb(36, 31, 28);
-    color: rgb(245, 245, 245);
+    color: var(--text);
     line-height: 45px;
     font-size: 16px;
     font-family: arial, "Microsoft YaHei UI", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif, "simsun", "Mongolian Baiti";
@@ -12,7 +13,6 @@
 }
 
 body {
-    min-width: 440px;
     background: url("backgroundImage.jpg") no-repeat fixed center / cover;
 }
 
@@ -69,7 +69,7 @@ p {
 }
 
 .button {
-    color: var(--md-accent-color-secondary, var(--ncm-text));
+    color: var(--text);
     font-size: 16px;
     width: 120px;
     height: 40px;

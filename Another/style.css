@@ -3,8 +3,9 @@
     --text: rgb(245, 245, 245);
     --background: rgba(36, 31, 28, .3);
     --background-wot: rgb(36, 31, 28);
-    --bt-active-y: rgb(251, 220, 0);
-    --bt-active-g: rgb(149, 189, 0);
+    --bt-active-y: rgb(255, 222, 0);
+    --bt-active-gy: rgb(200, 205, 0);
+    --bt-active-g: rgb(145, 188, 0);
     color: var(--text);
     line-height: 45px;
     font-size: 16px;
@@ -15,7 +16,6 @@
 }
 
 body {
-    min-width: 440px;
     background: url("../backgroundImage.jpg") no-repeat fixed center / cover;
 }
 
@@ -72,90 +72,61 @@ p {
 }
 
 @keyframes buttonActive {
-    0% {
-        width: 120px;
+    15%, 85% {
+        padding: 0 18px;
         height: 40px;
         margin: 5px;
     }
-    35% {
-        width: 124px;
+    40%, 60% {
+        padding: 0 20px;
         height: 44px;
         margin: 3px;
     }
     50% {
-        width: 130px;
+        padding: 0 23px;
         height: 50px;
-        margin: 0px;
-    }
-    65% {
-        width: 124px;
-        height: 44px;
-        margin: 3px;
-    }
-    100% {
-        width: 120px;
-        height: 40px;
-        margin: 5px;
+        margin: 0;
     }
 }
 
 @keyframes buttonActiveColor {
-    0% {
+    0%, 100% {
         background: var(--bt-active-g);
     }
-    45% {
+    50% {
         background: var(--bt-active-y);
-    }
-    55% {
-        background: var(--bt-active-y);
-    }
-    100% {
-        background: var(--bt-active-g);
     }
 }
 
 @keyframes buttonActiveOut {
-    0% {
-        width: 126px;
-        height: 46px;
-        margin: 2px;
-        color: var(--background-wot);
-        background: var(--bt-active-g);
-        border-color: var(--bt-active-g);
-    }
     50% {
-        background: var(--background);
-        border-color: var(--foreground);
-    }
-    100% {
-        width: 126px;
-        height: 46px;
-        margin: 2px;
+        padding: 0 19px;
+        height: 48px;
+        margin: 1px;
         color: var(--background-wot);
-        background: var(--bt-active-y);
-        border-color: var(--bt-active-y);
+        background: var(--bt-active-gy);
+        border-color: var(--bt-active-gy);
     }
 }
 
 .button {
     color: var(--text);
     font-size: 16px;
-    width: 120px;
     height: 40px;
-    padding: 0 10px;
+    padding: 0 15px;
     margin: 5px;
     line-height: 0;
     outline: 0;
     border: 3px solid var(--foreground);
     border-radius: 999px;
     background: var(--background);
-    transition: .1s;
-    animation: buttonActiveOut .05s 2;
+    animation: buttonActiveOut .07s 2;
 }
-.button:focus {
+.button:active {
     color: var(--background-wot);
-    border: 0px;
-    animation: buttonActive .62s cubic-bezier(1, 0.4, 0, 0.6) infinite, buttonActiveColor 1.8s ease-out infinite;
+    border: 0;
+    padding: 0 18px;
+    animation: buttonActive .638s cubic-bezier(1, 0.4, 0, 0.6) infinite, buttonActiveColor 1.45s linear infinite;
 }
 
 .button:disabled {
@@ -163,9 +134,10 @@ p {
     border: 3px solid #888888;
     animation: none;
 }
-.button:disabled:focus {
+.button:disabled:active {
     color: #888888;
     border: 3px solid #888888;
+    padding: 0 15px;
     animation: none;
 }
 
