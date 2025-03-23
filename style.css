@@ -1,13 +1,12 @@
 :root {
     --foreground: rgb(255, 213, 42);
     --text: rgb(245, 245, 245);
-    --background: rgba(36, 31, 28, .3);
-    --background-wot: rgb(36, 31, 28);
+    --background: rgb(36, 31, 28);
+    --background-trans: rgba(36, 31, 28, .3);
     --timing-function-0: linear(0 0%, 0 1.8%, 0.01 3.6%, 0.03 6.35%, 0.07 9.1%, 0.13 11.4%, 0.19 13.4%, 0.27 15%, 0.34 16.1%, 0.54 18.35%, 0.66 20.6%, 0.72 22.4%, 0.77 24.6%, 0.81 27.3%, 0.85 30.4%, 0.88 35.1%, 0.92 40.6%, 0.94 47.2%, 0.96 55%, 0.98 64%, 0.99 74.4%, 1 86.4%, 1 100%);
     color: var(--text);
-    line-height: 45px;
     font-size: 16px;
-    font-family: arial, "Microsoft YaHei UI", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif, "simsun", "Mongolian Baiti";
+    font-family: "Noto Sans SC", "Segoe UI", "Microsoft YaHei UI", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif, "simsun", "Mongolian Baiti", arial;
 }
 :root * {
     box-sizing: border-box;
@@ -15,10 +14,10 @@
 }
 
 body {
-    background: url("backgroundImage.jpg") no-repeat fixed center / cover;
+    background: url("backgroundImage.webp") no-repeat fixed center / cover;
 }
 
-p {
+p:not(.context, .context *) {
     display: inline;
 }
 a {
@@ -26,7 +25,7 @@ a {
 }
 
 ::selection {
-    color: var(--background-wot);
+    color: var(--background);
     background: var(--foreground);
 }
 :disabled::selection {
@@ -35,15 +34,15 @@ a {
 }
 
 .part {
-    width: 50vw;
-    max-width: 420px;
+    width: 80vw;
+    max-width: 650px;
     outline: 0;
     margin: 5px auto 0 auto;
-    padding: 15px 25px;
+    padding: 20px 25px;
     border: 1px solid var(--foreground);
     border-radius: 12px;
     box-shadow: 0 0 3px var(--foreground);
-    background: var(--background);
+    background: var(--background-trans);
     -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
     transition: .1s;
@@ -77,33 +76,31 @@ a {
 .button {
     color: var(--text);
     font-size: 16px;
-    width: 120px;
+    width: 160px;
     height: 40px;
-    padding: 0 10px;
+    padding: 10px;
     line-height: 0;
-    outline: 0;
+    overflow: hidden;
     box-shadow: 0 0 3px 0 var(--foreground);
     border: 1px solid var(--foreground);
     border-radius: 10px;
-    background: var(--background);
+    background: var(--background-trans);
     transition: .1s;
 }
 .button:hover {
     box-shadow: 0 0 6px 2px var(--foreground);
-    transform: scale(1.05);
 }
 .button:active {
     font-size: 14px;
     border-width: 4px;
     box-shadow: 0 0 8px 2px var(--foreground);
-    transform: scale(0.95);
 }
 
 .button:disabled {
     color: #888888;
     box-shadow: 0 0 3px #888888;
     border: 1px solid #888888;
-    background: var(--background);
+    background: var(--background-trans);
 }
 .button:disabled:hover {
     box-shadow: 0 0 6px #888888;
@@ -114,24 +111,49 @@ a {
     box-shadow: 0 0 6px #888888;
 }
 
+.button.autoWidth {
+    transition: max-width .2s;
+}
+.button.autoWidth:hover {
+    max-width: 100%;
+    width: auto;
+}
+
+.button > .textlabel {
+    text-align: right;
+    transition: none;
+}
+
 .linkButtonGroup {
     position: absolute;
     left: 2vw;
     z-index: 100;
 }
+.linkButtonGroup > li {
+    display: flex;
+}
 .linkButton {
+    display: none/*flex*/;
+    align-items: center;
     width: 10vw;
     height: 10vw;
     max-width: 60px;
     max-height: 60px;
+    padding: 10px;
     margin-bottom: 2vh;
-    border-radius: 50%;
+    border-radius: 9999px;
     -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
 }
 .linkButton > svg {
+    display: flex;
     width: 100%;
     height: 100%;
+    max-width: 40px;
+    margin: auto auto auto 0;
+}
+.linkButton > .textlabel {
+    margin-right: 5px;
 }
 
 .link {
@@ -161,11 +183,6 @@ a {
     transition: .3s ease;
 }
 .avatar:hover {
-    height: 20vw;
-    width: 20vw;
-    max-width: 200px;
-    max-height: 200px;
-    overflow: hidden;
     box-shadow: 0 0 14px 1px var(--foreground);
     transform: scale(1.01);
 }
@@ -175,5 +192,10 @@ a {
 }
 
 .name {
+    padding: 25px;
     font-size: 2.5rem;
+}
+
+@media screen {
+    
 }
