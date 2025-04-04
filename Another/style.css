@@ -16,7 +16,7 @@
 }
 
 body {
-    background: url("../backgroundImage.jpg") no-repeat fixed center / cover;
+    background: url("../backgroundImage.webp") no-repeat fixed center / cover;
 }
 
 p {
