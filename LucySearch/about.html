@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <title>关于 - Lucy搜索</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/><!-- 移动端适配 -->
+    <meta name="color-scheme" content="light dark"><!-- 声明支持亮色和暗色模式 -->
+    <link rel="stylesheet" type="text/css" href="style/noTheme.css" />
+    <script type="text/javascript" src="javaScript/jquery-3.6.3.min.js"></script>
+    <script type="text/javascript" src="javaScript/js.cookie.min.js"></script>
+    <script type="text/javascript" src="javaScript/functions.js"></script>
+    <script id="themeJS" type="text/javascript" src="style/theme.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            loadSettings("about", "ture");
+        })
+    </script>
+</head>
+<body>
+    <div>
+        <input class="button barButton" style="font-size: 15px; width: 40px; height: 35px; padding-top: 7px;" id="back" onclick="toPage('back')" type="button" value="&#xe64e;" />
+        <br />
+        <p style="font-size: 50px; line-height: 50px">关于</p>
+        <br />
+        <div>
+            <p style="font-size: 25px">Lucy搜索 Dev_0.0.4.2</p>
+            <a>此页面由 Lukoning 制作</a>
+            <a class="link" href="http://space.bilibili.com/1922780115" target="_blank">B站主页</a>
+            <p>字体文件提取自《原神》电脑版和Windows 11操作系统</p>
+            <p>页面使用的第三方JavaScript库：</p>
+            <a>jQuery 3.6.3（</a>
+            <a class="link" href="https://github.com/jquery/jquery" target="_blank">GitHub</a><a>，</a>
+            <a class="link" href="https://jquery.com/" target="_blank">官网</a><a>）</a>
+            <br /><br />
+            <a>JavaScript Cookie API 3.0.1（</a>
+            <a class="link" href="https://github.com/js-cookie/js-cookie" target="_blank">GitHub</a><a>）</a>
+            <br /><br />
+            <div style="text-align: left;">
+                <h2>更新日志</h2>
+                <h4>Dev_0.0.4.2 更新于2025/8/22</h4>
+                <p>·决定把这个陈年东西放到网上让人笑（狗头）</p>
+                <p>·2023年3月2号以来除了这篇更新日志没改过任何东西</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
