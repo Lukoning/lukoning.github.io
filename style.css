@@ -1,16 +1,18 @@
 :root {
-    --foreground: rgb(255, 213, 42);
-    --text: rgb(245, 245, 245);
-    --background: rgb(36, 31, 28);
-    --background-trans: rgba(36, 31, 28, .3);
+    --accent-color: rgb(255, 213, 42);
+    --accent-color-trans: rgba(255, 213, 42, .3);
+    --text-color: rgb(245, 245, 245);
+    --background-color: rgb(36, 31, 28);
+    --background-color-trans: rgba(36, 31, 28, .3);
     --timing-function-0: linear(0 0%, 0 1.8%, 0.01 3.6%, 0.03 6.35%, 0.07 9.1%, 0.13 11.4%, 0.19 13.4%, 0.27 15%, 0.34 16.1%, 0.54 18.35%, 0.66 20.6%, 0.72 22.4%, 0.77 24.6%, 0.81 27.3%, 0.85 30.4%, 0.88 35.1%, 0.92 40.6%, 0.94 47.2%, 0.96 55%, 0.98 64%, 0.99 74.4%, 1 86.4%, 1 100%);
-    color: var(--text);
+    color: var(--text-color);
     font-size: 16px;
     font-family: "Noto Sans SC", "Segoe UI", "Microsoft YaHei UI", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif, "simsun", "Mongolian Baiti", arial;
 }
 :root * {
     box-sizing: border-box;
     transition: .5s var(--timing-function-0);
+    accent-color: var(--accent-color);
 }
 
 body {
@@ -25,8 +27,8 @@ a {
 }
 
 ::selection {
-    color: var(--background);
-    background: var(--foreground);
+    color: var(--background-color);
+    background: var(--accent-color);
 }
 :disabled::selection {
     color: #000000;
@@ -39,10 +41,10 @@ a {
     outline: 0;
     margin: 5px auto 0 auto;
     padding: 20px 25px;
-    border: 1px solid var(--foreground);
+    border: 1px solid #FFFFFF30;
     border-radius: 12px;
-    box-shadow: 0 0 3px var(--foreground);
-    background: var(--background-trans);
+    box-shadow: 0 2px 6px 0 #00000088;
+    background: var(--background-color-trans);
     -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
     transition: .1s;
@@ -50,9 +52,9 @@ a {
 .parting {
     height: 1px;
     margin: 10px 0;
-    border: solid var(--foreground);
+    border: solid var(--accent-color);
     border-width: 1px 0 0 0;
-    box-shadow: 0 0 3px var(--foreground);
+    box-shadow: 0 0 3px var(--accent-color);
 }
 .partTitle {
     font-size: 23px;
@@ -74,33 +76,33 @@ a {
 }
 
 .button {
-    color: var(--text);
+    color: var(--text-color);
     font-size: 16px;
     width: 160px;
     height: 40px;
     padding: 10px;
     line-height: 0;
     overflow: hidden;
-    box-shadow: 0 0 3px 0 var(--foreground);
-    border: 1px solid var(--foreground);
+    box-shadow: 0 0 3px 0 var(--accent-color);
+    border: 1px solid var(--accent-color);
     border-radius: 10px;
-    background: var(--background-trans);
+    background: var(--background-color-trans);
     transition: .1s;
 }
 .button:hover {
-    box-shadow: 0 0 6px 2px var(--foreground);
+    box-shadow: 0 0 6px 2px var(--accent-color);
 }
 .button:active {
     font-size: 14px;
     border-width: 4px;
-    box-shadow: 0 0 8px 2px var(--foreground);
+    box-shadow: 0 0 8px 2px var(--accent-color);
 }
 
 .button:disabled {
     color: #888888;
     box-shadow: 0 0 3px #888888;
     border: 1px solid #888888;
-    background: var(--background-trans);
+    background: var(--background-color-trans);
 }
 .button:disabled:hover {
     box-shadow: 0 0 6px #888888;
@@ -119,47 +121,52 @@ a {
     width: auto;
 }
 
-.button > .textlabel {
-    text-align: right;
+.button > [icon] {
+    height: 100%;
+    width: fit-content;
+}
+.button > [icon] svg {
+    height: 100%;
+    width: auto;
+}
+.button:has([icon]) > [label] {
+	position: absolute;
+    left: 35px;
+	top: 50%;
     transition: none;
 }
 
-.linkButtonGroup {
-    position: absolute;
-    left: 2vw;
-    z-index: 100;
+.partButtonGroup {
+    width: 80vw;
+    max-width: 650px;
+    outline: 0;
+    margin: 5px auto 0 auto;
 }
-.linkButtonGroup > li {
+.partButtonGroup > ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 155px);
+    gap: 10px;
+    justify-content: center;
+    padding: 0;
+}
+.partButtonGroup > ul > li {
     display: flex;
 }
-.linkButton {
-    display: none/*flex*/;
-    align-items: center;
-    width: 10vw;
-    height: 10vw;
-    max-width: 60px;
-    max-height: 60px;
-    padding: 10px;
-    margin-bottom: 2vh;
-    border-radius: 9999px;
-    -webkit-backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
+.partButtonGroup .button {
+    height: 60px;
+    width: 155px;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
 }
-.linkButton > svg {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    max-width: 40px;
-    margin: auto auto auto 0;
+.partButtonGroup .button:has([icon]) > [label] {
+    left: 55px;
 }
-.linkButton > .textlabel {
-    margin-right: 5px;
-}
+
 
 .link {
     text-decoration: underline;
     cursor: pointer;
-    color: var(--foreground);
+    color: var(--accent-color);
     background: rgba(0, 0, 0, 0);
     border: 0 solid;
 }
@@ -176,14 +183,14 @@ a {
     max-width: 200px;
     max-height: 200px;
     overflow: hidden;
-    box-shadow: 0 0 8px 0 var(--foreground);
-    border: 3px solid var(--foreground);
+    box-shadow: 0 0 8px 0 var(--accent-color);
+    border: 3px solid var(--accent-color);
     border-radius: 50%;
     background: #000;
     transition: .3s ease;
 }
 .avatar:hover {
-    box-shadow: 0 0 14px 1px var(--foreground);
+    box-shadow: 0 0 14px 1px var(--accent-color);
     transform: scale(1.01);
 }
 .avatar > img {
