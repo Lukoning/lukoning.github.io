@@ -11,11 +11,11 @@ hero:
     alt: 头像
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
+      text: ヤマノススメ！
+      link: /二次元~/向山进发
     - theme: alt
-      text: API Examples
-      link: /api-examples
+      text: GPL 3.0
+      link: /LICENSE
 
 features:
   - title: "关于 \"Aohina\""

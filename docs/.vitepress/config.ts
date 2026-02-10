@@ -77,7 +77,7 @@ export default defineConfig({
   
     nav: [
       { text: '提瓦特', link: '/' },
-      { text: '示例', link: '/markdown-examples' }
+      { text: '饭能市', link: '/二次元~/向山进发.md' }
     ],
 
     sidebar: generateSidebar({

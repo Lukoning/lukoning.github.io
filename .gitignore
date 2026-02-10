@@ -1,1 +1,5 @@
-./lukoning.github.io.code-workspace
+node_modules/
+/lukoning.github.io.code-workspace
+/启动本地开发服务器.bat
+/开始构建(手动).bat
+/预览构建产物.bat
