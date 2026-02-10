@@ -1,0 +1,24 @@
+lkn[c] {
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+lkn[c][green] {
+    background: text -webkit-linear-gradient(120deg, #34fe99 30%, #adff41);
+}
+lkn[c][yellow] {
+    background: text -webkit-linear-gradient(120deg, #ffd341 30%, #f1fe34);
+}
+lkn[c] rt {
+    -webkit-text-fill-color:  var(--vp-c-text-1);
+    color:  var(--vp-c-text-1);
+}
+lkn[c][green] rt c {
+    -webkit-text-fill-color: #34fe69;
+    color: #34fe69;
+}
+lkn[c][yellow] rt c {
+    -webkit-text-fill-color:#ffdc41;
+    color: #ffdc41;
+}
