@@ -2,7 +2,7 @@
     --vp-c-bg: #18162072;
     --vp-c-bg-soft: #18162096;
     --vp-c-bg-alt: #CCBBDD24;
-    --vp-c-bg-elv: #CCBBDD12;
+    --vp-c-bg-elv: var(--vp-c-bg);
     --vp-c-border: #FFFFFF06; /*边框*/
     --vp-c-divider: var(--vp-c-border); /*分隔条*/
     --vp-c-gutter: var(--vp-c-bg-elv);
@@ -24,11 +24,12 @@
     --lkn-footer-mask: linear-gradient(to top, #FFFFFF 75%, transparent 100%);
 }
 
-ruby rt {
-    font-size: 0.7em;
+//fix start
+pre { //不能跑到页面外边去喵！跑到外面去会出大问题的喵！
+    overflow: scroll;
 }
 
-a[link] {
+a[link] { //带link自定义属性时，当作链接看待
     text-decoration-line: underline;
     text-underline-offset: 2px;
     transition: color 0.25s;
@@ -36,6 +37,11 @@ a[link] {
         color: var(--vp-c-text-1);
     }
 }
+
+ruby rt { //调大注音字号，看得更清楚
+    font-size: 0.7em;
+}
+//fix end
 
 body {
     background: url("/backgroundImage.webp") no-repeat fixed center / cover;
@@ -50,20 +56,36 @@ body {
 .VPSidebar.open, #VPNavScreen, .VPLocalSearchBox > .shell, .VPFlyout > .menu {
     backdrop-filter: blur(var(--lkn-navmenu-blur-radius));
 }
-.VPLocalNavOutlineDropdown > .items {
-    left: unset;
+.VPFlyout > .menu {
+    border-radius: 12px;
 }
-.VPLocalNav {
+
+.VPNavBarSocialLinks, .VPNavScreenSocialLinks { //导航栏和导航菜单的个人链接
+    & > a {
+        background-color: var(--vp-c-bg);
+        &:first-child {
+            padding-inline-start: 2px;
+            border-radius: 50% 0 0 50%;
+        }
+        &:last-child {
+            padding-inline-end: 2px;
+            border-radius: 0 50% 50% 0;
+        }
+    }
+
+}
+
+.VPLocalNav { //页面导航栏
     backdrop-filter: blur(var(--lkn-navbar-blur-radius));
     /*mask: var(--lkn-navbar-mask);
     -webkit-mask: var(--lkn-navbar-mask);*/
 }
+.VPLocalNavOutlineDropdown > .items {
+    left: unset; //收窄
+}
 
 .search-bar {
     background-color: var(--vp-c-bg-alt);
-}
-.VPNavBarSearchButton {
-
 }
 
 .VPFooter {
@@ -74,13 +96,35 @@ body {
     }
 }
 
-@media (max-width: 960px) { /*宽度960以下*/
+@media (max-width: 767.999px) { /*宽度768以下*/
+    .VPNavBarSearchButton {
+        transform: scale(1);
+        transition: transform .1s;
+        &:hover {
+            transform: scale(1.05);
+        }
+        &:active {
+            transform: scale(.9);
+        }
+    }
+}
+@media (min-width: 768px) { /*宽度768及以上*/
+    .VPNavBarSearchButton {
+        cursor: text;
+        border: 1px solid transparent;
+        transition: border .2s, transform .1s;
+        &:hover {
+            border: 1px solid var(--vp-c-purple-1);
+        }
+    }
+}
+@media (max-width: 959.999px) { /*宽度960以下*/
     .VPSidebar {
         mask: var(--lkn-sidebar-mask);
         -webkit-mask: var(--lkn-sidebar-mask);
     }
 }
-@media (min-width: 960px) { /*宽度960以上*/
+@media (min-width: 960px) { /*宽度960及以上*/
     .VPNav {
         backdrop-filter: blur(var(--lkn-navbar-blur-radius));
     }
@@ -88,13 +132,13 @@ body {
         margin-left: var(--vp-sidebar-width);
     }
 }
-@media (min-width: 1280px) { /*宽度1280以上*/
+@media (min-width: 1280px) { /*宽度1280及以上*/
     .VPNav {
         mask: var(--lkn-navbar-mask);
         -webkit-mask: var(--lkn-navbar-mask);
     }
 }
-@media (min-width: 1440px) { /*宽度1440以上*/
+@media (min-width: 1440px) { /*宽度1440及以上*/
     .VPFooter.has-sidebar { /*左边距跟随侧边栏宽度*/
         margin-left: calc((100% - var(--vp-layout-max-width)) / 2 + var(--vp-sidebar-width));
     }

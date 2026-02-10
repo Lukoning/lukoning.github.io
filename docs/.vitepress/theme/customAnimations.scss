@@ -10,36 +10,44 @@
     }
 }
 
-.VPLocalSearchBox > .shell {
-    animation: slideDown .4s cubic-bezier(.34, .68, 0, 1) .1s backwards;
+.VPLocalSearchBox {
+    & > .backdrop {
+        animation: opacityIn .4s;
+    }
+    & > .shell {
+        animation: opacityIn .4s .1s backwards, slideDown .4s cubic-bezier(.34, .68, 0, 1) .1s backwards;
+    }
 }
 
 .VPSidebar.VPSidebar {
     transition: opacity .6s, transform .15s cubic-bezier(1, 0, .68, .34);;
     &.open {
         transition: none;
-        animation: slideToRight .4s cubic-bezier(.34, .68, 0, 1) backwards;
+        animation: opacityIn .4s, slideToRight .4s cubic-bezier(.34, .68, 0, 1);
     }
 }
 
+@keyframes opacityIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
 @keyframes slideDown {
     0% {
         transform: translateY(-100px);
-        opacity: 0;
     }
     100% {
         transform: translateY(0);
-        opacity: 1;
     }
 }
-
 @keyframes slideToRight {
     0% {
         transform: translateX(-100%);
-        opacity: 0;
     }
     100% {
         transform: translateX(0);
-        opacity: 1;
     }
 }

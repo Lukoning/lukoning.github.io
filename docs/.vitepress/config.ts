@@ -1,5 +1,6 @@
 import { defineConfig } from 'vitepress'
-import { generateSidebar } from "vitepress-sidebar";
+import { generateSidebar } from "vitepress-sidebar"
+import { fileURLToPath, URL } from 'node:url'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -16,6 +17,19 @@ export default defineConfig({
   ignoreDeadLinks: true,
   appearance: "force-dark",
   lastUpdated: true, //显示最后更新时间
+
+  vite: {
+    resolve: {
+      alias: [
+        {
+          find: /^.*\/VPDocFooterLastUpdated\.vue$/,
+          replacement: fileURLToPath(
+            new URL('./components/LKNDocFooterLastUpdated.vue', import.meta.url)
+          )
+        }
+      ]
+    }
+  },
 
   markdown: {
     image: {
@@ -42,7 +56,7 @@ export default defineConfig({
     lastUpdated: {
       text: "最后更新于",
       formatOptions: {
-        dateStyle: 'full',
+        dateStyle: 'medium',
         timeStyle: 'medium'
       }
     },
