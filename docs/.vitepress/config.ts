@@ -43,9 +43,7 @@ export default defineConfig({
       text: "最后更新于",
       formatOptions: {
         dateStyle: 'full',
-        timeStyle: 'medium',
-        timeZone: 'UTC+8:00',
-        timeZoneName: 'short',
+        timeStyle: 'medium'
       }
     },
 

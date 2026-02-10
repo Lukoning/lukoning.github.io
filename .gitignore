@@ -3,3 +3,4 @@ node_modules/
 /启动本地开发服务器.bat
 /开始构建(手动).bat
 /预览构建产物.bat
+docs/.vitepress/dist/
