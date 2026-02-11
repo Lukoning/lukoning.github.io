@@ -4,3 +4,4 @@ node_modules/
 /开始构建(手动).bat
 /预览构建产物.bat
 docs/.vitepress/dist/
+docs/.vitepress/cache/
