@@ -27,7 +27,7 @@ hero:
 
 features:
   - title: "关于 \"Aohina\""
-    details: "这个名字来自 ヤマノススメ(向山进发) 的两位主角 <lkn c green><ruby>雪村あおい<rp>(</rp><rt>Yukimura <c>Ao</c>i</rt><rp>)</rp></ruby></lkn> 和 <lkn c yellow><ruby>倉上ひなた<rp>(</rp><rt>Kuraue <c>Hina</c>ta</rt><rp>)</rp></ruby></lkn>。顺带一提，头像上也是她们。<a link href='二次元~/向山进发'>了解ヤマノススメ→</a>"
+    details: "这个名字来自 ヤマノススメ(向山进发) 的两位主角 <lkn c green><ruby>雪村あおい<rp>(</rp><rt>Yukimura <c>Ao</c>i</rt><rp>)</rp></ruby></lkn> 和 <lkn c yellow><ruby>倉上ひなた<rp>(</rp><rt>Kuraue <c>Hina</c>ta</rt><rp>)</rp></ruby></lkn>。顺带一提，头像上也是她们。<a link href='ACG/ymnssm-Introduction'>了解ヤマノススメ→</a>"
   - title: "二次元！☆*: .｡. o(≧▽≦)o .｡.:*☆"
     details: "二次元爱好者喵"
   - title: "本站正在测试"
