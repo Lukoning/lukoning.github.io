@@ -17,6 +17,9 @@
     --vp-button-alt-hover-bg: #CCBBDD72;
     --vp-button-alt-active-bg: #CCBBDDBB;
 
+    --vp-font-family-base: "HarmonyOS Sans SC", "Noto Sans SC", 'Punctuation SC', 'Inter', ui-sans-serif, sans-serif, system-ui, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --vp-font-family-mono: "Sarasa Mono SC", "Monaspace Neon", ui-monospace, "SFMono-Regular", "SF Mono", "Menlo", "Consolas", "Liberation Mono", monospace;
+
     --lkn-navbar-blur-radius: 8px;
     --lkn-navmenu-blur-radius: 16px;
     --lkn-navbar-mask: linear-gradient(to bottom, #FFFFFF 75%, transparent 100%);
@@ -25,9 +28,24 @@
 }
 
 //fix start
-pre { //不能跑到页面外边去喵！跑到外面去会出大问题的喵！
-    overflow: scroll;
+* {//CJK自动排版喵！
+    text-autospace: normal;
 }
+.VPFeatures, .VPDoc .main {//左右对齐喵！
+    text-align: justify;
+    text-justify: inter-character;
+}
+
+pre {
+    overflow: scroll; //不能跑到页面外边去喵！跑到外面去会出大问题的喵！
+}
+pre, code { &, & * {
+    //不要CJK自动排版喵！https://github.com/vuejs/vitepress/issues/5115
+    text-autospace: no-autospace;
+    //不要左右对齐喵！
+    text-align: unset;
+    text-justify: unset;
+}}
 
 a[link] { //带link自定义属性时，当作链接看待
     text-decoration-line: underline;
@@ -53,12 +71,33 @@ body {
 .VPSidebar.VPSidebar {
     box-shadow: none;
 }
+.VPSidebarItem .text {
+    line-height: 18px;
+}
 .VPSidebar.open, #VPNavScreen, .VPLocalSearchBox > .shell, .VPFlyout > .menu {
     backdrop-filter: blur(var(--lkn-navmenu-blur-radius));
 }
 .VPFlyout > .menu {
     border-radius: 12px;
 }
+
+.VPNavBar .container > .title.title {//网站标题
+    display: flex;
+    align-items: center;
+    .title {
+        height: 40px;
+        padding: 0 13px;
+        background-color: var(--vp-c-bg-alt);
+        border: 1px solid transparent;
+        border-radius: 8px;
+        transition: border .2s;
+        &:hover {
+            border: 1px solid var(--vp-c-purple-1);
+        }
+    }
+}
+
+
 
 .VPNavBarSocialLinks, .VPNavScreenSocialLinks { //导航栏和导航菜单的个人链接
     & > a {
@@ -94,6 +133,10 @@ body {
     &.has-sidebar {
         display: block !important;
     }
+}
+
+.pager-link {
+    background-color: var(--vp-c-bg-alt);
 }
 
 @media (max-width: 767.999px) { /*宽度768以下*/

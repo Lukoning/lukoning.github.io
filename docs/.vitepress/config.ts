@@ -54,10 +54,16 @@ export default defineConfig({
     returnToTopLabel: "返回顶部",
     sidebarMenuLabel: "网站目录",
     lastUpdated: {
-      text: "最后更新于",
+      text: "最后更新时间",
+      createdText: "本页创建时间", //忽略这里的报错
       formatOptions: {
-        dateStyle: 'medium',
-        timeStyle: 'medium'
+        year: "numeric",
+        month: "numeric",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        timeZone: "Asia/Shanghai",
+        timeZoneName: "long"
       }
     },
 
@@ -88,19 +94,25 @@ export default defineConfig({
     },
   
     nav: [
-      { text: '提瓦特', link: '/' },
-      { text: '饭能市', link: '/二次元~/向山进发.md' }
+      { text: '提瓦特大陆', link: '/' },
+      { text: '饭能市', link: '/ACG/' },
+      { text: '千禧科学学院', link: '/DevJournal/' },
     ],
 
-    sidebar: generateSidebar({
-      documentRootPath: "./docs",
-      useTitleFromFileHeading: true, //侧边栏标题显示为一级（只有一个#）标题
-      useFolderTitleFromIndexFile: true, //如果文件夹有自己的index.md，使用这个文件的标题作为文件夹名
+    sidebar: generateSidebar({ // see: https://vitepress-sidebar.cdget.com/zhHans/guide/options
+      documentRootPath: "./docs", //指定文档根目录
+      includeRootIndexFile: true, //包含首页
+      useTitleFromFrontmatter: true, //侧边栏标题显示文件元数据中的标题，否则回退
+      useTitleFromFileHeading: true, //回退为显示h1标题，否则显示为文件名
       useFolderLinkFromIndexFile: true, //如果文件夹有自己的index.md，则可以导航到这个文件
-      sortMenusByFrontmatterOrder: true, //按文件指定的order（默认值为0）自定义排序
-      sortMenusOrderByDescending: true, //按order降序排序（符合直觉）
-      sortFolderTo: "top", //没放到文件夹里的都在后面
-      collapsed: false,
+      useFolderTitleFromIndexFile: true, //如果文件夹有自己的index.md，使用这个文件的标题作为文件夹名
+      excludeFilesByFrontmatterFieldName: "exclude", //不显示元数据包含exclude的文件
+      sortMenusOrderNumericallyFromTitle: true, //按文件标题前指定的数字order自定义排序
+      sortMenusOrderByDescending: true, //降序排序（order越大越靠前，更符合程序员的直觉()）
+      removePrefixAfterOrdering: true, //从最终的标题中删去自定义字符
+      prefixSeparator: "-", //指定应去掉 "nn-" 数字order前缀
+      sortFolderTo: "bottom", //没放到文件夹里的都在前面
+      collapsed: false, //默认不折叠
     }),
 
     socialLinks: [
@@ -129,13 +141,13 @@ export default defineConfig({
 
     footer: {
       message: '<a href="https://vitepress.dev">VitePress</a> 提供技术支持 / 背景图像来自 <a href="https://www.pixiv.net/artworks/131044765">進擊的复读机 - 可莉</a>',
-      copyright: '本站使用 <a href="/LICENSE">GPL 3.0 许可证</a> 在 <a href="https://github.com/Lukoning/lukoning.github.io">GitHub</a> 上开源 / 版权所有 © 2025-2026 <a href="https://github.com/Lukoning">Lukoning</a> 保留所有权利'
+      copyright: '原创内容 <a href="/LICENSE-CC">CC BY-NC-SA 4.0 协议</a> / 源码 <a href="/LICENSE-MPL">GPL 3.0 许可证</a> / 版权所有 © 2025-2026 <a href="https://github.com/Lukoning">Lukoning</a>'
     },
 
     notFound: {
       title: "URL输错了喵？资源不存在哦喵。",
       quote: "VitePress",
-      linkText: "返回提瓦特",
+      linkText: "返回提瓦特大陆",
     },
   },
 })

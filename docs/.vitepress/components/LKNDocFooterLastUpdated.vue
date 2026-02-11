@@ -13,20 +13,17 @@ const { language: browserLang } = useNavigatorLanguage()
 
 const timeRef = useTemplateRef('timeRef')
 
-const date = computed(() => {
-  // 优先使用updated更新日期
-  if (page.value.frontmatter?.updated) {
-    return new Date(page.value.frontmatter.updated)
-  }
-  // 没有的话使用date发布日期
-  if (page.value.frontmatter?.date) {
-    return new Date(page.value.frontmatter.date)
-  }
-  // 都没有则使用文件的最后修改日期
-  return new Date(page.value.lastUpdated!)
+const createdDate = computed(() => { //添加“创建时间”
+  const frontmatterDate = page.value.frontmatter?.createdTime || page.value.frontmatter?.date || page.value.frontmatter?.createdDate
+  return frontmatterDate ? new Date(frontmatterDate) : new Date(page.value.lastUpdated!) //未定义“创建时间”则回退到“更新时间”
 })
-const isoDatetime = computed(() => date.value.toISOString())
-const datetime = shallowRef('')
+
+const updatedDate = computed(() => new Date(page.value.lastUpdated!)) //这里会读取文档元数据中的lastUpdated字段，没有则用git提交时间
+const createdIsoDatetime = computed(() => createdDate.value.toISOString())
+const updatedIsoDatetime = computed(() => updatedDate.value.toISOString())
+
+const createdDatetime = shallowRef('')
+const updatedDatetime = shallowRef('')
 
 // set time on mounted hook to avoid hydration mismatch due to
 // potential differences in timezones of the server and clients
@@ -36,13 +33,13 @@ onMounted(() => {
       ? pageLang.value
       : browserLang.value
 
-    datetime.value = new Intl.DateTimeFormat(
-      lang,
-      theme.value.lastUpdated?.formatOptions ?? {
-        dateStyle: 'medium',
-        timeStyle: 'medium'
-      }
-    ).format(date.value)
+    const option = theme.value.lastUpdated?.formatOptions ?? {
+      dateStyle: 'medium',
+      timeStyle: 'medium'
+    }
+
+    createdDatetime.value = new Intl.DateTimeFormat(lang, option).format(createdDate.value)
+    updatedDatetime.value = new Intl.DateTimeFormat(lang, option).format(updatedDate.value)
 
     if (lang && pageLang.value !== lang) {
       timeRef.value?.setAttribute('lang', lang)
@@ -54,9 +51,13 @@ onMounted(() => {
 </script>
 
 <template>
+  <p class="VPLastUpdated LKNCreatedTime">
+    {{ theme.lastUpdated?.createdText || 'Created time' }}: <!---忽略这里的报错--> 
+    <time ref="createdTimeRef" :datetime="createdIsoDatetime">{{ createdDatetime }}</time>
+  </p>
   <p class="VPLastUpdated LKNLastUpdated">
     {{ theme.lastUpdated?.text || theme.lastUpdatedText || 'Last updated' }}:
-    <time ref="timeRef" :datetime="isoDatetime">{{ datetime }}</time>
+    <time ref="timeRef" :datetime="updatedIsoDatetime">{{ updatedDatetime }}</time>
   </p>
 </template>
 

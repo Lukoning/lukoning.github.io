@@ -2,6 +2,8 @@
 # https://vitepress.dev/reference/default-theme-home-page
 layout: home
 
+title: 提瓦特大陆
+
 hero:
   name: I'm Lukoning
   text: "also <lkn c green>Ao</lkn><lkn c yellow>hina</lkn>"
@@ -11,11 +13,14 @@ hero:
     alt: 头像
   actions:
     - theme: brand
-      text: ヤマノススメ！
-      link: /二次元~/向山进发
+      text: 浏览博文
+      link: /Nav
     - theme: alt
-      text: GPL 3.0
-      link: /LICENSE
+      text: CC BY-NC-SA 4.0
+      link: /LICENSE-CC
+    - theme: alt
+      text: MPL 2.0
+      link: /LICENSE-MPL
 
 features:
   - title: "关于 \"Aohina\""
