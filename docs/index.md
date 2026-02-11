@@ -13,8 +13,11 @@ hero:
     alt: 头像
   actions:
     - theme: brand
-      text: 浏览博文
-      link: /Nav
+      text: 饭能市
+      link: /ACG/
+    - theme: brand
+      text: 千禧科学学院
+      link: /DevJournal/
     - theme: alt
       text: CC BY-NC-SA 4.0
       link: /LICENSE-CC
