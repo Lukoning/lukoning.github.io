@@ -28,6 +28,10 @@
 }
 
 //fix start
+.VPHero .heading * { //某些字体的字符（MiSans/HarmonyOS Sans）在默认的行高下会截断，此处予以恢复
+    line-height: initial;
+}
+
 * {//CJK自动排版喵！
     text-autospace: normal;
 }
@@ -96,8 +100,6 @@ body {
         }
     }
 }
-
-
 
 .VPNavBarSocialLinks, .VPNavScreenSocialLinks { //导航栏和导航菜单的个人链接
     & > a {
