@@ -1,4 +1,26 @@
+@font-face {
+    font-family: "Zhudou Sans";
+    src: url("/fonts/ZhudouSans-Regular.woff2") format("woff2"),
+         url("/fonts/ZhudouSans-Regular.woff") format("woff");
+}
+
 :root {
+    --vp-font-family-base: "Zhudou Sans", "Inter", "HarmonyOS Sans SC", ui-sans-serif, sans-serif, system-ui, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --vp-font-family-mono: "Sarasa Mono SC", "Monaspace Neon", ui-monospace, "SFMono-Regular", "SF Mono", "Menlo", "Consolas", "Liberation Mono", monospace;
+    --vp-home-hero-image-background-image: url("/avatar.jpg");
+
+    --lkn-theme-accent: #D170FF;
+    --lkn-theme-accent-brighter: color-mix(in srgb, white 20%, var(--lkn-theme-accent));
+    --lkn-theme-accent-darker: color-mix(in srgb, black 20%, var(--lkn-theme-accent));
+    --lkn-theme-text: color-mix(in srgb, black 60%, var(--lkn-theme-accent));
+    --lkn-theme-text-brighter: color-mix(in srgb, black 40%, var(--lkn-theme-accent));
+    --lkn-theme-text-darker: color-mix(in srgb, black 80%, var(--lkn-theme-accent));
+    --lkn-navbar-blur-radius: 8px;
+    --lkn-navmenu-blur-radius: 16px;
+    --lkn-navbar-mask: linear-gradient(to bottom, #FFFFFF 75%, transparent 100%);
+    --lkn-sidebar-mask: linear-gradient(to right, #FFFFFF 90%, transparent 100%);
+    --lkn-footer-mask: linear-gradient(to top, #FFFFFF 75%, transparent 100%);
+
     --vp-c-bg: #18162072;
     --vp-c-bg-soft: #18162096;
     --vp-c-bg-alt: #CCBBDD24;
@@ -6,34 +28,29 @@
     --vp-c-border: #FFFFFF06; /*边框*/
     --vp-c-divider: var(--vp-c-border); /*分隔条*/
     --vp-c-gutter: var(--vp-c-bg-elv);
-    --vp-c-brand-1: var(--vp-c-purple-1);
-    --vp-c-brand-2: var(--vp-c-purple-2);
-    --vp-c-brand-3: var(--vp-c-purple-3);
+    --vp-c-brand-1: var(--lkn-theme-accent-brighter);
+    --vp-c-brand-2: var(--lkn-theme-accent);
+    --vp-c-brand-3: var(--lkn-theme-accent-darker);
     --vp-c-brand-soft: var(--vp-c-purple-soft);
     --vp-code-block-bg: var(--vp-c-bg-soft);
     --vp-sidebar-bg-color: var(--vp-c-bg);
 
-    --vp-button-alt-bg: #CCBBDD36;
-    --vp-button-alt-hover-bg: #CCBBDD72;
-    --vp-button-alt-active-bg: #CCBBDDBB;
-
-    --vp-font-family-base: "HarmonyOS Sans SC", "Noto Sans SC", 'Punctuation SC', 'Inter', ui-sans-serif, sans-serif, system-ui, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-    --vp-font-family-mono: "Sarasa Mono SC", "Monaspace Neon", ui-monospace, "SFMono-Regular", "SF Mono", "Menlo", "Consolas", "Liberation Mono", monospace;
-
-    --lkn-navbar-blur-radius: 8px;
-    --lkn-navmenu-blur-radius: 16px;
-    --lkn-navbar-mask: linear-gradient(to bottom, #FFFFFF 75%, transparent 100%);
-    --lkn-sidebar-mask: linear-gradient(to right, #FFFFFF 90%, transparent 100%);
-    --lkn-footer-mask: linear-gradient(to top, #FFFFFF 75%, transparent 100%);
+    --vp-button-brand-bg: var(--lkn-theme-accent);
+    --vp-button-brand-hover-bg: var(--lkn-theme-accent-brighter);
+    --vp-button-brand-active-bg: var(--lkn-theme-accent-darker);
+    --vp-button-brand-text: var(--lkn-theme-text-darker);
+    --vp-button-brand-hover-text: var(--lkn-theme-text);
+    --vp-button-brand-active-text: var(--lkn-theme-text-brighter);
+    --vp-button-alt-bg: color-mix(in srgb, currentColor 15%, transparent);
+    --vp-button-alt-hover-bg: color-mix(in srgb, currentColor 30%, transparent);
+    --vp-button-alt-active-bg: color-mix(in srgb, var(--lkn-theme-accent) 30%, transparent);
 }
 
 //fix start
-.VPHero .heading * { //某些字体的字符（MiSans/HarmonyOS Sans）在默认的行高下会截断，此处予以恢复
-    line-height: initial;
-}
-
-* {//CJK自动排版喵！
+* { //CJK自动排版喵！
     text-autospace: normal;
+    //半角标点+标点挤压+蝌蚪逗号喵！
+    font-feature-settings: "halt" 1, "hwid" 1, "ss02" 1;
 }
 .VPFeatures, .VPDoc .main {//左右对齐喵！
     text-align: justify;
@@ -61,7 +78,7 @@ a[link] { //带link自定义属性时，当作链接看待
 }
 
 ruby rt { //调大注音字号，看得更清楚
-    font-size: 0.7em;
+    font-size: 0.8em;
 }
 //fix end
 
@@ -96,7 +113,7 @@ body {
         border-radius: 8px;
         transition: border .2s;
         &:hover {
-            border: 1px solid var(--vp-c-purple-1);
+            border: 1px solid var(--vp-c-brand-1);
         }
     }
 }
@@ -141,6 +158,33 @@ body {
     background-color: var(--vp-c-bg-alt);
 }
 
+.VPButton {
+    cursor: default;
+}
+
+.VPHero.has-image {
+    .image-bg { /*配合对背景辉光图像的修改*/
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .VPImage {
+        border-radius: 50%;
+    }
+}
+
+@media (max-width: 639.999px) { /*宽度640以下*/
+    .VPHero.has-image .VPImage {
+        /*你不要乱动啊会出来的啊呜呜呜*/
+        width: 168px;
+        height: 168px;
+    }
+}
+@media (min-width: 640px) { /*宽度640及以上*/
+    .VPHero.has-image .VPImage {
+        width: 208px;
+        height: 208px;
+    }
+}
 @media (max-width: 767.999px) { /*宽度768以下*/
     .VPNavBarSearchButton {
         transform: scale(1);
@@ -159,7 +203,7 @@ body {
         border: 1px solid transparent;
         transition: border .2s, transform .1s;
         &:hover {
-            border: 1px solid var(--vp-c-purple-1);
+            border: 1px solid var(--vp-c-brand-1);
         }
     }
 }
@@ -187,16 +231,4 @@ body {
     .VPFooter.has-sidebar { /*左边距跟随侧边栏宽度*/
         margin-left: calc((100% - var(--vp-layout-max-width)) / 2 + var(--vp-sidebar-width));
     }
-}
-
-.VPButton {
-    cursor: default;
-}
-
-.VPHero.has-image .VPImage {
-    border-radius: 50%;
-
-    /*你不要乱动啊会出来的啊呜呜呜*/
-	max-width: 192px;
-	max-height: 192px;
 }

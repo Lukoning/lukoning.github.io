@@ -26,7 +26,7 @@ export default defineConfig({
           replacement: fileURLToPath(
             new URL('./components/LKNDocFooterLastUpdated.vue', import.meta.url)
           )
-        }
+        },
       ]
     }
   },
@@ -55,7 +55,7 @@ export default defineConfig({
     sidebarMenuLabel: "网站目录",
     lastUpdated: {
       text: "最后更新时间",
-      createdText: "本页创建时间", //忽略这里的报错
+      createdText: "内容创建时间", //忽略这里的报错
       formatOptions: {
         year: "numeric",
         month: "numeric",
@@ -107,10 +107,11 @@ export default defineConfig({
       useFolderLinkFromIndexFile: true, //如果文件夹有自己的index.md，则可以导航到这个文件
       useFolderTitleFromIndexFile: true, //如果文件夹有自己的index.md，使用这个文件的标题作为文件夹名
       excludeFilesByFrontmatterFieldName: "exclude", //不显示元数据包含exclude的文件
-      sortMenusOrderNumericallyFromTitle: true, //按文件标题前指定的数字order自定义排序
-      sortMenusOrderByDescending: true, //降序排序（order越大越靠前，更符合程序员的直觉()）
+      //sortMenusOrderNumericallyFromTitle: true, 按文件标题前指定的数字order自定义排序
+      sortMenusByFrontmatterOrder: true, //按文件元数据中指定的数字order自定义排序
+      sortMenusOrderByDescending: false, //降序排序（order越小越靠前）
       removePrefixAfterOrdering: true, //从最终的标题中删去自定义字符
-      prefixSeparator: "-", //指定应去掉 "nn-" 数字order前缀
+      //prefixSeparator: "#-", 指定应去掉 "nn#-" 数字order前缀
       sortFolderTo: "bottom", //没放到文件夹里的都在前面
       collapsed: false, //默认不折叠
     }),

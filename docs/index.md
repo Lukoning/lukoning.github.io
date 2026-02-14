@@ -1,15 +1,14 @@
 ---
 # https://vitepress.dev/reference/default-theme-home-page
 layout: home
-
 title: 提瓦特大陆
-
+order: 0
 hero:
   name: I'm Lukoning
   text: "also <lkn c green>Ao</lkn><lkn c yellow>hina</lkn>"
   tagline: "‘ ‘  あ さ ひ よ 、 の ぼ る な  ’ ’ \n—— 佐 倉 綾 音 / 花 譜 《 あ さ ひ 》 "
   image:
-    src: /avatar.jpg
+    src: /avatar.jpg #记得去CSS里同步修改--vp-home-hero-image-background-image哦
     alt: 头像
   actions:
     - theme: brand

@@ -1,6 +1,7 @@
 ---
 createdDate: 2026-02-11T22:34:34+08:00
-title: 0-MPL 2.0 协议
+title: MPL 2.0 协议
+order: 2
 ---
 
 # MPL 2.0 协议
