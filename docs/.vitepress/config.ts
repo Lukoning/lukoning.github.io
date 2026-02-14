@@ -110,7 +110,7 @@ export default defineConfig({
       //sortMenusOrderNumericallyFromTitle: true, 按文件标题前指定的数字order自定义排序
       sortMenusByFrontmatterOrder: true, //按文件元数据中指定的数字order自定义排序
       sortMenusOrderByDescending: false, //降序排序（order越小越靠前）
-      removePrefixAfterOrdering: true, //从最终的标题中删去自定义字符
+      //removePrefixAfterOrdering: true, 从最终的标题中删去自定义字符
       //prefixSeparator: "#-", 指定应去掉 "nn#-" 数字order前缀
       sortFolderTo: "bottom", //没放到文件夹里的都在前面
       collapsed: false, //默认不折叠
