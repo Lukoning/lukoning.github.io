@@ -15,7 +15,7 @@ const timeRef = useTemplateRef('timeRef')
 
 const createdDate = computed(() => { //添加“创建时间”
   const frontmatterDate = page.value.frontmatter?.createdTime || page.value.frontmatter?.date || page.value.frontmatter?.createdDate
-  return frontmatterDate ? new Date(frontmatterDate) : new Date(page.value.lastUpdated!) //未定义“创建时间”则回退到“更新时间”
+  return frontmatterDate ? new Date(frontmatterDate) : new Date(0) //未定义“创建时间”则回退到1970（）
 })
 
 const updatedDate = computed(() => new Date(page.value.lastUpdated!)) //这里会读取文档元数据中的lastUpdated字段，没有则用git提交时间

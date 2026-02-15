@@ -5,6 +5,9 @@
 }
 
 :root {
+    /* 1440-(1440*1.05) ，与 1067px 以上时 zoom: 1.05 配合，防止出现侧边栏被剪切等问题 */
+    --vp-layout-max-width: 1368px; 
+
     --vp-font-family-base: "Zhudou Sans", "Inter", "HarmonyOS Sans SC", ui-sans-serif, sans-serif, system-ui, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --vp-font-family-mono: "Sarasa Mono SC", "Monaspace Neon", ui-monospace, "SFMono-Regular", "SF Mono", "Menlo", "Consolas", "Liberation Mono", monospace;
     --vp-home-hero-image-background-image: url("/avatar.jpg");
@@ -26,7 +29,7 @@
     --vp-c-bg-alt: #CCBBDD24;
     --vp-c-bg-elv: var(--vp-c-bg);
     --vp-c-border: #FFFFFF06; /*边框*/
-    --vp-c-divider: var(--vp-c-border); /*分隔条*/
+    --vp-c-divider: #CCBBDD24; /*分隔条*/
     --vp-c-gutter: var(--vp-c-bg-elv);
     --vp-c-brand-1: var(--lkn-theme-accent-brighter);
     --vp-c-brand-2: var(--lkn-theme-accent);
@@ -117,7 +120,6 @@ body {
         }
     }
 }
-
 .VPNavBarSocialLinks, .VPNavScreenSocialLinks { //导航栏和导航菜单的个人链接
     & > a {
         background-color: var(--vp-c-bg);
@@ -130,27 +132,36 @@ body {
             border-radius: 0 50% 50% 0;
         }
     }
-
+}
+.search-bar {
+    background-color: var(--vp-c-bg-alt);
 }
 
-.VPLocalNav { //页面导航栏
+.VPLocalNav { /*页面导航栏*/
     backdrop-filter: blur(var(--lkn-navbar-blur-radius));
     /*mask: var(--lkn-navbar-mask);
     -webkit-mask: var(--lkn-navbar-mask);*/
 }
 .VPLocalNavOutlineDropdown > .items {
-    left: unset; //收窄
+    left: unset; /*收窄*/
 }
 
-.search-bar {
-    background-color: var(--vp-c-bg-alt);
+.VPDoc .aside.aside {
+    padding-left: none; /*缩小左边距*/
 }
 
 .VPFooter {
-    mask: var(--lkn-footer-mask);
     -webkit-mask: var(--lkn-footer-mask);
+    mask: var(--lkn-footer-mask);
     &.has-sidebar {
         display: block !important;
+    }
+    #app & { /*权重提升*/
+        padding-bottom: 22px;
+    }
+    p {
+        /*可配合<wbr/>元素(不过大概率不需要)*/
+        word-break: keep-all;
     }
 }
 
@@ -219,6 +230,11 @@ body {
     }
     .VPFooter.has-sidebar {
         margin-left: var(--vp-sidebar-width);
+    }
+}
+@media (min-width: 1067px) { /*宽度1067及以上*/
+    html {/*变大喵！*/
+        zoom: 1.05;
     }
 }
 @media (min-width: 1280px) { /*宽度1280及以上*/
