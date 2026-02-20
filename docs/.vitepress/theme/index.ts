@@ -1,6 +1,7 @@
 // https://vitepress.dev/guide/custom-theme
 import { h } from 'vue'
 import type { Theme } from 'vitepress'
+import { inBrowser } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import './style.css'
 import NProgress from 'nprogress'
@@ -18,6 +19,7 @@ export default {
     })
   },
   enhanceApp({ app, router, siteData }) {
+    if (!inBrowser) { return } //否则构建时报错
     NProgress.configure({ showSpinner: true })
     router.onBeforeRouteChange = () => {
       NProgress.start(); // 每次路由切换前开始进度条
