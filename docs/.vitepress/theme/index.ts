@@ -3,6 +3,8 @@ import { h } from 'vue'
 import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import './style.css'
+import NProgress from 'nprogress'
+import "nprogress/nprogress.css"
 import "./customStyle.scss"
 import "./customElements.scss"
 import "./customAnimations.scss"
@@ -16,6 +18,12 @@ export default {
     })
   },
   enhanceApp({ app, router, siteData }) {
-    // ...
+    NProgress.configure({ showSpinner: true })
+    router.onBeforeRouteChange = () => {
+      NProgress.start(); // 每次路由切换前开始进度条
+    }
+    router.onAfterRouteChange = () => {
+      NProgress.done(); // 路由切换完成后结束进度条
+    }
   }
 } satisfies Theme

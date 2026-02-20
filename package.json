@@ -1,6 +1,7 @@
 {
   "devDependencies": {
     "@types/node": "^25.2.2",
+    "@types/nprogress": "^0.2.3",
     "sass-embedded": "^1.97.3",
     "vitepress": "^2.0.0-alpha.16",
     "vitepress-sidebar": "^1.33.1"
@@ -9,5 +10,8 @@
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs"
+  },
+  "dependencies": {
+    "nprogress": "^0.2.0"
   }
 }

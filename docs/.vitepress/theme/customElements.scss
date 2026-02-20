@@ -11,14 +11,14 @@ lkn {
         }
         &[green] {
             color: #7dffd6;
-            background: text -webkit-linear-gradient(60deg, #7dffd6 30%, #34fe99);
+            background: text -webkit-linear-gradient(60deg, #7dffd6, #14ff76);
             rt c {
                 -webkit-text-fill-color: #7dffd6;
             }
         }
         &[yellow] {
             color: #ffcc69;
-            background: text -webkit-linear-gradient(60deg, #ffcc69 30%, #ffdc41);
+            background: text -webkit-linear-gradient(60deg, #ffcc69, #fffc41);
             rt c {
                 -webkit-text-fill-color: #ffcc69;
             }
@@ -33,5 +33,8 @@ lkn {
     }
     &[layout] {
         display: block;
+        &[indent] {
+            text-indent: 2em;
+        }
     }
 }
