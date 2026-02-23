@@ -6,6 +6,11 @@ import { fileURLToPath, URL } from 'node:url'
 export default defineConfig({
   title: "LKN个人小站",
   description: "",
+  head: [
+    ["link", { rel: "icon", type: "image/webp", href: "/favicon.webp" }],
+    ["link", { rel: "icon", type: "image/png", href: "/favicon.png" }],
+    ["link", { rel: "icon", href: "/favicon.ico" }],
+  ],
   lang: "zh-CN",
   locales: {
     root: {
@@ -141,7 +146,7 @@ export default defineConfig({
     ],
 
     footer: {
-      message: '',
+      message: '使用Firefox访问本站效果最佳',
       copyright: '<a href="https://vitepress.dev">VitePress</a> 提供技术支持 / 背景图像来自 <a href="https://www.pixiv.net/artworks/131044765">進擊的复读机 - 可莉</a> / 原创内容 <a href="/LICENSE-CC">CC BY-NC-SA 4.0 协议</a> / 源码 <a href="/LICENSE-MPL">MPL 2.0 协议</a> / 版权所有 © 2025-2026 <a href="https://github.com/Lukoning">Lukoning</a>'
     },
 

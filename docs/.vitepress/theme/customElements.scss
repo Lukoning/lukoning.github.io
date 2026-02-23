@@ -1,7 +1,7 @@
 lkn {
     &[c] {
         display: inline;
-        p &, main & {font-weight: 550;} /*仅在正文下应用*/
+        p &, main & {font-weight: 600;} /*仅在正文下应用*//*搞什么，设为550，FF渲染为600，Edge渲染为500*/
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent;
