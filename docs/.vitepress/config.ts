@@ -5,7 +5,7 @@ import { fileURLToPath, URL } from 'node:url'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "LKN个人小站",
-  description: "",
+  description: "⭐",
   head: [
     ["link", { rel: "icon", type: "image/webp", href: "/favicon.webp" }],
     ["link", { rel: "icon", type: "image/png", href: "/favicon.png" }],
