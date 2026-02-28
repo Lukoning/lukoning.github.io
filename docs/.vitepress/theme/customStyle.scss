@@ -18,6 +18,9 @@
     --lkn-navbar-mask: linear-gradient(to bottom, #FFFFFF 80%, transparent 100%);
     --lkn-sidebar-mask: linear-gradient(to right, #FFFFFF 90%, transparent 100%);
     --lkn-footer-mask: linear-gradient(to top, #FFFFFF 50%, transparent 100%);
+    --lkn-selection-color: color-mix(in oklch, var(--lkn-theme-accent) 40%, transparent);
+    --lkn-loading-circle-width: max(min(0.4vw, 0.4vh), 3px);
+    --lkn-loading-circle-radius: max(min(2vw, 2vh), 22px);
 
     --vp-c-bg: color-mix(in oklch, var(--lkn-theme-accent-bg), transparent 70%);
     --vp-c-bg-soft: color-mix(in oklch, var(--lkn-theme-accent-bg), transparent 60%); /*页面背景*/
@@ -42,6 +45,12 @@
     --vp-button-alt-bg: color-mix(in oklch, currentColor 15%, transparent);
     --vp-button-alt-hover-bg: color-mix(in oklch, currentColor 30%, transparent);
     --vp-button-alt-active-bg: color-mix(in oklch, var(--lkn-theme-accent) 30%, transparent);
+}
+
+* {
+    ::selection {
+        background: var(--lkn-selection-color);
+    }
 }
 
 //fix start
@@ -86,13 +95,18 @@ ruby rt { //调大注音字号，看得更清楚
 
 //nprogress进度条
 #nprogress {
-    .bar {
+    .bar { /*条子*/
         background: var(--lkn-theme-accent);
+        box-shadow: 0 0 16px 2px var(--lkn-theme-accent);
     }
-    .peg {
-        box-shadow: 0 0 10px var(--lkn-theme-accent), 0 0 5px var(--lkn-theme-accent);
+    .peg { /*条子头部shadow*/
+        box-shadow: 4px 0 8px 3px var(--lkn-theme-accent);
     }
-    .spinner-icon {
+    .spinner-icon { /*加载圆圈旋转部分*/
+        border-width: var(--lkn-loading-circle-width);
+        width: var(--lkn-loading-circle-radius);
+        height: var(--lkn-loading-circle-radius);
+        animation-duration: 0.6s; /*旋转周期*/
         border-top-color: var(--lkn-theme-accent);
         border-left-color: var(--lkn-theme-accent);
     }
@@ -252,7 +266,7 @@ body {
 }
 @media (min-width: 1067px) { /*宽度1067及以上*/
     html {/*变大喵！*/
-        zoom: 1.05;
+        zoom: 1.03; /*1.05在Chromium系浏览器会错位喵！*/
     }
 }
 @media (min-width: 1280px) { /*宽度1280及以上*/
@@ -264,5 +278,10 @@ body {
 @media (min-width: 1440px) { /*宽度1440及以上*/
     .VPFooter.has-sidebar { /*左边距跟随侧边栏宽度*/
         margin-left: calc((100% - var(--vp-layout-max-width)) / 2 + var(--vp-sidebar-width));
+    }
+}
+@media (min-width: 1510px) { /*宽度1510及以上*/
+    html {/*变大汪！*/
+        zoom: 1.1; /*zoom: 1.1需要宽度1505+，否则侧边栏被裁切*/
     }
 }

@@ -101,7 +101,8 @@ export default defineConfig({
     nav: [
       { text: '提瓦特大陆', link: '/' },
       { text: '饭能市', link: '/ACG/' },
-      { text: '千禧科学学院', link: '/DevJournal/' },
+      { text: '虚空网络', link: '/DevJournal/' },
+      { text: '蔬菜罐罐汤', link: '/Mutterings/' },
     ],
 
     sidebar: generateSidebar({ // see: https://vitepress-sidebar.cdget.com/zhHans/guide/options

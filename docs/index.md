@@ -15,20 +15,17 @@ hero:
     - theme: brand
       text: 饭能市
       link: /ACG/
-    - theme: brand
-      text: 千禧科学学院
+    - theme: alt
+      text: 虚空网络
       link: /DevJournal/
     - theme: alt
-      text: CC BY-NC-SA 4.0
-      link: /LICENSE-CC
-    - theme: alt
-      text: MPL 2.0
-      link: /LICENSE-MPL
+      text: 蔬菜罐罐汤
+      link: /Mutterings/
 
 features:
   - title: "关于 \"Aohina\""
     details: "这个名字来自 ヤマノススメ(向山进发) 的两位主角 <lkn c green><ruby>雪村あおい<rp>(</rp><rt>Yukimura <c>Ao</c>i</rt><rp>)</rp></ruby></lkn> 和 <lkn c yellow><ruby>倉上ひなた<rp>(</rp><rt>Kuraue <c>Hina</c>ta</rt><rp>)</rp></ruby></lkn>。顺带一提，头像上也是她们。<a link href='ACG/ymnssm-Introduction'>了解ヤマノススメ→</a>"
-  - title: "二次元！☆*: .｡. o(≧▽≦)o .｡.:*☆"
+  - title: "二次元！<br/>☆*: .｡. o(≧▽≦)o .｡.:*☆"
     details: "二次元爱好者喵"
   - title: "本站正在测试"
     details: "Beta喵！Beta哦喵！"
@@ -40,7 +37,7 @@ features:
 
 # 欢迎来到「提瓦特大陆」
 
-欢迎你，不论你是旅行者、开拓者、管理员、漂泊者、博士、老师、猎人小姐、队长……
+欢迎你，不论你是旅行者、开拓者、管理员、漂泊者、博士、老师、猎人小姐、队长、舰长、指挥官、绳匠……
 
 提瓦特大陆位于提瓦特之上，提瓦特是被虚假之天包裹住的星球。
 

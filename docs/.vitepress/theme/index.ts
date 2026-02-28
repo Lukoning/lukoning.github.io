@@ -20,7 +20,12 @@ export default {
   },
   enhanceApp({ app, router, siteData }) {
     if (!inBrowser) { return } //否则构建时报错
-    NProgress.configure({ showSpinner: true })
+    NProgress.configure({
+      easing: 'ease-out', //动画曲线
+      showSpinner: true, //显示加载圈
+      trickleSpeed: 200, //自动递增间隔
+      minimum: 0.2, //启动时使用的最小百分比
+    })
     router.onBeforeRouteChange = () => {
       NProgress.start(); // 每次路由切换前开始进度条
     }
