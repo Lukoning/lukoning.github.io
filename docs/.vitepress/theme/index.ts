@@ -9,7 +9,13 @@ import "nprogress/nprogress.css"
 import "./customStyle.scss"
 import "./customElements.scss"
 import "./customAnimations.scss"
-//import layout from "./layout.vue";
+import 'overlayscrollbars/overlayscrollbars.css';
+import {
+  OverlayScrollbars,
+  ScrollbarsHidingPlugin,
+  SizeObserverPlugin,
+  ClickScrollPlugin
+} from 'overlayscrollbars';
 
 export default {
   extends: DefaultTheme,
@@ -31,6 +37,54 @@ export default {
     }
     router.onAfterRouteChange = () => {
       NProgress.done(); // 路由切换完成后结束进度条
+    }
+
+    router.onAfterPageLoad = () => { //忽略此处报错
+      //初始化自定义叠加滚动条
+      OverlayScrollbars.plugin([ClickScrollPlugin]);
+      OverlayScrollbars(document.querySelector("body"), {
+        overflow: {
+          x: "hidden",
+        },
+        scrollbars: {
+          theme: "os-theme-light",
+          autoHide: "leave",
+          autoHideDelay: 800,
+          dragScroll: true,
+          clickScroll: true,
+        },
+      });
+      function createSidebarScrollbar(element: Element) {
+        OverlayScrollbars(element, {
+          scrollbars: {
+            theme: "os-theme-light",
+            autoHide: "leave",
+            autoHideDelay: 800,
+            dragScroll: true,
+            clickScroll: true,
+          },
+        });
+      }
+      const sidebarSelector = "aside.VPSidebar";
+      const existingSidebar = document.querySelector(sidebarSelector);
+      if (existingSidebar) {
+        // 如果侧边栏存在，直接初始化
+        createSidebarScrollbar(existingSidebar);
+        return;
+      }
+
+      // 否则创建 MutationObserver 监听 DOM 变化
+      new MutationObserver((_, obs) => {
+        const sidebar = document.querySelector(sidebarSelector);
+        if (sidebar) {
+          // 找到目标元素，初始化并停止观察
+          createSidebarScrollbar(sidebar);
+          obs.disconnect();
+        }
+      }).observe(document.body, {
+        childList: true,
+        subtree: true,
+      });
     }
   }
 } satisfies Theme

@@ -1,5 +1,6 @@
 ---
 createdDate: 2023-08-01T09:49:00+08:00
+lastUpdated: 2026-03-01T00:10:30+08:00
 title: 日向独唱版
 order: 2
 ---
@@ -28,7 +29,7 @@ order: 2
 
 ---
 
-<lkn layout style="text-align: center;">
+<lkn layout text-center>
 <Badge type="tip">作詞：稲葉エミ</Badge><Badge type="tip">作曲：杉下トキヤ(TaWaRa)</Badge>
 <br/><br/>
 <lkn c yellow><ruby>夢に向かい<rt>yu me ni mu ka i</rt></ruby>　<ruby>ダーツ投げたら<rt>dā tsu na ge ta ra</rt></ruby>　<ruby>いい音<rt>ii o to</rt></ruby>　<ruby>ふたつ鳴ったよ<rt>fu ta tsu na tta yo</rt></ruby></lkn><br/>

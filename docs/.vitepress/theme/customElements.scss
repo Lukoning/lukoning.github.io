@@ -1,40 +1,51 @@
 lkn {
     &[c] {
         display: inline;
-        p &, main & {font-weight: 600;} /*仅在正文下应用*//*搞什么，设为550，FF渲染为600，Edge渲染为500*/
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        color:  var(--vp-c-text-1);
+        color: var(--vp-c-text-1);
         rt {
-            -webkit-text-fill-color:  var(--vp-c-text-1);
+            -webkit-text-fill-color: var(--vp-c-text-1);
+        }
+        rt c {
+            -webkit-text-fill-color: currentColor;
+        }
+        @supports (-webkit-background-clip: text) or (background-clip: text) {
+            & {
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            p &, main & {/*仅在正文下应用*/
+                font-weight: 600;
+                font-synthesis: weight;
+            }
+            &[green] {
+                background-image: -webkit-linear-gradient(60deg, #7dffd6, #14ff76);
+            }
+            &[yellow] {
+                background-image: -webkit-linear-gradient(60deg, #ffcc69, #fffc41);
+            }
+            &[green-yellow] {
+                background-image: -webkit-linear-gradient(92deg, #7dffd6 10%, #ffcc69 90%);
+            }
         }
         &[green] {
             color: #7dffd6;
-            background: text -webkit-linear-gradient(60deg, #7dffd6, #14ff76);
-            rt c {
-                -webkit-text-fill-color: #7dffd6;
-            }
         }
         &[yellow] {
             color: #ffcc69;
-            background: text -webkit-linear-gradient(60deg, #ffcc69, #fffc41);
-            rt c {
-                -webkit-text-fill-color: #ffcc69;
-            }
         }
         &[green-yellow] {
             color: #acecae;
-            background: text -webkit-linear-gradient(92deg, #7dffd6 10%, #ffcc69 90%);
-            rt c {
-                -webkit-text-fill-color: #acecae;
-            }
         }
     }
+    
     &[layout] {
         display: block;
         &[indent] {
             text-indent: 2em;
+        }
+        &[text-center] {
+            text-align: center;
         }
     }
 }
