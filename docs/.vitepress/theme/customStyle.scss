@@ -16,6 +16,7 @@ $lkn-theme-accent-bg: #100416; /*oklch空间混合黑色80%和主题色20%*/
     --lkn-theme-text: #{color.mix(black, $lkn-theme-accent, 70%)};
     --lkn-theme-text-brighter: #{color.mix(black, $lkn-theme-accent, 50%)};
     --lkn-theme-text-darker: #{color.mix(black, $lkn-theme-accent, 90%)};
+    --lkn-page-bg: #{color.mix($lkn-theme-accent-bg, transparent, 50%)};
     --lkn-navbar-blur-radius: 8px;
     --lkn-navmenu-blur-radius: 16px;
     --lkn-navbar-mask: linear-gradient(to bottom, #FFFFFF 80%, transparent 100%);
@@ -26,7 +27,7 @@ $lkn-theme-accent-bg: #100416; /*oklch空间混合黑色80%和主题色20%*/
     --lkn-loading-circle-radius: max(min(2vw, 2vh), 22px);
 
     --vp-c-bg: #{color.mix($lkn-theme-accent-bg, transparent, 30%)};
-    --vp-c-bg-soft: #{color.mix($lkn-theme-accent-bg, transparent, 40%)}; /*页面背景*/
+    --vp-c-bg-soft: #{color.mix($lkn-theme-accent-bg, transparent, 40%)};
     --vp-c-bg-alt: #CCBBDD24; /*非强调色按钮*/
     --vp-c-bg-elv: var(--vp-c-bg);
     --vp-c-border: #FFFFFF06; /*边框*/
@@ -36,7 +37,7 @@ $lkn-theme-accent-bg: #100416; /*oklch空间混合黑色80%和主题色20%*/
     --vp-c-brand-2: var(--lkn-theme-accent);
     --vp-c-brand-3: var(--lkn-theme-accent-darker);
     --vp-c-brand-soft: var(--vp-c-purple-soft);
-    --vp-code-block-bg: var(--vp-c-bg-soft);
+    --vp-code-block-bg: #{color.mix($lkn-theme-accent-bg, transparent, 50%)};
     --vp-sidebar-bg-color: var(--vp-c-bg);
 
     --vp-button-brand-bg: var(--lkn-theme-accent);
@@ -57,8 +58,8 @@ $lkn-theme-accent-bg: #100416; /*oklch空间混合黑色80%和主题色20%*/
 }
 
 //fix start
-* { //允许合成粗体喵！
-    font-synthesis: weight;
+* { //允许合成粗体斜体及小号大写喵！
+    font-synthesis: weight style small-caps;
     //CJK自动排版喵！
     text-autospace: normal;
     //半角标点+等宽数字+标点挤压+蝌蚪逗号(ZhudouSans)喵！https://sparanoid.com/lab/opentype-features/
@@ -128,7 +129,7 @@ body {
     background-color: var(--lkn-theme-accent-bg);
 }
 #app {
-    background-color: var(--vp-c-bg-soft);
+    background-color: var(--lkn-page-bg);
 }
 
 .VPSidebar.VPSidebar {
@@ -263,6 +264,9 @@ body {
     .VPSidebar {
         mask: var(--lkn-sidebar-mask);
         -webkit-mask: var(--lkn-sidebar-mask);
+        .os-scrollbar-vertical { //确保滚动条可见性
+            transform: translateX(-20px);
+        }
     }
 }
 @media (min-width: 960px) { /*宽度960及以上*/

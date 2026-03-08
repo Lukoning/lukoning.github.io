@@ -28,9 +28,10 @@ export default defineConfig({
       alias: [
         {
           find: /^.*\/VPDocFooterLastUpdated\.vue$/,
-          replacement: fileURLToPath(
-            new URL('./components/LKNDocFooterLastUpdated.vue', import.meta.url)
-          )
+          replacement: fileURLToPath(new URL('./components/LKNDocFooterLastUpdated.vue', import.meta.url))
+        }, {
+          find: /^.*\/VPSidebar\.vue$/,
+          replacement: fileURLToPath(new URL('./components/LKNSidebar.vue', import.meta.url))
         },
       ]
     }

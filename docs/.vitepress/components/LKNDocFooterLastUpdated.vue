@@ -3,10 +3,7 @@
 <script setup lang="ts">
 import { useNavigatorLanguage } from '@vueuse/core'
 import { computed, onMounted, shallowRef, useTemplateRef, watchEffect } from 'vue'
-import { useData as useData$ } from 'vitepress'
-import type { DefaultTheme } from 'vitepress/theme'
-
-const useData: typeof useData$<DefaultTheme.Config> = useData$
+import { useData } from 'vitepress/dist/client/theme-default/composables/data'
 
 const { theme, page, lang: pageLang } = useData()
 const { language: browserLang } = useNavigatorLanguage()
