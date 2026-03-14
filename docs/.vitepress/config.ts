@@ -24,6 +24,9 @@ export default defineConfig({
   metaChunk: true,
 
   vite: {
+    build: {
+      target: "es2015",
+    },
     resolve: {
       alias: [
         {

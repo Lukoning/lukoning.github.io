@@ -1,5 +1,5 @@
 // https://vitepress.dev/guide/custom-theme
-import { h } from 'vue'
+import { h, shallowRef } from 'vue'
 import type { Theme } from 'vitepress'
 import { inBrowser } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
@@ -10,13 +10,13 @@ import "nprogress/nprogress.css"
 import "./customStyle.scss"
 import "./customElements.scss"
 import "./customAnimations.scss"
-import 'overlayscrollbars/overlayscrollbars.css';
+import 'overlayscrollbars/overlayscrollbars.css'
 import {
   OverlayScrollbars,
   ScrollbarsHidingPlugin,
   SizeObserverPlugin,
   ClickScrollPlugin
-} from 'overlayscrollbars';
+} from 'overlayscrollbars'
 
 export default {
   extends: DefaultTheme,
@@ -26,7 +26,7 @@ export default {
     })
   },
   enhanceApp({ app, router, siteData }) {
-    if (!inBrowser) { return } //否则构建时报错
+    if (!inBrowser) return;//否则构建时报错
     NProgress.configure({
       easing: 'ease-out', //动画曲线
       showSpinner: true, //显示加载圈
@@ -43,7 +43,7 @@ export default {
     router.onAfterPageLoad = () => {
       //初始化自定义叠加滚动条
       OverlayScrollbars.plugin([ClickScrollPlugin]);
-      OverlayScrollbars(document.body, {
+      const osInstance = OverlayScrollbars(document.body, {
         overflow: {
           x: "hidden",
         },
@@ -55,6 +55,26 @@ export default {
           clickScroll: true,
         },
       });
+      //开始观察并同步body上的overflow修改
+      startOverflowSync(osInstance);
     }
   }
 } satisfies Theme
+
+function startOverflowSync(osInstance: OverlayScrollbars) {
+  // 同步函数：当修改 overflow 时，更新插件
+  function syncOverflow() {
+    // 获取当前 overflow-y 状态
+    const currentOverflowY: OverflowBehavior = window.getComputedStyle(document.body).overflowY;
+    // 获取插件当前的溢出配置，读取overflow.y，然后比较
+    if (osInstance.options().overflow?.y !== currentOverflowY) {
+      // 更新插件
+      osInstance.options({ overflow: { y: currentOverflowY } });
+    }
+  };
+
+  // 创建MutationObserver并开始观察
+  new MutationObserver(() => {
+    syncOverflow()
+  }).observe(document.body, { attributes: true, attributeFilter: ["style"] });
+}

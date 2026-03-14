@@ -30,6 +30,7 @@ $lkn-theme-accent-bg-dark: #100416; /*oklch空间混合黑色80%和主题色20%*
     --vp-c-brand-soft: #{color.mix($lkn-theme-accent-light, transparent, 10%)}; /*Tip框*/
     --vp-code-bg: #{color.mix($lkn-theme-accent-bg-light, transparent, 50%)};
     --vp-code-block-bg: var(--vp-code-bg);
+    --vp-code-line-highlight-color: #{color.mix($lkn-theme-accent-light, transparent, 20%)};
     --vp-backdrop-bg-color: var(--vp-c-bg-soft); /*侧边栏展开遮罩*/
 
     --vp-button-brand-bg: var(--lkn-theme-accent);

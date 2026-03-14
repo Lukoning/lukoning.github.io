@@ -5,7 +5,7 @@ layout: home
 title: 提瓦特大陆
 order: 0
 hero:
-  name: I'm Lukoning
+  name: "I'm Lukoning "
   text: "also <lkn c green>Ao</lkn><lkn c yellow>hina</lkn>"
   tagline: "‘ ‘  あ さ ひ よ 、 の ぼ る な  ’ ’ \n—— 佐 倉 綾 音 / 花 譜 《 あ さ ひ 》 "
   image:
