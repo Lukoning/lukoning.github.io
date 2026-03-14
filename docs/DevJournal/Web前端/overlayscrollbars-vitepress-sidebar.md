@@ -227,7 +227,7 @@ import { OverlayScrollbarsComponent } from 'overlayscrollbars-vue';
 …
 ```
 
-另外这种方式还需要改padding和height才能正常生效，具体不细说了。
+另外这种方式还需要改overflow、padding和height才能正常生效，具体不细说了。
 
 详情可以看我在2026年3月8号对本站的commits：
 <br/>

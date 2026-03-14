@@ -5,7 +5,7 @@ import { fileURLToPath, URL } from 'node:url'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "LKN个人小站",
-  description: "⭐",
+  description: "Lukoning的个人网站喵⭐",
   head: [
     ["link", { rel: "icon", type: "image/webp", href: "/favicon.webp" }],
     ["link", { rel: "icon", type: "image/png", href: "/favicon.png" }],
@@ -20,8 +20,8 @@ export default defineConfig({
   },
   cleanUrls: true,
   ignoreDeadLinks: true,
-  appearance: "force-dark",
   lastUpdated: true, //显示最后更新时间
+  metaChunk: true,
 
   vite: {
     resolve: {
@@ -46,6 +46,7 @@ export default defineConfig({
   },
 
   markdown: {
+    lineNumbers: true,
     image: {
       lazyLoading: true //仅在滚动到图片位置时加载图片
     },
@@ -56,10 +57,14 @@ export default defineConfig({
       infoLabel: '信息',
       detailsLabel: '详细信息'
     }
+
   },
 
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
+    darkModeSwitchLabel: "切换浅色/深色模式",
+    lightModeSwitchTitle: "切换到浅色模式",
+    darkModeSwitchTitle: "切换到深色模式",
     docFooter: {
       prev: "上一篇",
       next: "下一篇",
@@ -78,8 +83,9 @@ export default defineConfig({
         minute: "numeric",
         timeZone: "Asia/Shanghai",
         timeZoneName: "long"
-      }
+      },
     },
+    externalLinkIcon: true,
 
     search: {
       provider: 'local',
@@ -157,7 +163,7 @@ export default defineConfig({
 
     footer: {
       message: '使用Firefox 145+或Chromium 140+访问本站效果最佳',
-      copyright: '<a href="https://vitepress.dev">VitePress</a> 提供技术支持 / 背景图像来自 <a href="https://www.pixiv.net/artworks/131044765">進擊的复读机 - 可莉</a> / 原创内容 <a href="/LICENSE-CC">CC BY-NC-SA 4.0 协议</a> / 源码 <a href="/LICENSE-MPL">MPL 2.0 协议</a> / 版权所有 © 2025-2026 <a href="https://github.com/Lukoning">Lukoning</a>'
+      copyright: '<a href="https://vitepress.dev">VitePress</a> 提供技术支持 / 背景图像源：暗色 <a href="https://www.pixiv.net/artworks/131044765">進擊的复读机 - 可莉</a> & 亮色 <a href="https://www.bilibili.com/video/BV1PP4y1U7qA/?share_source=copy_web&t=102">《原神》角色演示-「纳西妲：无垠无忧」</a><br/>原创内容 <a href="/LICENSE-CC">CC BY-NC-SA 4.0 协议</a> / 源码 <a href="/LICENSE-MPL">MPL 2.0 协议</a> / 版权所有 © 2025-2026 <a href="https://github.com/Lukoning">Lukoning</a>'
     },
 
     notFound: {
