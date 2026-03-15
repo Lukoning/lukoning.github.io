@@ -37,6 +37,9 @@ lkn {
         &[green-yellow] {
             color: #acecae;
         }
+        :root:not(.dark) & {
+            filter: brightness(.65) contrast(1.6) saturate(1.2);
+        }
     }
     
     &[layout] {

@@ -27,6 +27,7 @@ export default {
   },
   enhanceApp({ app, router, siteData }) {
     if (!inBrowser) return;//否则构建时报错
+    //https://www.npmjs.com/package/nprogress
     NProgress.configure({
       easing: 'ease-out', //动画曲线
       showSpinner: true, //显示加载圈
@@ -34,7 +35,8 @@ export default {
       minimum: 0.2, //启动时使用的最小百分比
     })
     router.onBeforeRouteChange = () => {
-      NProgress.start(); // 每次路由切换前开始进度条
+      // 每次路由切换前开始进度条或重置状态
+      if (NProgress.isStarted()) NProgress.set(0.2); else NProgress.start();
     }
     router.onAfterRouteChange = () => {
       NProgress.done(); // 路由切换完成后结束进度条
@@ -45,7 +47,8 @@ export default {
       OverlayScrollbars.plugin([ClickScrollPlugin]);
       const osInstance = OverlayScrollbars(document.body, {
         overflow: {
-          x: "hidden",
+          x: "scroll",
+          y: "scroll",
         },
         scrollbars: {
           theme: "os-theme-light",
@@ -67,9 +70,11 @@ function startOverflowSync(osInstance: OverlayScrollbars) {
     // 获取当前 overflow-y 状态
     const currentOverflowY: OverflowBehavior = window.getComputedStyle(document.body).overflowY;
     // 获取插件当前的溢出配置，读取overflow.y，然后比较
-    if (osInstance.options().overflow?.y !== currentOverflowY) {
+    if (osInstance.options().overflow.y !== currentOverflowY) {
       // 更新插件
-      osInstance.options({ overflow: { y: currentOverflowY } });
+      osInstance.options({ overflow: {
+        y: currentOverflowY==="visible"?"scroll":currentOverflowY // 解决边缘情况下<body>无法滚动问题
+      }});
     }
   };
 

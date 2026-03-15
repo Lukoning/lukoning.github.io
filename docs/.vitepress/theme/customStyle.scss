@@ -1,6 +1,6 @@
 @use "sass:color";
-$lkn-theme-accent-light: #09A765;
-$lkn-theme-accent-bg-light: #EBF6EF; /*oklch空间混合白色90%和主题色10%*/
+$lkn-theme-accent-light: #007A3A;
+$lkn-theme-accent-bg-light: #E8F1EA; /*oklch空间混合白色90%和主题色10%*/
 $lkn-theme-accent-dark:#D170FF;
 $lkn-theme-accent-bg-dark: #100416; /*oklch空间混合黑色80%和主题色20%*/
 :root {
@@ -11,37 +11,56 @@ $lkn-theme-accent-bg-dark: #100416; /*oklch空间混合黑色80%和主题色20%*
     --vp-font-family-mono: "Sarasa Mono SC", "Monaspace Neon", ui-monospace, "SFMono-Regular", "SF Mono", "Menlo", "Consolas", "Liberation Mono", monospace;
     --vp-home-hero-image-background-image: url("/avatar.jpg");
 
-    --lkn-theme-accent: #{$lkn-theme-accent-light};
-    --lkn-theme-accent-bg: #{$lkn-theme-accent-bg-light};
-    --lkn-theme-accent-brighter: #{color.mix(white, $lkn-theme-accent-light, 20%)};
-    --lkn-theme-accent-darker: #{color.mix(black, $lkn-theme-accent-light, 20%)};
-    --lkn-theme-text: #{color.mix(white, $lkn-theme-accent-light, 90%)};
-    --lkn-theme-text-brighter: #{color.mix(white, $lkn-theme-accent-light, 95%)};
-    --lkn-theme-text-darker: #{color.mix(white, $lkn-theme-accent-light, 50%)};
-    --lkn-home-bg: #{color.mix($lkn-theme-accent-bg-light, transparent, 30%)};
-    --lkn-page-bg: #{color.mix($lkn-theme-accent-bg-light, transparent, 50%)};
-    --lkn-selection-color: #{color.mix($lkn-theme-accent-light, transparent, 40%)};
-
-    --vp-c-bg: #{color.mix($lkn-theme-accent-bg-light, transparent, 30%)};
-    --vp-c-bg-soft: #{color.mix($lkn-theme-accent-bg-light, transparent, 40%)};
-    --vp-c-bg-alt: #CCDDBB24; /*非强调色按钮*/
     --vp-c-border: #FFFFFF06; /*边框*/
-    --vp-c-divider: #CCDDBB24; /*分隔条*/
-    --vp-c-brand-soft: #{color.mix($lkn-theme-accent-light, transparent, 10%)}; /*Tip框*/
-    --vp-code-bg: #{color.mix($lkn-theme-accent-bg-light, transparent, 50%)};
     --vp-code-block-bg: var(--vp-code-bg);
-    --vp-code-line-highlight-color: #{color.mix($lkn-theme-accent-light, transparent, 20%)};
     --vp-backdrop-bg-color: var(--vp-c-bg-soft); /*侧边栏展开遮罩*/
 
     --vp-button-brand-bg: var(--lkn-theme-accent);
     --vp-button-brand-hover-bg: var(--lkn-theme-accent-brighter);
     --vp-button-brand-active-bg: var(--lkn-theme-accent-darker);
-    --vp-button-brand-text: var(--lkn-theme-text-brighter);
     --vp-button-brand-hover-text: var(--lkn-theme-text);
-    --vp-button-brand-active-text: var(--lkn-theme-text-darker);
-    --vp-button-alt-bg: #{color.mix($lkn-theme-accent-bg-light, transparent, 60%)};
-    --vp-button-alt-hover-bg: #{color.mix($lkn-theme-accent-bg-light, transparent, 80%)};
-    --vp-button-alt-active-bg: #{color.mix($lkn-theme-accent-light, transparent, 30%)};
+
+    --vp-c-bg-elv: var(--vp-c-bg);
+    --vp-c-gutter: var(--vp-c-bg-elv);
+    --vp-c-brand-1: var(--lkn-theme-accent-brighter);
+    --vp-c-brand-2: var(--lkn-theme-accent);
+    --vp-c-brand-3: var(--lkn-theme-accent-darker);
+    --vp-sidebar-bg-color: var(--vp-c-bg);
+    --vp-local-nav-bg-color: var(--lkn-page-bg);
+
+    &:not(.dark) {
+        --lkn-theme-accent: #{$lkn-theme-accent-light};
+        --lkn-theme-accent-bg: #{$lkn-theme-accent-bg-light};
+        --lkn-theme-accent-brighter: #{color.mix(white, $lkn-theme-accent-light, 20%)};
+        --lkn-theme-accent-darker: #{color.mix(black, $lkn-theme-accent-light, 20%)};
+        --lkn-theme-text: #{color.mix(white, $lkn-theme-accent-light, 90%)};
+        --lkn-theme-text-brighter: #{color.mix(white, $lkn-theme-accent-light, 95%)};
+        --lkn-theme-text-darker: #{color.mix(white, $lkn-theme-accent-light, 50%)};
+        --lkn-home-bg: #{color.mix($lkn-theme-accent-bg-light, transparent, 30%)};
+        --lkn-page-bg: #{color.mix($lkn-theme-accent-bg-light, transparent, 50%)};
+        --lkn-selection-color: #{color.mix($lkn-theme-accent-light, transparent, 40%)};
+        --lkn-scrollbar-handle-bg: #{color.mix(rgba(black, .2), $lkn-theme-accent-bg-light, 90%)};
+        --lkn-scrollbar-handle-bg-hover: #{color.mix(rgba(black, .4), $lkn-theme-accent-bg-light, 80%)};
+        --lkn-scrollbar-handle-bg-active: #{color.mix(rgba(white, .1), $lkn-theme-accent-light, 60%)};
+
+        --vp-c-text-1: #{color.mix(black, $lkn-theme-accent-light, 90%)}; //主文字色
+        --vp-c-text-2: #{color.mix(black, $lkn-theme-accent-bg-light, 60%)}; //副文字色
+        --vp-c-text-3: #{color.mix(black, $lkn-theme-accent-bg-light, 30%)}; //placeholder
+
+        --vp-c-bg: #{color.mix($lkn-theme-accent-bg-light, transparent, 30%)};
+        --vp-c-bg-soft: #{color.mix($lkn-theme-accent-bg-light, transparent, 40%)};
+        --vp-c-bg-alt: #CCDDBB24; /*非强调色按钮*/
+        --vp-c-divider: #CCDDBB24; /*分隔条*/
+        --vp-c-brand-soft: #{color.mix($lkn-theme-accent-light, transparent, 8%)}; /*Tip框*/
+        --vp-code-bg: #{color.mix($lkn-theme-accent-bg-light, transparent, 50%)};
+        --vp-code-line-highlight-color: #{color.mix($lkn-theme-accent-light, transparent, 20%)};
+
+        --vp-button-brand-text: var(--lkn-theme-text-brighter);
+        --vp-button-brand-active-text: var(--lkn-theme-text-darker);
+        --vp-button-alt-bg: #{color.mix($lkn-theme-accent-bg-light, transparent, 60%)};
+        --vp-button-alt-hover-bg: #{color.mix($lkn-theme-accent-bg-light, transparent, 80%)};
+        --vp-button-alt-active-bg: #{color.mix($lkn-theme-accent-light, transparent, 30%)};
+    }
 
     &.dark {
         --lkn-theme-accent: #{$lkn-theme-accent-dark};
@@ -54,17 +73,23 @@ $lkn-theme-accent-bg-dark: #100416; /*oklch空间混合黑色80%和主题色20%*
         --lkn-home-bg: #{color.mix($lkn-theme-accent-bg-dark, transparent, 40%)};
         --lkn-page-bg: #{color.mix($lkn-theme-accent-bg-dark, transparent, 60%)};
         --lkn-selection-color: #{color.mix($lkn-theme-accent-dark, transparent, 40%)};
+        --lkn-scrollbar-handle-bg: #{color.mix(rgba(white, .2), $lkn-theme-accent-bg-dark, 95%)};
+        --lkn-scrollbar-handle-bg-hover: #{color.mix(rgba(white, .5), $lkn-theme-accent-bg-dark, 80%)};
+        --lkn-scrollbar-handle-bg-active: #{color.mix(rgba(black, .1), $lkn-theme-accent-dark, 60%)};
+
+        --vp-c-text-1: #{color.mix(white, $lkn-theme-accent-dark, 90%)}; //主文字色
+        --vp-c-text-2: #{color.mix(white, $lkn-theme-accent-bg-dark, 70%)}; //副文字色
+        --vp-c-text-3: #{color.mix(white, $lkn-theme-accent-bg-dark, 50%)}; //placeholder
         
         --vp-c-bg: #{color.mix($lkn-theme-accent-bg-dark, transparent, 30%)};
         --vp-c-bg-soft: #{color.mix($lkn-theme-accent-bg-dark, transparent, 40%)};
         --vp-c-bg-alt: #CCBBDD24; /*非强调色按钮*/
-        --vp-c-border: #FFFFFF06; /*边框*/
         --vp-c-divider: #CCBBDD24; /*分隔条*/
         --vp-c-brand-soft: #{color.mix($lkn-theme-accent-dark, transparent, 15%)}; /*Tip框*/
         --vp-code-bg: #{color.mix($lkn-theme-accent-bg-dark, transparent, 50%)};
+        --vp-code-line-highlight-color: #{color.mix($lkn-theme-accent-dark, transparent, 20%)};
 
         --vp-button-brand-text: var(--lkn-theme-text-darker);
-        --vp-button-brand-hover-text: var(--lkn-theme-text);
         --vp-button-brand-active-text: var(--lkn-theme-text-brighter);
         --vp-button-alt-bg: #{color.mix(#dfdfdf, transparent, 15%)};
         --vp-button-alt-hover-bg: #{color.mix(#dfdfdf, transparent, 30%)};
@@ -80,14 +105,6 @@ $lkn-theme-accent-bg-dark: #100416; /*oklch空间混合黑色80%和主题色20%*
     --lkn-navbar-gradient-bg-page: linear-gradient(to bottom, var(--vp-c-bg) 0%, var(--lkn-page-bg) 100%);
     --lkn-loading-circle-width: max(min(0.4vw, 0.4vh), 3px);
     --lkn-loading-circle-radius: max(min(2vw, 2vh), 22px);
-
-    --vp-c-bg-elv: var(--vp-c-bg);
-    --vp-c-gutter: var(--vp-c-bg-elv);
-    --vp-c-brand-1: var(--lkn-theme-accent-brighter);
-    --vp-c-brand-2: var(--lkn-theme-accent);
-    --vp-c-brand-3: var(--lkn-theme-accent-darker);
-    --vp-sidebar-bg-color: var(--vp-c-bg);
-    --vp-local-nav-bg-color: var(--lkn-page-bg);
 }
 
 * {
@@ -158,9 +175,9 @@ ruby rt { //调大注音字号，看得更清楚
 }
 //OverlayScrollbars滚动条
 .os-scrollbar-handle {
-    --os-handle-bg: var(--vp-button-alt-bg);
-    --os-handle-bg-hover: var(--vp-button-alt-hover-bg);
-    --os-handle-bg-active: var(--vp-button-alt-active-bg);
+    --os-handle-bg: var(--lkn-scrollbar-handle-bg);
+    --os-handle-bg-hover: var(--lkn-scrollbar-handle-bg-hover);
+    --os-handle-bg-active: var(--lkn-scrollbar-handle-bg-active);
 }
 
 body {
@@ -206,6 +223,9 @@ body {
             border: 1px solid var(--vp-c-brand-1);
         }
     }
+    .logo { //圆角
+        border-radius: 50%;
+    }
 }
 .VPNavBarSocialLinks, .VPNavScreenSocialLinks { //导航栏和导航菜单的个人链接
     & > a {
@@ -230,7 +250,7 @@ body {
     -webkit-mask: var(--lkn-navbar-mask);*/
 }
 .VPLocalNavOutlineDropdown > .items {
-    left: unset; /*收窄菜单*/
+    left: unset; /*收窄菜单+解决菜单定位bug*/
 }
 
 .VPDoc .aside.aside {
@@ -328,6 +348,7 @@ body {
         backdrop-filter: blur(var(--lkn-navbar-blur-radius));
     }
     .VPLocalNav.VPLocalNav.has-sidebar {
+        background-color: var(--vp-nav-bg-color);
         padding-left: 0;
         margin-left: var(--vp-sidebar-width);
     }
