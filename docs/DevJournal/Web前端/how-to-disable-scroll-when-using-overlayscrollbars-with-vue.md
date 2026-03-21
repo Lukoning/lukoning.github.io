@@ -12,7 +12,7 @@ order: 3
 
 一般页面中，理论上只需要：
 
-```js
+```js [JavaScript ~vscode-icons:file-type-js~]
 //假设上文已经拿到了osInstance
 //只禁用垂直滚动
 osInstance.options({overflow:{y:"hidden"}});
@@ -28,8 +28,7 @@ osInstance.options({overflow:{y:"hidden"}});
 
 为了方便调试，也可以把`osInstance`挂载到`app.config.globalProperties`（Vue全局属性）上。
 
-```ts{9-12,29-30}
-//docs/.vitepress/theme/index.ts
+```ts {8-11,28-29} [docs/.vitepress/theme/index.ts ~vscode-icons:file-type-typescript~]
 import { h, shallowRef } from 'vue'
 import { inBrowser } from 'vitepress'
 import { OverlayScrollbars, ClickScrollPlugin } from 'overlayscrollbars'
@@ -68,7 +67,7 @@ export default {
 
 通过浏览器调试的时候，先在Vue DevTools选中任意Vue元素，然后在控制台执行以下命令，返回以下值就说明挂载成功了：
 
-```js
+```js [JavaScript Console ~vscode-icons:file-type-js~]
 >>  $vm0.root.appContext.app.config.globalProperties.$osInstance_body
 <-  Object
     destroy: BoundFunctionObject { … }
@@ -84,8 +83,7 @@ export default {
 
 继续开改：
 
-```ts
-//docs/.vitepress/config.ts
+```ts [docs/.vitepress/config.ts ~vscode-icons:file-type-typescript~]
 export default defineConfig({
   …
   vite: {
@@ -105,7 +103,7 @@ export default defineConfig({
 ```
 
 ::: code-group
-```html[修改后]
+```html[修改后 ~vscode-icons:file-type-vue~]
 <!-- docs/.vitepress/components/LKNNavScreen.vue -->
 <script setup lang="ts">
 import { useBodyScrollLock } from '../composables/useBodyScrollLock'
@@ -137,7 +135,7 @@ useBodyScrollLock(() => props.open)
 </template>
 …
 ```
-```html[修改前]
+```html[修改前 ~vscode-icons:file-type-vue~]
 <!-- node_modules/vitepress/dist/client/theme-default/components/VPNavScreen.vue -->
 <script setup lang="ts">
 import { useScrollLock } from '@vueuse/core'
@@ -175,6 +173,27 @@ const isLocked = useScrollLock(inBrowser ? document.body : null)
 ```
 :::
 
+```ts [docs/.vitepress/theme/composables/useBodyScrollLock.ts ~vscode-icons:file-type-typescript~]
+import { inject, watch, type Ref } from 'vue'
+
+export function useBodyScrollLock(locked: Ref<boolean> | boolean) {
+  const osInstanceBody = inject<{ value: any }>('osInstance_body')
+
+  watch(
+    () => (typeof locked === 'boolean' ? locked : locked.value),
+    (isLocked) => {
+      const os = osInstanceBody?.value
+      if (os) {
+        os.options({
+          overflow: { y: isLocked ? 'hidden' : 'scroll' }
+        })
+      }
+    },
+    { immediate: true }
+  )
+}
+```
+
 这样就能够正常禁用滚动了。
 
 ## 新的解法
@@ -189,12 +208,13 @@ const isLocked = useScrollLock(inBrowser ? document.body : null)
 
 在尝试一些其他办法后，我最终选择了这个优雅的办法。
 
-复原之前config.ts和theme/index.ts中的修改，删除LKNNavScreen.vue。
+复原之前config.ts和theme/index.ts中的修改
+
+删除LKNNavScreen.vue和useBodyScrollLock.ts
 
 重新修改index.ts：
 
-```ts
-//docs/.vitepress/theme/index.ts
+```ts [docs/.vitepress/theme/index.ts ~vscode-icons:file-type-typescript~]
 …
 export default {
   enhanceApp({ app, router, siteData }) {

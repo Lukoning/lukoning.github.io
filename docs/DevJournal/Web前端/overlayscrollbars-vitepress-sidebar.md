@@ -1,5 +1,6 @@
 ---
 createdDate: 2026-03-08T10:16:34+08:00
+lastUpdated: 2026-03-14T19:00:59+08:00
 title: 关于OverlayScrollbars如何应用到Vue元素上的问题
 order: 2
 ---
@@ -12,8 +13,7 @@ order: 2
 
 按照OverlayScrollbars的文档和自己的理解，在`router.onAfterPageLoad`初始化`<body>`的自定义滚动条，小获成功。
 
-```ts
-//docs/.vitepress/theme/index.ts
+```ts [docs/.vitepress/theme/index.ts ~vscode-icons:file-type-typescript~]
 export default {
   …
   enhanceApp({ app, router, siteData }) {
@@ -58,8 +58,8 @@ Uncaught (in promise) TypeError: can't access property "ownerDocument", v2 is nu
 
 询问DeepSeek，回复说建议使用`new MutationObserver()`监视DOM，当侧边栏元素出现时再初始化滚动条：
 
-```ts
-//docs/.vitepress/theme/index.ts > export default > enhanceApp() > router.onAfterPageLoad()
+```ts [docs/.vitepress/theme/index.ts ~vscode-icons:file-type-typescript~]
+// export default -> enhanceApp() -> router.onAfterPageLoad()
 function createSidebarScrollbar(element: Element) {
   OverlayScrollbars(element, {
     scrollbars: {
@@ -123,7 +123,7 @@ new MutationObserver((_, obs) => {
 
 使用devtool看到错误的结构如下：
 
-```html
+```html [HTML 5 ~vscode-icons:file-type-html~]
 <aside class="VPSidebar open" data-v-1df9f90f data-v-af661f50 data-overlayscrollbars="host">
   <div class data-overlayscrollbars-viewport="scrollbarHidden overflowXHidden overflowYScroll" tabindex="-1" style=" … ">
     <div data-v-345c25f7="" class="curtain"></div>
@@ -153,8 +153,7 @@ new MutationObserver((_, obs) => {
 
 最终实现里，使用自定义LKNSidebar.vue组件替换掉VPSidebar.vue
 
-```ts
-//docs/.vitepress/config.ts
+```ts [docs/.vitepress/config.ts ~vscode-icons:file-type-typescript~]
 export default defineConfig({
   …
   vite: {
@@ -173,8 +172,7 @@ export default defineConfig({
 })
 ```
 
-```html
-<!-- docs/.vitepress/components/LKNSidebar.vue -->
+```html [docs/.vitepress/components/LKNSidebar.vue ~vscode-icons:file-type-vue~]
 <script lang="ts" setup>
 import 'overlayscrollbars/overlayscrollbars.css';
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-vue';

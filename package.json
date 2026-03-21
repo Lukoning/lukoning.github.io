@@ -2,7 +2,8 @@
   "dependencies": {
     "nprogress": "^0.2.0",
     "overlayscrollbars": "^2.14.0",
-    "overlayscrollbars-vue": "^0.5.9"
+    "overlayscrollbars-vue": "^0.5.9",
+    "vitepress-plugin-group-icons": "^1.7.1"
   },
   "devDependencies": {
     "@types/node": "^25.2.2",

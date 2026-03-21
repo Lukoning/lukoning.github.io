@@ -1,5 +1,6 @@
 import { defineConfig } from 'vitepress'
 import { generateSidebar } from "vitepress-sidebar"
+import { groupIconMdPlugin, groupIconVitePlugin } from 'vitepress-plugin-group-icons'
 import { fileURLToPath, URL } from 'node:url'
 
 // https://vitepress.dev/reference/site-config
@@ -24,6 +25,7 @@ export default defineConfig({
   metaChunk: true,
 
   vite: {
+    plugins: [ groupIconVitePlugin() ],
     build: {
       target: "es2015",
     },
@@ -49,6 +51,7 @@ export default defineConfig({
   },
 
   markdown: {
+    config(md) { md.use(groupIconMdPlugin) },
     lineNumbers: true,
     image: {
       lazyLoading: true //仅在滚动到图片位置时加载图片
