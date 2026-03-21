@@ -98,7 +98,7 @@ $lkn-theme-accent-bg-dark: #100416; /*oklch空间混合黑色80%和主题色20%*
 
     --lkn-navbar-blur-radius: 8px;
     --lkn-navmenu-blur-radius: 16px;
-    --lkn-navbar-mask: linear-gradient(to bottom, #FFFFFF 80%, transparent 100%);
+    --lkn-navbar-mask: linear-gradient(to bottom, #FFFFFF 70%, transparent 100%);
     --lkn-sidebar-mask: linear-gradient(to right, #FFFFFF 90%, transparent 100%);
     --lkn-footer-bg: linear-gradient(to top, var(--vp-c-bg) 50%, var(--lkn-page-bg) 100%);
     --lkn-navbar-gradient-bg-home: linear-gradient(to bottom, var(--vp-c-bg) 50%, var(--lkn-home-bg) 100%);
@@ -209,22 +209,49 @@ body {
     border-radius: 12px;
 }
 
-.VPNavBar .container > .title.title {//网站标题
-    display: flex;
-    align-items: center;
-    .title {
-        height: 40px;
-        padding: 0 13px;
-        background-color: var(--vp-c-bg-alt);
-        border: 1px solid transparent;
-        border-radius: 8px;
-        transition: border .2s;
-        &:hover {
-            border: 1px solid var(--vp-c-brand-1);
+/*所有导航栏背景伪元素*/
+.VPLocalNav.VPLocalNav > .container,
+.VPNavBar.home,
+.VPNavBar:not(.home) .content-body { &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+    background-color: var(--vp-nav-bg-color);
+    backdrop-filter: blur(var(--lkn-navbar-blur-radius));
+    mask: var(--lkn-navbar-mask);
+    -webkit-mask: var(--lkn-navbar-mask);
+}}
+
+.VPNavBar:not(#ABC) {
+    background-color: transparent;
+    .divider {//分割线
+        display: none;
+    }
+    .container > .title.title {//网站标题
+        display: flex;
+        align-items: center;
+        .title {
+            height: 40px;
+            padding: 0 13px;
+            background-color: var(--vp-c-bg-alt);
+            border: 1px solid transparent;
+            border-radius: 8px;
+            transition: border .2s;
+            &:hover {
+                border: 1px solid var(--vp-c-brand-1);
+            }
+        }
+        .logo {
+            border-radius: 50%; //圆角
+            margin: 0 6px 0 -4px; //视觉上对齐
         }
     }
-    .logo { //圆角
-        border-radius: 50%;
+    .content-body:not(#ABC) {
+        background-color: transparent;
     }
 }
 .VPNavBarSocialLinks, .VPNavScreenSocialLinks { //导航栏和导航菜单的个人链接
@@ -244,13 +271,20 @@ body {
     background-color: var(--vp-c-bg-alt);
 }
 
-.VPLocalNav { /*页面导航栏*/
-    backdrop-filter: blur(var(--lkn-navbar-blur-radius));
-    /*mask: var(--lkn-navbar-mask);
-    -webkit-mask: var(--lkn-navbar-mask);*/
+.VPLocalNav.VPLocalNav {
+    background-color: transparent;
+    border-bottom: none;
+    >.container::after { /*页面导航栏背景*/
+        background-color: var(--vp-local-nav-bg-color);
+    }
 }
+
 .VPLocalNavOutlineDropdown > .items {
-    left: unset; /*收窄菜单+解决菜单定位bug*/
+    /*收窄菜单+解决菜单定位bug*/
+    left: unset;
+    right: 20px;
+    width: auto;
+    backdrop-filter: blur(var(--lkn-navbar-blur-radius));
 }
 
 .VPDoc .aside.aside {
@@ -334,25 +368,58 @@ body {
             transform: translateX(-20px);
         }
     }
+    
     .VPNavBar.VPNavBar.VPNavBar {
         background-image: var(--lkn-navbar-gradient-bg-page);
         background-color: transparent;
         &.home {
             background-image: var(--lkn-navbar-gradient-bg-home);
         }
+        &.home::after, :not(.home) .content-body::after {
+            display: none;
+        }
+    }
+    .VPLocalNav.VPLocalNav > .container::after {
+        mask: none;
+        -webkit-mask: none;
     }
 }
 @media (min-width: 960px) { /*宽度960及以上*/
-    .VPNavBar.home, .VPNavBar:not(.home) .content-body, .VPNavBar:not(.home) .VPNavBarTitle.has-sidebar .title {
-        //导航栏和网站标题
+    :root {
+        --vp-local-nav-bg-color: var(--vp-nav-bg-color);
+    }
+    .VPNavBar:not(.home) .VPNavBarTitle.has-sidebar .title {//网站标题
         backdrop-filter: blur(var(--lkn-navbar-blur-radius));
     }
-    .VPLocalNav.VPLocalNav.has-sidebar {
-        background-color: var(--vp-nav-bg-color);
-        padding-left: 0;
-        margin-left: var(--vp-sidebar-width);
+    .VPLocalNav {
+        pointer-events: none;
+        &> .container {
+            &::after {//背景不要哦
+                display: none;
+            }
+            > .VPLocalNavOutlineDropdown { //本篇目录按钮
+                * {
+                    pointer-events: all;
+                }
+                > button {
+                    padding: 6px 14px 6px;
+                    margin: 6px 22px 5px;
+                    background-color: var(--vp-c-bg-alt);
+                    backdrop-filter: blur(var(--lkn-navbar-blur-radius));
+                    border: 1px solid transparent;
+                    border-radius: 8px;
+                    transition: border .2s, color .2s;
+                    &:hover {
+                        border: 1px solid var(--vp-c-brand-1);
+                    }
+                } 
+            }
+            > .menu { //侧边栏展开按钮：为了本篇目录按钮可以正常定位在右侧
+                display: flex;
+                opacity: 0;
+            }
+        }
     }
-
     .VPFooter.has-sidebar {
         padding-left: calc(var(--vp-sidebar-width) + 20px);
     }
@@ -362,15 +429,9 @@ body {
         zoom: 1.03; /*1.05在Chromium系浏览器会错位喵！*/
     }
 }
-@media (min-width: 1280px) { /*宽度1280及以上*/
-    .VPNavBar {
-        &.home, &:not(.home) .content-body {
-            mask: var(--lkn-navbar-mask);
-            -webkit-mask: var(--lkn-navbar-mask);
-        }
-        .divider {
-            display: none;
-        }
+@media (min-width: 960px) and (max-width: 1279.999px) { /*宽度960~1280(不含)*/
+    .VPLocalNav:not(.empty) ~ .VPContent { /*向上占用原本是页面导航栏（VPLocalNav）的空间*/
+        margin-top: -49px; /*页面导航栏的高度乘以-1*/
     }
 }
 @media (min-width: 1440px) { /*宽度1440及以上*/

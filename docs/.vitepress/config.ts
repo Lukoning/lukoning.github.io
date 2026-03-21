@@ -133,11 +133,8 @@ export default defineConfig({
       useFolderLinkFromIndexFile: true, //如果文件夹有自己的index.md，则可以导航到这个文件
       useFolderTitleFromIndexFile: true, //如果文件夹有自己的index.md，使用这个文件的标题作为文件夹名
       excludeFilesByFrontmatterFieldName: "exclude", //不显示元数据包含exclude的文件
-      //sortMenusOrderNumericallyFromTitle: true, 按文件标题前指定的数字order自定义排序
       sortMenusByFrontmatterOrder: true, //按文件元数据中指定的数字order自定义排序
       sortMenusOrderByDescending: false, //降序排序（order越小越靠前）
-      //removePrefixAfterOrdering: true, 从最终的标题中删去自定义字符
-      //prefixSeparator: "#-", 指定应去掉 "nn#-" 数字order前缀
       sortFolderTo: "bottom", //没放到文件夹里的都在前面
       collapsed: false, //默认不折叠
     }),
@@ -167,7 +164,7 @@ export default defineConfig({
     ],
 
     footer: {
-      message: '使用Firefox 145+或Chromium 140+访问本站效果最佳',
+      message: '网站访问总数：<img style="margin: auto" src="https://count.getloli.com/@LukoningPersonalWebsite?name=LukoningPersonalWebsite&theme=love-and-deepspace&offset=0&align=top&scale=0.5&pixelated=1&darkmode=0" alt="网站访问总数"/>使用Firefox 145+或Chromium 140+访问本站效果最佳',
       copyright: '<a href="https://vitepress.dev">VitePress</a> 提供技术支持 / 背景图像源：暗色 <a href="https://www.pixiv.net/artworks/131044765">進擊的复读机 - 可莉</a> & 亮色 <a href="https://www.bilibili.com/video/BV1PP4y1U7qA/?share_source=copy_web&t=102">《原神》角色演示-「纳西妲：无垠无忧」</a><br/>原创内容 <a href="/LICENSE-CC">CC BY-NC-SA 4.0 协议</a> / 源码 <a href="/LICENSE-MPL">MPL 2.0 协议</a> / 版权所有 © 2025-2026 <a href="https://github.com/Lukoning">Lukoning</a>'
     },
 
