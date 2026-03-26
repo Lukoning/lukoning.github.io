@@ -50,5 +50,8 @@ lkn {
         &[text-center] {
             text-align: center;
         }
+        &[box-center] {
+            margin: auto;
+        }
     }
 }
