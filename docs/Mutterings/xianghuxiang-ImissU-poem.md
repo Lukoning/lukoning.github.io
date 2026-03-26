@@ -4,9 +4,15 @@ title: 诗《相互想》
 order: 4
 ---
 
-<lkn layout box-center>
+<lkn layout text-center>
 
 # 相互想
+
+</lkn>
+
+---
+
+<lkn layout box-center>
 
 想在你伤心时轻轻摸摸你的头，
 
