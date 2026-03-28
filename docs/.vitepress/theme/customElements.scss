@@ -47,11 +47,16 @@ lkn {
         &[indent] {
             text-indent: 2em;
         }
+        &[fwid] * {
+            //等宽数字+全角标点喵！
+            font-feature-settings: "tnum" 1, "fwid" 1;
+        }
         &[text-center] {
             text-align: center;
         }
         &[box-center] {
-            margin: auto;
+            width: fit-content;
+            margin-inline: auto;
         }
     }
 }

@@ -8,7 +8,7 @@ order: 2
 
 *以下排序不分先后*
 
-<lkn layout text-center>
+<lkn layout text-center fwid>
 
 ## 《山河无恙在我胸》
 
@@ -194,7 +194,7 @@ order: 2
 
 ## 《鹿 be free》
 
-往前飞 穿过云霄
+往前飞，穿过云霄
 
 看满天星光在闪耀
 

@@ -1,12 +1,12 @@
 ---
 createdDate: 2026-03-16T20:03:00+08:00
 title: 诗《镜袖》
-order: 3
+order: 1
 ---
 
 ~~*第一次用GitHub Mobile提交，有点小紧张*~~
 
-<lkn layout text-center>
+<lkn layout text-center fwid>
 
 # 镜袖
 

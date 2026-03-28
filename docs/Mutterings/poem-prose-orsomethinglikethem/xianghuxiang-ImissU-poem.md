@@ -1,7 +1,7 @@
 ---
 createdDate: 2026-03-25T23:28:00+08:00
 title: 诗《相互想》
-order: 4
+order: 2
 ---
 
 <lkn layout text-center>
@@ -10,9 +10,9 @@ order: 4
 
 </lkn>
 
----
+<lkn layout box-center fwid>
 
-<lkn layout box-center>
+---
 
 想在你伤心时轻轻摸摸你的头，
 
