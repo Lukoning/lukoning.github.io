@@ -1,9 +1,10 @@
 // https://vitepress.dev/guide/custom-theme
 import { h, shallowRef } from 'vue'
 import type { Theme } from 'vitepress'
-import { inBrowser } from 'vitepress'
+import { useData, useRoute, inBrowser } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import CustomLayout from './Layout.vue'
+import giscusTalk from 'vitepress-plugin-comment-with-giscus';
 import NProgress from 'nprogress'
 import "nprogress/nprogress.css"
 import {
@@ -19,14 +20,41 @@ import "./customStyle.scss"
 import "./customElements.scss"
 import "./customAnimations.scss"
 
-
-
 export default {
   extends: DefaultTheme,
   Layout: () => {
     return h(CustomLayout, null, {
       // https://vitepress.dev/guide/extending-default-theme#layout-slots
     })
+  },
+  setup() {
+    const { frontmatter } = useData();
+    const route = useRoute();
+    giscusTalk(
+      {
+        repo: "Lukoning/lukoning.github.io",
+        repoId: "R_kgDOMTFtmg",
+        category: "Announcements",
+        categoryId: "DIC_kwDOMTFtms4C6Eq6",
+        mapping: "pathname",
+        strict: "1",
+        reactionsEnabled: "1",
+        emitMetadata: "0",
+        inputPosition: "top",
+        lightTheme: "noborder_light",
+        darkTheme: "catppuccin_mocha",
+        lang: "zh-CN",
+        loading: "lazy",
+        crossorigin: "anonymous",
+        homePageShowComment: false, // 首页是否显示评论区，默认为否
+      }, {
+        frontmatter, route
+      },
+      //默认值为true，表示为全部页面启用评论，此参数可以忽略；
+      //如果为false，则表示不启用
+      //可以使用“comment:true”序言在页面上单独启用它
+      true
+    );
   },
   enhanceApp({ app, router, siteData }) {
     if (!inBrowser) return;//否则构建时报错

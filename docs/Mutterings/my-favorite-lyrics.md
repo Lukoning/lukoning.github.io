@@ -6,55 +6,55 @@ order: 2
 
 # 喜欢的歌词合集
 
-*以下排序不分先后*
+*以下排序不分先后哦*
 
 <lkn layout text-center fwid>
 
-## <ruby>「好きなので。」<rt>因为喜欢你</rt></ruby>
+## <ruby>好きなので。<rp> / </rp><rt>因为喜欢你。</rt></ruby>
 
 <Badge type="info">歌手：艾拉(cv.雨宮天)</Badge> <Badge type="info">番剧《可塑性记忆》插曲</Badge>
 
-<ruby>おはよう またね お帰りなさい<rt>早安 再见 欢迎回家</rt></ruby>
+<ruby>おはよう またね お帰りなさい<rp> / </rp><rt>早安 再见 欢迎回家</rt></ruby>
 
-<ruby>他愛 のない言葉を ずっと 交わしたい<rt>想与你度过说这些话的每一天</rt></ruby>
+<ruby>他愛 のない言葉を ずっと 交わしたい<rp> / </rp><rt>想与你度过说这些话的每一天</rt></ruby>
 
-<ruby>あなたのそばにいて<rt>陪伴在你的身边</rt></ruby>
+<ruby>あなたのそばにいて<rp> / </rp><rt>陪伴在你的身边</rt></ruby>
 
-<ruby>"...好きなので。"<rt>“…因为喜欢你。”</rt></ruby>
+<ruby>"...好きなので。"<rp> / </rp><rt>“…因为喜欢你。”</rt></ruby>
 
-<ruby>ah 心 プラトニック<rt>啊 纯粹精神上的喜欢</rt></ruby>
+<ruby>ah 心 プラトニック<rp> / </rp><rt>啊 纯粹精神上的喜欢</rt></ruby>
 
-<ruby>溢れ 出してく想い<rt>满溢而出的思念</rt></ruby>
+<ruby>溢れ 出してく想い<rp> / </rp><rt>满溢而出的思念</rt></ruby>
 
-<ruby>そうよ それは ただあなたのこと<rt>是的哦 全都是你</rt></ruby>
+<ruby>そうよ それは ただあなたのこと<rp> / </rp><rt>是的哦 全都是你</rt></ruby>
 
-<ruby>好きという気持ち<rt>这名为喜欢的感情</rt></ruby>
+<ruby>好きという気持ち<rp> / </rp><rt>这名为喜欢的感情</rt></ruby>
 
-<ruby>もしも 伝え られたならば<rt>如果可以向你告白</rt></ruby>
+<ruby>もしも 伝え られたならば<rp> / </rp><rt>如果可以向你告白</rt></ruby>
 
-<ruby>明日 わたし少しは<rt>明天的我是否会</rt></ruby>
+<ruby>明日 わたし少しは<rp> / </rp><rt>明天的我是否会</rt></ruby>
 
-<ruby>変わ れるのかな<rt>有一些改变呢</rt></ruby>
+<ruby>変わ れるのかな<rp> / </rp><rt>有一些改变呢</rt></ruby>
 
-<ruby>あなたと想い出<rt>想与你一起留下</rt></ruby>
+<ruby>あなたと想い出<rp> / </rp><rt>想与你一起留下</rt></ruby>
 
-<ruby>重ねていけますように<rt>数不清的美好回忆</rt></ruby>
+<ruby>重ねていけますように<rp> / </rp><rt>数不清的美好回忆</rt></ruby>
 
-<ruby>祈ってる uh (ah ah)<rt>我如此祈求着 (啊 啊)</rt></ruby>
+<ruby>祈ってる uh (ah ah)<rp> / </rp><rt>我如此祈求着 (啊 啊)</rt></ruby>
 
-## <ruby>*Remember*<rt>记忆</rt></ruby>
+## <ruby>*Remember*<rp> / </rp><rt>记忆</rt></ruby>
 
 <Badge type="info">歌手：月見ヤチヨ(cv.早見沙織)</Badge> <Badge type="info">电影《超时空辉夜姬！》片头曲</Badge>
 
-<ruby>大切なメロディは流れてるよ<rt>无比珍贵的旋律正流淌着</rt></ruby>
+<ruby>大切なメロディは流れてるよ<rp> / </rp><rt>无比珍贵的旋律正流淌着</rt></ruby>
 
-<ruby>あなたのハートに<rt>在你的心底</rt></ruby>
+<ruby>あなたのハートに<rp> / </rp><rt>在你的心底</rt></ruby>
 
-<ruby>鼓動のよう途絶えずにあふれてるよ<rt>永不停息地满溢而出，宛如心跳</rt></ruby>
+<ruby>鼓動のよう途絶えずにあふれてるよ<rp> / </rp><rt>永不停息地满溢而出，宛如心跳</rt></ruby>
 
-<ruby>ラララララ…<rt>啦啦啦啦啦…</rt></ruby>
+<ruby>ラララララ…<rp> / </rp><rt>啦啦啦啦啦…</rt></ruby>
 
-## 《山河无恙在我胸》
+## 山河无恙在我胸
 
 <Badge type="info">歌手：蔡徐坤&佟丽娅</Badge> <Badge type="info">出品：中国共产党云南省委宣传部</Badge> <Badge type="info">2020武汉抗疫纪念</Badge>
 
@@ -78,7 +78,7 @@ order: 2
 
 山河无恙，如初见模样
 
-## 《玫瑰少年》
+## 玫瑰少年
 
 <Badge type="info">歌手：蔡依林/五月天</Badge> <Badge type="info">献予“玫瑰少年”</Badge>
 
@@ -98,7 +98,7 @@ order: 2
 
 你是你或是妳都行，会有人全心的爱你
 
-## 《追光者》
+## 追光者
 
 <Badge type="info">歌手：岑宁儿</Badge> <Badge type="info">电视剧《夏至未至》插曲</Badge> <Badge type="info">(私)献给松树尖上的宇夜星光</Badge>
 
@@ -110,49 +110,49 @@ order: 2
 
 有的爱像大雨滂沱，却依然，相信彩虹
 
-## 《紫荆花盛开》
+## 紫荆花盛开
 
-<Badge type="info">歌手：李荣浩&梁咏琪</Badge> <Badge type="info">香港回归25周年纪念</Badge>
+<Badge type="info">歌手：李荣浩&梁咏琪</Badge> <Badge type="info">香港回归25周年主题曲</Badge>
 
-<ruby>永远的紫荆花 在爱之下 茁壮发芽<rt>yong yuan de zi jing hua zai ai zhi xia zhuo zhuang fa ya</rt></ruby>
+<ruby>永远的紫荆花 在爱之下 茁壮发芽<rp> / </rp><rt>yong yuan de zi jing hua zai ai zhi xia zhuo zhuang fa ya</rt></ruby>
 
-<ruby>阳光中笑开花 是暖暖的 翩翩启航<rt>yang guang zhong xiao kai hua shi nuan nuan de pian pian qi hang</rt></ruby>
+<ruby>阳光中笑开花 是暖暖的 翩翩启航<rp> / </rp><rt>yang guang zhong xiao kai hua shi nuan nuan de pian pian qi hang</rt></ruby>
 
-<ruby>同屋檐 之下 像一幅画<rt>tong wu yan zhi xia xiang yi fu hua</rt></ruby>
+<ruby>同屋檐 之下 像一幅画<rp> / </rp><rt>tong wu yan zhi xia xiang yi fu hua</rt></ruby>
 
-<ruby>日夜 相守相望<rt>ri ye xiang shou xiang wang</rt></ruby>
+<ruby>日夜 相守相望<rp> / </rp><rt>ri ye xiang shou xiang wang</rt></ruby>
 
-<ruby>闪闪星光<rt>shan shan xing guang</rt></ruby>
+<ruby>闪闪星光<rp> / </rp><rt>shan shan xing guang</rt></ruby>
 
-<ruby>照亮你的脸庞<rt>zhao liang ni de lan pang</rt></ruby>
+<ruby>照亮你的脸庞<rp> / </rp><rt>zhao liang ni de lan pang</rt></ruby>
 
-<ruby>心中的紫荆花 凭爱开花 同处一家<rt>sam zong di zi ging fa pang oi hoi fa tong cv ya ga</rt></ruby>
+<ruby>心中的紫荆花 凭爱开花 同处一家<rp> / </rp><rt>sam zong di zi ging fa pang oi hoi fa tong cv ya ga</rt></ruby>
 
-<ruby>多清澈这天空 晴雨相拥 同心逐梦<rt>do cing ci zei tin hong cing yv soeng yong tong sam zu mong</rt></ruby>
+<ruby>多清澈这天空 晴雨相拥 同心逐梦<rp> / </rp><rt>do cing ci zei tin hong cing yv soeng yong tong sam zu mong</rt></ruby>
 
-<ruby>坚守我 信心 一路出众<rt>gin sao o sun sam ya lou co zong</rt></ruby>
+<ruby>坚守我 信心 一路出众<rp> / </rp><rt>gin sao o sun sam ya lou co zong</rt></ruby>
 
-<ruby>无惧罡风<rt>mou gui gong fong</rt></ruby>
+<ruby>无惧罡风<rp> / </rp><rt>mou gui gong fong</rt></ruby>
 
-<ruby>感恩你 热暖送<rt>gam yan nei yi nvn song</rt></ruby>
+<ruby>感恩你 热暖送<rp> / </rp><rt>gam yan nei yi nvn song</rt></ruby>
 
-<ruby>花开于 爱之中<rt>fa hoi yv oi zi zong</rt></ruby>
+<ruby>花开于 爱之中<rp> / </rp><rt>fa hoi yv oi zi zong</rt></ruby>
 
-## <ruby>*Passing Memories*<rt>过去的回忆</rt></ruby>
+## <ruby>*Passing Memories*<rp> / </rp><rt>过去的回忆</rt></ruby>
 
-<Badge type="info">歌手：فوزية أويحيى (Faouzia)</Badge> <Badge type="info">原神4周年纪念</Badge>
+<Badge type="info">歌手：فوزية أويحيى (Faouzia)</Badge> <Badge type="info">原神4周年主题曲</Badge>
 
-<ruby>See<rt>看</rt></ruby>
+<ruby>See<rp> / </rp><rt>看</rt></ruby>
 
-<ruby>Sometimes it’s rainy<rt>有时天会下雨</rt></ruby>
+<ruby>Sometimes it’s rainy<rp> / </rp><rt>有时天会下雨</rt></ruby>
 
-<ruby>Sometimes it’s cloudy<rt>有时天转多云</rt></ruby>
+<ruby>Sometimes it’s cloudy<rp> / </rp><rt>有时天转多云</rt></ruby>
 
-<ruby>That’s what journey means<rt>这就是旅途的意义</rt></ruby>
+<ruby>That’s what journey means<rp> / </rp><rt>这就是旅途的意义</rt></ruby>
 
-## 《经过》
+## 经过
 
-<Badge type="info">歌手：张杰</Badge> <Badge type="info">原神4周年纪念</Badge>
+<Badge type="info">歌手：张杰</Badge> <Badge type="info">原神4周年主题曲</Badge>
 
 去触摸
 
@@ -166,7 +166,7 @@ order: 2
 
 会再见 会再见
 
-## 《你从未离去》
+## 你从未离去
 
 <Badge type="info">歌手：白挺</Badge> <Badge type="info">电影《熊出没之雪岭熊风》片尾曲</Badge>
 
@@ -188,79 +188,79 @@ order: 2
 
 无声无息 如影随形
 
-## <ruby>「Lemon」<rt>柠檬</rt></ruby>
+## <ruby>Lemon<rp> / </rp><rt>柠檬</rt></ruby>
 
 <Badge type="info">歌手：米津玄師</Badge> <Badge type="info">电视剧《非自然死亡》片尾曲</Badge>
 
-<ruby>今でもあなたはわたしの光<rt>时至今日 你仍是我的光芒</rt></ruby>
+<ruby>今でもあなたはわたしの光<rp> / </rp><rt>时至今日 你仍是我的光芒</rt></ruby>
 
-<ruby>自分が思うより 恋をしていたあなたに<rt>我深深地恋慕着你 甚至超出了我自己的想象</rt></ruby>
+<ruby>自分が思うより 恋をしていたあなたに<rp> / </rp><rt>我深深地恋慕着你 甚至超出了我自己的想象</rt></ruby>
 
-<ruby>あれから思うように 息ができない<rt>自此每当想起你 都如同窒息般痛苦</rt></ruby>
+<ruby>あれから思うように 息ができない<rp> / </rp><rt>自此每当想起你 都如同窒息般痛苦</rt></ruby>
 
-<ruby>あんなに側にいたのにまるで嘘みたい<rt>你曾亲密伴我身旁 如今却如烟云般消散</rt></ruby>
+<ruby>あんなに側にいたのにまるで嘘みたい<rp> / </rp><rt>你曾亲密伴我身旁 如今却如烟云般消散</rt></ruby>
 
-<ruby>とても忘れられないそれだけが確か<rt>唯一能确定的是 我永远都不会将你遗忘</rt></ruby>
+<ruby>とても忘れられないそれだけが確か<rp> / </rp><rt>唯一能确定的是 我永远都不会将你遗忘</rt></ruby>
 
-## <ruby>*The Long Way Home*<rt>回家的路</rt></ruby>
+## <ruby>*The Long Way Home*<rp> / </rp><rt>回家的路</rt></ruby>
 
-<Badge type="info">歌手：温迪(cv.Erika Harlacher)</Badge> <Badge type="info">原神5周年纪念</Badge>
+<Badge type="info">歌手：温迪(cv.Erika Harlacher)</Badge> <Badge type="info">原神5周年主题曲</Badge>
 
-<ruby>You know<rt>须知</rt></ruby>
+<ruby>You know<rp> / </rp><rt>须知</rt></ruby>
 
-<ruby>When the time has come to journey home<rt>当踏上归程之时</rt></ruby>
+<ruby>When the time has come to journey home<rp> / </rp><rt>当踏上归程之时</rt></ruby>
 
-<ruby>That every star and every cloud<rt>漫天星云皆垂眸</rt></ruby>
+<ruby>That every star and every cloud<rp> / </rp><rt>漫天星云皆垂眸</rt></ruby>
 
-<ruby>Is smiling down on you, Traveler<rt>含笑守护着你 旅行者</rt></ruby>
+<ruby>Is smiling down on you, Traveler<rp> / </rp><rt>含笑守护着你 旅行者</rt></ruby>
 
-## <ruby>*Natlan*<rt>纳塔</rt></ruby>
+## <ruby>*Natlan*<rp> / </rp><rt>纳塔</rt></ruby>
 
 <Badge type="info">歌手：Daniel Lewis & London Voices</Badge> <Badge type="info">原神纳塔地区主题曲</Badge>
 
-<ruby>Kumbukeni majina ya mashujaa<rt>铭记英雄的名字，追随他们</rt></ruby>
+<ruby>Kumbukeni majina ya mashujaa<rp> / </rp><rt>铭记英雄的名字，追随他们</rt></ruby>
 
-<ruby>Andameni uwanjani<rt>再一次，踏上战场</rt></ruby>
+<ruby>Andameni uwanjani<rp> / </rp><rt>再一次，踏上战场</rt></ruby>
 
-<ruby>Kwa jamaa, nchi na taifa (Zuri, safi, sawa)<rt>为家人，为故乡，为国家（为了荣光）</rt></ruby>
+<ruby>Kwa jamaa, nchi na taifa (Zuri, safi, sawa)<rp> / </rp><rt>为家人，为故乡，为国家（为了荣光）</rt></ruby>
 
-<ruby>Kwa matumaini, mbeleni, malengo (Vuma, raha, nguvu)<rt>为理想，为愿望，为未来（为了希望）</rt></ruby>
+<ruby>Kwa matumaini, mbeleni, malengo (Vuma, raha, nguvu)<rp> / </rp><rt>为理想，为愿望，为未来（为了希望）</rt></ruby>
 
-<ruby>Rudini tunawangojeni<rt>回来吧，我们一直在等待</rt></ruby>
+<ruby>Rudini tunawangojeni<rp> / </rp><rt>回来吧，我们一直在等待</rt></ruby>
 
-<ruby>Nyimbo kelele sana<rt>听吧，歌声渐响</rt></ruby>
+<ruby>Nyimbo kelele sana<rp> / </rp><rt>听吧，歌声渐响</rt></ruby>
 
-<ruby>Sikiliza zitakuongoza nyumbani<rt>听吧，歌声会为你指引家的方向</rt></ruby>
+<ruby>Sikiliza zitakuongoza nyumbani<rp> / </rp><rt>听吧，歌声会为你指引家的方向</rt></ruby>
 
-<ruby>Milele tuwangoje, na tutawaimbia<rt>我们为你守候，我们为你歌唱</rt></ruby>
+<ruby>Milele tuwangoje, na tutawaimbia<rp> / </rp><rt>我们为你守候，我们为你歌唱</rt></ruby>
 
-<ruby>Rudini ndugu, rudini mashujaa<rt>回来吧，我的朋友，回来吧，英雄</rt></ruby>
+<ruby>Rudini ndugu, rudini mashujaa<rp> / </rp><rt>回来吧，我的朋友，回来吧，英雄</rt></ruby>
 
-<ruby>Mara ya tena mwangani<rt>再一次，再一次，燃烧</rt></ruby>
+<ruby>Mara ya tena mwangani<rp> / </rp><rt>再一次，再一次，燃烧</rt></ruby>
 
-## <ruby>「てねてね」<rt>觉睡觉睡</rt></ruby>
+## <ruby>てねてね<rp> / </rp><rt>觉睡觉睡</rt></ruby>
 
 <Badge type="info">歌手：悒うつぼ</Badge>
 
-<ruby>起きて働いて食って働いて食って寝て<rt>起了床工作吃完饭工作再吃完饭睡觉</rt></ruby>
+<ruby>起きて働いて食って働いて食って寝て<rp> / </rp><rt>起了床工作吃完饭工作再吃完饭睡觉</rt></ruby>
 
-<ruby>起きて働いて食って働いて食って寝て<rt>起了床工作吃完饭工作再吃完饭睡觉</rt></ruby>
+<ruby>起きて働いて食って働いて食って寝て<rp> / </rp><rt>起了床工作吃完饭工作再吃完饭睡觉</rt></ruby>
 
-<ruby>起きて働いて食って働いて食って寝て<rt>起了床工作吃完饭工作再吃完饭睡觉</rt></ruby>
+<ruby>起きて働いて食って働いて食って寝て<rp> / </rp><rt>起了床工作吃完饭工作再吃完饭睡觉</rt></ruby>
 
-## <ruby>「星屑」<rt>追星星的人</rt></ruby>
+## <ruby>星屑<rp> / </rp><rt>追星星的人</rt></ruby>
 
 <Badge type="info">歌手：霜月はるか</Badge> <Badge type="info">游戏《库特Wafter》片尾曲</Badge>
 
-<ruby>小さな 夢の翼を<rt>幼小的梦之羽翼</rt></ruby>
+<ruby>小さな 夢の翼を<rp> / </rp><rt>幼小的梦之羽翼</rt></ruby>
 
-<ruby>広げた 夏色の空<rt>展于夏色的天空</rt></ruby>
+<ruby>広げた 夏色の空<rp> / </rp><rt>展于夏色的天空</rt></ruby>
 
-<ruby>雲間を 行く 風を追いかけ<rt>追逐穿梭云间的清风</rt></ruby>
+<ruby>雲間を 行く 風を追いかけ<rp> / </rp><rt>追逐穿梭云间的清风</rt></ruby>
 
-<ruby>僕らは歩き始める<rt>我们向前迈开了脚步</rt></ruby>
+<ruby>僕らは歩き始める<rp> / </rp><rt>我们向前迈开了脚步</rt></ruby>
 
-## <ruby>《鹿 be free》<rt>鹿 获得自由</rt></ruby>
+## <ruby>鹿 be free<rp> / </rp><rt>鹿 获得自由</rt></ruby>
 
 <Badge type="info">歌手：尚雯婕</Badge> <Badge type="info">电影《熊出没之奇幻空间》主题曲</Badge>
 
@@ -270,23 +270,23 @@ order: 2
 
 多渺小也要去奔跑
 
-<ruby>To be free and unafraid<rt>变得自由、勇敢</rt></ruby>
+<ruby>To be free and unafraid<rp> / </rp><rt>变得自由、勇敢</rt></ruby>
 
-## 「色違いの翼」
+## <ruby>色違いの翼<rp> / </rp><rt>异色的羽翼</rt></ruby>
 
 <Badge type="info">歌手：雪村あおい(cv.井口裕香)&倉上ひなた(cv.阿澄佳奈)</Badge> <Badge type="info">番剧《向山进发•第三季》片尾曲</Badge>
 
-<ruby>繋いだ手と手を 離さないで<rt>不要将牵在一起的手松开</rt></ruby>
+<ruby>繋いだ手と手を 離さないで<rp> / </rp><rt>不要将牵在一起的手松开</rt></ruby>
 
-<ruby>お揃いの夢 消さないで<rt>不要让你我共同的梦消散</rt></ruby>
+<ruby>お揃いの夢 消さないで<rp> / </rp><rt>不要让你我共同的梦消散</rt></ruby>
 
-<ruby>片っぽずつ翼 寄せあって 飛ぼう<rt>将异色的孤翼凑到一起 结伴飞翔</rt></ruby>
+<ruby>片っぽずつ翼 寄せあって 飛ぼう<rp> / </rp><rt>将异色的孤翼凑到一起 结伴飞翔</rt></ruby>
 
-## 《灼火之心》
+## 灼火之心
 
 <Badge type="info">歌手：袁娅维</Badge> <Badge type="info">原神玛薇卡角色曲</Badge>
 
-<ruby>Blazing Heart!<rt>灼火之心！</rt></ruby> 去绽放
+<ruby>Blazing Heart!<rp> / </rp><rt>灼火之心！</rt></ruby> 去绽放
 
 勇气碾碎 末日交响
 
@@ -294,7 +294,7 @@ order: 2
 
 故事刚刚开场
 
-<ruby>Blazing Heart!<rt>灼火之心！</rt></ruby> 请苏醒
+<ruby>Blazing Heart!<rp> / </rp><rt>灼火之心！</rt></ruby> 请苏醒
 
 夜会铭记 英雄的名
 
@@ -305,5 +305,21 @@ order: 2
 载信仰去战场 友谊铸成胜利的枪
 
 火 是热 是梦 是光
+
+## <ruby>なんもない<rp> / </rp><rt>一无所有</rt></ruby>
+
+<Badge type="info">歌手：星街すいせい</Badge> <Badge type="info">电影《四重星》片头曲</Badge>
+
+<ruby>僕がいちばんなんにもないんだろう<rp> / </rp><rt>我是世上最一无所有的一人</rt></ruby>
+
+<ruby>君もいちばんなんにもないんだろう<rp> / </rp><rt>而你也是一样还未所为的人</rt></ruby>
+
+<ruby>僕ら なんも なんも なんも なんも<rp> / </rp><rt>我们空手而来 又空手而去</rt></ruby>
+
+<ruby>手にできてないんだろう<rp> / </rp><rt>似乎从未得到什么</rt></ruby>
+
+<ruby>小さな光探してもがいてた夜 添い遂げた<rp> / </rp><rt>在那个挣扎着寻找微弱光芒的夜里 有你作伴</rt></ruby>
+
+<ruby>そんな日々を謳い記したこの歌<rp> / </rp><rt>以此歌铭记那段时光</rt></ruby>
 
 </lkn>

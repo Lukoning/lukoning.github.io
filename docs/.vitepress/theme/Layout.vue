@@ -41,7 +41,11 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
 </script>
 
 <template>
-  <DefaultTheme.Layout />
+  <DefaultTheme.Layout>
+    <template #doc-after>
+        <!-- 不要用这种方法添加Giscus -->
+    </template>
+  </DefaultTheme.Layout>
 </template>
 
 <style>

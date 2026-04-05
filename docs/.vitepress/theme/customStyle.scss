@@ -152,6 +152,12 @@ a[link] { //带link自定义属性时，当作链接看待
 
 ruby rt { //调大注音字号，看得更清楚
     font-size: 0.8em;
+    h1 &, h2 & {
+        font-size: 0.5em;
+    }
+    h3 &, h4 & {
+        font-size: 0.6em;
+    }
 }
 //fix end
 
