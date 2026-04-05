@@ -1,4 +1,7 @@
 lkn {
+    &[intext] {
+        display: inline;
+    }
     &[c] {
         display: inline;
         color: var(--vp-c-text-1);
@@ -57,6 +60,17 @@ lkn {
         &[box-center] {
             width: fit-content;
             margin-inline: auto;
+        }
+    }
+    
+    &[hide-light] {
+        :root:not(.dark) & {
+            display: none;
+        }
+    }
+    &[hide-dark] {
+        :root.dark & {
+            display: none;
         }
     }
 }

@@ -394,7 +394,7 @@ body {
     :root {
         --vp-local-nav-bg-color: var(--vp-nav-bg-color);
     }
-    .VPNavBar:not(.home) .VPNavBarTitle.has-sidebar .title {//网站标题
+    .VPNavBarTitle .title, .VPNavBarSearch button {//网站标题，搜索框
         backdrop-filter: blur(var(--lkn-navbar-blur-radius));
     }
     .VPLocalNav {
