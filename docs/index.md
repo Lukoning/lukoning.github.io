@@ -35,6 +35,22 @@ features:
 
 部分页面使用深色模式浏览更佳。
 
+## 全站导航
+Beta
+<script setup>
+  import NavTree from "./.vitepress/components/CNavTree.vue"
+  import { useData } from 'vitepress'
+  const { theme } = useData();
+  const items = theme.value.sidebar;
+</script>
+
+<details class="details custom-block" open>
+  <summary>网站目录</summary>
+  <NavTree :items="items" />
+</details>
+
+
+
 ---
 
 # 欢迎来到「提瓦特大陆」

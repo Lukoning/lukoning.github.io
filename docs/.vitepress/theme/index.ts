@@ -30,7 +30,7 @@ export default {
   setup() {
     const { frontmatter } = useData();
     const route = useRoute();
-    giscusTalk(
+    giscusTalk( //评论区组件 https://github.com/T-miracle/vitepress-plugin-comment-with-giscus/blob/main/README_zh.md
       {
         repo: "Lukoning/lukoning.github.io",
         repoId: "R_kgDOMTFtmg",
@@ -45,7 +45,7 @@ export default {
         darkTheme: "catppuccin_mocha",
         lang: "zh-CN",
         loading: "lazy",
-        crossorigin: "anonymous",
+        originsRegex: ["https?://localhost:[0-9]+", "https?://lukoning.github.io"],
         homePageShowComment: false, // 首页是否显示评论区，默认为否
       }, {
         frontmatter, route
@@ -57,7 +57,7 @@ export default {
     );
   },
   enhanceApp({ app, router, siteData }) {
-    if (!inBrowser) return;//否则构建时报错
+    if (!inBrowser) return;//非浏览器环境下返回，否则构建时报错
     //https://www.npmjs.com/package/nprogress
     NProgress.configure({
       easing: 'ease-out', //动画曲线
@@ -89,28 +89,30 @@ export default {
           clickScroll: true,
         },
       });
-      //开始观察并同步body上的overflow修改
-      startOverflowSync(osInstance);
+      startOverflowSync(osInstance); //开始观察并同步body上的overflow修改
+      initVisitorCount();
     }
   }
 } satisfies Theme
 
 function startOverflowSync(osInstance: OverlayScrollbars) {
-  // 同步函数：当修改 overflow 时，更新插件
-  function syncOverflow() {
-    // 获取当前 overflow-y 状态
-    const currentOverflowY: OverflowBehavior = window.getComputedStyle(document.body).overflowY;
-    // 获取插件当前的溢出配置，读取overflow.y，然后比较
-    if (osInstance.options().overflow.y !== currentOverflowY) {
+  new MutationObserver(() => {
+    const currentOverflowY: OverflowBehavior = window.getComputedStyle(document.body).overflowY; // 获取当前 overflow-y 状态
+    if (osInstance.options().overflow.y !== currentOverflowY) { // 获取插件当前的溢出配置，读取overflow.y，然后比较
       // 更新插件
       osInstance.options({ overflow: {
         y: currentOverflowY==="visible"?"scroll":currentOverflowY // 解决边缘情况下<body>无法滚动问题
       }});
     }
-  };
-
-  // 创建MutationObserver并开始观察
-  new MutationObserver(() => {
-    syncOverflow()
   }).observe(document.body, { attributes: true, attributeFilter: ["style"] });
+}
+
+function initVisitorCount() {
+  if (import.meta.env.PROD/*如果是生产环境*/) new MutationObserver((_, obs) => { //加载图像访问者计数器
+    const img = document.querySelector("img[id='visitorCounter!']");
+    if (img) { //替换src为计数器URL
+      img.src = "https://count.getloli.com/@LukoningPersonalWebsite?name=LukoningPersonalWebsite&theme=love-and-deepspace&scale=0.5&pixelated=1&darkmode=0";
+      obs.disconnect();
+    }
+  }).observe(document.body, { childList: true, subtree: true });
 }

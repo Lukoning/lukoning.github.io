@@ -32,6 +32,9 @@ export default defineConfig({
     resolve: {
       alias: [
         {
+          find: /^.*\/NotFound\.vue$/,
+          replacement: fileURLToPath(new URL('./components/LKN404.vue', import.meta.url))
+        }, {
           find: /^.*\/VPDocFooterLastUpdated\.vue$/,
           replacement: fileURLToPath(new URL('./components/LKNDocFooterLastUpdated.vue', import.meta.url))
         }, {
@@ -167,14 +170,16 @@ export default defineConfig({
     ],
 
     footer: {
-      message: '网站访问总数：<img style="margin: auto" src="https://count.getloli.com/@LukoningPersonalWebsite?name=LukoningPersonalWebsite&theme=love-and-deepspace&offset=0&align=top&scale=0.5&pixelated=1&darkmode=0" alt="网站访问总数"/>使用Firefox 145+或Chromium 140+访问本站效果最佳',
-      copyright: '<a href="https://vitepress.dev">VitePress</a> 提供技术支持 · 当前背景图像源：<lkn intext hide-light><a href="https://www.pixiv.net/artworks/131044765">進擊的复读机 - 可莉</a></lkn> <lkn intext hide-dark><a href="https://www.bilibili.com/video/BV1PP4y1U7qA/?share_source=copy_web&t=102">《原神》角色演示-「纳西妲：无垠无忧」</a></lkn> · 原创内容 <a href="/LICENSE-CC">CC BY-NC-SA 4.0 协议</a> · 源码 <a href="/LICENSE-MPL">MPL 2.0 协议</a> · © 2025-2026 <a href="https://github.com/Lukoning">Lukoning</a> 版权所有'
+      message: '网站访问总数：<img style="margin: auto" id="visitorCounter!" alt="[图片]网站访问总数"/>使用Firefox 145+或Chromium 140+访问本站效果最佳',
+      copyright: '<a target="_blank" href="https://vitepress.dev">VitePress</a> 提供技术支持 · 当前背景图像源：<lkn intext hide-light><a target="_blank" href="https://www.pixiv.net/artworks/131044765">進擊的复读机 - 可莉</a></lkn> <lkn intext hide-dark><a target="_blank" href="https://www.bilibili.com/video/BV1PP4y1U7qA/?share_source=copy_web&t=102">《原神》角色演示-「纳西妲：无垠无忧」</a></lkn> · 原创内容 <a href="/LICENSE-CC">CC BY-NC-SA 4.0 协议</a> · 源码 <a href="/LICENSE-MPL">MPL 2.0 协议</a> · © 2025-2026 <a target="_blank" href="https://github.com/Lukoning">Lukoning</a> 版权所有'
     },
 
     notFound: {
+      code: ":( HTTP 404",
       title: "URL输错了喵？资源不存在哦喵。",
       quote: "VitePress",
       linkText: "返回提瓦特大陆",
+      linkLabel: "返回主页",
     },
   },
 })

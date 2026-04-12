@@ -277,6 +277,14 @@ body {
     background-color: var(--vp-c-bg-alt);
 }
 
+.VPLocalSearchBox .result {
+    &:not(.selected, :hover) {
+        transition: border .3s;
+        * { transition: color .2s; }
+    }
+    
+}
+
 .VPLocalNav.VPLocalNav {
     background-color: transparent;
     border-bottom: none;
