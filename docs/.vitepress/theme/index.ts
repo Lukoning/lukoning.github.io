@@ -1,9 +1,9 @@
 // https://vitepress.dev/guide/custom-theme
-import { h, shallowRef } from 'vue'
+import { h } from 'vue'
 import type { Theme } from 'vitepress'
 import { useData, useRoute, inBrowser } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
-import CustomLayout from './Layout.vue'
+
 import giscusTalk from 'vitepress-plugin-comment-with-giscus';
 import NProgress from 'nprogress'
 import "nprogress/nprogress.css"
@@ -15,10 +15,11 @@ import {
 } from 'overlayscrollbars'
 import 'overlayscrollbars/overlayscrollbars.css'
 import 'virtual:group-icons.css'
+
+import CustomLayout from './Layout.vue'
+
 import './style.css'
 import "./customStyle.scss"
-import "./customElements.scss"
-import "./customAnimations.scss"
 
 export default {
   extends: DefaultTheme,
@@ -30,12 +31,12 @@ export default {
   setup() {
     const { frontmatter } = useData();
     const route = useRoute();
-    giscusTalk( //评论区组件 https://github.com/T-miracle/vitepress-plugin-comment-with-giscus/blob/main/README_zh.md
+    giscusTalk( //评论区组件 https://github.com/T-miracle/vitepress-plugin-comment-with-giscus
       {
         repo: "Lukoning/lukoning.github.io",
         repoId: "R_kgDOMTFtmg",
-        category: "Announcements",
-        categoryId: "DIC_kwDOMTFtms4C6Eq6",
+        category: "Comments",
+        categoryId: "DIC_kwDOMTFtms4C7EL8",
         mapping: "pathname",
         strict: "1",
         reactionsEnabled: "1",

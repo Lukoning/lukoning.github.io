@@ -1,3 +1,5 @@
+@use "./customElements.scss";
+@use "./customAnimations.scss";
 @use "sass:color";
 $lkn-theme-accent-light: #007A3A;
 $lkn-theme-accent-bg-light: #E8F1EA; /*oklch空间混合白色90%和主题色10%*/
@@ -7,7 +9,7 @@ $lkn-theme-accent-bg-dark: #100416; /*oklch空间混合黑色80%和主题色20%*
     /* 1440-(1440*1.05) ，与 1067px 以上时 zoom: 1.05 配合，防止出现侧边栏被剪切等问题 */
     --vp-layout-max-width: 1368px; 
 
-    --vp-font-family-base: "Inter", "HarmonyOS Sans SC", ui-sans-serif, sans-serif, system-ui, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --vp-font-family-base: "Inter", "HarmonyOS Sans SC", ui-sans-serif, sans-serif, -apple-system, BlinkMacSystemFont, system-ui, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --vp-font-family-mono: "Sarasa Mono SC", "Monaspace Neon", ui-monospace, "SFMono-Regular", "SF Mono", "Menlo", "Consolas", "Liberation Mono", monospace;
     --vp-home-hero-image-background-image: url("/avatar.jpg");
 
@@ -25,10 +27,13 @@ $lkn-theme-accent-bg-dark: #100416; /*oklch空间混合黑色80%和主题色20%*
     --vp-c-brand-1: var(--lkn-theme-accent-brighter);
     --vp-c-brand-2: var(--lkn-theme-accent);
     --vp-c-brand-3: var(--lkn-theme-accent-darker);
-    --vp-sidebar-bg-color: var(--vp-c-bg);
-    --vp-local-nav-bg-color: var(--lkn-page-bg);
+    --vp-sidebar-bg-color: transparent;
+    --vp-nav-bg-color: var(--lkn-page-bg);
+    --vp-local-nav-bg-color: var(--vp-nav-bg-color);
 
     &:not(.dark) {
+        --lkn-current-bg-image: url("/backgroundImage_light.webp");
+
         --lkn-theme-accent: #{$lkn-theme-accent-light};
         --lkn-theme-accent-bg: #{$lkn-theme-accent-bg-light};
         --lkn-theme-accent-brighter: #{color.mix(white, $lkn-theme-accent-light, 20%)};
@@ -63,6 +68,8 @@ $lkn-theme-accent-bg-dark: #100416; /*oklch空间混合黑色80%和主题色20%*
     }
 
     &.dark {
+        --lkn-current-bg-image: url("/backgroundImage.webp");
+
         --lkn-theme-accent: #{$lkn-theme-accent-dark};
         --lkn-theme-accent-bg: #{$lkn-theme-accent-bg-dark};
         --lkn-theme-accent-brighter: #{color.mix(white, $lkn-theme-accent-dark, 20%)};
@@ -98,11 +105,10 @@ $lkn-theme-accent-bg-dark: #100416; /*oklch空间混合黑色80%和主题色20%*
 
     --lkn-navbar-blur-radius: 8px;
     --lkn-navmenu-blur-radius: 16px;
-    --lkn-navbar-mask: linear-gradient(to bottom, #FFFFFF 70%, transparent 100%);
-    --lkn-sidebar-mask: linear-gradient(to right, #FFFFFF 90%, transparent 100%);
-    --lkn-footer-bg: linear-gradient(to top, var(--vp-c-bg) 50%, var(--lkn-page-bg) 100%);
-    --lkn-navbar-gradient-bg-home: linear-gradient(to bottom, var(--vp-c-bg) 50%, var(--lkn-home-bg) 100%);
-    --lkn-navbar-gradient-bg-page: linear-gradient(to bottom, var(--vp-c-bg) 0%, var(--lkn-page-bg) 100%);
+    --lkn-backdrop-blur-radius: 4px;
+    --lkn-navbar-mask: 
+        linear-gradient(to bottom, #FFFFFF 20%, transparent 100%),
+        linear-gradient(to bottom, #FFFFFF 30%, transparent 100%);
     --lkn-loading-circle-width: max(min(0.4vw, 0.4vh), 3px);
     --lkn-loading-circle-radius: max(min(2vw, 2vh), 22px);
 }
@@ -136,6 +142,21 @@ pre, code { &, & * {
     text-align: unset;
     text-justify: unset;
 }}
+
+.custom-block {
+    position: relative;
+    overflow: hidden;
+    &::after { /*减少背景透明度*/
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: -1;
+        background: inherit;
+    }
+}
 
 a[link] { //带link自定义属性时，当作链接看待
     text-decoration-line: underline;
@@ -188,37 +209,45 @@ ruby rt { //调大注音字号，看得更清楚
 
 body {
     background: no-repeat fixed center / cover;
-    background-image: url("/backgroundImage_light.webp");
-    :root.dark & {
-        background-image: url("/backgroundImage.webp");
-    }
+    background-image: var(--lkn-current-bg-image);
     background-color: var(--lkn-theme-accent-bg);
 }
 .VPContent {
     background-color: var(--lkn-page-bg);
     &.is-home {
         background-color: var(--lkn-home-bg);
+        box-shadow: 0 0 48px 48px var(--lkn-home-bg);
     }
 }
 
-.VPSidebar.VPSidebar {
-    box-shadow: none;
+.VPSidebarItem {
+    //给顶层和第一层项目加一个自定义伪元素indicator
+    &:is(.level-0, .level-1).is-active > .item .VPLink {
+        position: relative;
+        .text::before {
+            content: ">";
+            position: absolute;
+            left: -16px;
+            top: -1px;
+            padding: inherit;
+        }
+    }
 }
-.VPSidebarItem .text {
-    line-height: 18px;
-}
-.VPSidebar.open, #VPNavScreen, .VPLocalSearchBox > .shell, .VPFlyout > .menu {
+
+
+#VPNavScreen, .VPLocalSearchBox > .shell, .VPFlyout > .menu {
     // 需要背景模糊的菜单元素
     backdrop-filter: blur(var(--lkn-navmenu-blur-radius));
+}
+.VPBackdrop, .VPLocalSearchBox > .backdrop { // 需要轻微背景模糊的遮罩元素
+    backdrop-filter: blur(var(--lkn-backdrop-blur-radius));
 }
 .VPFlyout > .menu {
     border-radius: 12px;
 }
 
 /*所有导航栏背景伪元素*/
-.VPLocalNav.VPLocalNav > .container,
-.VPNavBar.home,
-.VPNavBar:not(.home) .content-body { &::after {
+.VPNavBar, .VPLocalNav.VPLocalNav > .container { &::after {
     content: "";
     position: absolute;
     top: 0;
@@ -226,14 +255,21 @@ body {
     bottom: 0;
     right: 0;
     z-index: -1;
-    background-color: var(--vp-nav-bg-color);
-    backdrop-filter: blur(var(--lkn-navbar-blur-radius));
+    background: no-repeat fixed center / cover;
+    background-image:
+        linear-gradient(var(--vp-nav-bg-color), var(--vp-nav-bg-color)),
+        var(--lkn-current-bg-image); // 这样做可以把背景颜色盖在背景图上面
+    background-color: var(--vp-nav-bg-color); //回退
     mask: var(--lkn-navbar-mask);
     -webkit-mask: var(--lkn-navbar-mask);
 }}
 
 .VPNavBar:not(#ABC) {
+    --vp-nav-bg-color: var(--lkn-page-bg);
     background-color: transparent;
+    &.home {
+        --vp-nav-bg-color: var(--lkn-home-bg);
+    }
     .divider {//分割线
         display: none;
     }
@@ -277,14 +313,6 @@ body {
     background-color: var(--vp-c-bg-alt);
 }
 
-.VPLocalSearchBox .result {
-    &:not(.selected, :hover) {
-        transition: border .3s;
-        * { transition: color .2s; }
-    }
-    
-}
-
 .VPLocalNav.VPLocalNav {
     background-color: transparent;
     border-bottom: none;
@@ -307,8 +335,10 @@ body {
 
 .VPFooter.VPFooter { /*页脚*/
     border-top: none;
-    background: var(--lkn-footer-bg);
-    background-color: none;
+    background-color: var(--lkn-page-bg);
+    .VPContent.is-home ~ & {
+        background-color: transparent;
+    }
     &.has-sidebar {
         display: block !important;
     }
@@ -363,6 +393,9 @@ body {
             transform: scale(.9);
         }
     }
+    .VPLocalSearchBox > .backdrop { // 不要背景模糊
+        backdrop-filter: none;
+    }
 }
 @media (min-width: 768px) { /*宽度768及以上*/
     .VPNavBarSearchButton {
@@ -375,27 +408,19 @@ body {
     }
 }
 @media (max-width: 959.999px) { /*宽度960以下*/
-    .VPSidebar {
-        mask: var(--lkn-sidebar-mask);
-        -webkit-mask: var(--lkn-sidebar-mask);
-        .os-scrollbar-vertical { //确保滚动条可见性
-            transform: translateX(-20px);
-        }
+    :root {
+        --vp-sidebar-bg-color: var(--lkn-page-bg);
     }
-    
-    .VPNavBar.VPNavBar.VPNavBar {
-        background-image: var(--lkn-navbar-gradient-bg-page);
-        background-color: transparent;
-        &.home {
-            background-image: var(--lkn-navbar-gradient-bg-home);
-        }
-        &.home::after, :not(.home) .content-body::after {
-            display: none;
-        }
+    .VPContent {
+        box-shadow: 0 -12px 12px 12px var(--lkn-page-bg);
     }
-    .VPLocalNav.VPLocalNav > .container::after {
+    .VPNavBar::after {
+        background-image: none;
         mask: none;
         -webkit-mask: none;
+    }
+    .VPNavBar.home::after { //背景 给我 咔掉 ！
+        display: none;
     }
 }
 @media (min-width: 960px) { /*宽度960及以上*/

@@ -1,3 +1,11 @@
+a:not(#specificityUP_ABC, .VPButton),
+.VPLocalSearchBox .result {
+    &, * { transition: opacity .2s, border .3s, color .2s; }
+    &.selected, &:hover{
+        &, * { transition: none; }
+    }
+}
+
 .VPButton.VPButton {
     transition: transform .15s, color .15s, border-color .15s, background-color .15s;
     will-change: transform;
@@ -11,19 +19,36 @@
 }
 
 .VPLocalSearchBox {
-    & > .backdrop {
+    > .backdrop {
         animation: opacityIn .4s;
     }
-    & > .shell {
+    > .shell {
         animation: opacityIn .4s .1s backwards, slideDown .4s cubic-bezier(.34, .68, 0, 1) .1s backwards;
     }
 }
 
+.VPLocalNavOutlineDropdown {
+    .flyout-enter-active {
+        transition: all .3s cubic-bezier(.34, .68, 0, 1);
+    }
+    .flyout-leave-active {
+        transition: all .1s cubic-bezier(1, 0, .68, .34);
+    }
+}
+
 .VPSidebar.VPSidebar {
-    transition: opacity .6s, transform .15s cubic-bezier(1, 0, .68, .34);;
+    transition: opacity 0s .2s, transform .15s cubic-bezier(1, 0, .68, .34);
     &.open {
-        transition: none;
-        animation: opacityIn .4s, slideToRight .4s cubic-bezier(.34, .68, 0, 1);
+        transition: opacity .2s .1s, transform .4s cubic-bezier(.34, .68, 0, 1) .1s;
+    }
+}
+
+.VPBackdrop.VPBackdrop {
+    &.fade-enter-active {
+        transition: opacity .2s;
+    }
+    &.fade-leave-active {
+        transition: opacity .2s .2s;
     }
 }
 

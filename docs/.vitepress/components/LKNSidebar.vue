@@ -130,9 +130,6 @@ watch(
     box-shadow: none;
     transform: translateX(0);
   }
-  .VPSidebar > span {
-    padding-top: var(--vp-nav-height);
-  }
 }
 
 @media (min-width: 1440px) {
@@ -158,5 +155,13 @@ watch(
 
 .nav {
   outline: 0;
+}
+</style>
+
+<style>
+@media (min-width: 960px) {
+  .VPSidebar.VPSidebar > span, .VPSidebar .os-scrollbar-vertical {
+    padding-top: var(--vp-nav-height);
+  }
 }
 </style>

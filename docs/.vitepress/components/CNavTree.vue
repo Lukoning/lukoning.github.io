@@ -43,15 +43,17 @@ function normalizeLink(link?: string): string | undefined {
 }
 
 // 为每个 item 维护独立的折叠状态（优先使用配置中的 collapsed）
-const collapsedMap = ref<Record<string, boolean>>(() => {
-  const map: Record<string, boolean> = {}
-  props.items.forEach(item => {
-    if (item.items?.length) {
-      map[item.text] = item.collapsed ?? false
-    }
-  })
-  return map
-})
+const collapsedMap = ref<Record<string, boolean>>(
+  (() => {
+    const map: Record<string, boolean> = {}
+    props.items.forEach(item => {
+      if (item.items?.length) {
+        map[item.text] = item.collapsed ?? false
+      }
+    })
+    return map
+  })()
+)
 
 function toggle(text: string) {
   collapsedMap.value[text] = !collapsedMap.value[text]
@@ -62,17 +64,19 @@ function toggle(text: string) {
   <ul class="nav-tree" :class="`depth-${depth}`">
     <li v-for="item in items" :key="item.text">
       <div class="nav-item">
+        <div class="caret-container">
+          <button
+            v-if="item.items?.length"
+            class="caret"
+            @click="toggle(item.text)"
+            :aria-label="collapsedMap[item.text] ? '展开' : '折叠'"
+          >
+            <span class="vpi-chevron-right caret-icon" :class="{ rotated: !collapsedMap[item.text] }"></span>
+          </button>
+        </div>
+
         <a v-if="item.link" :href="normalizeLink(item.link)" class="nav-link">{{ item.text }}</a>
         <span v-else class="nav-text">{{ item.text }}</span>
-
-        <button
-          v-if="item.items?.length"
-          class="caret"
-          @click="toggle(item.text)"
-          :aria-label="collapsedMap[item.text] ? '展开' : '折叠'"
-        >
-          <span class="caret-icon" :class="{ rotated: !collapsedMap[item.text] }">▶</span>
-        </button>
       </div>
 
       <!-- 递归渲染子项 -->
@@ -112,10 +116,9 @@ function toggle(text: string) {
 .nav-link:hover {
   color: var(--vp-c-brand-1);
 }
-.caret {
+.caret-container {
   background: none;
   border: none;
-  cursor: pointer;
   padding: 0;
   width: 24px;
   height: 24px;
@@ -124,8 +127,11 @@ function toggle(text: string) {
   justify-content: center;
   color: var(--vp-c-text-3);
 }
+.caret {
+  cursor: pointer;
+}
 .caret-icon {
-  font-size: 12px;
+  font-size: 20px;
   transition: transform 0.2s;
   display: inline-block;
 }
