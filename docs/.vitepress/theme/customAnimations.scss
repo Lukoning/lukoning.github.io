@@ -29,10 +29,10 @@ a:not(#specificityUP_ABC, .VPButton),
 
 .VPLocalNavOutlineDropdown {
     .flyout-enter-active {
-        transition: all .3s cubic-bezier(.34, .68, 0, 1);
+        transition: all .4s cubic-bezier(.34, .68, 0, 1);
     }
     .flyout-leave-active {
-        transition: all .1s cubic-bezier(1, 0, .68, .34);
+        transition: all .2s cubic-bezier(1, 0, .68, .34);
     }
 }
 
