@@ -7,3 +7,15 @@ order: 1234567890
 # 欢迎食用「蔬菜罐罐汤」
 
 这里是杂谈和碎碎念的聚集地。嗯，简称杂念(?)
+
+也就是各种东西都可以放在这的意思啦。
+
+<script setup>
+  import { useData } from 'vitepress'
+  const { theme } = useData();
+  const items = theme.value.sidebar.filter(item => item.text === "蔬菜罐罐汤");
+</script>
+
+::: info 杂念们：
+<NavTree :items="items" />
+:::

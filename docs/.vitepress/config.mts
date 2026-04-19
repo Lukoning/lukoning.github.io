@@ -1,12 +1,13 @@
 import { defineConfig } from 'vitepress'
 import { generateSidebar } from "vitepress-sidebar"
 import { groupIconMdPlugin, groupIconVitePlugin } from 'vitepress-plugin-group-icons'
+import { tabsMarkdownPlugin } from 'vitepress-plugin-tabs'
 import { fileURLToPath, URL } from 'node:url'
 
 const componentAliases = {
   'NotFound': 'LKN404',
   'VPDocFooterLastUpdated': 'LKNDocFooterLastUpdated',
-  'VPLocalNavOutlineDropdown': 'LKNLocalNavOutlineDropdown',
+  'VPLocalNav': 'LKNLocalNav',
   'VPLocalSearchBox': 'LKNLocalSearchBox',
   'VPSidebar': 'LKNSidebar',
 }
@@ -54,7 +55,10 @@ export default defineConfig({
   },
 
   markdown: {
-    config(md) { md.use(groupIconMdPlugin) },
+    config(md) {
+      md.use(groupIconMdPlugin),
+      md.use(tabsMarkdownPlugin)
+    },
     lineNumbers: true,
     image: {
       lazyLoading: true //仅在滚动到图片位置时加载图片
@@ -201,6 +205,7 @@ export default defineConfig({
 · 当前背景图像源：
 <lkn intext hide-light><a target="_blank" href="https://www.pixiv.net/artworks/131044765">進擊的复读机 - 可莉</a></lkn>
 <lkn intext hide-dark><a target="_blank" href="https://www.bilibili.com/video/BV1PP4y1U7qA/?share_source=copy_web&t=102">《原神》角色演示-「纳西妲：无垠无忧」</a></lkn>
+（侵权请联系删除）
 · 原创内容 <a href="/LICENSE-ALLIN#lkn个人小站-cc-by-nc-sa-4-0">CC BY-NC-SA 4.0 协议</a>
 · 源码 <a href="/LICENSE-ALLIN#lkn个人小站-mpl-2-0">MPL 2.0 协议</a>
 · © 2025-2026 <a target="_blank" href="https://github.com/Lukoning">Lukoning</a>`,

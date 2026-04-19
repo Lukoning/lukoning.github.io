@@ -32,7 +32,7 @@ $lkn-theme-accent-bg-dark: #100416; /*oklch空间混合黑色80%和主题色20%*
     --vp-local-nav-bg-color: var(--vp-nav-bg-color);
 
     &:not(.dark) {
-        --lkn-current-bg-image: url("/backgroundImage_light.webp");
+        --lkn-current-bg-image: url("/bgImage/bg-Nahida-light-0.webp");
 
         --lkn-theme-accent: #{$lkn-theme-accent-light};
         --lkn-theme-accent-bg: #{$lkn-theme-accent-bg-light};
@@ -68,7 +68,7 @@ $lkn-theme-accent-bg-dark: #100416; /*oklch空间混合黑色80%和主题色20%*
     }
 
     &.dark {
-        --lkn-current-bg-image: url("/backgroundImage.webp");
+        --lkn-current-bg-image: url("/bgImage/bg-Klee-dark-0.webp");
 
         --lkn-theme-accent: #{$lkn-theme-accent-dark};
         --lkn-theme-accent-bg: #{$lkn-theme-accent-bg-dark};
@@ -106,7 +106,7 @@ $lkn-theme-accent-bg-dark: #100416; /*oklch空间混合黑色80%和主题色20%*
     --lkn-navbar-blur-radius: 8px;
     --lkn-navmenu-blur-radius: 16px;
     --lkn-backdrop-blur-radius: 4px;
-    --lkn-navbar-mask: 
+    --lkn-navbar-mask: /*用两层渐变，观感会比只有一层要好*/
         linear-gradient(to bottom, #FFFFFF 20%, transparent 100%),
         linear-gradient(to bottom, #FFFFFF 30%, transparent 100%);
     --lkn-loading-circle-width: max(min(0.4vw, 0.4vh), 3px);
@@ -179,6 +179,17 @@ ruby rt { //调大注音字号，看得更清楚
     h3 &, h4 & {
         font-size: 0.6em;
     }
+}
+
+//配合 vitepress-plugin-image-viewer
+.vp-doc img {
+    cursor: zoom-in;
+}
+.viewer-container {
+    z-index: 999990 !important; //确保覆盖OverlayScrollbars
+}
+.viewer-hide-md-down {
+    display: unset; //我就是要让你显示，咋地
 }
 //fix end
 
@@ -411,11 +422,11 @@ body {
     :root {
         --vp-sidebar-bg-color: var(--lkn-page-bg);
     }
-    .VPContent {
+    .VPLocalNav ~ .VPContent { //穿帮咯
         box-shadow: 0 -12px 12px 12px var(--lkn-page-bg);
     }
     .VPNavBar::after {
-        background-image: none;
+        background-image: none; //不需要background-image了
         mask: none;
         -webkit-mask: none;
     }
@@ -432,30 +443,28 @@ body {
     }
     .VPLocalNav {
         pointer-events: none;
-        &> .container {
-            &::after {//背景不要哦
-                display: none;
-            }
-            > .VPLocalNavOutlineDropdown { //本篇目录按钮
-                * {
-                    pointer-events: all;
-                }
-                > button {
-                    padding: 6px 14px 6px;
-                    margin: 6px 22px 5px;
-                    background-color: var(--vp-c-bg-alt);
-                    backdrop-filter: blur(var(--lkn-navbar-blur-radius));
-                    border: 1px solid transparent;
-                    border-radius: 8px;
-                    transition: border .2s, color .2s;
-                    &:hover {
-                        border: 1px solid var(--vp-c-brand-1);
-                    }
-                } 
-            }
-            > .menu { //侧边栏展开按钮：为了本篇目录按钮可以正常定位在右侧
-                display: flex;
-                opacity: 0;
+        > .container::after {//背景不要哦
+            display: none;
+        }
+        button.menu {
+            //侧边栏展开按钮：为了本篇目录按钮可以正常定位在右侧
+            display: flex;
+            opacity: 0;
+            visibility: hidden;
+        }
+    }
+    .VPLocalNavOutlineDropdown.VPLocalNavOutlineDropdown { //本篇目录或回到顶部按钮
+        * { pointer-events: all }
+        button {
+            padding: 6px 14px 6px;
+            margin: 6px 22px 5px;
+            background-color: var(--vp-c-bg-alt);
+            backdrop-filter: blur(var(--lkn-navbar-blur-radius));
+            border: 1px solid transparent;
+            border-radius: 8px;
+            transition: border .2s, color .2s;
+            &:hover {
+                border: 1px solid var(--vp-c-brand-1);
             }
         }
     }
@@ -464,13 +473,18 @@ body {
     }
 }
 @media (min-width: 1067px) { /*宽度1067及以上*/
-    html {/*变大喵！*/
+    #app {/*变大喵！*/ //不能用html，否则vitepress-plugin-image-viewer图片的初始定位会出问题
         zoom: 1.03; /*1.05在Chromium系浏览器会错位喵！*/
     }
 }
 @media (min-width: 960px) and (max-width: 1279.999px) { /*宽度960~1280(不含)*/
-    .VPLocalNav:not(.empty) ~ .VPContent { /*向上占用原本是页面导航栏（VPLocalNav）的空间*/
-        margin-top: -49px; /*页面导航栏的高度乘以-1*/
+    .VPLocalNav {
+        /*&:not(.empty)*/ ~ .VPContent.VPContent { /*向上占用原本是页面导航栏（VPLocalNav）的空间*/
+            margin-top: -49px; /*页面导航栏的高度乘以-1*/
+        }
+        &.empty {
+            display: unset !important;
+        }
     }
 }
 @media (min-width: 1440px) { /*宽度1440及以上*/
@@ -479,7 +493,7 @@ body {
     }
 }
 @media (min-width: 1510px) { /*宽度1510及以上*/
-    html {/*变大汪！*/
+    #app {/*变大汪！*/
         zoom: 1.1; /*zoom: 1.1需要宽度1505+，否则侧边栏被裁切*/
     }
 }

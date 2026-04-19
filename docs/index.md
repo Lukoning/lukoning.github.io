@@ -13,6 +13,9 @@ hero:
     alt: 头像
   actions:
     - theme: brand
+      text: 转至导航
+      link: \#全站导航
+    - theme: alt
       text: 饭能市
       link: /ACG/
     - theme: alt
@@ -35,21 +38,43 @@ features:
 
 部分页面使用深色模式浏览更佳。
 
-## 全站导航
-Beta
 <script setup>
-  import NavTree from "./.vitepress/components/CNavTree.vue"
   import { useData } from 'vitepress'
+  import { toRaw } from 'vue'
   const { theme } = useData();
-  const items = theme.value.sidebar;
+  const sb = toRaw(theme.value.sidebar); //theme是只读数组，要修改的话得转换为新数组
+  const items =  {
+    top: sb.filter(item => item.items === undefined),//只保留非文件夹
+    hanno: sb.filter(item => item.text === "饭能市"),
+    dev: sb.filter(item => item.text === "虚空网络"),
+    anyt: sb.filter(item => item.text === "蔬菜罐罐汤"),
+  };
+  if (items.top[0].link === "/") { items.top[0].link = "/#欢迎来到「提瓦特大陆」" }
 </script>
 
-<details class="details custom-block" open>
-  <summary>网站目录</summary>
-  <NavTree :items="items" />
+<lkn layout box-center text-center>
+
+## 全站导航
+
+<details open class="details custom-block">
+<summary>网站目录</summary>
+
+:::tabs
+== 顶层文章
+<NavTree :items="items.top" />
+
+== 饭能市
+<NavTree :items="items.hanno" />
+
+== 虚空网络
+<NavTree :items="items.dev" />
+
+== 蔬菜罐罐汤
+<NavTree :items="items.anyt" />
+
+:::
 </details>
-
-
+</lkn>
 
 ---
 

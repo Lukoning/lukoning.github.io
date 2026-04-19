@@ -11,3 +11,13 @@ order: 2124520
 从东京西武池袋站出发，乘坐西武池袋线，就可以到达饭能车站了。当然也可以乘坐JR八高线，到达东饭能站。
 
 这里也是ヤマノススメ故事发生的主要地点 *（当然并非唯一的地点~作为户外番的一员怎么可能把地点固定下来呢~）*
+
+<script setup>
+  import { useData } from 'vitepress'
+  const { theme } = useData();
+  const items = theme.value.sidebar.filter(item => item.text === "饭能市");
+</script>
+
+::: info 饭能市立图书馆：
+<NavTree :items="items" />
+:::

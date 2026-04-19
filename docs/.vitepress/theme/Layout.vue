@@ -3,6 +3,8 @@ import { useData } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import { nextTick, provide } from 'vue'
 
+import CReturnToTopPlus from "../components/CReturnToTopPlus.vue"
+
 const { isDark } = useData()
 
 const enableTransitions = () =>
@@ -42,8 +44,8 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
 
 <template>
   <DefaultTheme.Layout>
-    <template #doc-after>
-        <!-- 不要用这种方法添加Giscus -->
+    <template #aside-outline-before>
+        <CReturnToTopPlus />
     </template>
   </DefaultTheme.Layout>
 </template>

@@ -64,7 +64,7 @@ function toggle(text: string) {
   <ul class="nav-tree" :class="`depth-${depth}`">
     <li v-for="item in items" :key="item.text">
       <div class="nav-item">
-        <div class="caret-container">
+        <div class="caret-container" v-if="depth!==0">
           <button
             v-if="item.items?.length"
             class="caret"
@@ -91,6 +91,7 @@ function toggle(text: string) {
 
 <style scoped>
 .nav-tree {
+  text-align: left;
   list-style: none;
   padding-left: 0;
 }
@@ -100,8 +101,8 @@ function toggle(text: string) {
 .depth-0 > li {
   margin-top: 0.5rem;
 }
-.nav-tree .nav-tree {
-  padding-left: 1.5rem;
+.nav-tree .nav-tree .nav-tree {
+  padding-left: 1rem;
 }
 .nav-item {
   display: flex;
@@ -113,25 +114,34 @@ function toggle(text: string) {
   flex: 1;
   text-decoration: none;
 }
-.nav-link:hover {
+.nav-link.nav-link {
+  color: var(--vp-c-text-1);
+}
+.nav-link.nav-link:hover {
+  opacity: 1;
   color: var(--vp-c-brand-1);
+}
+.nav-text {
+  color: var(--vp-c-text-2);
 }
 .caret-container {
   background: none;
   border: none;
   padding: 0;
-  width: 24px;
-  height: 24px;
+  width: 1rem;
+  height: 1rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--vp-c-text-3);
+  color: var(--vp-c-text-2);
 }
 .caret {
+  width: inherit;
+  height: inherit;
   cursor: pointer;
 }
 .caret-icon {
-  font-size: 20px;
+  font-size: 1rem;
   transition: transform 0.2s;
   display: inline-block;
 }

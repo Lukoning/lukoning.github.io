@@ -11,3 +11,13 @@ order: 41735173
 请放心，本网络系统已经经过改造，不再会窃取你的大脑算力，请放心接入网络。
 
 今晚好梦。
+
+<script setup>
+  import { useData } from 'vitepress'
+  const { theme } = useData();
+  const items = theme.value.sidebar.filter(item => item.text === "虚空网络");
+</script>
+
+::: info 请收下罐装知识：
+<NavTree :items="items" />
+:::

@@ -2,7 +2,8 @@
   "dependencies": {
     "nprogress": "^0.2.0",
     "overlayscrollbars": "^2.15.1",
-    "overlayscrollbars-vue": "^0.5.9"
+    "overlayscrollbars-vue": "^0.5.9",
+    "vitepress-plugin-image-viewer": "^1.1.6"
   },
   "devDependencies": {
     "@types/node": "^25.6.0",
@@ -10,7 +11,8 @@
     "sass-embedded": "^1.99.0",
     "vitepress": "^2.0.0-alpha.17",
     "vitepress-plugin-comment-with-giscus": "^1.1.15",
-    "vitepress-plugin-group-icons": "^1.7.3",
+    "vitepress-plugin-group-icons": "^1.7.5",
+    "vitepress-plugin-tabs": "^0.9.0",
     "vitepress-sidebar": "^1.33.1"
   },
   "scripts": {
