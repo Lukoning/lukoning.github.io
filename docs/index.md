@@ -26,10 +26,10 @@ hero:
       link: /Mutterings/
 
 features:
-  - title: "关于 \"Aohina\""
+  - title: "关于 <em><lkn c green>Ao</lkn><lkn c yellow>hina</lkn></em>"
     details: "这个名字来自 ヤマノススメ(向山进发) 的两位主角 <lkn c green><ruby>雪村あおい<rp>(</rp><rt>Yukimura <c>Ao</c>i</rt><rp>)</rp></ruby></lkn> 和 <lkn c yellow><ruby>倉上ひなた<rp>(</rp><rt>Kuraue <c>Hina</c>ta</rt><rp>)</rp></ruby></lkn>。顺带一提，头像上也是她们。<a link href='ACG/ymnssm-Introduction'>了解ヤマノススメ→</a>"
-  - title: "二次元！<br/>☆*: .｡. o(≧▽≦)o .｡.:*☆"
-    details: "二次元爱好者喵"
+  - title: "关于「白河豚🌻」"
+    details: "这个名字嘛……「白河豚」即「百合豚」；而「🌻」则是： 雪村あおい/倉上ひなた -> 雪村葵/仓上日向 -> 葵日向 ->「向日葵」，跟<em><lkn c green>Ao</lkn><lkn c yellow>hina</lkn></em>这个名字同源哦"
   - title: "碎碎念…"
     details: "其实从这个站点的内容上能看出，此人是有亿点抽象且成分极为复杂之人。好吧我摊牌了其实我是来自外星的伪人我将攻入地球⚠️⚠️⚠️"
   - title: "MBTI？"
