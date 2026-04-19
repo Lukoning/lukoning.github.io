@@ -40,9 +40,8 @@ features:
 
 <script setup>
   import { useData } from 'vitepress'
-  import { toRaw } from 'vue'
   const { theme } = useData();
-  const sb = toRaw(theme.value.sidebar); //theme是只读数组，要修改的话得转换为新数组
+  const sb = theme.value.sidebar.map(item => ({ ...item })); //theme是只读数组，要修改的话得转换为新数组
   const items =  {
     top: sb.filter(item => item.items === undefined),//只保留非文件夹
     hanno: sb.filter(item => item.text === "饭能市"),
