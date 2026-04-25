@@ -5,6 +5,12 @@ a:not(#specificityUP_ABC, .VPButton),
         &, * { transition: none; }
     }
 }
+.algolia [command-item] {
+    &, * { transition: opacity .2s, border .3s, color .2s; }
+    &[aria-selected=true], &:hover {
+        &, * { transition: none; }
+    }
+}
 
 .VPButton.VPButton {
     transition: transform .15s, color .15s, border-color .15s, background-color .15s;
@@ -18,11 +24,38 @@ a:not(#specificityUP_ABC, .VPButton),
     }
 }
 
+@mixin mobile-search-button {
+    transform: scale(1);
+    transition: transform .1s;
+    &:hover {
+        transform: scale(1.05);
+    }
+    &:active {
+        transform: scale(.9);
+    }
+}
+
+@media (max-width: 759.999px) { /*宽度760以下*/
+    .blog-search { @include mobile-search-button; }
+}
+
+@media (max-width: 767.999px) { /*宽度768以下*/
+    .VPNavBarSearchButton { @include mobile-search-button; }
+}
+
 .VPLocalSearchBox {
     > .backdrop {
         animation: opacityIn .4s;
     }
     > .shell {
+        animation: opacityIn .4s .1s backwards, slideDown .4s cubic-bezier(.34, .68, 0, 1) .1s backwards;
+    }
+}
+.algolia {
+    [command-dialog-mask]::after {
+        animation: opacityIn .4s;
+    }
+    [command-dialog-wrapper] {
         animation: opacityIn .4s .1s backwards, slideDown .4s cubic-bezier(.34, .68, 0, 1) .1s backwards;
     }
 }

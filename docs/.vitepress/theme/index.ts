@@ -116,7 +116,7 @@ function startOverflowSync(osInstance: OverlayScrollbars) {
 }
 
 function initVisitorCount() {
-  if (import.meta.env.PROD/*如果是生产环境*/) new MutationObserver((_, obs) => { //加载图像访问者计数器
+  if (import.meta.env.PROD/*如果是生产环境*/&&!location.href.includes("localhost:4173/")/*并且不是本地构建预览*/) new MutationObserver((_, obs) => { //加载图像访问者计数器
     const img = document.querySelector("img[id='visitorCounter!']");
     if (img) { //替换src为计数器URL
       img.src = "https://count.getloli.com/@LukoningPersonalWebsite?name=LukoningPersonalWebsite&theme=love-and-deepspace&scale=0.5&pixelated=1&darkmode=0";

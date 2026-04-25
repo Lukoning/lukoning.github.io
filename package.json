@@ -3,11 +3,14 @@
     "nprogress": "^0.2.0",
     "overlayscrollbars": "^2.15.1",
     "overlayscrollbars-vue": "^0.5.9",
-    "vitepress-plugin-image-viewer": "^1.1.6"
+    "pagefind": "^1.5.2",
+    "vitepress-plugin-image-viewer": "^1.1.6",
+    "vitepress-plugin-pagefind": "^0.4.19"
   },
   "devDependencies": {
     "@types/node": "^25.6.0",
     "@types/nprogress": "^0.2.3",
+    "patch-package": "^8.0.1",
     "sass-embedded": "^1.99.0",
     "vitepress": "^2.0.0-alpha.17",
     "vitepress-plugin-comment-with-giscus": "^1.1.15",
@@ -16,8 +19,10 @@
     "vitepress-sidebar": "^1.33.1"
   },
   "scripts": {
+    "postinstall": "patch-package",
     "docs:dev": "vitepress dev docs --host 0.0.0.0",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:preview": "vitepress preview docs",
+    "lkn:patch-pkg": "npx patch-package vitepress-plugin-pagefind"
   }
 }

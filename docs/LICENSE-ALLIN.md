@@ -149,6 +149,20 @@ Mozilla 公共许可协议，版本 2.0
 
 <p v-html="License('MIT', '2022 sapphi-red')"></p>
 
+## Pagefind
+
+[项目仓库](https://github.com/pagefind/pagefind)
+
+<p v-html="License('MIT', '2022 Pagefind')"></p>
+
+## sugar-blog
+
+*使用的插件：vitepress-plugin-pagefind*
+
+[项目仓库](https://github.com/ATQQ/sugar-blog)
+
+<p v-html="License('MIT', '2020 sugar')"></p>
+
 ## Embedded Sass
 
 [项目仓库](https://github.com/sass/embedded-host-node)

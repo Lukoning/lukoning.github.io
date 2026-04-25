@@ -2,6 +2,7 @@ import { defineConfig } from 'vitepress'
 import { generateSidebar } from "vitepress-sidebar"
 import { groupIconMdPlugin, groupIconVitePlugin } from 'vitepress-plugin-group-icons'
 import { tabsMarkdownPlugin } from 'vitepress-plugin-tabs'
+import { pagefindPlugin, /* chineseSearchOptimize /*至少Pagefind ^1.5.2不再需要这个*/ } from 'vitepress-plugin-pagefind'
 import { fileURLToPath, URL } from 'node:url'
 
 const componentAliases = {
@@ -34,7 +35,27 @@ export default defineConfig({
   metaChunk: true,
 
   vite: {
-    plugins: [ groupIconVitePlugin() ],
+    plugins: [
+      groupIconVitePlugin(),
+      pagefindPlugin({
+        showDate: true,
+        locales: {
+          root: {
+            closeButtonTitle: '返回去喵',
+            displayDetailsButtonTitle: '显示更大点喵',
+            resetButtonTitle: '清掉输入喵',
+            btnPlaceholder: '搜索本站…',
+            placeholder: '在这里输入关键词搜索喵~空格分割哦喵⭐',
+            emptyText: '找不到结果哦喵… 试试其他表达呜喵？',
+            heading: '搜到了 {{searchResult}} 条结果喵！',
+            toSelect: '是选择喵',
+            toNavigate: '是切换喵',
+            toClose: '是关闭喵',
+            searchBy: '非常感谢喵~本站使用搜索引擎：',
+          },
+        },
+      })
+    ],
     build: {
       target: "es2015",
     },
@@ -103,36 +124,7 @@ export default defineConfig({
     },
     externalLinkIcon: true,
 
-    search: {
-      provider: 'local',
-      options: {
-        locales: {
-          root: {
-            translations: {
-              button: {
-                buttonText: '搜索本站…',
-                buttonAriaLabel: '搜索本站',
-              },
-              modal: {
-                displayDetails: '显示详情喵',
-                resetButtonTitle: '重置喵',
-                backButtonTitle: '返回喵',
-                footer: {
-                  selectText: '是选择喵',
-                  selectKeyAriaLabel: '回车',
-                  navigateText: '是切换喵',
-                  navigateUpKeyAriaLabel: '上方向键',
-                  navigateDownKeyAriaLabel: '下方向键',
-                  closeText: '是关闭喵',
-                  closeKeyAriaLabel: 'Esc键（逃逸键）',
-                },
-                noResultsText: '找不到这串东西哦喵：',
-              },
-            },
-          },
-        },
-      },
-    },
+    search: undefined,
   
     nav: [
       { text: '提瓦特大陆', link: '/' },
