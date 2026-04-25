@@ -10,10 +10,12 @@ LKN是Lukoning的缩写哦喵！
 克隆本仓库，然后在仓库根目录润这行神秘代码喵：
 
 ```
-npm ci
+npm ci --legacy-peer-deps
 ```
 
 这样构建猫猫的依赖环境就完成了喵\~！
+
+至于为什么要加上`--legacy-peer-deps`喵？因为有滴依赖的版本号写🉐有问题喵，不影响最终构建哦喵\~⭐
 
 猫猫提醒喵：之后每次拉取仓库更新，最好都润一次神秘代码喵。
 
@@ -23,7 +25,7 @@ npm ci
 npm run docs:build
 ```
 
-不出喵意料的话，猫猫几秒后就构建成了喵，可以在`docs/.vitepress/dist`找到猫猫哦喵
+不出喵意料的话，猫猫十几秒后就构建成了喵，可以在`docs/.vitepress/dist`找到猫猫哦喵
 
 在浏览器浏览猫猫，可以润以下代码，然后访问控制台输出的URL喵：
 
@@ -37,8 +39,14 @@ npm run docs:preview
 npm run docs:dev
 ```
 
+此法可在局域网中使用个中形状的计算机访问喵\~でも此时不能搜索喵。
+
 ## 可以抱走猫猫吗喵
 
 可以哦喵\~不过请遵守CC协议和MPL协议哦喵，具体可以看看项目根目录的[LICENSE-CC](/LICENSE-CC)和[LICENSE-MPL](/LICENSE-MPL)哦喵\~
 
 看不明白鸟语可以请教AI先森喵，也可以在猫猫身上找找有没有小纸条解析哦喵\~
+
+## 开源许可喵\~
+
+请见[开放源代码许可](https://lukoning.github.io/LICENSE-ALLIN)喵\
