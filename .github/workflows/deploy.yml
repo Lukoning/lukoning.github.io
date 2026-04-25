@@ -44,7 +44,9 @@ jobs:
       - name: 配置 Pages
         uses: actions/configure-pages@v4
       - name: 安装依赖
-        run: npm install --legacy-peer-deps # 或 pnpm install / yarn install / bun install
+        run: |
+          rm -f package-lock.json
+          npm install --legacy-peer-deps
       - name: 构建 VitePress 页面
         run: npm run docs:build # 或 pnpm docs:build / yarn docs:build / bun run docs:build
       - name: 上传构建产物
