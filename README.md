@@ -1,7 +1,9 @@
 # ~~LKN个人小站（划掉）~~
 # LKN的小猫猫
 
-LKN是Lukoning的缩写哦喵！
+LKN的个人猫猫，基于VitePress喵⭐
+
+LKN是Lukoning的缩写哦喵🌟！
 
 ## 如何构建猫猫呢喵
 
@@ -25,7 +27,7 @@ npm run docs:build
 
 不出喵意料的话，猫猫十几秒后就构建成了喵，可以在`docs/.vitepress/dist`找到猫猫哦喵
 
-在浏览器浏览猫猫，可以润以下代码，然后访问控制台输出的URL喵：
+构建成了喵后，想在浏览器浏览猫猫呜喵？可以润以下代码，然后访问控制台输出的URL喵：
 
 ```
 npm run docs:preview
@@ -47,4 +49,4 @@ npm run docs:dev
 
 ## 开源许可喵\~
 
-请见[开放源代码许可](https://lukoning.github.io/LICENSE-ALLIN)喵\
+请见[开放源代码许可](https://lukoning.github.io/LICENSE-ALLIN)喵\~
