@@ -5,7 +5,7 @@
     "overlayscrollbars-vue": "^0.5.9",
     "pagefind": "^1.5.2",
     "vitepress-plugin-image-viewer": "^1.1.6",
-    "vitepress-plugin-pagefind": "^0.4.19"
+    "vitepress-plugin-pagefind": "^0.4.20"
   },
   "devDependencies": {
     "@types/node": "^25.6.0",

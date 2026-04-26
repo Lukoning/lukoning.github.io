@@ -1,7 +1,6 @@
 ---
 createdDate: 2026-03-08T10:16:34+08:00
-lastUpdated: 2026-03-14T19:00:59+08:00
-title: 关于OverlayScrollbars如何应用到Vue元素上的问题
+title: 关于 OverlayScrollbars 如何应用到 Vue 元素上的问题
 order: 2
 ---
 
@@ -225,7 +224,96 @@ import { OverlayScrollbarsComponent } from 'overlayscrollbars-vue';
 …
 ```
 
-另外这种方式还需要改overflow、padding和height才能正常生效，具体不细说了。
+另外这种方式还需要改overflow、padding和height才能正常生效：
+
+```html [docs/.vitepress/components/LKNSidebar.vue ~vscode-icons:file-type-vue~]
+…
+<style scoped>
+.VPSidebar {
+  position: fixed;
+  top: var(--vp-layout-top-height, 0px);
+  bottom: 0;
+  left: 0;
+  z-index: var(--vp-z-index-sidebar);
+  padding: 32px 32px 96px; /* [!code --] */
+  width: calc(100vw - 64px);
+  max-width: 320px;
+  background-color: var(--vp-sidebar-bg-color);
+  opacity: 0;
+  box-shadow: var(--vp-c-shadow-3);
+  overflow-x: hidden; /* [!code --] */
+  overflow-y: auto; /* [!code --] */
+  overflow: hidden; /* [!code ++] */
+  transform: translateX(-100%);
+  transition: opacity 0.5s, transform 0.25s ease;
+  overscroll-behavior: contain;
+}
+
+.VPSidebar > span { /* [!code ++] */
+  padding: 32px 32px 96px; /* [!code ++] */
+  height: 100%; /* [!code ++] */
+} /* [!code ++] */
+
+.VPSidebar.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+  transition: opacity 0.25s,
+    transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.dark .VPSidebar {
+  box-shadow: var(--vp-shadow-1);
+}
+
+@media (min-width: 960px) {
+  .VPSidebar {
+    padding-top: var(--vp-nav-height); /* [!code --] */
+    width: var(--vp-sidebar-width);
+    max-width: 100%;
+    background-color: var(--vp-sidebar-bg-color);
+    opacity: 1;
+    visibility: visible;
+    box-shadow: none;
+    transform: translateX(0);
+  }
+}
+
+@media (min-width: 1440px) {
+  .VPSidebar {
+    padding-left: max(32px, calc((100% - (var(--vp-layout-max-width) - 64px)) / 2)); /* [!code --] */
+    padding-left: max(0px, calc((100% - (var(--vp-layout-max-width) - 64px)) / 2 - 32px)); /* [!code ++] */
+    width: calc((100% - (var(--vp-layout-max-width) - 64px)) / 2 + var(--vp-sidebar-width) - 32px);
+  }
+}
+
+@media (min-width: 960px) {
+  .curtain {
+    position: sticky;
+    top: calc(var(--vp-nav-height) * -1);
+    left: 0;
+    z-index: 1;
+    margin-top: calc(var(--vp-nav-height) * -1);
+    margin-right: -32px;
+    margin-left: -32px;
+    height: var(--vp-nav-height);
+    background-color: var(--vp-sidebar-bg-color);
+  }
+}
+
+.nav {
+  outline: 0;
+}
+</style>
+
+<style> /* [!code ++] */
+@media (min-width: 960px) { /* [!code ++] */
+  .VPSidebar.VPSidebar > span, .VPSidebar .os-scrollbar-vertical { /* [!code ++] */
+    padding-top: var(--vp-nav-height); /* [!code ++] */
+  } /* [!code ++] */
+} /* [!code ++] */
+</style><!-- [!code ++] -->
+```
 
 详情可以看我在2026年3月8号对本站的commits：
 <br/>

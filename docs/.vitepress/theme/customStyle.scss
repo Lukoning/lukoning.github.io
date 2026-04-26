@@ -226,6 +226,42 @@ ruby rt { //调大注音字号，看得更清楚
     --os-handle-bg-hover: var(--lkn-scrollbar-handle-bg-hover);
     --os-handle-bg-active: var(--lkn-scrollbar-handle-bg-active);
 }
+//回退：浏览器自带滚动条
+* {
+    &::-webkit-scrollbar {
+        margin: 2px;
+        width: 6px;
+    }
+    &::-webkit-scrollbar-button {
+        display: none;
+    }
+    &::-webkit-scrollbar-thumb {
+        border-radius: 6px;
+        background: var(--lkn-scrollbar-handle-bg);
+        transition: background .15s;
+    }
+    &::-webkit-scrollbar-track,
+    &::-webkit-scrollbar-track-piece,
+    &::-webkit-scrollbar-corner {
+        background: transparent;
+    }
+    scrollbar-color: var(--lkn-scrollbar-handle-bg) transparent;
+    scrollbar-gutter: auto;
+    scrollbar-width: thin;
+    transition: scrollbar-color .15s;
+    &:hover {
+        &::-webkit-scrollbar-thumb {
+            background: var(--lkn-scrollbar-handle-bg-hover);
+        }
+        scrollbar-color: var(--lkn-scrollbar-handle-bg-hover) transparent;
+    }
+    &:active {
+        &::-webkit-scrollbar-thumb {
+            background: var(--lkn-scrollbar-handle-bg-active);
+        }
+        scrollbar-color: var(--lkn-scrollbar-handle-bg-active) transparent;
+    }
+}
 
 body {
     background: no-repeat fixed center / cover;
@@ -283,13 +319,13 @@ body {
 }
 .VPNavBar::after {
     @include all-navbar-bg-pseudo;
-    mask: var(--lkn-navbar-mask);
     -webkit-mask: var(--lkn-navbar-mask);
+    mask: var(--lkn-navbar-mask);
 }
 .VPLocalNav.VPLocalNav > .container::after {
     @include all-navbar-bg-pseudo;
-    mask: var(--lkn-local-navbar-mask);
     -webkit-mask: var(--lkn-local-navbar-mask);
+    mask: var(--lkn-local-navbar-mask);
 }
 
 .VPNavBar:not(#ABC) {
@@ -596,8 +632,8 @@ body {
     }
     .VPNavBar::after {
         background-image: none; //不需要background-image了
-        mask: none;
         -webkit-mask: none;
+        mask: none;
     }
     .VPNavBar.home::after { //背景 给我 咔掉 ！
         display: none;

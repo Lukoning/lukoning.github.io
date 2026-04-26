@@ -1,6 +1,6 @@
 ---
 createdDate: 2026-03-14T22:47:37+08:00
-title: 使用OverlayScrollbars+Vue时如何禁用滚动
+title: 使用 OverlayScrollbars + Vue 时如何禁用滚动
 order: 3
 ---
 

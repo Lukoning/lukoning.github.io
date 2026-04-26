@@ -1,0 +1,198 @@
+diff --git a/node_modules/vitepress-plugin-pagefind/dist/index.d.mts b/node_modules/vitepress-plugin-pagefind/dist/index.d.mts
+index f2a0a98..9de645f 100644
+--- a/node_modules/vitepress-plugin-pagefind/dist/index.d.mts
++++ b/node_modules/vitepress-plugin-pagefind/dist/index.d.mts
+@@ -69,22 +69,37 @@ interface SearchConfig {
+      * @default
+      * 'Search'
+      */
+-    btnPlaceholder?: string;
++    btnPlaceholder?: string
+     /**
+      * @default
+      * 'Search Docs'
+      */
+-    placeholder?: string;
++    placeholder?: string
++    /**
++     * @default
++     * 'Close search'
++     */
++    closeButtonTitle?: string
++    /**
++     * @default
++     * 'Display detailed list'
++     */
++    displayDetailsButtonTitle?: string
++    /**
++     * @default
++     * 'Reset search'
++     */
++    resetButtonTitle?: string
+     /**
+      * @default
+      * 'No results found.'
+      */
+-    emptyText?: string;
++    emptyText?: string
+     /**
+      * @default
+      * 'Total: {{searchResult}} search results.'
+      */
+-    heading?: string;
++    heading?: string
+     /**
+      * @default
+      * 'to select'
+diff --git a/node_modules/vitepress-plugin-pagefind/src/Search.vue b/node_modules/vitepress-plugin-pagefind/src/Search.vue
+index f2e4309..337caea 100644
+--- a/node_modules/vitepress-plugin-pagefind/src/Search.vue
++++ b/node_modules/vitepress-plugin-pagefind/src/Search.vue
+@@ -13,6 +13,8 @@ import type { SearchConfig } from './type'
+ import { formatPagefindResult } from './search'
+ import { formatShowDate } from './utils'
+ 
++import { OverlayScrollbarsComponent } from 'overlayscrollbars-vue';
++
+ // 搜索结果
+ const searchResult = ref<{ route: string; meta: Record<string, any> }[]>([])
+ // 配置获取
+@@ -288,7 +290,7 @@ function handleToggleDetail() {
+         <template #header>
+           <div class="search-bar">
+             <div class="search-actions before">
+-              <button class="back-button" title="Close search" @click="searchModal = false">
++              <button class="back-button" :title="finalSearchConfig?.closeButtonTitle || 'Close search'" @click="searchModal = false">
+                 <span class="vpi-arrow-left local-search-icon" />
+               </button>
+             </div>
+@@ -299,12 +301,12 @@ function handleToggleDetail() {
+             <div class="search-actions">
+               <button
+                 :class="{ active: showDetail }" class="toggle-layout-button" type="button"
+-                title="Display detailed list" @click="handleToggleDetail"
++                :title=" finalSearchConfig?.displayDetailsButtonTitle || 'Display detailed list'" @click="handleToggleDetail"
+               >
+                 <span class="vpi-layout-list local-search-icon" />
+               </button>
+               <button
+-                :disabled="!searchWords" class="clear-button" type="reset" title="Reset search"
++                :disabled="!searchWords" class="clear-button" type="reset" :title=" finalSearchConfig?.resetButtonTitle || 'Reset search' "
+                 @click="handleClearSearch"
+               >
+                 <span class="vpi-delete local-search-icon" />
+@@ -315,25 +317,38 @@ function handleToggleDetail() {
+         <template #body>
+           <div class="search-dialog" :class="{ 'detail-list': showDetail }">
+             <Command.List>
+-              <Command.Empty v-if="!searchResult.length">
+-                {{ finalSearchConfig?.emptyText || 'No results found.' }}
+-              </Command.Empty>
+-              <Command.Group v-else :heading="headingText">
+-                <Command.Item
+-                  v-for="item in showSearchResult" :key="item.route" :data-value="item.route"
+-                  @select="handleSelect"
+-                >
+-                  <div class="link">
+-                    <div class="title">
+-                      <span class="headings"><i v-if="item.meta.title" class="prefix"># </i>{{ item.meta.title }}</span>
+-                      <span v-if="showDateInfo && item.meta.date" class="date">
+-                        <!-- @vue-ignore -->
+-                        {{ formatShowDateFn(item.meta.date, lang) }}</span>
++              <OverlayScrollbarsComponent :options='{
++                  overflow: {
++                    x: "hidden",
++                  },
++                  scrollbars: {
++                    theme: "os-theme-light",
++                    autoHide: "never",
++                    dragScroll: true,
++                    clickScroll: true,
++                  },
++                }'
++              >
++                <Command.Empty v-if="!searchResult.length">
++                  {{ finalSearchConfig?.emptyText || 'No results found.' }}
++                </Command.Empty>
++                <Command.Group v-else :heading="headingText">
++                  <Command.Item
++                    v-for="item in showSearchResult" :key="item.route" :data-value="item.route"
++                    @select="handleSelect"
++                  >
++                    <div class="link">
++                      <div class="title">
++                        <span class="headings"><i v-if="item.meta.title" class="prefix"># </i>{{ item.meta.title }}</span>
++                        <span v-if="showDateInfo && item.meta.date" class="date">
++                          <!-- @vue-ignore -->
++                          {{ formatShowDateFn(item.meta.date, lang) }}</span>
++                      </div>
++                      <div class="des" v-html="item.meta.description" />
+                     </div>
+-                    <div class="des" v-html="item.meta.description" />
+-                  </div>
+-                </Command.Item>
+-              </Command.Group>
++                  </Command.Item>
++                </Command.Group>
++              </OverlayScrollbarsComponent>
+             </Command.List>
+           </div>
+         </template>
+@@ -394,6 +409,31 @@ function handleToggleDetail() {
+   </div>
+ </template>
+ 
++<style lang="css">
++@import 'overlayscrollbars/overlayscrollbars.css';
++.algolia [command-list] {
++  overflow: visible !important;
++  height: auto !important;
++  max-height: none !important;
++}
++.algolia [command-list] [data-overlayscrollbars-contents] {
++  /*height: var(--command-list-height);*/
++  max-height: 360px;
++  overflow: auto;
++  overscroll-behavior: contain;
++  transition: 100ms ease;
++  transition-property: all;
++}
++.algolia [command-list] [data-overlayscrollbars-viewport~="overflowYScroll"] {
++  padding-right: 12px !important;
++}
++@media screen and (max-width: 560px) {
++  .algolia [command-list] [data-overlayscrollbars-contents] {
++    max-height: calc(100vh - 120px);
++  }
++}
++</style>
++
+ <style lang="css" scoped>
+ .blog-search {
+   flex: 1;
+diff --git a/node_modules/vitepress-plugin-pagefind/src/type.ts b/node_modules/vitepress-plugin-pagefind/src/type.ts
+index 44edf14..0bca037 100644
+--- a/node_modules/vitepress-plugin-pagefind/src/type.ts
++++ b/node_modules/vitepress-plugin-pagefind/src/type.ts
+@@ -82,6 +82,21 @@ export interface SearchConfig {
+    * 'Search Docs'
+    */
+   placeholder?: string
++  /**
++   * @default
++   * 'Close search'
++   */
++  closeButtonTitle?: string
++  /**
++   * @default
++   * 'Display detailed list'
++   */
++  displayDetailsButtonTitle?: string
++  /**
++   * @default
++   * 'Reset search'
++   */
++  resetButtonTitle?: string
+   /**
+    * @default
+    * 'No results found.'
