@@ -46,7 +46,7 @@ jobs:
       - name: 配置 Pages
         uses: actions/configure-pages@v4
       - name: 安装依赖
-        run: npm i
+        run: npm i --loglevel verbose || (echo "npm failed, dumping debug logs:" && ls -la /home/runner/.npm/logs && sed -n '1,400p' /home/runner/.npm/logs/.log || true; exit 1)
       - name: 构建 VitePress 页面
         run: npm run docs:build # 或 pnpm docs:build / yarn docs:build / bun run docs:build
       - name: 上传构建产物
