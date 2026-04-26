@@ -1,6 +1,31 @@
 {
   "name": "lukoning.github.io",
   "version": "1.0.0",
+  "description": "LKN个人小站",
+  "homepage": "https://github.com/Lukoning/lukoning.github.io#readme",
+  "bugs": {
+    "url": "https://github.com/Lukoning/lukoning.github.io/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lukoning/lukoning.github.io.git"
+  },
+  "license": "MPL-2.0",
+  "author": "Lukoning",
+  "private": true,
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "postinstall": "patch-package",
+    "docs:dev": "vitepress dev docs --host 0.0.0.0",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs",
+    "lkn:patch-pkg": "patch-package vitepress-plugin-pagefind"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "dependencies": {
     "nprogress": "^0.2.0",
     "overlayscrollbars": "^2.15.1",
@@ -19,12 +44,5 @@
     "vitepress-plugin-group-icons": "^1.7.5",
     "vitepress-plugin-tabs": "^0.9.0",
     "vitepress-sidebar": "^1.33.1"
-  },
-  "scripts": {
-    "postinstall": "patch-package",
-    "docs:dev": "vitepress dev docs --host 0.0.0.0",
-    "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs",
-    "lkn:patch-pkg": "npx patch-package vitepress-plugin-pagefind"
   }
 }
