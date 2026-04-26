@@ -1,4 +1,6 @@
 {
+  "name": "lukoning.github.io",
+  "version": "1.0.0",
   "dependencies": {
     "nprogress": "^0.2.0",
     "overlayscrollbars": "^2.15.1",
