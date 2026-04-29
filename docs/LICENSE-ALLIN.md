@@ -1,7 +1,7 @@
 ---
 createdDate: 2026-04-17T22:15:08+08:00
 title: 开放源代码许可
-order: 1
+order: .Inf
 ---
 
 <script setup lang="ts">
@@ -117,17 +117,17 @@ Mozilla 公共许可协议，版本 2.0
 
 <p v-html="License('MIT', '2022-2026 CDGet <jooy2.contact@gmail.com> (https://cdget.com).')"></p>
 
-## vitepress-plugin-image-viewer
-
-[项目仓库](https://github.com/T-miracle/vitepress-plugin-image-viewer)
-
-<p v-html="License('MIT', 'T-miracle')"></p>
-
 ## Viewer.js
 
 [项目仓库](https://github.com/fengyuanchen/viewerjs)
 
 <p v-html="License('MIT', '2015-present Chen Fengyuan')"></p>
+
+## vitepress-plugin-image-viewer
+
+[项目仓库](https://github.com/T-miracle/vitepress-plugin-image-viewer)
+
+<p v-html="License('MIT', 'T-miracle')"></p>
 
 ## vitepress-plugin-group-icons
 
@@ -140,6 +140,12 @@ Mozilla 公共许可协议，版本 2.0
 [项目仓库](https://github.com/T-miracle/vitepress-plugin-comment-with-giscus)
 
 <p v-html="License('ISC', 'T-miracle')"></p>
+
+## vitepress-plugin-breadcrumb
+
+[项目仓库](https://github.com/yanranxiaoxi/vitepress-plugin-breadcrumb)
+
+<p v-html="License('MIT', '2025 XiaoXi <admin@soraharu.com>')"></p>
 
 ## Vitepress Plugins
 
@@ -162,6 +168,12 @@ Mozilla 公共许可协议，版本 2.0
 [项目仓库](https://github.com/ATQQ/sugar-blog)
 
 <p v-html="License('MIT', '2020 sugar')"></p>
+
+## patch-package
+
+[项目仓库](https://github.com/ds300/patch-package)
+
+<p v-html="License('MIT', '2017-Present David Sheldrick')"></p>
 
 ## Embedded Sass
 

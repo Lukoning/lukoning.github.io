@@ -3,6 +3,7 @@ import { useData } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import { nextTick, provide } from 'vue'
 
+import Breadcrumb from 'vitepress-plugin-breadcrumb/Breadcrumb.vue'
 import CReturnToTopPlus from "../components/CReturnToTopPlus.vue"
 
 const { isDark } = useData()
@@ -44,8 +45,11 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
 
 <template>
   <DefaultTheme.Layout>
+    <template #doc-before>
+      <Breadcrumb :breadcrumb="true" />
+    </template>
     <template #aside-outline-before>
-        <CReturnToTopPlus />
+      <CReturnToTopPlus />
     </template>
   </DefaultTheme.Layout>
 </template>

@@ -31,6 +31,7 @@
     "overlayscrollbars": "^2.15.1",
     "overlayscrollbars-vue": "^0.5.9",
     "pagefind": "^1.5.2",
+    "vitepress-plugin-breadcrumb": "^3.0.4",
     "vitepress-plugin-image-viewer": "^1.1.6",
     "vitepress-plugin-pagefind": "^0.4.20"
   },

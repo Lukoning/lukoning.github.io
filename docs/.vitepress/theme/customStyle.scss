@@ -184,7 +184,15 @@ ruby rt { //调大注音字号，看得更清楚
     }
 }
 
+//vitepress-plugin-breadcrumb
+@media (max-width: 640px) {
+    .breadcrumb.breadcrumb {
+        display: block;
+    }
+}
+
 //配合 vitepress-plugin-pagefind
+//修复日期显示问题
 .search-dialog div[command-item] .date.date.date {
     min-width: fit-content;
     color: var(--vp-c-text-2);

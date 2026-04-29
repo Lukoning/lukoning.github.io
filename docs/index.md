@@ -43,12 +43,10 @@ features:
   const { theme } = useData();
   const sb = theme.value.sidebar.map(item => ({ ...item })); //theme是只读数组，要修改的话得转换为新数组
   const items =  {
-    top: sb.filter(item => item.items === undefined),//只保留非文件夹
     hanno: sb.filter(item => item.text === "饭能市"),
     dev: sb.filter(item => item.text === "虚空网络"),
     anyt: sb.filter(item => item.text === "蔬菜罐罐汤"),
   };
-  if (items.top[0].link === "/") { items.top[0].link = "/#欢迎来到「提瓦特大陆」" }
 </script>
 
 <lkn layout box-center text-center>
@@ -59,9 +57,6 @@ features:
 <summary>网站目录</summary>
 
 :::tabs
-== 顶层文章
-<NavTree :items="items.top" />
-
 == 饭能市
 <NavTree :items="items.hanno" />
 

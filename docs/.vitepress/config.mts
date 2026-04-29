@@ -124,7 +124,7 @@ export default defineConfig({
     },
     externalLinkIcon: true,
 
-    search: undefined,
+    search: undefined, //不使用内置搜索，改用pagefind
   
     nav: [
       { text: '提瓦特大陆', link: '/' },
@@ -143,7 +143,7 @@ export default defineConfig({
       excludeFilesByFrontmatterFieldName: "exclude", //不显示元数据包含exclude的文件
       sortMenusByFrontmatterOrder: true, //按文件元数据中指定的数字order自定义排序
       sortMenusOrderByDescending: false, //降序排序（order越小越靠前）
-      sortFolderTo: "bottom", //没放到文件夹里的都在前面
+      sortFolderTo: undefined, //没放到文件夹里的，也按照上述方法排序
       collapsed: false, //默认不折叠
     }),
 
