@@ -1,7 +1,7 @@
 <!-- 原文件：NotFound.vue -->
  <script setup lang="ts">
 import { withBase } from 'vitepress'
-import { useData } from 'vitepress/dist/client/theme-default/composables/data'
+import { useData } from 'vitepress'
 import { useLangs } from 'vitepress/dist/client/theme-default/composables/langs'
 import VPButton from 'vitepress/dist/client/theme-default/components/VPButton.vue'
 

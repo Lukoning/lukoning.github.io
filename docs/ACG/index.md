@@ -19,5 +19,5 @@ order: 2124520
 </script>
 
 ::: info 饭能市立图书馆：
-<NavTree :items="items" />
+<CNavTree :items="items" />
 :::

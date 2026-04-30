@@ -1,87 +1,90 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import { useData } from 'vitepress'
+import { ref } from 'vue'
+import { useData, type DefaultTheme } from 'vitepress'
+
+defineOptions({ name: 'CNavTree' })
+
 const { site } = useData()
 
-defineOptions({ name: 'NavTree' })
-
-interface NavItem {
-  text: string
-  link?: string
-  items?: NavItem[]
-  collapsed?: boolean
-}
-
 const props = defineProps<{
-  items: NavItem[]
+  items: DefaultTheme.SidebarItem[]
   depth?: number
 }>()
 
 const depth = props.depth ?? 0
 
-function normalizeLink(link?: string): string | undefined {
-  if (!link) return undefined
-  // 外部链接或锚点保持不变
-  if (link.startsWith('http') || link.startsWith('#')) return link
-
-  let normalized = link
-
-  if (computed(() => site.value.cleanUrls ?? false).value) {
-    // cleanUrls: true → 去掉 .md 扩展名
-    normalized = normalized.replace(/\.md$/, '')
-    // 可选：将 /index 转换为 /（更符合目录风格）
-    if (normalized.endsWith('/index')) {
-      normalized = normalized.slice(0, -6) + '/'
-    }
-  } else {
-    // cleanUrls: false → 将 .md 替换为 .html
-    normalized = normalized.replace(/\.md$/, '.html')
-    // 注意：/index.md → /index.html，VitePress 能正确路由
-  }
-
-  return normalized
+// 生成唯一键：优先使用 text，否则使用 link 或 fallback
+function getItemKey(item: DefaultTheme.SidebarItem): string {
+  if (item.text) return item.text
+  if (item.link) return item.link
+  // 极少数情况两者都没有，使用索引（但这里在外部无法获取索引，改用一个随机数？不行）
+  // 由于调用时传入的是数组，可以在初始化时动态生成，但为了简化，返回空字符串并跳过
+  return ''
 }
 
-// 为每个 item 维护独立的折叠状态（优先使用配置中的 collapsed）
+// 初始化折叠状态
 const collapsedMap = ref<Record<string, boolean>>(
   (() => {
     const map: Record<string, boolean> = {}
     props.items.forEach(item => {
-      if (item.items?.length) {
-        map[item.text] = item.collapsed ?? false
+      const key = getItemKey(item)
+      if (key && item.items?.length) {
+        map[key] = item.collapsed ?? false
       }
     })
     return map
   })()
 )
 
-function toggle(text: string) {
-  collapsedMap.value[text] = !collapsedMap.value[text]
+function toggle(item: DefaultTheme.SidebarItem) {
+  const key = getItemKey(item)
+  if (key && collapsedMap.value[key] !== undefined) {
+    collapsedMap.value[key] = !collapsedMap.value[key]
+  }
+}
+
+function normalizeLink(link?: string): string | undefined {
+  if (!link) return undefined
+  if (link.startsWith('http') || link.startsWith('#')) return link
+
+  let normalized = link
+  const cleanUrls = site.value.cleanUrls ?? false
+
+  if (cleanUrls) {
+    normalized = normalized.replace(/\.md$/, '')
+    if (normalized.endsWith('/index')) {
+      normalized = normalized.slice(0, -6) + '/'
+    }
+  } else {
+    normalized = normalized.replace(/\.md$/, '.html')
+  }
+  return normalized
 }
 </script>
 
 <template>
   <ul class="nav-tree" :class="`depth-${depth}`">
-    <li v-for="item in items" :key="item.text">
+    <li v-for="item in items" :key="getItemKey(item)">
       <div class="nav-item">
-        <div class="caret-container" v-if="depth!==0">
-          <button
-            v-if="item.items?.length"
-            class="caret"
-            @click="toggle(item.text)"
-            :aria-label="collapsedMap[item.text] ? '展开' : '折叠'"
-          >
-            <span class="vpi-chevron-right caret-icon" :class="{ rotated: !collapsedMap[item.text] }"></span>
-          </button>
-        </div>
-
         <a v-if="item.link" :href="normalizeLink(item.link)" class="nav-link">{{ item.text }}</a>
         <span v-else class="nav-text">{{ item.text }}</span>
+        <div class="caret-container" v-if="item.items?.length && depth !== 0">
+          <button
+            class="caret"
+            @click="toggle(item)"
+            :aria-label="collapsedMap[getItemKey(item)] ? '展开' : '折叠'"
+          >
+            <span
+              class="vpi-chevron-right caret-icon"
+              :class="{ rotated: !collapsedMap[getItemKey(item)] }"
+            ></span>
+          </button>
+        </div>
       </div>
 
       <!-- 递归渲染子项 -->
-      <NavTree
-        v-if="item.items?.length && !collapsedMap[item.text]"
+      <CNavTree
+        v-if="item.items?.length && !collapsedMap[getItemKey(item)]"
         :items="item.items"
         :depth="depth + 1"
       />
@@ -91,18 +94,17 @@ function toggle(text: string) {
 
 <style scoped>
 .nav-tree {
+  width: fit-content;
   text-align: left;
   list-style: none;
-  padding-left: 0;
+  padding-left: 0; /*与vp内置样式对抗*/
 }
-.depth-0 {
-  padding-left: 0;
+.nav-tree:not(.depth-0) {
+  padding-left: 1.25rem;
+  border-left: 1px solid var(--vp-c-divider);
 }
 .depth-0 > li {
   margin-top: 0.5rem;
-}
-.nav-tree .nav-tree .nav-tree {
-  padding-left: 1rem;
 }
 .nav-item {
   display: flex;
@@ -110,7 +112,8 @@ function toggle(text: string) {
   gap: 0.5rem;
   margin: 0.25rem 0;
 }
-.nav-link, .nav-text {
+.nav-link,
+.nav-text {
   flex: 1;
   text-decoration: none;
 }
@@ -134,6 +137,9 @@ function toggle(text: string) {
   align-items: center;
   justify-content: center;
   color: var(--vp-c-text-2);
+}
+.caret-container:hover {
+  color: var(--vp-c-text-1);
 }
 .caret {
   width: inherit;

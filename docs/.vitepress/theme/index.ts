@@ -1,5 +1,5 @@
 // https://vitepress.dev/guide/custom-theme
-import { h } from 'vue'
+/// <reference types="vite/client" />
 import type { Theme } from 'vitepress'
 import { useData, useRoute, inBrowser } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
@@ -12,17 +12,12 @@ import { enhanceAppWithTabs } from 'vitepress-plugin-tabs/client'
 
 import NProgress from 'nprogress'
 import "nprogress/nprogress.css"
-import {
-  OverlayScrollbars,
-  ScrollbarsHidingPlugin,
-  SizeObserverPlugin,
-  ClickScrollPlugin
-} from 'overlayscrollbars'
+import { OverlayScrollbars, OverflowBehavior, ClickScrollPlugin } from 'overlayscrollbars'
 import 'overlayscrollbars/overlayscrollbars.css'
 import 'virtual:group-icons.css'
 
 import CustomLayout from './Layout.vue'
-import NavTree from "../components/CNavTree.vue"
+import CNavTree from "../components/CNavTree.vue"
 
 import './style.css'
 import "./customStyle.scss"
@@ -62,7 +57,7 @@ export default {
   },
   enhanceApp({ app, router, siteData }) {
     enhanceAppWithTabs(app); //vitepress-plugin-tabs
-    app.component('NavTree', NavTree);
+    app.component('CNavTree', CNavTree);
 
     if (!inBrowser) return;//非浏览器环境下返回，否则构建时报错
 
@@ -105,7 +100,7 @@ export default {
 
 function startOverflowSync(osInstance: OverlayScrollbars) {
   new MutationObserver(() => {
-    const currentOverflowY: OverflowBehavior = window.getComputedStyle(document.body).overflowY; // 获取当前 overflow-y 状态
+    const currentOverflowY = window.getComputedStyle(document.body).overflowY as OverflowBehavior; // 获取当前 overflow-y 状态
     if (osInstance.options().overflow.y !== currentOverflowY) { // 获取插件当前的溢出配置，读取overflow.y，然后比较
       // 更新插件
       osInstance.options({ overflow: {
@@ -117,7 +112,7 @@ function startOverflowSync(osInstance: OverlayScrollbars) {
 
 function initVisitorCount() {
   if (import.meta.env.PROD/*如果是生产环境*/&&!location.href.includes("localhost:4173/")/*并且不是本地构建预览*/) new MutationObserver((_, obs) => { //加载图像访问者计数器
-    const img = document.querySelector("img[id='visitorCounter!']");
+    const img = document.querySelector("img[id='visitorCounter!']") as HTMLImageElement | undefined;
     if (img) { //替换src为计数器URL
       img.src = "https://count.getloli.com/@LukoningPersonalWebsite?name=LukoningPersonalWebsite&theme=love-and-deepspace&scale=0.5&pixelated=1&darkmode=0";
       obs.disconnect();

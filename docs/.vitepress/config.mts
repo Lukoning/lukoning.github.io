@@ -7,9 +7,8 @@ import { fileURLToPath, URL } from 'node:url'
 
 const componentAliases = {
   'NotFound': 'LKN404',
-  'VPDocFooterLastUpdated': 'LKNDocFooterLastUpdated',
+  'VPDocFooterLastUpdated': 'Empty',
   'VPLocalNav': 'LKNLocalNav',
-  'VPLocalSearchBox': 'LKNLocalSearchBox',
   'VPSidebar': 'LKNSidebar',
 }
 
@@ -31,7 +30,7 @@ export default defineConfig({
   },
   cleanUrls: true,
   ignoreDeadLinks: true,
-  lastUpdated: true, //显示最后更新时间
+  lastUpdated: true, //保留这个用来获取更新时间，原有显示组件在alias处替换为空组件
   metaChunk: true,
 
   vite: {

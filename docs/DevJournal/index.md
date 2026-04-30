@@ -19,5 +19,5 @@ order: 41735173
 </script>
 
 ::: info 请收下罐装知识：
-<NavTree :items="items" />
+<CNavTree :items="items" />
 :::

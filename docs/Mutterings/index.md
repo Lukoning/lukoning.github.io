@@ -17,5 +17,5 @@ order: 1234567890
 </script>
 
 ::: info 杂念们：
-<NavTree :items="items" />
+<CNavTree :items />
 :::

@@ -58,13 +58,13 @@ features:
 
 :::tabs
 == 饭能市
-<NavTree :items="items.hanno" />
+<CNavTree :items="items.hanno" />
 
 == 虚空网络
-<NavTree :items="items.dev" />
+<CNavTree :items="items.dev" />
 
 == 蔬菜罐罐汤
-<NavTree :items="items.anyt" />
+<CNavTree :items="items.anyt" />
 
 :::
 </details>

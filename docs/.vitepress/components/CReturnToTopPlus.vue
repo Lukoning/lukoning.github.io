@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { useData } from 'vitepress'
 
+defineOptions({ name: "CReturnToTopPlus" })
+
 const { theme } = useData()
 
 function scrollToTop() {
