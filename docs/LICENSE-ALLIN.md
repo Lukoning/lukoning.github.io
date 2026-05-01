@@ -1,7 +1,9 @@
 ---
 createdDate: 2026-04-17T22:15:08+08:00
 title: 开放源代码许可
+author: false
 order: .Inf
+license: false
 ---
 
 <script setup lang="ts">
@@ -104,6 +106,12 @@ Mozilla 公共许可协议，版本 2.0
 [项目仓库](https://github.com/vuejs/core)
 
 <p v-html="License('MIT', '2018-present, Yuxi (Evan) You and Vue contributors')"></p>
+
+## VueUse
+
+[项目仓库](https://github.com/vueuse/vueuse)
+
+<p v-html="License('MIT', '2019-PRESENT Anthony Fu<https://github.com/antfu>')"></p>
 
 ## VitePress
 

@@ -4,10 +4,11 @@
 import { useNavigatorLanguage } from '@vueuse/core'
 import { computed, onMounted, shallowRef, useTemplateRef, watchEffect } from 'vue'
 import { useData } from 'vitepress'
+import VPBadge from 'vitepress/dist/client/theme-default/components/VPBadge.vue'
 
 defineOptions({ name: "CDocInfo" })
 
-const { theme, page, lang: pageLang } = useData()
+const { theme, page, lang: pageLang, frontmatter } = useData()
 const { language: browserLang } = useNavigatorLanguage()
 
 const timeRef = useTemplateRef('timeRef')
@@ -28,11 +29,11 @@ const updatedDatetime = shallowRef('')
 // potential differences in timezones of the server and clients
 onMounted(() => {
   watchEffect(() => {
-    const lang = theme.value.lastUpdated?.formatOptions?.forceLocale
+    const lang = theme.value.CDocInfo?.lastUpdated?.formatOptions?.forceLocale
       ? pageLang.value
       : browserLang.value
 
-    const option = theme.value.lastUpdated?.formatOptions ?? {
+    const option = theme.value.CDocInfo?.lastUpdated?.formatOptions ?? {
       dateStyle: 'medium',
       timeStyle: 'medium'
     }
@@ -51,26 +52,34 @@ onMounted(() => {
 
 <template>
   <div class="CDocInfo">
-    <p class="doc-info created-time">
-      {{ theme.lastUpdated?.createdText || 'Created time' }}:
-      <time ref="createdTimeRef" :datetime="createdIsoDatetime">{{ createdDatetime }}</time>
-    </p>
-    <p class="doc-info last-updated">
-      {{ theme.lastUpdated?.text || theme.lastUpdatedText || 'Last updated' }}:
-      <time ref="timeRef" :datetime="updatedIsoDatetime">{{ updatedDatetime }}</time>
-    </p>
+      <VPBadge :type="'info'" class="doc-info author" v-if="frontmatter.author !== false">
+        {{ theme.CDocInfo?.authorText || 'Author' }}:
+        {{ frontmatter.author || theme.CDocInfo?.defaultAuthor || 'Unknown' }}
+      </VPBadge>
+      <VPBadge :type="'info'" class="doc-info created-time" v-if="frontmatter.createdDate !== false">
+        {{ theme.CDocInfo?.lastUpdated?.createdText || 'Created time' }}:
+        <time ref="createdTimeRef" :datetime="createdIsoDatetime">{{ createdDatetime }}</time>
+      </VPBadge>
+      <VPBadge :type="'info'" class="doc-info last-updated" v-if="frontmatter.lastUpdated !== false">
+        {{ theme.CDocInfo?.lastUpdated?.text || theme.lastUpdatedText || 'Last updated' }}:
+        <time ref="timeRef" :datetime="updatedIsoDatetime">{{ updatedDatetime }}</time>
+      </VPBadge>
+      <VPBadge :type="'info'" class="doc-info license" v-if="frontmatter.license !== false && (frontmatter.license || theme.CDocInfo?.defaultLicense)">
+        {{ theme.CDocInfo?.licenseText || 'License' }}:
+        {{ frontmatter.license || theme.CDocInfo?.defaultLicense }}
+      </VPBadge>
+      <VPBadge :type="'info'" class="doc-info copyright" v-if="frontmatter.copyright !== false && (frontmatter.copyright || theme.CDocInfo?.defaultCopyright)">
+        {{ theme.CDocInfo?.copyrightText || 'Copyright Notice' }}:
+        {{ frontmatter.copyright || theme.CDocInfo?.defaultCopyright }}
+      </VPBadge>
   </div>
-
 </template>
 
 <style scoped>
 .CDocInfo {
-  margin-bottom: 16px;
+  margin-bottom: 4px;
 }
 .doc-info {
-  line-height: 24px;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--vp-c-text-2);
+  margin: 2px;
 }
 </style>

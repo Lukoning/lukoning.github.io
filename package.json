@@ -17,6 +17,7 @@
     "doc": "docs"
   },
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "postinstall": "patch-package",
     "docs:dev": "vitepress dev docs --host 0.0.0.0",
     "docs:build": "vitepress build docs",
@@ -27,10 +28,12 @@
     "node": ">=18.0.0"
   },
   "dependencies": {
+    "@vueuse/core": "^14.3.0",
     "nprogress": "^0.2.0",
     "overlayscrollbars": "^2.15.1",
     "overlayscrollbars-vue": "^0.5.9",
     "pagefind": "^1.5.2",
+    "viewerjs": "^1.11.7",
     "vitepress-plugin-breadcrumb": "^3.0.4",
     "vitepress-plugin-image-viewer": "^1.1.6",
     "vitepress-plugin-pagefind": "^0.4.20"

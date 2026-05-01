@@ -3,6 +3,8 @@ createdDate: 2023-08-01T09:49:00+08:00
 lastUpdated: 2026-03-01T00:10:30+08:00
 title: 日向独唱版
 order: 2
+license: false
+copyright: 版权归作词稲葉エミ所有
 ---
 
 # 向山进发第三季ED《色違いの翼》歌词 带罗马音

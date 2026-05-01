@@ -2,14 +2,15 @@
 
 <script lang="ts" setup>
 import { useScrollLock } from '@vueuse/core'
-import { inBrowser } from 'vitepress'
-import { ref, watch } from 'vue'
+import { inBrowser, useRoute } from 'vitepress'
+import { ref, watch, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import { useLayout } from 'vitepress/dist/client/theme-default/composables/layout'
 import VPSidebarGroup from 'vitepress/dist/client/theme-default/components/VPSidebarGroup.vue'
 import 'overlayscrollbars/overlayscrollbars.css';
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-vue';
 
 const { sidebarGroups, hasSidebar } = useLayout()
+const route = useRoute()
 
 const props = defineProps<{
   open: boolean
@@ -24,7 +25,7 @@ watch(
   () => {
     if (props.open) {
       isLocked.value = true
-      navEl.value?.focus()
+      navEl.value.getElement()?.focus()
     } else isLocked.value = false
   },
   { immediate: true, flush: 'post' }
@@ -39,50 +40,115 @@ watch(
   },
   { deep: true }
 )
+
+const userScrolled = ref(false)
+const isProgrammaticScrolling = ref(false)
+
+const scrollToActiveItem = async (smooth: boolean = true) => {
+  // if SSR || (Mobile && Not open)
+  if (!inBrowser || (window.innerWidth < 960 && !props.open)) return
+
+  await nextTick()
+  const container = navEl.value.getElement()
+  const activeItem = container?.querySelector('.VPSidebarItem.is-active')
+  if (!container || !activeItem) return
+
+  // set flags
+  isProgrammaticScrolling.value = true
+  userScrolled.value = false
+
+  activeItem.scrollIntoView({
+    behavior: smooth ? 'smooth' : 'instant',
+    block: 'center',
+    inline: 'nearest'
+  })
+
+  const osInstance = navEl.value.osInstance()
+  const { viewport } = osInstance.elements()
+
+  // reset flag when scroll ends
+  viewport.addEventListener('scrollend', () => {
+    isProgrammaticScrolling.value = false
+  }, { once: true })
+}
+
+const onSidebarScroll = () => {
+  // ignore programmatic scrolls
+  if (!isProgrammaticScrolling.value) userScrolled.value = true
+}
+
+const onWindowResize = () => {
+  // scroll only if the user has not scrolled manually
+  if (!userScrolled.value) scrollToActiveItem(false)
+}
+
+// route changes
+watch(() => route.path, () => scrollToActiveItem(true))
+
+// sidebar content changes
+watch(sidebarGroups, () => scrollToActiveItem(false), { deep: true })
+
+// Mobile: when opened
+watch(() => props.open, (newOpen) => {
+  if (newOpen) scrollToActiveItem(false)
+})
+
+// scroll once; attach event listeners
+onMounted(() => {
+  scrollToActiveItem(false)
+  if (inBrowser) {
+    window.addEventListener('resize', onWindowResize)
+  }
+})
+
+// clean up event listeners
+onBeforeUnmount(() => {
+  if (inBrowser) {
+    window.removeEventListener('resize', onWindowResize)
+  }
+})
 </script>
 
 <template>
-  <aside
+  <OverlayScrollbarsComponent
     v-if="hasSidebar"
     class="VPSidebar"
     :class="{ open }"
     ref="navEl"
     @click.stop
+    @os-scroll="onSidebarScroll"
+    defer
+    element="aside"
+    :options='{
+      overflow: {
+        x: "hidden",
+      },
+      scrollbars: {
+        theme: "os-theme-light",
+        autoHide: "leave",
+        autoHideDelay: 800,
+        dragScroll: true,
+        clickScroll: true,
+      },
+    }'
   >
-    <OverlayScrollbarsComponent
-      defer
-      element="span"
-      :options='{
-        overflow: {
-          x: "hidden",
-        },
-        scrollbars: {
-          theme: "os-theme-light",
-          autoHide: "leave",
-          autoHideDelay: 800,
-          dragScroll: true,
-          clickScroll: true,
-        },
-      }'
+    <div class="curtain" />
+
+    <nav
+      class="nav"
+      id="VPSidebarNav"
+      aria-labelledby="sidebar-aria-label"
+      tabindex="-1"
     >
-      <div class="curtain" />
-
-      <nav
-        class="nav"
-        id="VPSidebarNav"
-        aria-labelledby="sidebar-aria-label"
-        tabindex="-1"
-      >
-        <span class="visually-hidden" id="sidebar-aria-label">
+      <span class="visually-hidden" id="sidebar-aria-label">
           网站目录
-        </span>
+      </span>
 
-        <slot name="sidebar-nav-before" />
-        <VPSidebarGroup :items="sidebarGroups" :key />
-        <slot name="sidebar-nav-after" />
-      </nav>
-    </OverlayScrollbarsComponent>
-  </aside>
+      <slot name="sidebar-nav-before" />
+      <VPSidebarGroup :items="sidebarGroups" :key />
+      <slot name="sidebar-nav-after" />
+    </nav>
+  </OverlayScrollbarsComponent>
 </template>
 
 <style scoped>
@@ -92,6 +158,8 @@ watch(
   bottom: 0;
   left: 0;
   z-index: var(--vp-z-index-sidebar);
+  /*不能在垂直方向有padding，否则自动滚动时会有怪问题*/
+  padding: 0 32px;
   width: calc(100vw - 64px);
   max-width: 320px;
   background-color: var(--vp-sidebar-bg-color);
@@ -101,11 +169,6 @@ watch(
   transform: translateX(-100%);
   transition: opacity 0.5s, transform 0.25s ease;
   overscroll-behavior: contain;
-}
-
-.VPSidebar > span {
-  padding: 32px 32px 96px;
-  height: 100%;
 }
 
 .VPSidebar.open {
@@ -134,7 +197,7 @@ watch(
 
 @media (min-width: 1440px) {
   .VPSidebar {
-    padding-left: max(0px, calc((100% - (var(--vp-layout-max-width) - 64px)) / 2 - 32px));
+    padding-left: max(32px, calc((100% - (var(--vp-layout-max-width) - 64px)) / 2));
     width: calc((100% - (var(--vp-layout-max-width) - 64px)) / 2 + var(--vp-sidebar-width) - 32px);
   }
 }
@@ -155,6 +218,14 @@ watch(
 
 .nav {
   outline: 0;
+  /*补padding*/
+  padding: var(--vp-nav-height) 0 96px;
+}
+
+@media (max-width: 960px) {
+  .nav {
+    padding-top: 32px;
+  }
 }
 </style>
 

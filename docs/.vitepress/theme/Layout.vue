@@ -47,14 +47,28 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
 <template>
   <DefaultTheme.Layout>
     <template #doc-before>
-      <CDocInfo />
-      <Breadcrumb :breadcrumb="{ homeText: '本站', homeLink: '/' }" />
+      <div class="doc-before">
+        <CDocInfo />
+        <Breadcrumb :breadcrumb="{ homeText: '提瓦特大陆', homeLink: '/' }" />
+      </div>
+      
     </template>
     <template #aside-outline-before>
       <CReturnToTopPlus />
     </template>
   </DefaultTheme.Layout>
 </template>
+
+<style>
+.doc-before {
+  margin-bottom: 16px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+.doc-before > * {
+  margin: 0 0 4px;
+}
+</style>
 
 <style>
 ::view-transition-old(root),

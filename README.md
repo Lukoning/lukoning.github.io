@@ -9,10 +9,17 @@ LKN是Lukoning的缩写哦喵🌟！
 
 首先得有Node.js喵，建议安装版本24（LTS）或最新版喵，最低版本20喵
 
+猫猫喜欢pnpm姐姐喵~pnpm姐姐不在的话，请在corepack处召唤pnpm姐姐喵：
+
+```bash
+corepack enable
+corepack prepare pnpm@latest --activate
+```
+
 克隆本仓库，然后在仓库根目录润这行神秘代码喵：
 
-```
-npm ci
+```bash
+pnpm install --frozen-lockfile
 ```
 
 这样构建猫猫的依赖环境就完成了喵\~！
@@ -21,22 +28,22 @@ npm ci
 
 回归正话喵，可以开始构建猫猫了喵：
 
-```
-npm run docs:build
+```bash
+pnpm docs:build
 ```
 
 不出喵意料的话，猫猫十几秒后就构建成了喵，可以在`docs/.vitepress/dist`找到猫猫哦喵
 
 构建成了喵后，想在浏览器浏览猫猫呜喵？可以润以下代码，然后访问控制台输出的URL喵：
 
-```
-npm run docs:preview
+```bash
+pnpm docs:preview
 ```
 
 如不想构建，或者想要喵实时预览修改，也可以润以下代码喵：
 
-```
-npm run docs:dev
+```bash
+pnpm docs:dev
 ```
 
 此法可在局域网中使用个中形状的计算机访问喵\~でも此时不能搜索喵。

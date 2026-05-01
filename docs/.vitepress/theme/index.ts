@@ -1,5 +1,4 @@
 // https://vitepress.dev/guide/custom-theme
-/// <reference types="vite/client" />
 import type { Theme } from 'vitepress'
 import { useData, useRoute, inBrowser } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'

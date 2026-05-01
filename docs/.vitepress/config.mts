@@ -94,6 +94,26 @@ export default defineConfig({
   },
 
   themeConfig: {
+    CDocInfo: {
+      authorText: "本文作者",
+      defaultAuthor: "Lukoning",
+      licenseText: "版权许可证",
+      defaultLicense: "CC BY-NC-SA 4.0",
+      copyrightText: "版权声明",
+      lastUpdated: {
+        text: "最后更新时间",
+        createdText: "内容创建时间",
+        formatOptions: {
+          year: "numeric",
+          month: "numeric",
+          day: "numeric",
+          hour: "numeric",
+          minute: "numeric",
+          timeZone: "Asia/Shanghai",
+          timeZoneName: "shortGeneric"
+        },
+      },
+    },
     // https://vitepress.dev/reference/default-theme-config
     logo: "/avatar.jpg",
 
@@ -108,19 +128,6 @@ export default defineConfig({
     returnToTopLabel: "返回顶部",
     sidebarMenuLabel: "网站目录",
     skipToContentLabel: "跳转到正文",
-    lastUpdated: {
-      text: "最后更新时间",
-      createdText: "内容创建时间", //忽略这里的报错
-      formatOptions: {
-        year: "numeric",
-        month: "numeric",
-        day: "numeric",
-        hour: "numeric",
-        minute: "numeric",
-        timeZone: "Asia/Shanghai",
-        timeZoneName: "long"
-      },
-    },
     externalLinkIcon: true,
 
     search: undefined, //不使用内置搜索，改用pagefind

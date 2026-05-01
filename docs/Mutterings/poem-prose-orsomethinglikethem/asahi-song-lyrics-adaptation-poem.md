@@ -2,6 +2,8 @@
 createdDate: 2024-04-10T23:58:00+08:00
 title: 诗《朝日》
 order: -20240410235800
+license: false
+copyright: 衍生作品，版权归原作者カンザキイオリ所有
 ---
 
 <lkn layout box-center>

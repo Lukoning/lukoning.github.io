@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useWindowScroll } from '@vueuse/core'
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { useData } from 'vitepress'
 import { useLayout } from 'vitepress/dist/client/theme-default/composables/layout'
 import VPLocalNavOutlineDropdown from './LKNLocalNavOutlineDropdown.vue'
@@ -18,14 +18,25 @@ const { isHome, hasSidebar, headers, hasLocalNav } = useLayout()
 const { y } = useWindowScroll()
 
 const navHeight = ref(0)
+const showTitle = ref(false)
+
+// 滚动事件处理
+function onScroll() {
+  showTitle.value = window.scrollY > 350; //滚动阈值 px
+}
+
 
 onMounted(() => {
   navHeight.value = parseInt(
     getComputedStyle(document.documentElement).getPropertyValue(
       '--vp-nav-height'
     )
-  )
+  );
+  window.addEventListener('scroll', onScroll);
+  onScroll();
 })
+
+onUnmounted(() => window.removeEventListener('scroll', onScroll))
 
 const classes = computed(() => {
   return {
@@ -55,9 +66,11 @@ const classes = computed(() => {
           {{ theme.sidebarMenuLabel || 'Menu' }}
         </span>
       </button>
-      <span class="title">
-        {{ frontmatter.title || '' }}
-      </span>
+      <Transition name="title">
+        <span v-if="showTitle" class="title">
+          {{ frontmatter.title || '' }}
+        </span>
+      </Transition>
 
       <VPLocalNavOutlineDropdown :headers :navHeight />
     </div>
@@ -150,17 +163,31 @@ const classes = computed(() => {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%); /*还有这种解法？*/
-  padding-top: 4px;
+  padding-top: 2px;
   text-align: center;
   letter-spacing: -0.02em;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
-  line-height: 20px;
+  line-height: 16px;
 }
 
 @media (min-width: 960px) {
   .title {
     display: none;
   }
+}
+
+.title-enter-active,
+.title-leave-active {
+  transition: opacity .2s, transform .3s;
+}
+
+.title-enter-from {
+  opacity: 0;
+  transform: translate(-50%, calc(-50% + 10px));
+}
+.title-leave-to {
+  opacity: 0;
+  transform: translate(-50%, calc(-50% - 10px));
 }
 </style>
