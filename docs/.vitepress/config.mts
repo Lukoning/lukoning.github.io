@@ -114,6 +114,7 @@ export default defineConfig({
         },
       },
     },
+    LKNLocalNav: { autoTitleThreshold: true },
     // https://vitepress.dev/reference/default-theme-config
     logo: "/avatar.jpg",
 

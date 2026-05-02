@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useWindowScroll } from '@vueuse/core'
-import { computed, onMounted, onUnmounted, ref } from 'vue'
+import { watch, computed, onMounted, ref } from 'vue'
 import { useData } from 'vitepress'
 import { useLayout } from 'vitepress/dist/client/theme-default/composables/layout'
 import VPLocalNavOutlineDropdown from './LKNLocalNavOutlineDropdown.vue'
@@ -13,30 +13,34 @@ defineEmits<{
   (e: 'open-menu'): void
 }>()
 
-const { theme, frontmatter } = useData()
+const { page, theme } = useData()
 const { isHome, hasSidebar, headers, hasLocalNav } = useLayout()
 const { y } = useWindowScroll()
 
+const config = theme.value.LKNLocalNav
+const localNav = ref<HTMLDivElement>()
 const navHeight = ref(0)
 const showTitle = ref(false)
 
 // 滚动事件处理
-function onScroll() {
-  showTitle.value = window.scrollY > 350; //滚动阈值 px
-}
-
+watch(y, (newY) => {
+  const docTitle = document.querySelector(".VPContent h1")
+  showTitle.value = config?.autoTitleThreshold
+  ? (
+    docTitle?.getBoundingClientRect().top
+    ?? document.querySelector(".VPContent")?.getBoundingClientRect().top
+    ?? 0
+  ) + (docTitle?.clientHeight ?? 0) <= (localNav.value?.clientHeight ?? 0)
+  : newY > (config?.titleThreshold ?? 350) //默认滚动阈值350px
+})
 
 onMounted(() => {
   navHeight.value = parseInt(
     getComputedStyle(document.documentElement).getPropertyValue(
       '--vp-nav-height'
     )
-  );
-  window.addEventListener('scroll', onScroll);
-  onScroll();
+  )
 })
-
-onUnmounted(() => window.removeEventListener('scroll', onScroll))
 
 const classes = computed(() => {
   return {
@@ -50,6 +54,7 @@ const classes = computed(() => {
 
 <template>
   <div
+    ref="localNav"
     v-if="!isHome && (hasLocalNav || hasSidebar || y >= navHeight)"
     :class="classes"
   >
@@ -68,7 +73,7 @@ const classes = computed(() => {
       </button>
       <Transition name="title">
         <span v-if="showTitle" class="title">
-          {{ frontmatter.title || '' }}
+          {{ page.title || '' }}
         </span>
       </Transition>
 
