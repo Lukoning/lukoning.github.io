@@ -3,6 +3,7 @@ import { generateSidebar } from "vitepress-sidebar"
 import { groupIconMdPlugin, groupIconVitePlugin } from 'vitepress-plugin-group-icons'
 import { tabsMarkdownPlugin } from 'vitepress-plugin-tabs'
 import { pagefindPlugin, /* chineseSearchOptimize /*至少Pagefind ^1.5.2不再需要这个*/ } from 'vitepress-plugin-pagefind'
+import { withWordCountAndReadingTime } from "vitepress-plugin-word-count"
 import { fileURLToPath, URL } from 'node:url'
 
 const componentAliases = {
@@ -76,8 +77,9 @@ export default defineConfig({
 
   markdown: {
     config(md) {
-      md.use(groupIconMdPlugin),
-      md.use(tabsMarkdownPlugin)
+      md.use(groupIconMdPlugin);
+      md.use(tabsMarkdownPlugin);
+      md.render = withWordCountAndReadingTime(md.render);
     },
     lineNumbers: true,
     image: {
@@ -90,13 +92,16 @@ export default defineConfig({
       infoLabel: '信息',
       detailsLabel: '详细信息'
     }
-
   },
 
   themeConfig: {
     CDocInfo: {
       authorText: "本文作者",
       defaultAuthor: "Lukoning",
+      wordCountText: "文字计数",
+      wordCountUnitText: "字或单词",
+      readingTimeText: "大致阅读时长",
+      readingTimeUnitText: "分钟",
       licenseText: "版权许可证",
       defaultLicense: "CC BY-NC-SA 4.0",
       copyrightText: "版权声明",

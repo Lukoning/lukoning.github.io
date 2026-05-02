@@ -37,6 +37,7 @@
     "vitepress-plugin-breadcrumb": "^3.0.4",
     "vitepress-plugin-image-viewer": "^1.1.6",
     "vitepress-plugin-pagefind": "^0.4.20",
+    "vitepress-plugin-word-count": "link:..\\vitepress-plugin-word-count",
     "vue": "^3.5.33"
   },
   "devDependencies": {
@@ -44,7 +45,7 @@
     "@types/nprogress": "^0.2.3",
     "patch-package": "^8.0.1",
     "sass-embedded": "^1.99.0",
-    "vitepress": "^2.0.0-alpha.17",
+    "vitepress": "2.0.0-alpha.17",
     "vitepress-plugin-comment-with-giscus": "^1.1.15",
     "vitepress-plugin-group-icons": "^1.7.5",
     "vitepress-plugin-tabs": "^0.9.0",

@@ -56,6 +56,16 @@ onMounted(() => {
         {{ theme.CDocInfo?.authorText || 'Author' }}:
         {{ frontmatter.author || theme.CDocInfo?.defaultAuthor || 'Unknown' }}
       </VPBadge>
+      <VPBadge :type="'info'" class="doc-info word-count">
+        {{ theme.CDocInfo?.wordCountText || 'Word Count' }}:
+        {{ frontmatter.wordCount || 'null' }}
+        {{ theme.CDocInfo?.wordCountUnitText || 'word(s)' }}
+      </VPBadge>
+      <VPBadge :type="'info'" class="doc-info word-count">
+        {{ theme.CDocInfo?.readingTimeText || 'Reading Time' }}:
+        {{ frontmatter.readingTime || 'null' }}
+        {{ theme.CDocInfo?.readingTimeUnitText || 'minute(s)' }}
+      </VPBadge>
       <VPBadge :type="'info'" class="doc-info created-time" v-if="frontmatter.createdDate !== false">
         {{ theme.CDocInfo?.lastUpdated?.createdText || 'Created time' }}:
         <time ref="createdTimeRef" :datetime="createdIsoDatetime">{{ createdDatetime }}</time>

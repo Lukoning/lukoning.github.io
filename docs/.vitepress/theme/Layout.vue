@@ -51,7 +51,6 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
         <CDocInfo />
         <Breadcrumb :breadcrumb="{ homeText: '提瓦特大陆', homeLink: '/' }" />
       </div>
-      
     </template>
     <template #aside-outline-before>
       <CReturnToTopPlus />

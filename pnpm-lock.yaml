@@ -35,6 +35,9 @@ importers:
       vitepress-plugin-pagefind:
         specifier: ^0.4.20
         version: 0.4.20(pagefind@1.5.2)(vitepress@2.0.0-alpha.17(@types/node@25.6.0)(nprogress@0.2.0)(postcss@8.5.10)(sass-embedded@1.99.0)(sass@1.99.0)(yaml@2.8.3))(vue@3.5.33)
+      vitepress-plugin-word-count:
+        specifier: link:..\vitepress-plugin-word-count
+        version: link:../vitepress-plugin-word-count
       vue:
         specifier: ^3.5.33
         version: 3.5.33
@@ -52,7 +55,7 @@ importers:
         specifier: ^1.99.0
         version: 1.99.0
       vitepress:
-        specifier: ^2.0.0-alpha.17
+        specifier: 2.0.0-alpha.17
         version: 2.0.0-alpha.17(@types/node@25.6.0)(nprogress@0.2.0)(postcss@8.5.10)(sass-embedded@1.99.0)(sass@1.99.0)(yaml@2.8.3)
       vitepress-plugin-comment-with-giscus:
         specifier: ^1.1.15
@@ -299,6 +302,11 @@ packages:
     resolution: {integrity: sha512-IojxFWMEJe0RQ7PQ3KXQsPIImNsbpPYpoZ+QUDrL8fAl/O27IX+LVLs74/UzEZy5uA2LD8Nz1AiwKr72vrkZQw==}
     cpu: [x64]
     os: [darwin]
+
+  '@pagefind/freebsd-x64@1.5.2':
+    resolution: {integrity: sha512-7EVzo9+0w+2cbe671BtMj10UlNo83I+HrLVLfRxO731svHRJKUfJ/mo05gU14pe9PCfpKNQT8FS3Xc/oDN6pOA==}
+    cpu: [x64]
+    os: [freebsd]
 
   '@pagefind/linux-arm64@1.5.2':
     resolution: {integrity: sha512-Ovt9+K35sqzn8H3ZMXGwls4TD/wMJuvRtShHIsmUQREmaxjrDEX7gHckRCrwYJ4XE1H1p6HkLz3wukrAnsfXQw==}
@@ -1708,6 +1716,9 @@ snapshots:
   '@pagefind/darwin-x64@1.5.2':
     optional: true
 
+  '@pagefind/freebsd-x64@1.5.2':
+    optional: true
+
   '@pagefind/linux-arm64@1.5.2':
     optional: true
 
@@ -2474,6 +2485,7 @@ snapshots:
     optionalDependencies:
       '@pagefind/darwin-arm64': 1.5.2
       '@pagefind/darwin-x64': 1.5.2
+      '@pagefind/freebsd-x64': 1.5.2
       '@pagefind/linux-arm64': 1.5.2
       '@pagefind/linux-x64': 1.5.2
       '@pagefind/windows-arm64': 1.5.2

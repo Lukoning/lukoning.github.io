@@ -12,6 +12,10 @@ declare module 'vitepress' {
 interface CDocInfoOptions {
     authorText?: string
     defaultAuthor?: string
+    wordCountText?: string
+    wordCountUnitText?: string
+    readingTimeText?: string
+    readingTimeUnitText?: string
     licenseText?: string
     defaultLicense?: string
     copyrightText?: string
