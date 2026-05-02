@@ -5,3 +5,4 @@ node_modules/
 /预览构建产物.bat
 docs/.vitepress/dist/
 docs/.vitepress/cache/
+.vscode/settings.json
