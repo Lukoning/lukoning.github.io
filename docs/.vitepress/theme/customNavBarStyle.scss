@@ -1,0 +1,230 @@
+.VPLocalNavOutlineDropdown .items {
+    max-height: calc(var(--vp-vh, 100vh) - 134px);
+}
+
+#VPNavScreen { // 需要背景模糊的菜单元素
+    backdrop-filter: blur(var(--lkn-navmenu-blur-radius));
+}
+
+/*所有导航栏背景伪元素*/
+@mixin all-navbar-bg-pseudo {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+    background: no-repeat fixed center / cover;
+    background-image:
+        linear-gradient(var(--vp-nav-bg-color), var(--vp-nav-bg-color)),
+        var(--lkn-current-bg-image); // 这样做可以把背景颜色盖在背景图上面
+    background-color: var(--vp-nav-bg-color); //回退
+}
+.VPNavBar::after {
+    @include all-navbar-bg-pseudo;
+    -webkit-mask: var(--lkn-navbar-mask);
+    mask: var(--lkn-navbar-mask);
+}
+.VPLocalNav.VPLocalNav > .container::after {
+    @include all-navbar-bg-pseudo;
+    -webkit-mask: var(--lkn-local-navbar-mask);
+    mask: var(--lkn-local-navbar-mask);
+}
+
+.VPNavBar:not(#ABC) {
+    --vp-nav-bg-color: var(--lkn-page-bg);
+    background-color: transparent;
+    &.home {
+        --vp-nav-bg-color: var(--lkn-home-bg);
+    }
+    &.screen-open {//取消奇怪的亮线
+        border-bottom: none;
+    }
+    .divider {//分割线
+        display: none;
+    }
+    .container > .title.title {//网站标题
+        display: flex;
+        align-items: center;
+        .title {
+            height: 40px;
+            padding: 0 13px;
+            background-color: var(--vp-c-bg-alt);
+            border: 1px solid transparent;
+            border-radius: 8px;
+            transition: border .2s;
+            &:hover {
+                border: 1px solid var(--vp-c-brand-1);
+            }
+        }
+        .logo {
+            border-radius: 50%; //圆角
+            margin: 0 6px 0 -4px; //视觉上对齐
+        }
+    }
+    .content-body:not(#ABC) {
+        background-color: transparent;
+    }
+}
+.VPNavBarSocialLinks, .VPNavScreenSocialLinks { //导航栏和导航菜单的个人链接
+    & > a {
+        background-color: var(--vp-c-bg);
+        &:first-child {
+            padding-inline-start: 2px;
+            border-radius: 50% 0 0 50%;
+        }
+        &:last-child {
+            padding-inline-end: 2px;
+            border-radius: 0 50% 50% 0;
+        }
+    }
+}
+
+.VPLocalNav.VPLocalNav {
+    background-color: transparent;
+    border-bottom: none;
+    >.container::after { /*页面导航栏背景*/
+        background-color: var(--vp-local-nav-bg-color);
+    }
+}
+
+.VPLocalNavOutlineDropdown > .items {
+    /*收窄菜单+解决菜单定位bug*/
+    left: unset;
+    right: 20px;
+    width: auto;
+    backdrop-filter: blur(var(--lkn-navbar-blur-radius));
+}
+
+.search-bar {
+    background-color: var(--vp-c-bg-alt);
+}
+//特化 for vitepress-plugin-pagefind 的搜索按钮
+.blog-search.blog-search {
+    padding-left: clamp(12px, calc(5vw - 10px), 43px);
+    .nav-search-btn-wait {
+        // 复制自vitepress自带localsearch（MiniSearch）的图标，可以说是原汁原味了
+        --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Cpath d='m21 21l-4.34-4.34'/%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3C/g%3E%3C/svg%3E");
+        &, > * {
+            color: var(--vp-c-text-2);
+        }
+        span:not([class]) {
+            //替换图标
+            background-color: currentColor;
+            width: 1em;
+            height: 1em;
+            font-size: 14px;
+            -webkit-mask: var(--icon) no-repeat;
+            mask: var(--icon) no-repeat;
+            -webkit-mask-size: 100% 100%;
+            mask-size: 100% 100%;
+            svg {
+                display: none;
+            }
+        }
+        .search-tip {
+            font-size: 13px;
+            padding-inline: 8px;
+        }
+        .metaKey {
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 20px;
+            margin-inline: 0 2px;
+        }
+    }
+}
+
+@mixin wide-search-button {
+    cursor: text;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    transition:
+        border 0.2s,
+        transform 0.1s;
+    &:hover {
+        border: 1px solid var(--vp-c-brand-1);
+    }
+}
+
+@media (max-width: 759.999px) { /*宽度760以下*/
+    .blog-search.blog-search {
+        //不然scale()动画的定位会出问题，并且这个padding没什么必要
+        padding-left: 0;
+        .nav-search-btn-wait:not(#ABC) {
+            border: none;
+            span:not([class]) { //搜索图标
+                color: var(--vp-c-text-1);
+                font-size: 20px;
+            }
+        }
+    }
+}
+@media (min-width: 760px) { /*宽度760及以上*/
+    .nav-search-btn-wait:not(#ABC) { @include wide-search-button; }
+}
+@media (min-width: 768px) { /*宽度768及以上*/
+    .VPNavBarSearchButton{ @include wide-search-button; }
+}
+@media (max-width: 959.999px) { /*宽度960以下*/
+    .VPLocalNav ~ .VPContent { //穿帮咯
+        box-shadow: 0 -47px 0 0 var(--lkn-page-bg);
+    }
+    .VPNavBar::after {
+        background-image: none; //不需要background-image了
+        -webkit-mask: none;
+        mask: none;
+    }
+    .VPNavBar.home::after { //背景 给我 咔掉 ！
+        display: none;
+    }
+    .VPDoc.VPDoc { //缩小顶边距，在本导航栏设计中平衡留白空间
+        padding-top: 6px;
+    }
+}
+@media (min-width: 960px) { /*宽度960及以上*/
+    :root {
+        --vp-local-nav-bg-color: var(--vp-nav-bg-color);
+    }
+    .VPNavBarTitle .title, .VPNavBarSearch button, .nav-search-btn-wait {//网站标题，搜索框
+        backdrop-filter: blur(var(--lkn-navbar-blur-radius));
+    }
+    .VPLocalNav {
+        pointer-events: none;
+        > .container::after {//背景不要哦
+            display: none;
+        }
+        button.menu {
+            //侧边栏展开按钮：为了本篇目录按钮可以正常定位在右侧
+            display: flex;
+            opacity: 0;
+            visibility: hidden;
+        }
+    }
+    .VPLocalNavOutlineDropdown.VPLocalNavOutlineDropdown { //本篇目录或回到顶部按钮
+        * { pointer-events: all }
+        button {
+            padding: 6px 14px 6px;
+            margin: 6px 22px 5px;
+            background-color: var(--vp-c-bg-alt);
+            backdrop-filter: blur(var(--lkn-navbar-blur-radius));
+            border: 1px solid transparent;
+            border-radius: 8px;
+            transition: border .2s, color .2s;
+            &:hover {
+                border: 1px solid var(--vp-c-brand-1);
+            }
+        }
+    }
+}
+@media (min-width: 960px) and (max-width: 1279.999px) { /*宽度960~1280(不含)*/
+    .VPLocalNav {
+        /*&:not(.empty)*/ ~ .VPContent.VPContent { /*向上占用原本是页面导航栏（VPLocalNav）的空间*/
+            margin-top: -49px; /*页面导航栏的高度乘以-1*/
+        }
+        &.empty {
+            display: unset !important;
+        }
+    }
+}

@@ -1,0 +1,84 @@
+* { //允许合成粗体斜体及小号大写喵！
+    font-synthesis: weight style small-caps;
+    //CJK自动排版喵！
+    text-autospace: normal;
+    //等宽数字+标点挤压喵！https://sparanoid.com/lab/opentype-features/
+    font-feature-settings: "tnum" 1, "hwid" 1;
+}
+.VPFeatures, .VPDoc .main {//左右对齐喵！
+    text-align: justify;
+    text-justify: inter-character;
+}
+
+pre {
+    overflow: scroll; //不能跑到页面外边去喵！跑到外面去会出大问题的喵！
+}
+pre, code { &, & * {
+    //不要CJK自动排版喵！https://github.com/vuejs/vitepress/issues/5115
+    text-autospace: no-autospace;
+    //不要左右对齐喵！
+    text-align: unset;
+    text-justify: unset;
+}}
+
+.custom-block {
+    position: relative;
+    overflow: hidden;
+    &::after { /*减少背景透明度*/
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: -1;
+        background: inherit;
+    }
+}
+
+a[link] { //带link自定义属性时，当作链接看待
+    text-decoration-line: underline;
+    text-underline-offset: 2px;
+    &:hover {
+        color: var(--vp-c-text-1);
+    }
+}
+
+.curtain.curtain.curtain {
+	background-color: transparent;
+}
+
+ruby rt { //调大注音字号，看得更清楚
+    font-size: 0.8em;
+    h1 &, h2 & {
+        font-size: 0.5em;
+    }
+    h3 &, h4 & {
+        font-size: 0.6em;
+    }
+}
+
+//vitepress-plugin-breadcrumb
+@media (max-width: 640px) {
+    .breadcrumb.breadcrumb {
+        display: block;
+    }
+}
+
+//配合 vitepress-plugin-pagefind
+//修复日期显示问题
+.search-dialog div[command-item] .date.date.date {
+    min-width: fit-content;
+    color: var(--vp-c-text-2);
+}
+
+//配合 vitepress-plugin-image-viewer
+.vp-doc img {
+    cursor: zoom-in;
+}
+.viewer-container {
+    z-index: 999990 !important; //确保覆盖OverlayScrollbars
+}
+.viewer-hide-md-down {
+    display: unset; //我就是要让你显示，咋地
+}

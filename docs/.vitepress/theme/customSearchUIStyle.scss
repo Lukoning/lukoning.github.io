@@ -1,0 +1,135 @@
+.VPLocalSearchBox > .shell, .algolia [command-dialog-wrapper] {
+    // 需要背景模糊的shell元素
+    backdrop-filter: blur(var(--lkn-navmenu-blur-radius));
+}
+.VPLocalSearchBox > .backdrop, .algolia [command-dialog-mask]::after {
+    // 需要轻微背景模糊的遮罩元素
+    backdrop-filter: blur(var(--lkn-backdrop-blur-radius));
+}
+
+//特化 for (伪装成)algolia(的pagefind)
+.algolia {
+    --font-sans: var(--vp-font-family-base);
+    [command-dialog-mask] {
+        background-color: transparent;
+        &::after {
+            background-color: var(--vp-backdrop-bg-color);
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: -1;
+        }
+    }
+    [command-dialog-wrapper] {
+        background-color: var(--vp-c-bg);
+        max-width: 720px;
+        margin: clamp(0px, 5vh, 160px) auto auto;
+        overflow: hidden;
+        > * {
+            border-radius: 0;
+        }
+    }
+    [command-dialog-header] {
+        padding: 12px 12px 0;
+        .search-bar {
+            border: 1px solid var(--vp-c-divider);
+            &:focus-within {
+                border-color: var(--vp-c-brand-1);
+            }
+        }
+        .search-actions.before {
+            padding-left: 6px;
+        }
+        .search-actions:not(.before) {
+            padding-right: 6px;
+        }
+    }
+    [command-dialog-body] {
+        min-height: 12px; //配合command-dialog-header的padding修改
+        padding: 0 12px;
+    }
+    [command-input] {
+        font-size: 16px;
+        padding-block: 6px;
+    }
+    [command-group] {
+        padding-bottom: 12px;
+    }
+    [command-group-heading] {
+        color: var(--vp-local-search-highlight-bg);
+    }
+    [command-item] {
+        padding: 2px 12px;
+        background-color: var(--vp-local-search-result-bg);
+        border: 2px solid var(--vp-local-search-result-border);
+        mark:not(#ABC) {
+            background-color: var(--vp-local-search-highlight-bg);
+            color: var(--vp-local-search-highlight-text);
+            border-radius: 2px;
+            padding: 0 2px;
+            text-decoration: none;
+        }
+        .title i.prefix:not(#ABC) {
+            color: var(--vp-c-brand-1);
+            opacity: 0.6;
+        }
+        &[aria-selected="true"] {
+            color: unset;
+            background-color: var(--vp-c-bg-alt);
+            border-color: var(--vp-c-brand-3);
+        }
+        &:hover {
+            color: unset;
+            background-color: var(--vp-local-search-result-selected-bg);
+            border-color: var(--vp-local-search-result-selected-border);
+        }
+    }
+
+    [command-dialog-footer] {
+        border: none;
+        background-color: var(--vp-c-bg-alt);
+    }
+    //使用pagefind的话
+    .command-palette-logo svg {
+        :root.dark & {
+            filter: invert(0.8); //暗色下反色
+        }
+    }
+}
+
+@media (max-width: 560px) { /*宽度560及以下*/
+    .algolia {
+        [command-dialog-wrapper] {
+            margin: 0;
+            backdrop-filter: none; //模糊传送术
+        }
+        [command-dialog-mask]::after {
+            //传送到这里
+            backdrop-filter: blur(var(--lkn-navmenu-blur-radius));
+        }
+        [command-list] {
+            &,
+            [data-overlayscrollbars-contents] {
+                max-height: calc(100vh - 94px);
+            }
+        }
+    }
+}
+@media (min-width: 560.001px) { /*宽度560以上*/
+    .algolia {
+        [command-list] {
+            &,
+            [data-overlayscrollbars-contents] {
+                max-height: clamp(64px, calc(80vh - 60px), 960px);
+            }
+        }
+    }
+}
+@media (max-width: 767.999px) { /*宽度768以下*/
+    .VPLocalSearchBox > .backdrop { // 不要背景模糊
+        backdrop-filter: none;
+    }
+}

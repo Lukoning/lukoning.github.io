@@ -25,12 +25,13 @@ const showTitle = ref(false)
 // 滚动事件处理
 watch(y, (newY) => {
   const docTitle = document.querySelector(".VPContent h1")
+  //在LocalNav开始遮住半个标题时显示小标题
   showTitle.value = config?.autoTitleThreshold
   ? (
     docTitle?.getBoundingClientRect().top
     ?? document.querySelector(".VPContent")?.getBoundingClientRect().top
     ?? 0
-  ) + (docTitle?.clientHeight ?? 0) <= (localNav.value?.clientHeight ?? 0)
+  ) + (docTitle?.clientHeight ?? 0)/2 <= (localNav.value?.clientHeight ?? 0)
   : newY > (config?.titleThreshold ?? 350) //默认滚动阈值350px
 })
 

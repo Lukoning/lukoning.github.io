@@ -1,16 +1,15 @@
-a:not(#specificityUP_ABC, .VPButton),
-.VPLocalSearchBox .result {
-    &, * { transition: opacity .2s, border .3s, color .2s; }
-    &.selected, &:hover{
-        &, * { transition: none; }
+@mixin transition-on-hover($selector, $active) {
+    #{$selector} {
+        &, * { transition: opacity .2s, border .3s, color .2s, width .2s; }
+        #{$active} {
+            &, * { transition: none; }
+        }
     }
 }
-.algolia [command-item] {
-    &, * { transition: opacity .2s, border .3s, color .2s; }
-    &[aria-selected=true], &:hover {
-        &, * { transition: none; }
-    }
-}
+
+@include transition-on-hover("a:not(#specificityUP_ABC, .VPButton), .os-scrollbar-handle", "&:hover");
+@include transition-on-hover(".VPLocalSearchBox .result", "&.selected, &:hover");
+@include transition-on-hover(".algolia [command-item]", "&[aria-selected=true], &:hover");
 
 .VPButton.VPButton {
     transition: transform .15s, color .15s, border-color .15s, background-color .15s;

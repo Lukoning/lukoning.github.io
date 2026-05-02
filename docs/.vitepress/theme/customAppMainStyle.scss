@@ -1,0 +1,183 @@
+* {
+    ::selection {
+        background: var(--lkn-selection-color);
+    }
+}
+
+//nprogress进度条
+#nprogress {
+    .bar { /*条子*/
+        background: var(--lkn-theme-accent);
+        box-shadow: 0 0 16px 2px var(--lkn-theme-accent);
+    }
+    .peg { /*条子头部shadow*/
+        box-shadow: 4px 0 8px 3px var(--lkn-theme-accent);
+    }
+    .spinner-icon { /*加载圆圈旋转部分*/
+        border-width: var(--lkn-loading-circle-width);
+        width: var(--lkn-loading-circle-radius);
+        height: var(--lkn-loading-circle-radius);
+        animation-duration: 0.6s; /*旋转周期*/
+        border-top-color: var(--lkn-theme-accent);
+        border-left-color: var(--lkn-theme-accent);
+    }
+}
+//OverlayScrollbars滚动条
+.os-scrollbar-handle {
+    --os-handle-bg: var(--lkn-scrollbar-handle-bg);
+    --os-handle-bg-hover: var(--lkn-scrollbar-handle-bg-hover);
+    --os-handle-bg-active: var(--lkn-scrollbar-handle-bg-active);
+}
+//回退：浏览器自带滚动条
+* {
+    &::-webkit-scrollbar {
+        margin: 2px;
+        width: 6px;
+    }
+    &::-webkit-scrollbar-button {
+        display: none;
+    }
+    &::-webkit-scrollbar-thumb {
+        border-radius: 6px;
+        background: var(--lkn-scrollbar-handle-bg);
+        transition: background .15s;
+    }
+    &::-webkit-scrollbar-track,
+    &::-webkit-scrollbar-track-piece,
+    &::-webkit-scrollbar-corner {
+        background: transparent;
+    }
+    scrollbar-color: var(--lkn-scrollbar-handle-bg) transparent;
+    scrollbar-gutter: auto;
+    scrollbar-width: thin;
+    transition: scrollbar-color .15s;
+    &:hover {
+        &::-webkit-scrollbar-thumb {
+            background: var(--lkn-scrollbar-handle-bg-hover);
+        }
+        scrollbar-color: var(--lkn-scrollbar-handle-bg-hover) transparent;
+    }
+    &:active {
+        &::-webkit-scrollbar-thumb {
+            background: var(--lkn-scrollbar-handle-bg-active);
+        }
+        scrollbar-color: var(--lkn-scrollbar-handle-bg-active) transparent;
+    }
+}
+
+body {
+    background: no-repeat fixed center / cover;
+    background-image: var(--lkn-current-bg-image);
+    background-color: var(--lkn-theme-accent-bg);
+}
+.VPContent {
+    background-color: var(--lkn-page-bg);
+    &.is-home {
+        background-color: var(--lkn-home-bg);
+        box-shadow: 0 0 48px 48px var(--lkn-home-bg);
+    }
+}
+
+.VPSidebarItem {
+    //给顶层和第一层项目加一个自定义伪元素indicator
+    &:is(.level-0, .level-1).is-active > .item .VPLink {
+        position: relative;
+        .text::before {
+            content: ">";
+            position: absolute;
+            left: -16px;
+            top: -1px;
+            padding: inherit;
+        }
+    }
+}
+
+
+.VPFlyout > .menu { // 需要背景模糊的菜单元素
+    backdrop-filter: blur(var(--lkn-navmenu-blur-radius));
+}
+.VPBackdrop { // 需要轻微背景模糊的遮罩元素
+    backdrop-filter: blur(var(--lkn-backdrop-blur-radius));
+}
+.VPFlyout > .menu {
+    border-radius: 12px;
+}
+
+.VPDoc .aside.aside {
+    padding-left: none; /*缩小左边距*/
+}
+
+.VPFooter.VPFooter { /*页脚*/
+    border-top: none;
+    background-color: var(--lkn-page-bg);
+    .VPContent.is-home ~ & {
+        background-color: transparent;
+    }
+    &.has-sidebar {
+        display: block !important;
+    }
+    #app & { /*权重提升*/
+        padding-bottom: 22px;
+    }
+    p {
+        /*可配合<wbr/>元素(不过大概率不需要)*/
+        word-break: keep-all;
+    }
+}
+
+.pager-link {
+    background-color: var(--vp-c-bg-alt);
+}
+
+.VPButton {
+    cursor: default;
+}
+
+.VPHero.has-image {
+    .image-bg { /*配合对背景辉光图像的修改*/
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .VPImage {
+        border-radius: 50%;
+    }
+}
+
+@media (max-width: 639.999px) { /*宽度640以下*/
+    .VPHero.has-image .VPImage {
+        /*你不要乱动啊会出来的啊呜呜呜*/
+        width: 168px;
+        height: 168px;
+    }
+}
+@media (min-width: 640px) { /*宽度640及以上*/
+    .VPHero.has-image .VPImage {
+        width: 208px;
+        height: 208px;
+    }
+}
+@media (max-width: 959.999px) { /*宽度960以下*/
+    :root {
+        --vp-sidebar-bg-color: var(--lkn-page-bg);
+    }
+}
+@media (min-width: 960px) { /*宽度960及以上*/
+    .VPFooter.has-sidebar {
+        padding-left: calc(var(--vp-sidebar-width) + 20px);
+    }
+}
+@media (min-width: 1067px) { /*宽度1067及以上*/
+    #app {/*变大喵！*/ //不能用html，否则vitepress-plugin-image-viewer图片的初始定位会出问题
+        zoom: 1.03; /*1.05在Chromium系浏览器会错位喵！*/
+    }
+}
+@media (min-width: 1440px) { /*宽度1440及以上*/
+    .VPFooter.has-sidebar { /*左边距跟随侧边栏宽度*/
+        padding-left: calc((100% - var(--vp-layout-max-width)) / 2 + var(--vp-sidebar-width));
+    }
+}
+@media (min-width: 1510px) { /*宽度1510及以上*/
+    #app {/*变大汪！*/
+        zoom: 1.1; /*zoom: 1.1需要宽度1505+，否则侧边栏被裁切*/
+    }
+}

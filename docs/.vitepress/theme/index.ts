@@ -19,7 +19,7 @@ import CustomLayout from './Layout.vue'
 import CNavTree from "../components/CNavTree.vue"
 
 import './style.css'
-import "./customStyle.scss"
+import "./customCollection.scss"
 
 export default {
   extends: DefaultTheme,
