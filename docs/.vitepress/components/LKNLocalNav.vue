@@ -73,7 +73,7 @@ const classes = computed(() => {
         </span>
       </button>
       <Transition name="title">
-        <span v-if="showTitle" class="title">
+        <span v-if="page.title&&showTitle" class="title">
           {{ page.title || '' }}
         </span>
       </Transition>

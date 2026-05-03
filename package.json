@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "@vueuse/core": "^14.3.0",
+    "node-html-parser": "^7.1.0",
     "nprogress": "^0.2.0",
     "overlayscrollbars": "^2.15.1",
     "overlayscrollbars-vue": "^0.5.9",
@@ -37,7 +38,7 @@
     "vitepress-plugin-breadcrumb": "^3.0.4",
     "vitepress-plugin-image-viewer": "^1.1.6",
     "vitepress-plugin-pagefind": "^0.4.20",
-    "vitepress-plugin-word-count": "link:..\\vitepress-plugin-word-count",
+    "vitepress-plugin-word-count": "^0.0.3",
     "vue": "^3.5.33"
   },
   "devDependencies": {

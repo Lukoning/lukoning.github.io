@@ -61,7 +61,7 @@ onMounted(() => {
         {{ frontmatter.wordCount || 'null' }}
         {{ theme.CDocInfo?.wordCountUnitText || 'word(s)' }}
       </VPBadge>
-      <VPBadge :type="'info'" class="doc-info word-count">
+      <VPBadge :type="'info'" class="doc-info reading-time">
         {{ theme.CDocInfo?.readingTimeText || 'Reading Time' }}:
         {{ frontmatter.readingTime || 'null' }}
         {{ theme.CDocInfo?.readingTimeUnitText || 'minute(s)' }}
