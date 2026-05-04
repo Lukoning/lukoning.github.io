@@ -38,7 +38,7 @@
     "vitepress-plugin-breadcrumb": "^3.0.4",
     "vitepress-plugin-image-viewer": "^1.1.6",
     "vitepress-plugin-pagefind": "^0.4.20",
-    "vitepress-plugin-word-count": "^0.0.3",
+    "vitepress-plugin-word-count": "^0.0.4",
     "vue": "^3.5.33"
   },
   "devDependencies": {

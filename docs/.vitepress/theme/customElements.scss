@@ -2,6 +2,14 @@ lkn {
     &[intext] {
         display: inline;
     }
+    &[small] {
+        font-size: 0.8em;
+        line-height: 1.2em;
+    }
+    &[micro] {
+        font-size: 0.5em;
+        line-height: 1em;
+    }
     &[c] {
         display: inline;
         color: var(--vp-c-text-1);
@@ -49,6 +57,9 @@ lkn {
         display: block;
         &[indent] {
             text-indent: 2em;
+        }
+        &[no-indent] {
+            text-indent: 0;
         }
         &[fwid] * {
             //等宽数字+全角标点喵！

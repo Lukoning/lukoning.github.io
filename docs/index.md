@@ -7,7 +7,7 @@ order: 0
 hero:
   name: "I'm Lukoning "
   text: "also <lkn c green>Ao</lkn><lkn c yellow>hina</lkn>"
-  tagline: "‘ ‘  あ さ ひ よ 、 の ぼ る な  ’ ’ \n—— 佐 倉 綾 音 / 花 譜 《 あ さ ひ 》 "
+  tagline: "<lkn layout micro style='padding-bottom: 6px'><em><b>也可以叫我「白河豚🌻」</b></em></lkn>‘ ‘  あ さ ひ よ 、 の ぼ る な  ’ ’ \n—— 佐 倉 綾 音 / 花 譜 《 あ さ ひ 》 "
   image:
     src: /avatar.jpg #记得去CSS里同步修改--vp-home-hero-image-background-image哦
     alt: 头像
@@ -36,8 +36,6 @@ features:
     details: "我知道你没问，也许你不想知道。<br/>但是高Ti+INFP会擦出什么花火呢？"
 ---
 
-部分页面使用深色模式浏览更佳。
-
 <script setup>
   import { useData } from 'vitepress'
   const { theme } = useData();
@@ -51,12 +49,15 @@ features:
 
 <lkn layout box-center text-center>
 
-## 全站导航
+### 全站导航
+
+<lkn layout small><em>部分页面使用深色模式浏览更佳。</em></lkn>
 
 <details open class="details custom-block">
-<summary>网站目录</summary>
+<summary>收起/展开</summary>
 
 :::tabs
+
 == 饭能市
 <CNavTree :items="items.hanno" />
 
@@ -68,7 +69,10 @@ features:
 
 :::
 </details>
+
 </lkn>
+
+<lkn layout box-center>
 
 ---
 
@@ -105,4 +109,6 @@ features:
 为了纳塔！
 
 为了纳塔！！
+</lkn>
+
 </lkn>

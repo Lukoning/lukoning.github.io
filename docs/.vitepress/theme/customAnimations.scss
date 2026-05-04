@@ -23,6 +23,16 @@
     }
 }
 
+.VPNavBar {
+    &::after {
+        opacity: 1;
+        transition: opacity .2s;
+    }
+    &.home.top::after {
+        opacity: 0;
+    }
+}
+
 @mixin mobile-search-button {
     transform: scale(1);
     transition: transform .1s;

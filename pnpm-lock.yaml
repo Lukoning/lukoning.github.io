@@ -39,8 +39,8 @@ importers:
         specifier: ^0.4.20
         version: 0.4.20(pagefind@1.5.2)(vitepress@2.0.0-alpha.17(@types/node@25.6.0)(nprogress@0.2.0)(postcss@8.5.10)(sass-embedded@1.99.0)(sass@1.99.0)(yaml@2.8.3))(vue@3.5.33)
       vitepress-plugin-word-count:
-        specifier: ^0.0.3
-        version: 0.0.3(node-html-parser@7.1.0)
+        specifier: ^0.0.4
+        version: 0.0.4(node-html-parser@7.1.0)
       vue:
         specifier: ^3.5.33
         version: 3.5.33
@@ -1570,8 +1570,8 @@ packages:
       vitepress: ^1.0.0 || ^2.0.0-alpha.17
       vue: ^3.5.0
 
-  vitepress-plugin-word-count@0.0.3:
-    resolution: {integrity: sha512-ZIn9JlEilIIZcfd9L5sbplB9WqqohVYSRkZHui83UZQ2Phgw1N3P82NyBgxeetwczniuQ21kKs3jgPUKo/aXug==}
+  vitepress-plugin-word-count@0.0.4:
+    resolution: {integrity: sha512-VVeH2r6jWhT5OyebHarAIYvP4L9A5s1iyCFJ9tUPgXJvLrZjthvkscrEQ2H/W6cbGWyHPFrdrdv8flz0AN10TQ==}
     peerDependencies:
       node-html-parser: ^7.1.0
 
@@ -2958,7 +2958,7 @@ snapshots:
       vitepress: 2.0.0-alpha.17(@types/node@25.6.0)(nprogress@0.2.0)(postcss@8.5.10)(sass-embedded@1.99.0)(sass@1.99.0)(yaml@2.8.3)
       vue: 3.5.33
 
-  vitepress-plugin-word-count@0.0.3(node-html-parser@7.1.0):
+  vitepress-plugin-word-count@0.0.4(node-html-parser@7.1.0):
     dependencies:
       get-east-asian-width: 1.5.0
       node-html-parser: 7.1.0
