@@ -113,6 +113,12 @@ Mozilla 公共许可协议，版本 2.0
 
 <p v-html="License('MIT', '2019-PRESENT Anthony Fu<https://github.com/antfu>')"></p>
 
+## Vite
+
+[项目仓库](https://github.com/vitejs/vite)
+
+<p v-html="License('MIT', '2019-present, VoidZero Inc. and Vite contributors')"></p>
+
 ## VitePress
 
 [项目仓库](https://github.com/vuejs/vitepress)
@@ -154,6 +160,12 @@ Mozilla 公共许可协议，版本 2.0
 [项目仓库](https://github.com/yanranxiaoxi/vitepress-plugin-breadcrumb)
 
 <p v-html="License('MIT', '2025 XiaoXi <admin@soraharu.com>')"></p>
+
+## vitepress-plugin-word-count
+
+[项目仓库](https://github.com/Lukoning/vitepress-plugin-word-count)
+
+<p v-html="License('MIT', '2026 Lukoning')"></p>
 
 ## Vitepress Plugins
 

@@ -1,4 +1,5 @@
 // https://vitepress.dev/guide/custom-theme
+/// <reference types="vite/client" />
 import type { Theme } from 'vitepress'
 import { useData, useRoute, inBrowser } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
@@ -75,7 +76,9 @@ export default {
       NProgress.done(); // 路由切换完成后结束进度条
     }
 
-    router.onAfterPageLoad = () => {
+    router.onBeforePageLoad = () => {
+      // 页面加载前开始进度条（会在路由切换结束时顺便结束）
+      NProgress.start();
       //初始化自定义叠加滚动条
       OverlayScrollbars.plugin([ClickScrollPlugin]);
       const osInstance = OverlayScrollbars(document.body, {

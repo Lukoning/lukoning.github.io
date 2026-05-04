@@ -29,7 +29,6 @@
   },
   "dependencies": {
     "@vueuse/core": "^14.3.0",
-    "node-html-parser": "^7.1.0",
     "nprogress": "^0.2.0",
     "overlayscrollbars": "^2.15.1",
     "overlayscrollbars-vue": "^0.5.9",
@@ -38,7 +37,6 @@
     "vitepress-plugin-breadcrumb": "^3.0.4",
     "vitepress-plugin-image-viewer": "^1.1.6",
     "vitepress-plugin-pagefind": "^0.4.20",
-    "vitepress-plugin-word-count": "^0.0.4",
     "vue": "^3.5.33"
   },
   "devDependencies": {
@@ -46,10 +44,12 @@
     "@types/nprogress": "^0.2.3",
     "patch-package": "^8.0.1",
     "sass-embedded": "^1.99.0",
+    "vite": "^8.0.10",
     "vitepress": "2.0.0-alpha.17",
     "vitepress-plugin-comment-with-giscus": "^1.1.15",
     "vitepress-plugin-group-icons": "^1.7.5",
     "vitepress-plugin-tabs": "^0.9.0",
+    "vitepress-plugin-word-count": "^0.0.4",
     "vitepress-sidebar": "^1.33.1"
   }
 }
