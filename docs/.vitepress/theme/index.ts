@@ -113,10 +113,31 @@ function startOverflowSync(osInstance: OverlayScrollbars) {
 }
 
 function initVisitorCount() {
-  if (import.meta.env.PROD/*如果是生产环境*/&&!location.href.includes("localhost:4173/")/*并且不是本地构建预览*/) new MutationObserver((_, obs) => { //加载图像访问者计数器
+  if (
+    import.meta.env.PROD/*如果是生产环境*/
+    && !location.href.includes("://localhost")/*并且不是本地预览*/
+  ) new MutationObserver((_, obs) => { //加载图像访问者计数器
     const img = document.querySelector("img[id='visitorCounter!']") as HTMLImageElement | undefined;
-    if (img) { //替换src为计数器URL
-      img.src = "https://count.getloli.com/@LukoningPersonalWebsite?name=LukoningPersonalWebsite&theme=love-and-deepspace&scale=0.5&pixelated=1&darkmode=0";
+    if (img) {
+      const url = "https://count.getloli.com/@LukoningPersonalWebsite?name=LukoningPersonalWebsite&theme=love-and-deepspace&scale=0.5&pixelated=1&darkmode=0";
+      //替换src为计数器URL
+      img.src =
+        /*先用本地sessionStorage存储的图片，防止每次刷新都计数+1*/
+        sessionStorage.getItem("image.visitorCounter") ?? url;
+      img.loading = "eager"; //立即加载
+      img.crossOrigin = "Anonymous"; //解决跨域问题
+      img.addEventListener("load", () => {
+        if (img.src !== url) return;
+        // 用canvas转图片为Base64
+        const canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+        const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
+        // 绘制图像（包括透明度）
+        ctx.drawImage(img, 0, 0);
+        // 转为Base64（PNG格式保留透明度）然后存储在sessionStorage
+        sessionStorage.setItem("image.visitorCounter", canvas.toDataURL("image/png"));
+      })
       obs.disconnect();
     }
   }).observe(document.body, { childList: true, subtree: true });
