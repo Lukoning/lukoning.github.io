@@ -6,6 +6,7 @@ import { nextTick, provide } from 'vue'
 import Breadcrumb from 'vitepress-plugin-breadcrumb/Breadcrumb.vue'
 import CDocInfo from "../components/CDocInfo.vue"
 import CReturnToTopPlus from "../components/CReturnToTopPlus.vue"
+import CJumpToCommentsPlus from "../components/CJumpToCommentsPlus.vue"
 
 const { isDark } = useData()
 
@@ -48,12 +49,15 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
   <DefaultTheme.Layout>
     <template #doc-before>
       <div class="doc-before">
-        <CDocInfo />
         <Breadcrumb :breadcrumb="{ homeText: '提瓦特大陆', homeLink: '/' }" />
+        <CDocInfo />
       </div>
     </template>
     <template #aside-outline-before>
       <CReturnToTopPlus />
+    </template>
+    <template #aside-outline-after>
+      <CJumpToCommentsPlus />
     </template>
   </DefaultTheme.Layout>
 </template>

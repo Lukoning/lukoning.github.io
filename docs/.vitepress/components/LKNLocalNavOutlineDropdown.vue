@@ -49,20 +49,12 @@ function toggle() {
 }
 
 function onItemClick(e: Event) {
-  if ((e.target as HTMLElement).classList.contains('outline-link')) {
-    // disable animation on hash navigation when page jumps
-    if (items.value) {
-      items.value.style.transition = 'none'
-    }
-    nextTick(() => {
-      open.value = false
-    })
-  }
-}
-
-function scrollToTop() {
-  open.value = false
-  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+  // 判断：是a元素或a元素的子元素吗？
+  if (
+    (e.target as HTMLElement).closest("a")
+  ) nextTick(() => {
+    open.value = false
+  })
 }
 </script>
 
@@ -72,12 +64,9 @@ function scrollToTop() {
     :style="{ '--vp-vh': vh + 'px' }"
     ref="main"
   >
-    <button @click="toggle" :class="{ open }" v-if="headers.length > 0">
+    <button @click="toggle" :class="{ open }">
       <span class="menu-text">{{ resolveTitle(theme) }}</span>
       <span class="vpi-chevron-right icon" />
-    </button>
-    <button @click="scrollToTop" v-else>
-      {{ theme.returnToTopLabel || 'Return to top' }}
     </button>
     
 
@@ -99,12 +88,17 @@ function scrollToTop() {
           }'
         >
           <div class="header">
-            <a class="top-link" href="#" @click="scrollToTop">
+            <a class="top-link" href="#">
               {{ theme.returnToTopLabel || 'Return to top' }}
             </a>
           </div>
-          <div class="outline">
+          <div class="outline" v-if="headers.length > 0">
             <VPDocOutlineItem :headers />
+          </div>
+          <div class="footer">
+            <a class="comments-link" href="#giscus">
+              {{ theme.jumpToCommentsLabel || 'Jump to comments' }}
+            </a>
           </div>
         </OverlayScrollbarsComponent>
       </div>
@@ -114,7 +108,7 @@ function scrollToTop() {
 </template>
 
 <style scoped>
-.VPLocalNavOutlineDropdown button {
+button {
   display: block;
   font-size: 12px;
   font-weight: 500;
@@ -124,14 +118,15 @@ function scrollToTop() {
   position: relative;
 }
 
-.VPLocalNavOutlineDropdown button:hover {
+button:hover {
   color: var(--vp-c-text-1);
   transition: color 0.25s;
 }
 
-.VPLocalNavOutlineDropdown button.open {
-  color: var(--vp-c-text-1);
+button.open {
+  color: var(--vp-c-brand-1);
 }
+
 
 .icon {
   display: inline-block;
@@ -143,10 +138,9 @@ function scrollToTop() {
 }
 
 @media (min-width: 960px) {
-  .VPLocalNavOutlineDropdown button {
+  button {
     font-size: 14px;
   }
-
   .icon {
     font-size: 16px;
   }
@@ -184,17 +178,17 @@ function scrollToTop() {
   }
 }
 
-.header {
+.header, .footer {
   background-color: var(--vp-c-bg-soft);
 }
 
-.top-link {
+.top-link, .comments-link {
   display: block;
-  padding: 0 16px;
-  line-height: 48px;
+  padding: 0 14px;
+  line-height: 44px;
   font-size: 14px;
   font-weight: 500;
-  color: var(--vp-c-brand-1);
+  color: var(--vp-c-text-1);
 }
 
 .outline {

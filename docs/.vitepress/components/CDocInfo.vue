@@ -53,33 +53,33 @@ onMounted(() => {
 <template>
   <div class="CDocInfo">
       <VPBadge :type="'info'" class="doc-info author" v-if="frontmatter.author !== false">
-        {{ theme.CDocInfo?.authorText || 'Author' }}:
+        {{ theme.CDocInfo?.authorText || 'Author' }}
         {{ frontmatter.author || theme.CDocInfo?.defaultAuthor || 'Unknown' }}
       </VPBadge>
-      <VPBadge :type="'info'" class="doc-info word-count">
-        {{ theme.CDocInfo?.wordCountText || 'Word Count' }}:
-        {{ frontmatter.wordCount || 'null' }}
+      <VPBadge :type="'info'" class="doc-info word-count" v-if="frontmatter.wordCount !== undefined">
+        {{ theme.CDocInfo?.wordCountText || 'Word Count' }}
+        {{ frontmatter.wordCount }}
         {{ theme.CDocInfo?.wordCountUnitText || 'word(s)' }}
       </VPBadge>
-      <VPBadge :type="'info'" class="doc-info reading-time">
-        {{ theme.CDocInfo?.readingTimeText || 'Reading Time' }}:
-        {{ frontmatter.readingTime || 'null' }}
+      <VPBadge :type="'info'" class="doc-info reading-time" v-if="frontmatter.readingTime !== undefined">
+        {{ theme.CDocInfo?.readingTimeText || 'Reading Time' }}
+        {{ frontmatter.readingTime }}
         {{ theme.CDocInfo?.readingTimeUnitText || 'minute(s)' }}
       </VPBadge>
       <VPBadge :type="'info'" class="doc-info created-time" v-if="frontmatter.createdDate !== false">
-        {{ theme.CDocInfo?.lastUpdated?.createdText || 'Created time' }}:
+        {{ theme.CDocInfo?.lastUpdated?.createdText || 'Created time' }}
         <time ref="createdTimeRef" :datetime="createdIsoDatetime">{{ createdDatetime }}</time>
       </VPBadge>
       <VPBadge :type="'info'" class="doc-info last-updated" v-if="frontmatter.lastUpdated !== false">
-        {{ theme.CDocInfo?.lastUpdated?.text || theme.lastUpdatedText || 'Last updated' }}:
+        {{ theme.CDocInfo?.lastUpdated?.text || theme.lastUpdatedText || 'Last updated' }}
         <time ref="timeRef" :datetime="updatedIsoDatetime">{{ updatedDatetime }}</time>
       </VPBadge>
       <VPBadge :type="'info'" class="doc-info license" v-if="frontmatter.license !== false && (frontmatter.license || theme.CDocInfo?.defaultLicense)">
-        {{ theme.CDocInfo?.licenseText || 'License' }}:
+        {{ theme.CDocInfo?.licenseText || 'License' }}
         {{ frontmatter.license || theme.CDocInfo?.defaultLicense }}
       </VPBadge>
       <VPBadge :type="'info'" class="doc-info copyright" v-if="frontmatter.copyright !== false && (frontmatter.copyright || theme.CDocInfo?.defaultCopyright)">
-        {{ theme.CDocInfo?.copyrightText || 'Copyright Notice' }}:
+        {{ theme.CDocInfo?.copyrightText || 'Copyright Notice' }}
         {{ frontmatter.copyright || theme.CDocInfo?.defaultCopyright }}
       </VPBadge>
   </div>
@@ -90,6 +90,6 @@ onMounted(() => {
   margin-bottom: 4px;
 }
 .doc-info {
-  margin: 2px;
+  margin: 2px 4px 2px 0;
 }
 </style>

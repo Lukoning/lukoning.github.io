@@ -27,7 +27,7 @@ ISC: `<p>ISC License</p>
 
 # 开放源代码许可
 
-*本页仅列出本站、直接依赖项（也就是[package.json](https://github.com/Lukoning/lukoning.github.io/blob/VitePress/package.json)中写明的依赖）和直接使用的其他项目（尤其是包含在最终构建产物中的项目）的许可，TS类型包除外。更多依赖项的信息请见[package-lock.json](https://github.com/Lukoning/lukoning.github.io/blob/VitePress/package-lock.json)。*
+*本页仅列出本站、直接依赖项（也就是[package.json](https://github.com/Lukoning/lukoning.github.io/blob/VitePress/package.json)中写明的依赖）和直接使用的其他项目（尤其是包含在最终构建产物中的项目）的许可，TS类型包除外。更多依赖包的信息请见[pnpm-lock.yaml](https://github.com/Lukoning/lukoning.github.io/blob/VitePress/pnpm-lock.yaml)。*
 
 ## LKN个人小站 - CC BY-NC-SA 4.0
 

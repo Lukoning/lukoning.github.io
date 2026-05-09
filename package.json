@@ -34,22 +34,23 @@
     "overlayscrollbars-vue": "^0.5.9",
     "pagefind": "^1.5.2",
     "viewerjs": "^1.11.7",
-    "vitepress-plugin-breadcrumb": "^3.0.4",
+    "vitepress-plugin-breadcrumb": "^3.0.5",
     "vitepress-plugin-image-viewer": "^1.1.6",
     "vitepress-plugin-pagefind": "^0.4.20",
-    "vue": "^3.5.33"
+    "vue": "^3.5.34"
   },
   "devDependencies": {
     "@types/node": "^25.6.0",
     "@types/nprogress": "^0.2.3",
+    "get-east-asian-width": "^1.5.0",
     "patch-package": "^8.0.1",
     "sass-embedded": "^1.99.0",
-    "vite": "^8.0.10",
+    "vite": "^8.0.11",
     "vitepress": "2.0.0-alpha.17",
     "vitepress-plugin-comment-with-giscus": "^1.1.15",
     "vitepress-plugin-group-icons": "^1.7.5",
     "vitepress-plugin-tabs": "^0.9.0",
-    "vitepress-plugin-word-count": "^0.0.4",
-    "vitepress-sidebar": "^1.33.1"
+    "vitepress-plugin-word-count": "^0.1.0",
+    "vitepress-sidebar": "^1.33.2"
   }
 }

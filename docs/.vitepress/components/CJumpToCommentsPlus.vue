@@ -1,24 +1,24 @@
 <script setup lang="ts">
 import { useData } from 'vitepress'
 
-defineOptions({ name: "CReturnToTopPlus" })
+defineOptions({ name: "CJumpToCommentsPlus" })
 
 const { theme } = useData()
 
 </script>
 
 <template>
-    <div class="CReturnToTopPlus">
-        <a href="#">
-            {{ theme.returnToTopLabel || 'Return to top' }}
+    <div class="CJumpToCommentsPlus">
+        <a href="#giscus">
+            {{ theme.jumpToCommentsLabel || 'Jump to comments' }}
         </a>
     </div>
 </template>
 
 <style lang="scss" scoped>
-.CReturnToTopPlus a {
+.CJumpToCommentsPlus a {
     display: block;
-    margin: 0 0 4px 8px;
+    margin: 4px 0 0 8px;
     padding: 8px;
     font-size: 12px;
     font-weight: 500;
@@ -28,12 +28,12 @@ const { theme } = useData()
     position: relative;
     cursor: pointer;
     &:hover {
-        color: var(--vp-c-brand-1);
+        color: var(--vp-c-text-1);
         transition: color 0.25s;
     }
 }
 @media (min-width: 960px) {
-    .CReturnToTopPlus a {
+    .CJumpToCommentsPlus a {
         font-size: 14px;
     }
 }

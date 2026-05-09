@@ -5,6 +5,7 @@ declare module 'vitepress' {
         interface Config {
             CDocInfo?: CDocInfoOptions
             LKNLocalNav?: LKNLocalNavOptions
+            jumpToCommentsLabel?: string
         }
     }
 }

@@ -96,18 +96,18 @@ export default defineConfig({
 
   themeConfig: {
     CDocInfo: {
-      authorText: "本文作者",
+      authorText: "👤",
       defaultAuthor: "Lukoning",
-      wordCountText: "文字计数",
-      wordCountUnitText: "字或单词",
-      readingTimeText: "大致阅读时长",
+      wordCountText: "🔤",
+      wordCountUnitText: "字/单词",
+      readingTimeText: "⌛",
       readingTimeUnitText: "分钟",
-      licenseText: "版权许可证",
+      licenseText: "📃 版权协议",
       defaultLicense: "CC BY-NC-SA 4.0",
-      copyrightText: "版权声明",
+      copyrightText: "📃 版权声明",
       lastUpdated: {
-        text: "最后更新时间",
-        createdText: "内容创建时间",
+        text: "🕒 最后更新",
+        createdText: "📝 创建时间",
         formatOptions: {
           year: "numeric",
           month: "numeric",
@@ -130,8 +130,9 @@ export default defineConfig({
       prev: "上一篇",
       next: "下一篇",
     },
-    outlineTitle: "本篇目录",
-    returnToTopLabel: "返回顶部",
+    outlineTitle: "跳转至",
+    returnToTopLabel: "页面顶部",
+    jumpToCommentsLabel: "评论区",
     sidebarMenuLabel: "网站目录",
     skipToContentLabel: "跳转到正文",
     externalLinkIcon: true,
