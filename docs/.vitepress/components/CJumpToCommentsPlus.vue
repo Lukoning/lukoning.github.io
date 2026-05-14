@@ -9,7 +9,7 @@ const { theme } = useData()
 
 <template>
     <div class="CJumpToCommentsPlus">
-        <a href="#giscus">
+        <a href="#comment">
             {{ theme.jumpToCommentsLabel || 'Jump to comments' }}
         </a>
     </div>

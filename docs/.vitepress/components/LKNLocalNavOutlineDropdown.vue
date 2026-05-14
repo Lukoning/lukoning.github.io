@@ -96,7 +96,7 @@ function onItemClick(e: Event) {
             <VPDocOutlineItem :headers />
           </div>
           <div class="footer">
-            <a class="comments-link" href="#giscus">
+            <a class="comments-link" href="#comment">
               {{ theme.jumpToCommentsLabel || 'Jump to comments' }}
             </a>
           </div>

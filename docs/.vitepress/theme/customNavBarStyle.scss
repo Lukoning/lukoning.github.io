@@ -21,17 +21,12 @@
         var(--lkn-current-bg-image); // 这样做可以把背景颜色盖在背景图上面
     background-color: var(--vp-nav-bg-color); //回退
 }
+
 .VPNavBar::after {
     @include all-navbar-bg-pseudo;
     -webkit-mask: var(--lkn-navbar-mask);
     mask: var(--lkn-navbar-mask);
 }
-.VPLocalNav.VPLocalNav > .container::after {
-    @include all-navbar-bg-pseudo;
-    -webkit-mask: var(--lkn-local-navbar-mask);
-    mask: var(--lkn-local-navbar-mask);
-}
-
 .VPNavBar:not(#ABC) {
     --vp-nav-bg-color: var(--lkn-page-bg);
     background-color: transparent;
@@ -43,6 +38,14 @@
     }
     .divider {//分割线
         display: none;
+    }
+    .container::after {
+        @include all-navbar-bg-pseudo;
+        background-image: none;
+        background-color: transparent;
+        backdrop-filter: blur(var(--lkn-navbar-blur-radius));
+        -webkit-mask: var(--lkn-navbar-container-mask);
+        mask: var(--lkn-navbar-container-mask);
     }
     .container > .title.title {//网站标题
         display: flex;
@@ -84,8 +87,18 @@
 .VPLocalNav.VPLocalNav {
     background-color: transparent;
     border-bottom: none;
-    >.container::after { /*页面导航栏背景*/
-        background-color: var(--vp-local-nav-bg-color);
+    &::after {
+        @include all-navbar-bg-pseudo;
+        -webkit-mask: var(--lkn-local-navbar-mask);
+        mask: var(--lkn-local-navbar-mask);
+    }
+    > .container::after {
+        @include all-navbar-bg-pseudo;
+        background-image: none;
+        background-color: transparent;
+        backdrop-filter: blur(var(--lkn-local-navbar-blur-radius));
+        -webkit-mask: var(--lkn-local-navbar-container-mask);
+        mask: var(--lkn-local-navbar-container-mask);
     }
 }
 
@@ -94,7 +107,7 @@
     left: unset;
     right: 20px;
     width: auto;
-    backdrop-filter: blur(var(--lkn-navbar-blur-radius));
+    backdrop-filter: blur(var(--lkn-dropdown-blur-radius));
 }
 
 .search-bar {
@@ -169,7 +182,7 @@
 }
 @media (max-width: 959.999px) { /*宽度960以下*/
     .VPLocalNav ~ .VPContent { //穿帮咯
-        box-shadow: 0 -47px 0 0 var(--lkn-page-bg);
+        box-shadow: 0 -45px 0 0 var(--lkn-page-bg);
     }
     .VPNavBar::after {
         background-image: none; //不需要background-image了
@@ -184,16 +197,13 @@
     }
 }
 @media (min-width: 960px) { /*宽度960及以上*/
-    :root {
-        --vp-local-nav-bg-color: var(--vp-nav-bg-color);
-    }
     .VPNavBarTitle .title, .VPNavBarSearch button, .nav-search-btn-wait {//网站标题，搜索框
-        backdrop-filter: blur(var(--lkn-navbar-blur-radius));
+        backdrop-filter: blur(var(--lkn-navbar-button-blur-radius));
     }
     .VPLocalNav {
         pointer-events: none;
-        > .container::after {//背景不要哦
-            display: none;
+        &, >.container {//背景不要哦
+            &::after { display: none }
         }
         button.menu {
             //侧边栏展开按钮：为了本篇目录按钮可以正常定位在右侧
@@ -208,7 +218,7 @@
             padding: 6px 14px 6px;
             margin: 6px 22px 5px;
             background-color: var(--vp-c-bg-alt);
-            backdrop-filter: blur(var(--lkn-navbar-blur-radius));
+            backdrop-filter: blur(var(--lkn-navbar-button-blur-radius));
             border: 1px solid transparent;
             border-radius: 8px;
             transition: border .2s, color .2s;

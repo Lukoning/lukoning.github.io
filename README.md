@@ -1,9 +1,9 @@
-# ~~LKN个人小站（划掉）~~
-# LKN的小猫猫
+# ~~白河豚的站（划掉）~~
+# 白河豚🌻的小猫猫
 
-LKN的个人猫猫，基于VitePress喵⭐
+白河豚🌻的个人猫猫，基于VitePress喵⭐
 
-LKN是Lukoning的缩写哦喵🌟！
+白河豚🌻即「百河豚」+ *葵日向* 哦喵🌟！
 
 ## 如何构建猫猫呢喵
 
@@ -50,7 +50,7 @@ pnpm docs:dev
 
 ## 可以抱走猫猫吗喵
 
-可以哦喵\~不过请遵守CC协议和MPL协议哦喵，具体可以看看项目根目录的[LICENSE-CC](/LICENSE-CC)和[LICENSE-MPL](/LICENSE-MPL)哦喵\~
+可以哦喵\~不过请遵守CCPL协议（知识共享协议）和MPL协议哦喵，具体可以看看项目根目录的[LICENSE-CCPL](/LICENSE-CCPL)和[LICENSE-MPL](/LICENSE-MPL)哦喵\~
 
 看不明白鸟语可以请教AI先森喵，也可以在猫猫身上找找有没有小纸条解析哦喵\~
 

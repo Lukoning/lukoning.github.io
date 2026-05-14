@@ -54,8 +54,8 @@ $lkn-theme-accent-bg-dark: #100416; /*oklch空间混合黑色80%和主题色20%*
         --vp-c-bg-soft: #{color.mix($lkn-theme-accent-bg-light, transparent, 40%)};
         --vp-c-bg-alt: #88DDBB36; /*非强调色按钮*/
         --vp-c-divider: #66887764;/*分隔条*/
-        --vp-c-brand-soft: #{color.mix($lkn-theme-accent-light, transparent, 8%)}; /*Tip框*/
-        --vp-code-bg: #{color.mix($lkn-theme-accent-bg-light, transparent, 50%)};
+        --vp-c-default-soft: #{color.mix($lkn-theme-accent-bg-light, transparent, 50%)}; /*Info框、代码块等*/
+        --vp-c-brand-soft: #{color.mix($lkn-theme-accent-light, transparent, 50%)}; /*Tip框*/
         --vp-code-line-highlight-color: #{color.mix($lkn-theme-accent-light, transparent, 20%)};
 
         --vp-button-brand-text: var(--lkn-theme-text-brighter);
@@ -76,7 +76,7 @@ $lkn-theme-accent-bg-dark: #100416; /*oklch空间混合黑色80%和主题色20%*
         --lkn-theme-text-brighter: #{color.mix(black, $lkn-theme-accent-dark, 50%)};
         --lkn-theme-text-darker: #{color.mix(black, $lkn-theme-accent-dark, 90%)};
         --lkn-home-bg: #{color.mix($lkn-theme-accent-bg-dark, transparent, 60%)};
-        --lkn-page-bg: #{color.mix($lkn-theme-accent-bg-dark, transparent, 90%)};
+        --lkn-page-bg: #{color.mix($lkn-theme-accent-bg-dark, transparent, 80%)};
         --lkn-selection-color: #{color.mix($lkn-theme-accent-dark, transparent, 40%)};
         --lkn-scrollbar-handle-bg: #{color.mix(rgba(white, .2), $lkn-theme-accent-bg-dark, 95%)};
         --lkn-scrollbar-handle-bg-hover: #{color.mix(rgba(white, .5), $lkn-theme-accent-bg-dark, 80%)};
@@ -90,8 +90,8 @@ $lkn-theme-accent-bg-dark: #100416; /*oklch空间混合黑色80%和主题色20%*
         --vp-c-bg-soft: #{color.mix($lkn-theme-accent-bg-dark, transparent, 40%)};
         --vp-c-bg-alt: #CCBBDD24; /*非强调色按钮*/
         --vp-c-divider: #CC88DD40; /*分隔条*/
+        --vp-c-default-soft: #{color.mix($lkn-theme-accent-dark, color.mix($lkn-theme-accent-bg-dark, transparent, 50%), 1%)}; /*Info框、代码块等*/
         --vp-c-brand-soft: #{color.mix($lkn-theme-accent-dark, transparent, 15%)}; /*Tip框*/
-        --vp-code-bg: #{color.mix($lkn-theme-accent-bg-dark, transparent, 50%)};
         --vp-code-line-highlight-color: #{color.mix($lkn-theme-accent-dark, transparent, 20%)};
 
         --vp-button-brand-text: var(--lkn-theme-text-darker);
@@ -101,15 +101,30 @@ $lkn-theme-accent-bg-dark: #100416; /*oklch空间混合黑色80%和主题色20%*
         --vp-button-alt-active-bg: #{color.mix($lkn-theme-accent-dark, transparent, 30%)};
     }
 
-    --lkn-navbar-blur-radius: 8px;
+    --lkn-navbar-blur-radius: 4px;
+    --lkn-navbar-button-blur-radius: 8px;
+    --lkn-local-navbar-blur-radius: 4px;
     --lkn-navmenu-blur-radius: 16px;
     --lkn-backdrop-blur-radius: 4px;
-    --lkn-navbar-mask: /*用两层渐变，观感会比只有一层要好*/
-        linear-gradient(to bottom, #FFFFFF 20%, transparent 100%),
-        linear-gradient(to bottom, #FFFFFF 30%, transparent 100%);
+    --lkn-dropdown-blur-radius: 12px;
+    --lkn-navbar-mask: /*用两层渐变，观感会比只有一层要好，下同*/
+        linear-gradient(to bottom, #FFFFFF 0%, transparent 100%),
+        linear-gradient(to bottom, #FFFFFF 5%, transparent 100%);
+    --lkn-navbar-container-mask:
+        linear-gradient(to bottom, #FFFFFF 40%, transparent 90%),
+        linear-gradient(to bottom, #FFFFFF 45%, transparent 90%);
     --lkn-local-navbar-mask:
-        linear-gradient(to bottom, #FFFFFF 30%, transparent 100%),
-        linear-gradient(to bottom, #FFFFFF 40%, transparent 100%);
+        linear-gradient(to bottom, #FFFFFF 0%, transparent 100%),
+        linear-gradient(to bottom, #FFFFFF 5%, transparent 100%);
+    --lkn-local-navbar-container-mask:
+        linear-gradient(to bottom, #FFFFFF 35%, transparent 90%),
+        linear-gradient(to bottom, #FFFFFF 45%, transparent 90%);
     --lkn-loading-circle-width: max(min(0.4vw, 0.4vh), 3px);
     --lkn-loading-circle-radius: max(min(2vw, 2vh), 22px);
+}
+
+@media (max-width: 959.999px) { /*宽度960以下*/
+    :root {
+        --vp-sidebar-bg-color: var(--lkn-page-bg);
+    }
 }

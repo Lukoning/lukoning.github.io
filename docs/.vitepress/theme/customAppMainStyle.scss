@@ -83,7 +83,7 @@ body {
     &:is(.level-0, .level-1).is-active > .item .VPLink {
         position: relative;
         .text::before {
-            content: ">";
+            content: "->";
             position: absolute;
             left: -16px;
             top: -1px;
@@ -133,33 +133,39 @@ body {
     cursor: default;
 }
 
-.VPHero.has-image {
-    .image-bg { /*配合对背景辉光图像的修改*/
-        background-repeat: no-repeat;
-        background-size: cover;
+.VPHero {
+    &.has-image {
+        .image-bg { /*配合对背景辉光图像的修改*/
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .VPImage {
+            border-radius: 50%;
+        }
     }
-    .VPImage {
-        border-radius: 50%;
+    .main > *:not(#ABC) {
+        width: fit-content;
+        margin-inline: auto;
+        text-align: center;
+        span {
+            text-align: right;
+            width: 100%;
+        }
     }
 }
 
 @media (max-width: 639.999px) { /*宽度640以下*/
-    .VPHero.has-image .VPImage {
+    .VPHero.has-image { .image-bg, .VPImage {
         /*你不要乱动啊会出来的啊呜呜呜*/
         width: 168px;
         height: 168px;
-    }
+    }}
 }
 @media (min-width: 640px) { /*宽度640及以上*/
-    .VPHero.has-image .VPImage {
+    .VPHero.has-image { .image-bg, .VPImage {
         width: 208px;
         height: 208px;
-    }
-}
-@media (max-width: 959.999px) { /*宽度960以下*/
-    :root {
-        --vp-sidebar-bg-color: var(--lkn-page-bg);
-    }
+    }}
 }
 @media (min-width: 960px) { /*宽度960及以上*/
     .VPFooter.has-sidebar {

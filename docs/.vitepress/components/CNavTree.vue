@@ -95,6 +95,8 @@ function normalizeLink(link?: string): string | undefined {
 <style scoped>
 .nav-tree {
   width: fit-content;
+  font-size: 14px;
+  line-height: 24px;
   text-align: left;
   list-style: none;
   padding-left: 0; /*与vp内置样式对抗*/

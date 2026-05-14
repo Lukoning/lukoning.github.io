@@ -24,16 +24,6 @@ pre, code { &, & * {
 .custom-block {
     position: relative;
     overflow: hidden;
-    &::after { /*减少背景透明度*/
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        z-index: -1;
-        background: inherit;
-    }
 }
 
 a[link] { //带link自定义属性时，当作链接看待

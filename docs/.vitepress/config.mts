@@ -15,8 +15,8 @@ const componentAliases = {
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "LKN个人小站",
-  description: "Lukoning的个人网站喵⭐",
+  title: "白河豚的站",
+  description: "Lukoning（白河豚🌻）的个人网站喵⭐",
   head: [
     ["link", { rel: "icon", type: "image/webp", href: "/favicon.webp" }],
     ["link", { rel: "icon", type: "image/png", href: "/favicon.png" }],
@@ -33,6 +33,7 @@ export default defineConfig({
   ignoreDeadLinks: true,
   lastUpdated: true, //保留这个用来获取更新时间，原有显示组件在alias处替换为空组件
   metaChunk: true,
+  appearance: "dark", //默认深色
 
   vite: {
     plugins: [
@@ -97,7 +98,7 @@ export default defineConfig({
   themeConfig: {
     CDocInfo: {
       authorText: "👤",
-      defaultAuthor: "Lukoning",
+      defaultAuthor: "白河豚🌻",
       wordCountText: "🔤",
       wordCountUnitText: "字/单词",
       readingTimeText: "⌛",
@@ -123,16 +124,17 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     logo: "/avatar.jpg",
 
-    darkModeSwitchLabel: "切换浅色/深色模式",
+    darkModeSwitchLabel: "切换浅色/深色模式 ->",
     lightModeSwitchTitle: "切换到浅色模式",
     darkModeSwitchTitle: "切换到深色模式",
     docFooter: {
-      prev: "上一篇",
-      next: "下一篇",
+      // Inter字体会自动合并为一个箭头
+      prev: "<- 上一篇",
+      next: "下一篇 ->",
     },
     outlineTitle: "跳转至",
-    returnToTopLabel: "页面顶部",
-    jumpToCommentsLabel: "评论区",
+    returnToTopLabel: "↑ 页面顶部",
+    jumpToCommentsLabel: "↓ 评论区",
     sidebarMenuLabel: "网站目录",
     skipToContentLabel: "跳转到正文",
     externalLinkIcon: true,
@@ -143,7 +145,7 @@ export default defineConfig({
       { text: '提瓦特大陆', link: '/' },
       { text: '饭能市', link: '/ACG/' },
       { text: '虚空网络', link: '/DevJournal/' },
-      { text: '蔬菜罐罐汤', link: '/Mutterings/' },
+      { text: '蔬菜罐罐汤', link: '/Murmurs/' },
     ],
 
     sidebar: generateSidebar({ // see: https://vitepress-sidebar.cdget.com/zhHans/guide/options

@@ -24,7 +24,7 @@ copyright: 版权归各作词者所有
 
 <ruby>"...好きなので。"<rp> / </rp><rt>“…因为喜欢你。”</rt></ruby>
 
-<ruby>ah 心 プラトニック<rp> / </rp><rt>啊 纯粹精神上的喜欢</rt></ruby>
+<ruby>ah 心 プラトニック<rp> / </rp><rt>啊 这颗纯情的心灵</rt></ruby>
 
 <ruby>溢れ 出してく想い<rp> / </rp><rt>满溢而出的思念</rt></ruby>
 
@@ -34,13 +34,13 @@ copyright: 版权归各作词者所有
 
 <ruby>もしも 伝え られたならば<rp> / </rp><rt>如果可以向你告白</rt></ruby>
 
-<ruby>明日 わたし少しは<rp> / </rp><rt>明天的我是否会</rt></ruby>
+<ruby>明日 わたし少しは<rp> / </rp><rt>明天的我能否会</rt></ruby>
 
 <ruby>変わ れるのかな<rp> / </rp><rt>有一些改变呢</rt></ruby>
 
-<ruby>あなたと想い出<rp> / </rp><rt>想与你一起留下</rt></ruby>
+<ruby>あなたと想い出<rp> / </rp><rt>想与你一起</rt></ruby>
 
-<ruby>重ねていけますように<rp> / </rp><rt>数不清的美好回忆</rt></ruby>
+<ruby>重ねていけますように<rp> / </rp><rt>不断增添美好回忆</rt></ruby>
 
 <ruby>祈ってる uh (ah ah)<rp> / </rp><rt>我如此祈求着 (啊 啊)</rt></ruby>
 
