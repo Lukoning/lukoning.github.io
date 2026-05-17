@@ -169,12 +169,24 @@ const classes = computed(() => {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%); /*还有这种解法？*/
-  padding-top: 2px;
+  width: 100%;
+  /*左右内边距与localnav按钮宽度（基本）一致*/
+  padding: 2px 95px 0;
   text-align: center;
   letter-spacing: -0.02em;
   font-size: 14px;
   font-weight: 500;
   line-height: 16px;
+  /*超出两行后自动截断标题，防止行数过多*/
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webKit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.container > *:not(.title) {
+  /*确保按钮可点击，而不是被标题遮挡无法点击*/
+  z-index: 1;
 }
 
 @media (min-width: 960px) {

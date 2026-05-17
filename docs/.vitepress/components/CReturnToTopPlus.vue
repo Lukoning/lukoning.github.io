@@ -28,7 +28,7 @@ const { theme } = useData()
     position: relative;
     cursor: pointer;
     &:hover {
-        color: var(--vp-c-brand-1);
+        color: var(--vp-c-text-1);
         transition: color 0.25s;
     }
 }

@@ -135,7 +135,7 @@ export default defineConfig({
     outlineTitle: "跳转至",
     returnToTopLabel: "↑ 页面顶部",
     jumpToCommentsLabel: "↓ 评论区",
-    sidebarMenuLabel: "网站目录",
+    sidebarMenuLabel: "目录",
     skipToContentLabel: "跳转到正文",
     externalLinkIcon: true,
 

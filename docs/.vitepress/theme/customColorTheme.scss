@@ -4,14 +4,7 @@ $lkn-theme-accent-bg-light: #E8F1EA; /*oklch空间混合白色90%和主题色10%
 $lkn-theme-accent-dark:#D170FF;
 $lkn-theme-accent-bg-dark: #100416; /*oklch空间混合黑色80%和主题色20%*/
 :root {
-    /* 1440-(1440*1.05) ，与 1067px 以上时 zoom: 1.05 配合，防止出现侧边栏被剪切等问题 */
-    --vp-layout-max-width: 1368px; 
-
-    --vp-font-family-base: "Inter", "HarmonyOS Sans SC", ui-sans-serif, sans-serif, -apple-system, BlinkMacSystemFont, system-ui, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    --vp-font-family-mono: "Sarasa Mono SC", "Monaspace Neon", ui-monospace, "SFMono-Regular", "SF Mono", "Menlo", "Consolas", "Liberation Mono", monospace;
-    --vp-home-hero-image-background-image: url("/avatar.jpg");
-
-    --vp-c-border: #FFFFFF06; /*边框*/
+    --vp-c-border: #88888822; /*边框*/
     --vp-code-block-bg: var(--vp-code-bg);
     --vp-backdrop-bg-color: var(--vp-c-bg-soft); /*侧边栏展开遮罩*/
 
@@ -119,8 +112,6 @@ $lkn-theme-accent-bg-dark: #100416; /*oklch空间混合黑色80%和主题色20%*
     --lkn-local-navbar-container-mask:
         linear-gradient(to bottom, #FFFFFF 35%, transparent 90%),
         linear-gradient(to bottom, #FFFFFF 45%, transparent 90%);
-    --lkn-loading-circle-width: max(min(0.4vw, 0.4vh), 3px);
-    --lkn-loading-circle-radius: max(min(2vw, 2vh), 22px);
 }
 
 @media (max-width: 959.999px) { /*宽度960以下*/

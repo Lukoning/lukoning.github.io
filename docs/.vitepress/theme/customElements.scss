@@ -16,7 +16,7 @@ lkn {
         rt {
             -webkit-text-fill-color: var(--vp-c-text-1);
         }
-        rt c {
+        c {
             -webkit-text-fill-color: currentColor;
         }
         @supports (-webkit-background-clip: text) or (background-clip: text) {
@@ -28,6 +28,12 @@ lkn {
             p &, main & {/*仅在正文下应用*/
                 font-weight: 600;
                 font-synthesis: weight;
+                rt, c {
+                    font-weight: initial;
+                }
+            }
+            &[homehero] {
+                background-image: var(--vp-home-hero-name-background);
             }
             &[green] {
                 background-image: -webkit-linear-gradient(60deg, #7dffd6, #14ff76);
@@ -38,6 +44,9 @@ lkn {
             &[green-yellow] {
                 background-image: -webkit-linear-gradient(92deg, #7dffd6 10%, #ffcc69 90%);
             }
+        }
+        &[homehero] {
+            color: var(--vp-home-hero-name-color);
         }
         &[green] {
             color: #7dffd6;
@@ -55,6 +64,10 @@ lkn {
     
     &[layout] {
         display: block;
+        &[nobr] {
+            display: inline-block;
+            width: fit-content;
+        }
         &[indent] {
             text-indent: 2em;
         }

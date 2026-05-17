@@ -1,3 +1,13 @@
+:root {
+    /* 1440-(1440*1.05) ，与 1067px 以上时 zoom: 1.05 配合，防止出现侧边栏被剪切等问题 */
+    --vp-layout-max-width: 1368px;
+    
+    --vp-home-hero-image-background-image: url("/avatar.jpg");
+
+    --lkn-loading-circle-width: max(min(0.4vw, 0.4vh), 3px);
+    --lkn-loading-circle-radius: max(min(2vw, 2vh), 22px);
+}
+
 * {
     ::selection {
         background: var(--lkn-selection-color);
@@ -51,13 +61,13 @@
     scrollbar-gutter: auto;
     scrollbar-width: thin;
     transition: scrollbar-color .15s;
-    &:hover {
+    &:hover:not(:has(:hover)) {
         &::-webkit-scrollbar-thumb {
             background: var(--lkn-scrollbar-handle-bg-hover);
         }
         scrollbar-color: var(--lkn-scrollbar-handle-bg-hover) transparent;
     }
-    &:active {
+    &:active:not(:has(:active)) {
         &::-webkit-scrollbar-thumb {
             background: var(--lkn-scrollbar-handle-bg-active);
         }
@@ -152,7 +162,7 @@ body {
             width: 100%;
             &.text {
                 // 斜体字，为了斜线与上一行文字斜线对齐
-                padding-right: 0.165em;
+                padding-right: 0.17em;
             }
         }
     }

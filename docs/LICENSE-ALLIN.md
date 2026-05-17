@@ -9,21 +9,32 @@ license: false
 <script setup lang="ts">
 function License(licenseName: string, copyright: string) {
     const license = {
-MIT: `<p>MIT License</p>
+MIT: `<details>
+<summary>MIT License</summary>
 <p>Copyright © ${copyright}</p>
 <p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
 <p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
 <p>THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
-`,
-ISC: `<p>ISC License</p>
+</details>`,
+ISC: `<details>
+<summary>ISC License</summary>
 <p>Copyright © ${copyright}</p>
 <p>Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.</p>
 <p>THE SOFTWARE IS PROVIDED “AS IS” AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL ISC BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.</p>
-`,
+</details>`,
     };
     return license[licenseName as keyof typeof license] || "<p>未知许可证</p>";
 }
 </script>
+
+<style>
+#VPContent h2 {
+    margin-top: 0;
+}
+lkn[nobr] summary {
+    margin-block: 0;
+}
+</style>
 
 # 开放源代码许可
 
@@ -103,122 +114,84 @@ Mozilla 公共许可协议，版本 2.0
 
 ## Vue.js
 
-[项目仓库](https://github.com/vuejs/core)
-
-<p v-html="License('MIT', '2018-present, Yuxi (Evan) You and Vue contributors')"></p>
+[项目仓库](https://github.com/vuejs/core) <lkn layout nobr v-html="License('MIT', '2018-present, Yuxi (Evan) You and Vue contributors')"></lkn>
 
 ## VueUse
 
-[项目仓库](https://github.com/vueuse/vueuse)
-
-<p v-html="License('MIT', '2019-PRESENT Anthony Fu<https://github.com/antfu>')"></p>
+[项目仓库](https://github.com/vueuse/vueuse) <lkn layout nobr v-html="License('MIT', '2019-PRESENT Anthony Fu<https://github.com/antfu>')"></lkn>
 
 ## Vite
 
-[项目仓库](https://github.com/vitejs/vite)
-
-<p v-html="License('MIT', '2019-present, VoidZero Inc. and Vite contributors')"></p>
+[项目仓库](https://github.com/vitejs/vite) <lkn layout nobr v-html="License('MIT', '2019-present, VoidZero Inc. and Vite contributors')"></lkn>
 
 ## VitePress
 
-[项目仓库](https://github.com/vuejs/vitepress)
-
-<p v-html="License('MIT', '2019-present, Yuxi (Evan) You')"></p>
+[项目仓库](https://github.com/vuejs/vitepress) <lkn layout nobr v-html="License('MIT', '2019-present, Yuxi (Evan) You')"></lkn>
 
 ## VitePress Sidebar
 
-[项目仓库](https://github.com/jooy2/vitepress-sidebar)
-
-<p v-html="License('MIT', '2022-2026 CDGet <jooy2.contact@gmail.com> (https://cdget.com).')"></p>
+[项目仓库](https://github.com/jooy2/vitepress-sidebar) <lkn layout nobr v-html="License('MIT', '2022-2026 CDGet <jooy2.contact@gmail.com> (https://cdget.com).')"></lkn>
 
 ## Viewer.js
 
-[项目仓库](https://github.com/fengyuanchen/viewerjs)
-
-<p v-html="License('MIT', '2015-present Chen Fengyuan')"></p>
+[项目仓库](https://github.com/fengyuanchen/viewerjs) <lkn layout nobr v-html="License('MIT', '2015-present Chen Fengyuan')"></lkn>
 
 ## vitepress-plugin-image-viewer
 
-[项目仓库](https://github.com/T-miracle/vitepress-plugin-image-viewer)
-
-<p v-html="License('MIT', 'T-miracle')"></p>
+[项目仓库](https://github.com/T-miracle/vitepress-plugin-image-viewer) <lkn layout nobr v-html="License('MIT', 'T-miracle')"></lkn>
 
 ## vitepress-plugin-group-icons
 
-[项目仓库](https://github.com/yuyinws/vitepress-plugin-group-icons)
-
-<p v-html="License('MIT', '2024-PRESENT Leo <https://github.com/yuyinws>')"></p>
+[项目仓库](https://github.com/yuyinws/vitepress-plugin-group-icons) <lkn layout nobr v-html="License('MIT', '2024-PRESENT Leo <https://github.com/yuyinws>')"></lkn>
 
 ## vitepress-plugin-comment-with-giscus
 
-[项目仓库](https://github.com/T-miracle/vitepress-plugin-comment-with-giscus)
-
-<p v-html="License('ISC', 'T-miracle')"></p>
+[项目仓库](https://github.com/T-miracle/vitepress-plugin-comment-with-giscus) <lkn layout nobr v-html="License('ISC', 'T-miracle')"></lkn>
 
 ## vitepress-plugin-breadcrumb
 
-[项目仓库](https://github.com/yanranxiaoxi/vitepress-plugin-breadcrumb)
-
-<p v-html="License('MIT', '2025 XiaoXi <admin@soraharu.com>')"></p>
+[项目仓库](https://github.com/yanranxiaoxi/vitepress-plugin-breadcrumb) <lkn layout nobr v-html="License('MIT', '2025 XiaoXi <admin@soraharu.com>')"></lkn>
 
 ## vitepress-plugin-word-count
 
-[项目仓库](https://github.com/Lukoning/vitepress-plugin-word-count)
-
-<p v-html="License('MIT', '2026 Lukoning')"></p>
+[项目仓库](https://github.com/Lukoning/vitepress-plugin-word-count) <lkn layout nobr v-html="License('MIT', '2026 Lukoning')"></lkn>
 
 ## Vitepress Plugins
 
 *使用的插件：vitepress-plugin-tabs*
 
-[项目仓库](https://github.com/sapphi-red/vitepress-plugins)
-
-<p v-html="License('MIT', '2022 sapphi-red')"></p>
+[项目仓库](https://github.com/sapphi-red/vitepress-plugins) <lkn layout nobr v-html="License('MIT', '2022 sapphi-red')"></lkn>
 
 ## Pagefind
 
-[项目仓库](https://github.com/pagefind/pagefind)
-
-<p v-html="License('MIT', '2022 Pagefind')"></p>
+[项目仓库](https://github.com/pagefind/pagefind) <lkn layout nobr v-html="License('MIT', '2022 Pagefind')"></lkn>
 
 ## sugar-blog
 
 *使用的插件：vitepress-plugin-pagefind*
 
-[项目仓库](https://github.com/ATQQ/sugar-blog)
-
-<p v-html="License('MIT', '2020 sugar')"></p>
+[项目仓库](https://github.com/ATQQ/sugar-blog) <lkn layout nobr v-html="License('MIT', '2020 sugar')"></lkn>
 
 ## patch-package
 
-[项目仓库](https://github.com/ds300/patch-package)
-
-<p v-html="License('MIT', '2017-Present David Sheldrick')"></p>
+[项目仓库](https://github.com/ds300/patch-package) <lkn layout nobr v-html="License('MIT', '2017-Present David Sheldrick')"></lkn>
 
 ## Embedded Sass
 
-[项目仓库](https://github.com/sass/embedded-host-node)
-
-<p v-html="License('MIT', '2019, Google LLC')"></p>
+[项目仓库](https://github.com/sass/embedded-host-node) <lkn layout nobr v-html="License('MIT', '2019, Google LLC')"></lkn>
 
 ## NProgress {#nprogress-heading}
 <!-- VitePress会自动生成id="nprogress"，与nprogress加载条冲突。这里手动指定别的ID来避免。 -->
 
-[项目仓库](https://github.com/rstacruz/nprogress)
-
-<p v-html="License('MIT', '2013-2014 Rico Sta. Cruz')"></p>
+[项目仓库](https://github.com/rstacruz/nprogress) <lkn layout nobr v-html="License('MIT', '2013-2014 Rico Sta. Cruz')"></lkn>
 
 ## OverlayScrollbars
 
-[项目仓库](https://github.com/KingSora/OverlayScrollbars)
-
-<p v-html="License('MIT', '2022 Rene Haas')"></p>
+[项目仓库](https://github.com/KingSora/OverlayScrollbars) <lkn layout nobr v-html="License('MIT', '2022 Rene Haas')"></lkn>
 
 ## OverlayScrollbars for Vue
 
-[项目仓库](https://github.com/KingSora/OverlayScrollbars/tree/master/packages/overlayscrollbars-vue)
-
-<p v-html="License('MIT', '2022 Rene Haas')"></p>
+[项目仓库](https://github.com/KingSora/OverlayScrollbars/tree/master/packages/overlayscrollbars-vue) <lkn layout nobr v-html="License('MIT', '2022 Rene Haas')"></lkn>
 
 ## Remix Icon
 
@@ -246,6 +219,4 @@ For full terms, please refer to the [Remix Icon License v1.0](https://github.com
 
 ## Heroicons
 
-[项目仓库](https://github.com/tailwindlabs/heroicons)
-
-<p v-html="License('MIT', 'Tailwind Labs, Inc.')"></p>
+[项目仓库](https://github.com/tailwindlabs/heroicons) <lkn layout nobr v-html="License('MIT', 'Tailwind Labs, Inc.')"></lkn>

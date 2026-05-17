@@ -25,9 +25,10 @@
     }
     [command-dialog-wrapper] {
         background-color: var(--vp-c-bg);
-        max-width: 720px;
+        //max-width: 720px;
         margin: clamp(0px, 5vh, 160px) auto auto;
         overflow: hidden;
+        border-radius: 8px;
         > * {
             border-radius: 0;
         }
@@ -120,6 +121,11 @@
 }
 @media (min-width: 560.001px) { /*宽度560以上*/
     .algolia {
+        [command-dialog-wrapper] {
+            background-color: var(--vp-c-bg);
+            border: 1px solid var(--vp-c-border);
+            box-shadow: var(--vp-shadow-3);
+        }
         [command-list] {
             &,
             [data-overlayscrollbars-contents] {

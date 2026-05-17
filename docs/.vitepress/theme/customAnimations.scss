@@ -1,6 +1,6 @@
 @mixin transition-on-hover($selector, $active) {
     #{$selector} {
-        &, * { transition: opacity .2s, border .3s, color .2s, width .2s; }
+        &, * { transition: opacity .2s, border .3s, color .2s, width .2s, background-color .2s; }
         #{$active} {
             &, * { transition: none; }
         }
@@ -10,6 +10,18 @@
 @include transition-on-hover("a:not(#specificityUP_ABC, .VPButton), .os-scrollbar-handle", "&:hover");
 @include transition-on-hover(".VPLocalSearchBox .result", "&.selected, &:hover");
 @include transition-on-hover(".algolia [command-item]", "&[aria-selected=true], &:hover");
+
+* {
+    &::-webkit-scrollbar-thumb {
+        transition: background-color .2s;
+    }
+    transition: scrollbar-color .2s;
+    &:hover {
+        &, &::-webkit-scrollbar-thumb {
+            transition: none;
+        }
+    }
+}
 
 .VPButton.VPButton {
     transition: transform .15s, color .15s, border-color .15s, background-color .15s;
@@ -62,15 +74,32 @@
 }
 .algolia {
     [command-dialog-mask]::after {
-        animation: opacityIn .4s;
+        opacity: 1;
+        transition: opacity .2s;
     }
     [command-dialog-wrapper] {
-        animation: opacityIn .4s .1s backwards, slideDown .4s cubic-bezier(.34, .68, 0, 1) .1s backwards;
+        opacity: 1;
+        transform: translateY(0px);
+        transition: opacity .3s, transform .4s cubic-bezier(.34, .68, 0, 1);
+    }
+    &.command-dialog-enter-from, &.command-dialog-leave-to {
+        [command-dialog-mask]::after {
+            opacity: 0;
+        }
+        [command-dialog-wrapper] {
+            opacity: 0;
+            transform: translateY(-100px);
+        }
+    }
+
+    .back-button .vpi-arrow-left {
+        //配合动画方向……
+        transform: rotate(-90deg);
     }
 }
 
 .VPLocalNavOutlineDropdown {
-    .flyout-enter-active {
+    .flyout-enter-active, .flyout-leave-active {
         transition: all .4s cubic-bezier(.34, .68, 0, 1);
     }
     .flyout-leave-active {

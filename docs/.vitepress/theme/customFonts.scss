@@ -1,0 +1,15 @@
+:root {
+    --vp-font-family-base: "Inter", "HarmonyOS Sans SC", ui-sans-serif, sans-serif, -apple-system, BlinkMacSystemFont, system-ui, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --vp-font-family-mono: "Sarasa Mono SC", "Monaspace Neon", ui-monospace, "SFMono-Regular", "SF Mono", "Menlo", "Consolas", "Liberation Mono", monospace;
+}
+* { //允许合成粗体斜体及小号大写喵！
+    font-synthesis: weight style small-caps;
+    //CJK自动排版喵！
+    text-autospace: normal;
+    //分数显示优化+标点挤压+自然字宽喵！https://sparanoid.com/lab/opentype-features/
+    font-feature-settings: "frac", "hwid", "pwid";
+}
+.VPFeatures, .VPDoc .main {//左右对齐喵！
+    text-align: justify;
+    text-justify: inter-character;
+}

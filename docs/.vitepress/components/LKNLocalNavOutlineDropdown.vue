@@ -73,7 +73,6 @@ function onItemClick(e: Event) {
     <Transition name="flyout">
       <div v-if="open" ref="items" class="items" @click="onItemClick">
         <OverlayScrollbarsComponent
-          defer
           element="span"
           :options='{
             overflow: {
@@ -192,7 +191,8 @@ button.open {
 }
 
 .outline {
-  padding: 8px 0;
+  margin: 1px 0;
+  padding: 6px 0;
   background-color: var(--vp-c-bg-soft);
 }
 
