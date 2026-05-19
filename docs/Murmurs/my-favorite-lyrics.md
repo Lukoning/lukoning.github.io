@@ -14,7 +14,7 @@ copyright: 版权归各作词者所有
 
 ## <ruby>好きなので。<rp> / </rp><rt>因为喜欢你。</rt></ruby>
 
-<Badge type="info">歌手：艾拉(cv.雨宮天)</Badge> <Badge type="info">番剧《可塑性记忆》插曲</Badge>
+<Badge type="info">歌手：艾拉(cv.雨宮天)</Badge> <Badge type="info">番剧《<ruby>プラスティック・メモリーズ<rp> (</rp><rt>可塑性记忆</rt><rp>) </rp></ruby>》插曲</Badge>
 
 <ruby>おはよう またね お帰りなさい<rp> / </rp><rt>早安 再见 欢迎回家</rt></ruby>
 
@@ -46,7 +46,7 @@ copyright: 版权归各作词者所有
 
 ## <ruby>*Remember*<rp> / </rp><rt>记忆</rt></ruby>
 
-<Badge type="info">歌手：月見ヤチヨ(cv.早見沙織)</Badge> <Badge type="info">电影《超时空辉夜姬！》片头曲</Badge>
+<Badge type="info">歌手：月見ヤチヨ(cv.早見沙織)</Badge> <Badge type="info">电影《<ruby>超かぐや姫！<rp> (</rp><rt>超时空辉夜姬！</rt><rp>) </rp></ruby>》片头曲</Badge>
 
 <ruby>大切なメロディは流れてるよ<rp> / </rp><rt>无比珍贵的旋律正流淌着</rt></ruby>
 
@@ -111,6 +111,50 @@ copyright: 版权归各作词者所有
 每当我为你抬起头，连眼泪都觉得自由
 
 有的爱像大雨滂沱，却依然，相信彩虹
+
+## 那些年
+
+<Badge type="info">歌手：胡夏</Badge> <Badge type="info">电影《那些年，我们一起追的女孩》插曲</Badge>
+
+那些年错过的大雨，那些年错过的爱情
+
+好想拥抱你，拥抱错过的勇气
+
+曾经想征服全世界，到最后回首才发现
+
+这世界滴滴点点全部都是你
+
+那些年错过的大雨，那些年错过的爱情
+
+好想告诉你，告诉你我没有忘记
+
+那天晚上满天星星，平行时空下的约定
+
+再一次相遇我会，紧紧抱着你
+
+紧紧抱着你
+
+## <ruby>あの頃<rp> (</rp><rt>那些年</rt><rp>) </rp>~紧紧抱着你~<rp> (</rp><rt>~ジンジンバオヂュオニー~</rt><rp>) </rp></ruby>
+
+<Badge type="info">歌手：whiteeeen</Badge> <Badge type="info">电视剧《<ruby>それでも僕は君が好き<rp> (</rp><rt>即使如此我还是喜欢你</rt><rp>) </rp></ruby>》插曲</Badge>
+
+<ruby>風が吹く季節 すれ違った恋<rp> / </rp><rt>风吹的季节 错过的爱情</rt></ruby>
+
+<ruby>言い出せず 思い閉じ込めた<rp> / </rp><rt>说不出口的爱意封锁在心底</rt></ruby>
+
+<ruby>君はいつだって そう僕の全て<rp> / </rp><rt>你自始至终都是我的全部</rt></ruby>
+
+<ruby>この世界中にただ一人<rp> / </rp><rt>放眼全世界你就是我的唯一</rt></ruby>
+
+<ruby>できるだけ強く ああ抱きしめたい<rp> / </rp><rt>只想尽可能 紧紧抱着你</rt></ruby>
+
+<ruby>輝く満天の夜空に<rp> / </rp><rt>漫天璀璨的夜空下</rt></ruby>
+
+<ruby>汚れなき僕ら 2人で交わした<rp> / </rp><rt>天真无邪的我们 彼此许下的</rt></ruby>
+
+<ruby>あの約束を忘れない<rp> / </rp><rt>那个约定我不会忘记</rt></ruby>
+
+<ruby>紧紧抱着你<rp> / </rp><rt>ジンジンバオヂュオニー</rt></ruby>
 
 ## 紫荆花盛开
 
@@ -192,7 +236,7 @@ copyright: 版权归各作词者所有
 
 ## <ruby>Lemon<rp> / </rp><rt>柠檬</rt></ruby>
 
-<Badge type="info">歌手：米津玄師</Badge> <Badge type="info">电视剧《非自然死亡》片尾曲</Badge>
+<Badge type="info">歌手：米津玄師</Badge> <Badge type="info">电视剧<ruby>《アンナチュラル》<rp> (</rp><rt>非自然死亡</rt><rp>) </rp></ruby>片尾曲</Badge>
 
 <ruby>今でもあなたはわたしの光<rp> / </rp><rt>时至今日 你仍是我的光芒</rt></ruby>
 
@@ -252,7 +296,7 @@ copyright: 版权归各作词者所有
 
 ## <ruby>星屑<rp> / </rp><rt>追星星的人</rt></ruby>
 
-<Badge type="info">歌手：霜月はるか</Badge> <Badge type="info">游戏《库特Wafter》片尾曲</Badge>
+<Badge type="info">歌手：霜月はるか</Badge> <Badge type="info">游戏《<ruby>クドわふたー<rp> (</rp><rt>库特Wafter</rt><rp>) </rp></ruby>》片尾曲</Badge>
 
 <ruby>小さな 夢の翼を<rp> / </rp><rt>幼小的梦之羽翼</rt></ruby>
 
@@ -276,7 +320,7 @@ copyright: 版权归各作词者所有
 
 ## <ruby>色違いの翼<rp> / </rp><rt>异色的羽翼</rt></ruby>
 
-<Badge type="info">歌手：雪村あおい(cv.井口裕香)&倉上ひなた(cv.阿澄佳奈)</Badge> <Badge type="info">番剧《向山进发•第三季》片尾曲</Badge>
+<Badge type="info">歌手：雪村あおい(cv.井口裕香)&倉上ひなた(cv.阿澄佳奈)</Badge> <Badge type="info">番剧《<ruby>ヤマノススメ サードシーズン<rp> (</rp><rt>向山进发 第三季</rt><rp>) </rp></ruby>》片尾曲</Badge>
 
 <ruby>繋いだ手と手を 離さないで<rp> / </rp><rt>不要将牵在一起的手松开</rt></ruby>
 
@@ -310,7 +354,7 @@ copyright: 版权归各作词者所有
 
 ## <ruby>なんもない<rp> / </rp><rt>一无所有</rt></ruby>
 
-<Badge type="info">歌手：星街すいせい</Badge> <Badge type="info">电影《四重星》片头曲</Badge>
+<Badge type="info">歌手：星街すいせい</Badge> <Badge type="info">电影《<ruby>トラペジウム<rp> (</rp><rt>四重星</rt><rp>) </rp></ruby>》片头曲</Badge>
 
 <ruby>僕がいちばんなんにもないんだろう<rp> / </rp><rt>我是世上最一无所有的一人</rt></ruby>
 

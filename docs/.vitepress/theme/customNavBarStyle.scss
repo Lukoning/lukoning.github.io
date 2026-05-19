@@ -22,11 +22,6 @@
     background-color: var(--vp-nav-bg-color); //回退
 }
 
-.VPNavBar::after {
-    @include all-navbar-bg-pseudo;
-    -webkit-mask: var(--lkn-navbar-mask);
-    mask: var(--lkn-navbar-mask);
-}
 .VPNavBar:not(#ABC) {
     --vp-nav-bg-color: var(--lkn-page-bg);
     background-color: transparent;
@@ -38,6 +33,12 @@
     }
     .divider {//分割线
         display: none;
+    }
+    &::after {
+        @include all-navbar-bg-pseudo;
+        opacity: .95;
+        -webkit-mask: var(--lkn-navbar-mask);
+        mask: var(--lkn-navbar-mask);
     }
     .container::after {
         @include all-navbar-bg-pseudo;
@@ -89,6 +90,7 @@
     border-bottom: none;
     &::after {
         @include all-navbar-bg-pseudo;
+        opacity: .95;
         -webkit-mask: var(--lkn-local-navbar-mask);
         mask: var(--lkn-local-navbar-mask);
     }
@@ -107,6 +109,7 @@
     left: unset;
     right: 20px;
     width: auto;
+    margin-left: max(20px, 20vw); //其实是最小边距
     backdrop-filter: blur(var(--lkn-dropdown-blur-radius));
 }
 
@@ -181,16 +184,13 @@
     .VPNavBarSearchButton{ @include wide-search-button; }
 }
 @media (max-width: 959.999px) { /*宽度960以下*/
-    .VPLocalNav ~ .VPContent { //穿帮咯
-        box-shadow: 0 -45px 0 0 var(--lkn-page-bg);
+    .VPContent:not(.is-home) { //穿帮咯
+        box-shadow: 0 -120px 0 0 var(--lkn-page-bg);
     }
-    .VPNavBar::after {
-        background-image: none; //不需要background-image了
-        -webkit-mask: none;
-        mask: none;
-    }
-    .VPNavBar.home::after { //背景 给我 咔掉 ！
-        display: none;
+    .VPNavBar {
+         &::after, .container::after { //背景 给我 咔掉 ！
+            display: none;
+         }
     }
     .VPDoc.VPDoc { //缩小顶边距，在本导航栏设计中平衡留白空间
         padding-top: 6px;
