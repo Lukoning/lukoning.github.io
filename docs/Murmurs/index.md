@@ -13,7 +13,7 @@ order: 1234567890
 <script setup>
   import { useData } from 'vitepress'
   const { theme } = useData();
-  const items = theme.value.sidebar.filter(item => item.text === "蔬菜罐罐汤");
+  const items = theme.value.sidebar.filter(item => item.text === "蔬菜罐罐汤")[0].items;
 </script>
 
 ::: info 杂念们：

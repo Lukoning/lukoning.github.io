@@ -48,6 +48,7 @@ features:
     dev: sb.filter(item => item.text === "虚空网络"),
     anyt: sb.filter(item => item.text === "蔬菜罐罐汤"),
   };
+  Object.keys(items).forEach( key => items[key][0].collapsed = undefined)
 </script>
 
 <lkn layout text-center>
@@ -66,16 +67,19 @@ features:
 
 == 饭能市
 <lkn layout box-center>
+<em>ACG文化</em>
 <CNavTree :items="items.hanno" />
 </lkn>
 
 == 虚空网络
 <lkn layout box-center>
+<em>技术笔记</em>
 <CNavTree :items="items.dev" />
 </lkn>
 
 == 蔬菜罐罐汤
 <lkn layout box-center>
+<em>个人空间</em>
 <CNavTree :items="items.anyt" />
 </lkn>
 

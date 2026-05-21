@@ -6,6 +6,7 @@
 
     --lkn-loading-circle-width: max(min(0.4vw, 0.4vh), 3px);
     --lkn-loading-circle-radius: max(min(2vw, 2vh), 22px);
+    --lkn-loading-text-font-size: 1em;
 }
 
 * {
@@ -30,6 +31,21 @@
         animation-duration: 0.6s; /*旋转周期*/
         border-top-color: var(--lkn-theme-accent);
         border-left-color: var(--lkn-theme-accent);
+    }
+    &::before {
+        content: "Now Loading ...";
+        color: var(--lkn-theme-accent);
+        text-shadow:
+            1px 1px 2px var(--lkn-theme-accent-bg),
+            1px 1px 2px var(--lkn-theme-accent); //双阴影会柔和些，又不至于太不明显
+        opacity: .9;
+        font-size: var(--lkn-loading-text-font-size, inherit);
+        font-style: italic;
+        font-weight: bold;
+        position: fixed;
+        top: calc(var(--lkn-loading-text-font-size, inherit)/2);
+        left: calc(var(--lkn-loading-text-font-size, inherit)/2 + 5px);
+        z-index: 1031; //与nprogress默认值一致
     }
 }
 //OverlayScrollbars滚动条

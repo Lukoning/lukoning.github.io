@@ -73,6 +73,8 @@
     }
 }
 .algolia {
+    border: solid transparent;
+    border-width: 0;
     [command-dialog-mask]::after {
         opacity: 1;
         transition: opacity .2s;
@@ -83,12 +85,23 @@
         transition: opacity .3s, transform .4s cubic-bezier(.34, .68, 0, 1);
     }
     &.command-dialog-enter-from, &.command-dialog-leave-to {
+        border-width: 1px;
         [command-dialog-mask]::after {
             opacity: 0;
         }
         [command-dialog-wrapper] {
             opacity: 0;
             transform: translateY(-100px);
+        }
+    }
+    &.command-dialog-leave-active {
+        // 为了子元素过渡动画能正常应用
+        transition: border-width 0s .5s;
+        [command-dialog-mask]::after {
+            transition: opacity .2s .1s;
+        }
+        [command-dialog-wrapper] {
+            transition: opacity .3s, transform .15s cubic-bezier(1, 0, .68, .34);
         }
     }
 
@@ -119,7 +132,7 @@
         transition: opacity .2s;
     }
     &.fade-leave-active {
-        transition: opacity .2s .2s;
+        transition: opacity .2s .1s;
     }
 }
 

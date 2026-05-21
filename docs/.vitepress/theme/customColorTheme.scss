@@ -48,7 +48,7 @@ $lkn-theme-accent-bg-dark: #100416; /*oklch空间混合黑色80%和主题色20%*
         --vp-c-bg-alt: #88DDBB36; /*非强调色按钮*/
         --vp-c-divider: #66887764;/*分隔条*/
         --vp-c-default-soft: #{color.mix($lkn-theme-accent-bg-light, transparent, 50%)}; /*Info框、代码块等*/
-        --vp-c-brand-soft: #{color.mix($lkn-theme-accent-light, transparent, 50%)}; /*Tip框*/
+        --vp-c-brand-soft: #{color.mix($lkn-theme-accent-light, transparent, 15%)}; /*Tip框*/
         --vp-code-line-highlight-color: #{color.mix($lkn-theme-accent-light, transparent, 20%)};
 
         --vp-button-brand-text: var(--lkn-theme-text-brighter);

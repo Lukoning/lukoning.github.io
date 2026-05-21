@@ -49,6 +49,10 @@ ruby rt { //调大注音字号，看得更清楚
     min-width: fit-content;
     color: var(--vp-c-text-2);
 }
+//修复文本不居中问题
+.search-dialog [command-empty] {
+    text-align: center;
+}
 
 //配合 vitepress-plugin-image-viewer
 .vp-doc img {

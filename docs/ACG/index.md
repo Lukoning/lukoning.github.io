@@ -15,7 +15,7 @@ order: 2124520
 <script setup>
   import { useData } from 'vitepress'
   const { theme } = useData();
-  const items = theme.value.sidebar.filter(item => item.text === "饭能市");
+  const items = theme.value.sidebar.filter(item => item.text === "饭能市")[0].items;
 </script>
 
 ::: info 饭能市立图书馆：

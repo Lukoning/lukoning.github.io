@@ -13,6 +13,31 @@ const componentAliases = {
   'VPSidebar': 'LKNSidebar',
 }
 
+const sidebar = generateSidebar({ // see: https://vitepress-sidebar.cdget.com/zhHans/guide/options
+  documentRootPath: "./docs", //指定文档根目录
+  includeRootIndexFile: true, //包含首页
+  useTitleFromFrontmatter: true, //侧边栏标题显示文件元数据中的标题，否则回退
+  useTitleFromFileHeading: true, //回退为显示h1标题，否则显示为文件名
+  useFolderLinkFromIndexFile: true, //如果文件夹有自己的index.md，则可以导航到这个文件
+  useFolderTitleFromIndexFile: true, //如果文件夹有自己的index.md，使用这个文件的标题作为文件夹名
+  excludeFilesByFrontmatterFieldName: "exclude", //不显示元数据包含exclude的文件
+  sortMenusByFrontmatterOrder: true, //按文件元数据中指定的数字order自定义排序
+  sortMenusOrderByDescending: false, //降序排序（order越小越靠前）
+  sortFolderTo: undefined, //没放到文件夹里的，也按照上述方法排序
+  collapsed: false, //默认不折叠
+});
+
+sidebar.forEach(item => {
+  item.collapsed = true;
+  /* if (item.text === "蔬菜罐罐汤") {
+    item.items?.forEach(item => {
+      if (item.text === "个中诗文独白") {
+        item.collapsed = true;
+      }
+    });
+  } 似乎没多大必要，对吧 */
+})
+
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "白河豚的站",
@@ -47,7 +72,7 @@ export default defineConfig({
             resetButtonTitle: '清掉输入喵',
             btnPlaceholder: '搜索本站…',
             placeholder: '在这里输入关键词搜索喵~',
-            emptyText: '找不到结果哦喵… 试试其他表达呜喵？ 记得空格分割哦喵⭐',
+            emptyText: '找不到结果哦喵…\n试试别的表达呜喵？或者用空格分割关键词喵⭐',
             heading: '搜到了 {{searchResult}} 条结果喵！',
             toSelect: '是选择喵',
             toNavigate: '是切换喵',
@@ -148,19 +173,7 @@ export default defineConfig({
       { text: '蔬菜罐罐汤', link: '/Murmurs/' },
     ],
 
-    sidebar: generateSidebar({ // see: https://vitepress-sidebar.cdget.com/zhHans/guide/options
-      documentRootPath: "./docs", //指定文档根目录
-      includeRootIndexFile: true, //包含首页
-      useTitleFromFrontmatter: true, //侧边栏标题显示文件元数据中的标题，否则回退
-      useTitleFromFileHeading: true, //回退为显示h1标题，否则显示为文件名
-      useFolderLinkFromIndexFile: true, //如果文件夹有自己的index.md，则可以导航到这个文件
-      useFolderTitleFromIndexFile: true, //如果文件夹有自己的index.md，使用这个文件的标题作为文件夹名
-      excludeFilesByFrontmatterFieldName: "exclude", //不显示元数据包含exclude的文件
-      sortMenusByFrontmatterOrder: true, //按文件元数据中指定的数字order自定义排序
-      sortMenusOrderByDescending: false, //降序排序（order越小越靠前）
-      sortFolderTo: undefined, //没放到文件夹里的，也按照上述方法排序
-      collapsed: false, //默认不折叠
-    }),
+    sidebar,
 
     socialLinks: [
       {

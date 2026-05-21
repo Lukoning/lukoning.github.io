@@ -22,6 +22,14 @@ import CNavTree from "../components/CNavTree.vue"
 import './style.css'
 import "./customCollection.scss"
 
+//https://www.npmjs.com/package/nprogress
+NProgress.configure({
+  easing: 'ease-out', //动画曲线
+  showSpinner: true, //显示加载圈
+  trickleSpeed: 300, //自动递增间隔
+  minimum: 0.2, //启动时使用的最小百分比
+})
+
 export default {
   extends: DefaultTheme,
   Layout: CustomLayout,
@@ -60,14 +68,10 @@ export default {
     app.component('CNavTree', CNavTree);
 
     if (!inBrowser) return;//非浏览器环境下返回，否则构建时报错
+    
+    // 页面加载时（何时？）开始进度条（会在路由切换结束时顺便结束）
+    NProgress.start();
 
-    //https://www.npmjs.com/package/nprogress
-    NProgress.configure({
-      easing: 'ease-out', //动画曲线
-      showSpinner: true, //显示加载圈
-      trickleSpeed: 200, //自动递增间隔
-      minimum: 0.2, //启动时使用的最小百分比
-    })
     router.onBeforeRouteChange = () => {
       // 每次路由切换前开始进度条或重置状态
       if (NProgress.isStarted()) NProgress.set(0.2); else NProgress.start();
@@ -76,27 +80,23 @@ export default {
       NProgress.done(); // 路由切换完成后结束进度条
     }
 
-    router.onBeforePageLoad = () => {
-      // 页面加载前开始进度条（会在路由切换结束时顺便结束）
-      NProgress.start();
-      //初始化自定义叠加滚动条
-      OverlayScrollbars.plugin([ClickScrollPlugin]);
-      const osInstance = OverlayScrollbars(document.body, {
-        overflow: {
-          x: "scroll",
-          y: "scroll",
-        },
-        scrollbars: {
-          theme: "os-theme-light",
-          autoHide: "leave",
-          autoHideDelay: 800,
-          dragScroll: true,
-          clickScroll: true,
-        },
-      });
-      startOverflowSync(osInstance); //开始观察并同步body上的overflow修改
-      initVisitorCount();
-    }
+    //初始化自定义叠加滚动条
+    OverlayScrollbars.plugin([ClickScrollPlugin]);
+    const osInstance = OverlayScrollbars(document.body, {
+      overflow: {
+        x: "scroll",
+        y: "scroll",
+      },
+      scrollbars: {
+        theme: "os-theme-light",
+        autoHide: "leave",
+        autoHideDelay: 800,
+        dragScroll: true,
+        clickScroll: true,
+      },
+    });
+    startOverflowSync(osInstance); //开始观察并同步body上的overflow修改
+    initVisitorCount();
   }
 } satisfies Theme
 

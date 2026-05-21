@@ -23,13 +23,13 @@ function getItemKey(item: DefaultTheme.SidebarItem): string {
 }
 
 // 初始化折叠状态
-const collapsedMap = ref<Record<string, boolean>>(
+const collapsedMap = ref<Record<string, boolean|undefined>>(
   (() => {
     const map: Record<string, boolean> = {}
     props.items.forEach(item => {
       const key = getItemKey(item)
       if (key && item.items?.length) {
-        map[key] = item.collapsed ?? false
+        map[key] = item.collapsed
       }
     })
     return map
@@ -68,7 +68,7 @@ function normalizeLink(link?: string): string | undefined {
       <div class="nav-item">
         <a v-if="item.link" :href="normalizeLink(item.link)" class="nav-link">{{ item.text }}</a>
         <span v-else class="nav-text">{{ item.text }}</span>
-        <div class="caret-container" v-if="item.items?.length && depth !== 0">
+        <div class="caret-container" v-if="item.items?.length && item.collapsed !== undefined">
           <button
             class="caret"
             @click="toggle(item)"

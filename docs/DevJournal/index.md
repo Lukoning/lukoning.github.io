@@ -15,7 +15,7 @@ order: 41735173
 <script setup>
   import { useData } from 'vitepress'
   const { theme } = useData();
-  const items = theme.value.sidebar.filter(item => item.text === "虚空网络");
+  const items = theme.value.sidebar.filter(item => item.text === "虚空网络")[0].items;
 </script>
 
 ::: info 请收下罐装知识：
