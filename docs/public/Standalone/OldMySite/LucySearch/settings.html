@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <title>设置 - Lucy搜索</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/><!-- 移动端适配 -->
+    <meta name="color-scheme" content="light dark"><!-- 声明支持亮色和暗色模式 -->
+    <link rel="stylesheet" type="text/css" href="style/noTheme.css" />
+    <script type="text/javascript" src="javaScript/jquery-3.6.3.min.js"></script>
+    <script type="text/javascript" src="javaScript/js.cookie.min.js"></script>
+    <script type="text/javascript" src="javaScript/functions.js"></script>
+    <script id="themeJS" type="text/javascript" src="style/theme.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            loadSettings("settings", "ture");
+        })
+        function clearAllCookie() {//清空所有Cookie
+            var c = document.cookie.match(/[^ =;]+(?=\=)/g); //获取Cookie名称列表
+            if(c) { //如果有Cookie可清
+                for(var i = c.length; i--;) { //遍历Cookie并逐一删除
+                    Cookies.remove(c[i]);
+                }
+                window.alert("Cookie清除成功（部分必要Cookie会在清除后自动生成）");
+            } else { //否则
+                window.alert("没有设置任何Cookie");
+            }
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <input class="button barButton" style="font-size: 15px; width: 40px; height: 35px; padding-top: 7px;" id="back" onclick="toPage('back')" type="button" value="&#xe64e;" />
+        <br />
+        <p style="font-size: 50px; line-height: 50px">设置</p>
+        <br />
+        <div>
+            <br />
+            <a style="font-size: 20px">主题</a>
+            <br />
+            <select class="button selectMenu" style="width: 250px" id="set-theme"><!-- 主题设置 -->
+                <option id="theme-default" value="default">默认</option>
+                <option id="theme-windows11" value="windows11">仿Windows 11</option>
+                <option id="theme-genshin" value="genshin">仿原神（测试）</option>
+            </select>
+            <br />
+            <form>
+                <a>模式</a><!-- 暗色/亮色模式设置 -->
+                <lable><input id="mode-auto" type="radio"  name="set-mode" value="auto" checked >自动</lable>
+                <lable><input id="mode-light" type="radio"  name="set-mode" value="light">亮色</lable>
+                <lable><input id="mode-dark" type="radio"  name="set-mode" value="dark">暗色</lable>
+            </form>
+        </div>
+    </div>
+    <hr />
+    <div id="12">
+        <input class="button" style="width: 120px; float: left" type="button" onclick="clearAllCookie()" value="清除Cookie" />
+        <input class="button buttonGroupRight" style="width: 110px" type="button" onclick="saveSettings(1)" value="保存并返回" />
+        <input class="button buttonGroupLeft buttonColored" style="width: 70px" type="button" onclick="saveSettings(0)" value="保存" />
+    </div>
+    <br />
+    <p style="float: right">注：部分设置或效果需要刷新生效。设置信息通过Cookie在浏览器里保存3650天（约10年），如果清除Cookie，则设置会提前失效。</p>
+</body>
+</html>

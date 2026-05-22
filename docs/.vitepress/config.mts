@@ -27,7 +27,7 @@ const sidebar = generateSidebar({ // see: https://vitepress-sidebar.cdget.com/zh
   collapsed: false, //默认不折叠
 });
 
-sidebar.forEach(item => {
+if (Array.isArray(sidebar)) sidebar.forEach(item => {
   item.collapsed = true;
   /* if (item.text === "蔬菜罐罐汤") {
     item.items?.forEach(item => {
@@ -60,11 +60,12 @@ export default defineConfig({
   metaChunk: true,
   appearance: "dark", //默认深色
 
+  sitemap: { hostname: "https://lukoning.github.io" },
+
   vite: {
     plugins: [
       groupIconVitePlugin(),
       pagefindPlugin({
-        showDate: true,
         locales: {
           root: {
             closeButtonTitle: '返回去喵',
@@ -168,9 +169,9 @@ export default defineConfig({
   
     nav: [
       { text: '提瓦特大陆', link: '/' },
-      { text: '饭能市', link: '/ACG/' },
-      { text: '虚空网络', link: '/DevJournal/' },
-      { text: '蔬菜罐罐汤', link: '/Murmurs/' },
+      { text: '饭能市', link: '/ACG/', activeMatch: '/ACG/' },
+      { text: '虚空网络', link: '/DevJournal/', activeMatch: '/DevJournal/' },
+      { text: '蔬菜罐罐汤', link: '/Murmurs/', activeMatch: '/Murmurs/' },
     ],
 
     sidebar,

@@ -25,7 +25,7 @@ function getItemKey(item: DefaultTheme.SidebarItem): string {
 // 初始化折叠状态
 const collapsedMap = ref<Record<string, boolean|undefined>>(
   (() => {
-    const map: Record<string, boolean> = {}
+    const map: Record<string, boolean|undefined> = {}
     props.items.forEach(item => {
       const key = getItemKey(item)
       if (key && item.items?.length) {

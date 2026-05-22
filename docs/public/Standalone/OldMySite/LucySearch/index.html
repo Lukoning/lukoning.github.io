@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <title>主页 - Lucy搜索</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/><!-- 移动端适配 -->
+    <meta name="color-scheme" content="light dark"><!-- 声明支持亮色和暗色模式 -->
+    <link rel="stylesheet" type="text/css" href="style/noTheme.css" />
+    <script type="text/javascript" src="javaScript/jquery-3.6.3.min.js"></script>
+    <script type="text/javascript" src="javaScript/js.cookie.min.js"></script>
+    <script type="text/javascript" src="javaScript/functions.js"></script>
+    <script id="themeJS" type="text/javascript" src="style/theme.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            loadSettings('index');
+        })
+    </script>
+</head>
+<body>
+    <div style="line-height: 50px">
+        <input class="button barButton buttonGroupLeft" style="font-size: 19px; width: 50px; height: 35px; padding-top: 7px;" onclick="toPage('settings.html')" type="button" value="&#xe115;" />
+        <input class="button barButton buttonGroupRight" style="font-size: 19px; width: 50px; height: 35px; padding-top: 7px;" onclick="toPage('about.html')" type="button" value="&#xe946;" />
+        <br />
+        <p style="font-size: 55px; line-height: 100px">Lucy搜索</p>
+        <input class="button textBox" style="min-width: 300px" id="text-box" type="search" onkeydown="searchKeydown()" placeholder="输入关键字" autocomplete="on" />
+        <br />
+        <input class="button buttonGroupRight buttonColored" style="width: 90px" id="search-button" type="button" onclick="search()" value="搜索&#xe71e" />
+        <select class="button buttonGroupLeft selectMenu" style="width: 150px" id="search-select"><!-- 以下是搜索引擎选择菜单 -->
+                <option value="">选择搜索引擎</option>
+            <optgroup label="网页搜索">
+                <option value="http://www.so.com/s?q=">360搜索</option>
+                <option value="http://www.baidu.com/s?wd=">百度</option>
+                <option value="http://cn.bing.com/search?q=">必应</option>
+                <option value="http://cn.bing.com/search?ensearch=1&q=">必应国际版</option>
+                <option value="http://www.sogou.com/web?query=">搜狗</option>
+                <option value="http://so.toutiao.com/search?keyword=">头条搜索(手机)</option>
+                <option value="http://so.toutiao.com/search?dvpf=pc&keyword=">头条搜索(PC)</option>
+                <option value="http://www.wuzhuiso.com/s?q=">无追搜索</option>
+            <optgroup label="新闻搜索">
+                <option value="http://www.cgtn.com/search?keyword=">CGTN</option>
+                <option value="http://search.sohu.com/?keyword=">搜狐</option>
+                <option value="http://search.cctv.com/search.php?type=web&qtext=">中央电视台</option>
+            <optgroup label="音视频搜索">
+                <option value="http://www.baidu.com/sf/vsearch?pd=video&wd=">百度</option>
+                <option value="http://music.163.com/#/search/m/?s=">网易云音乐</option>
+                <option value="http://search.bilibili.com/video?keyword=">哔哩哔哩</option>
+                <option value="http://search.cctv.com/search.php?qtext=">中央电视台</option>
+            <optgroup label="地点搜索">
+                <option value="http://map.baidu.com/?ie=utf-8&s=s%26wd%3D">百度地图</option>
+                <option value="http://ditu.amap.com/search?query=">高德地图</option>
+            <optgroup label="知识就是力量">
+                <option value="http://www.zhihu.com/search?q=">知乎</option>
+                <option value="http://www.sogou.com/sogou?insite=zhihu.com&ie=utf8&query=">知乎(搜狗)</option>
+        </select>
+        <br />
+    </div>
+    <hr />
+    <div>
+        <a>重要:请启用JavaScript(又称js或脚本)以正常运行页面</a>
+        <br />
+        <a>字体可能无法显示或显示异常</a>
+    </div>
+    <hr />
+    <input class="button" style="font-size: 15px; width: 100px; height: 30px" type="button" onclick="location.reload()" value="刷新页面&#xe72c" />
+    <a>以下是页面通过JavaScript获取到的信息：</a>
+    <table border=1><!-- 创建一个表格，显示JS能获取到部分关于用户的信息（不知道有什么卵用） -->
+        <script type="text/javascript">
+            document.write("<tr><td>浏览器名称：</td><td>" + navigator.appName);
+            document.write("<tr><td>在线：</td><td>" + navigator.onLine);
+            document.write("</td></tr><tr><td>平台：</td><td>" + navigator.platform);
+            document.write("</td></tr><tr><td>用户代理(UA)：</td><td>" + navigator.userAgent);
+            document.write("</td></tr><tr><td>语言代码：</td><td>" + navigator.language);
+            document.write("</td></tr><tr><td>是否开启Cookie：</td><td>" + navigator.cookieEnabled);
+            document.write("</td></tr><tr><td>已保存的所有Cookie：</td><td>" + document.cookie);
+        </script>
+    </td></tr></table>
+</body>
+</html>

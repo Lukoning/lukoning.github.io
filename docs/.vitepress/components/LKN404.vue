@@ -2,6 +2,7 @@
  <script setup lang="ts">
 import { withBase } from 'vitepress'
 import { useData } from 'vitepress'
+// @ts-expect-error
 import { useLangs } from 'vitepress/dist/client/theme-default/composables/langs'
 import VPButton from 'vitepress/dist/client/theme-default/components/VPButton.vue'
 

@@ -4,6 +4,7 @@
 import { useScrollLock } from '@vueuse/core'
 import { inBrowser, useRoute } from 'vitepress'
 import { ref, watch, onMounted, onBeforeUnmount, nextTick } from 'vue'
+// @ts-expect-error
 import { useLayout } from 'vitepress/dist/client/theme-default/composables/layout'
 import VPSidebarGroup from 'vitepress/dist/client/theme-default/components/VPSidebarGroup.vue'
 import 'overlayscrollbars/overlayscrollbars.css';

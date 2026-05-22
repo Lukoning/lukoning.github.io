@@ -2,6 +2,7 @@
 import { useWindowScroll } from '@vueuse/core'
 import { watch, computed, onMounted, ref } from 'vue'
 import { useData } from 'vitepress'
+// @ts-expect-error
 import { useLayout } from 'vitepress/dist/client/theme-default/composables/layout'
 import VPLocalNavOutlineDropdown from './LKNLocalNavOutlineDropdown.vue'
 
