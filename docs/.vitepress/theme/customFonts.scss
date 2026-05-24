@@ -1,28 +1,23 @@
 // 所有字重及对应数值
-$font-weights: (
-    'Thin': 100,
-    'Light': 300,
-    'Regular': 400,
-    'Medium': 500,
-    'Semibold': 600,
-    'Bold': 700,
-    'Black': 900
+$GenSen-font-weights: (
+    'R': 400,
+    'M': 500,
+    'B': 700
 );
 
-// 循环生成每个字重的常规和斜体 @font-face
-@each $name, $weight in $font-weights {
-    // 常规样式 (normal)
+// 循环生成每个字重的@font-face
+@each $name, $weight in $GenSen-font-weights {
     @font-face {
-        font-family: 'HarmonyOS Sans SC';
+        font-family: "GenSenRounded2 TW Subset";
         font-style: normal;
         font-weight: $weight;
         font-display: swap; // 优化加载体验
-        src: url('/fonts/HarmonyOS_Sans_SC/HarmonyOS_Sans_SC_#{$name}.ttf') format('truetype');
+        src: url("/fonts/GenSenRounded2TW/GenSenRounded2TW-#{$name}-subset.woff2") format("woff2");
     }
 }
 
 :root {
-    --vp-font-family-base: "Inter", "HarmonyOS Sans SC", "PingFang SC", ui-sans-serif, sans-serif, -apple-system, BlinkMacSystemFont, system-ui, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --vp-font-family-base: "Inter4CJK", "GenSenRounded2 TW Subset", "GenSenRounded2 TW", "Yuanti SC", "HarmonyOS Sans SC", "PingFang SC", ui-sans-serif, sans-serif, -apple-system, BlinkMacSystemFont, system-ui, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --vp-font-family-mono: "Sarasa Mono SC", "Monaspace Neon", ui-monospace, "SFMono-Regular", "SF Mono", "Menlo", "Consolas", "Liberation Mono", monospace;
 }
 
@@ -31,8 +26,8 @@ $font-weights: (
     font-synthesis: weight style small-caps;
     //CJK自动排版喵！
     text-autospace: normal;
-    //分数显示优化+标点挤压(通用)+标点挤压(HMOS SANS)+自然字宽喵！https://sparanoid.com/lab/opentype-features/
-    font-feature-settings: "frac", "hwid", "ss08", "pwid";
+    //分数显示优化+自然字宽喵！https://sparanoid.com/lab/opentype-features/
+    font-feature-settings: "frac", "pwid";
 }
 
 .VPFeatures,
