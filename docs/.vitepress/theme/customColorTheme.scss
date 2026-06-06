@@ -12,6 +12,7 @@ $lkn-theme-accent-bg-dark: #100416; /*oklch空间混合黑色80%和主题色20%*
     --vp-button-brand-hover-bg: var(--lkn-theme-accent-brighter);
     --vp-button-brand-active-bg: var(--lkn-theme-accent-darker);
     --vp-button-brand-hover-text: var(--lkn-theme-text);
+    --vp-button-alt-active-text: var(--lkn-theme-accent);
 
     --vp-c-bg-elv: var(--vp-c-bg);
     --vp-c-gutter: var(--vp-c-bg-elv);
@@ -32,6 +33,7 @@ $lkn-theme-accent-bg-dark: #100416; /*oklch空间混合黑色80%和主题色20%*
         --lkn-theme-text: #{color.mix(white, $lkn-theme-accent-light, 90%)};
         --lkn-theme-text-brighter: #{color.mix(white, $lkn-theme-accent-light, 95%)};
         --lkn-theme-text-darker: #{color.mix(white, $lkn-theme-accent-light, 50%)};
+        --lkn-theme-border: #{color.mix(white, $lkn-theme-accent-light, 30%)};
         --lkn-home-bg: #{color.mix($lkn-theme-accent-bg-light, transparent, 30%)};
         --lkn-page-bg: #{color.mix($lkn-theme-accent-bg-light, transparent, 70%)};
         --lkn-selection-color: #{color.mix($lkn-theme-accent-light, transparent, 40%)};
@@ -68,6 +70,7 @@ $lkn-theme-accent-bg-dark: #100416; /*oklch空间混合黑色80%和主题色20%*
         --lkn-theme-text: #{color.mix(black, $lkn-theme-accent-dark, 70%)};
         --lkn-theme-text-brighter: #{color.mix(black, $lkn-theme-accent-dark, 50%)};
         --lkn-theme-text-darker: #{color.mix(black, $lkn-theme-accent-dark, 90%)};
+        --lkn-theme-border: #{color.mix(white, $lkn-theme-accent-dark, 50%)};
         --lkn-home-bg: #{color.mix($lkn-theme-accent-bg-dark, transparent, 60%)};
         --lkn-page-bg: #{color.mix($lkn-theme-accent-bg-dark, transparent, 80%)};
         --lkn-selection-color: #{color.mix($lkn-theme-accent-dark, transparent, 40%)};
