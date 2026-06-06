@@ -68,7 +68,9 @@ export default {
     app.component('CNavTree', CNavTree);
 
     if (!inBrowser) return;//非浏览器环境下返回，否则构建时报错
-    
+
+    initVisitorCount();
+
     // 页面加载时（何时？）开始进度条（会在路由切换结束时顺便结束）
     NProgress.start();
 
@@ -96,7 +98,27 @@ export default {
       },
     });
     startOverflowSync(osInstance); //开始观察并同步body上的overflow修改
-    initVisitorCount();
+
+    //加载字体
+    Object.entries({
+      'R': '400',
+      'M': '500',
+      'B': '700'
+    }).forEach(([key, weight]) => {
+      const font = new FontFace(
+        "GenSenRounded2 TW Subset",
+        `url("/fonts/GenSenRounded2TW/GenSenRounded2TW-${key}-subset.woff2")`,
+        {
+          style: "normal",
+          weight,
+          display: "swap"
+        }
+      );
+      font.load().then(
+        () => document.fonts.add(font),
+        (err) => console.error(err)
+      );
+    });
   }
 } satisfies Theme
 

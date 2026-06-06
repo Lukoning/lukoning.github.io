@@ -1,23 +1,5 @@
-// 所有字重及对应数值
-$GenSen-font-weights: (
-    'R': 400,
-    'M': 500,
-    'B': 700
-);
-
-// 循环生成每个字重的@font-face
-@each $name, $weight in $GenSen-font-weights {
-    @font-face {
-        font-family: "GenSenRounded2 TW Subset";
-        font-style: normal;
-        font-weight: $weight;
-        font-display: swap; // 优化加载体验
-        src: url("../fonts/GenSenRounded2TW/GenSenRounded2TW-#{$name}-subset.woff2") format("woff2");
-    }
-}
-
 :root {
-    --vp-font-family-base: "Inter4CJK", "GenSenRounded2 TW Subset", "Yuanti SC", "Inter", "HarmonyOS Sans SC", "PingFang SC", ui-sans-serif, sans-serif, -apple-system, BlinkMacSystemFont, system-ui, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --vp-font-family-base: "Inter4CJK", "GenSenRounded2 TW Subset", "GenSenRounded2 TW", "Yuanti SC", "Inter", "HarmonyOS Sans SC", "PingFang SC", ui-sans-serif, sans-serif, -apple-system, BlinkMacSystemFont, system-ui, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --vp-font-family-mono: "Sarasa Mono SC", "Monaspace Neon", ui-monospace, "SFMono-Regular", "SF Mono", "Menlo", "Consolas", "Liberation Mono", monospace;
 }
 
