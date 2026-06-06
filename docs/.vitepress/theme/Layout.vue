@@ -54,10 +54,10 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
       </div>
     </template>
     <template #aside-outline-before>
-      <CReturnToTopPlus />
+      <CReturnToTopPlus class="aside-button"/>
     </template>
     <template #aside-outline-after>
-      <CJumpToCommentsPlus />
+      <CJumpToCommentsPlus class="aside-button"/>
     </template>
   </DefaultTheme.Layout>
 </template>
@@ -70,6 +70,9 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
 }
 .doc-before > * {
   margin: 0 0 4px;
+}
+.aside-button {
+  margin-block: 6px;
 }
 </style>
 

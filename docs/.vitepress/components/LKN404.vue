@@ -25,8 +25,8 @@ const { currentLang } = useLangs()
     <div class="action">
       <VPButton
         tag="a"
-        size="medium"
-        :theme="'brand'"
+        size="big"
+        :theme="'alt'"
         :text="theme.notFound?.linkText ?? 'Take me home'"
         :href="withBase(theme.notFound?.link ?? currentLang.link)"
         :aria-label="theme.notFound?.linkLabel ?? 'go to home'"

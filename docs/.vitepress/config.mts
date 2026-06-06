@@ -8,6 +8,7 @@ import { fileURLToPath, URL } from 'node:url'
 
 const componentAliases = {
   'NotFound': 'LKN404',
+  'VPButton': 'LKNButton',
   'VPDocFooterLastUpdated': 'Empty',
   'VPLocalNav': 'LKNLocalNav',
   'VPSidebar': 'LKNSidebar',
