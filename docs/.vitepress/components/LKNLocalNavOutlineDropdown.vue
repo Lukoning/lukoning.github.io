@@ -7,6 +7,7 @@ import { nextTick, ref, watch } from 'vue'
 // @ts-expect-error
 import { resolveTitle } from 'vitepress/dist/client/theme-default/composables/outline'
 import VPDocOutlineItem from 'vitepress/dist/client/theme-default/components/VPDocOutlineItem.vue'
+import VPButton from './LKNButton.vue'
 
 import 'overlayscrollbars/overlayscrollbars.css';
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-vue';
@@ -65,10 +66,16 @@ function onItemClick(e: Event) {
     :style="{ '--vp-vh': vh + 'px' }"
     ref="main"
   >
-    <button @click="toggle" :class="{ open }">
+    <VPButton
+      tag="button"
+      size="small"
+      @click="toggle"
+      :class="{ open }"
+      :theme="'alt'"
+    >
       <span class="menu-text">{{ resolveTitle(theme) }}</span>
       <span class="vpi-chevron-right icon" />
-    </button>
+    </VPButton>
     
 
     <Transition name="flyout">
@@ -108,25 +115,13 @@ function onItemClick(e: Event) {
 </template>
 
 <style scoped>
-button {
-  display: block;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 24px;
-  color: var(--vp-c-text-2);
-  transition: color 0.5s;
-  position: relative;
+button.VPButton:not(#ABC) {
+  padding-right: 9px; /*视觉居中*/
+  backdrop-filter: blur(var(--lkn-navbar-button-blur-radius));
 }
-
-button:hover {
-  color: var(--vp-c-text-1);
-  transition: color 0.25s;
-}
-
-button.open {
+button.VPButton.open {
   color: var(--vp-c-brand-1);
 }
-
 
 .icon {
   display: inline-block;

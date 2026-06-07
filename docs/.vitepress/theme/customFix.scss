@@ -36,6 +36,11 @@ ruby rt { //调大注音字号，看得更清楚
     }
 }
 
+//右侧边栏超高修复（配合使用布局插槽）
+.aside-container {
+	height: calc(100vh - var(--vp-nav-height) + var(--vp-layout-top-height, 0px) + var(--vp-doc-top-height, 0px) - 26px);
+}
+
 //vitepress-plugin-breadcrumb
 @media (max-width: 640px) {
     .breadcrumb.breadcrumb {

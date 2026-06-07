@@ -18,11 +18,10 @@
   },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "postinstall": "patch-package",
     "docs:dev": "vitepress dev docs --host 0.0.0.0",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
-    "lkn:patch-pkg": "patch-package vitepress-plugin-pagefind"
+    "lkn:create-patch": "pnpm patch vitepress-plugin-pagefind"
   },
   "engines": {
     "node": ">=18.0.0"
@@ -42,7 +41,6 @@
   "devDependencies": {
     "@types/node": "^25.8.0",
     "@types/nprogress": "^0.2.3",
-    "patch-package": "^8.0.1",
     "sass-embedded": "^1.99.0",
     "vite": "^8.0.13",
     "vitepress": "2.0.0-alpha.17",

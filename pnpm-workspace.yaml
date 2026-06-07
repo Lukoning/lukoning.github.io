@@ -1,0 +1,2 @@
+patchedDependencies:
+  vitepress-plugin-pagefind: patches/vitepress-plugin-pagefind.patch

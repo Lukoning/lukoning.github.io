@@ -1,0 +1,84 @@
+<script setup lang="ts">
+import { computed } from 'vue'
+import { useData } from 'vitepress/dist/client/theme-default/composables/data'
+import { useLangs } from 'vitepress/dist/client/theme-default/composables/langs'
+import { useLayout } from 'vitepress/dist/client/theme-default/composables/layout'
+import { normalizeLink } from 'vitepress/dist/client/theme-default/support/utils'
+import VPImage from 'vitepress/dist/client/theme-default/components/VPImage.vue'
+import VPButton from './LKNButton.vue'
+
+const { site, theme } = useData()
+const { hasSidebar } = useLayout()
+const { currentLang } = useLangs()
+
+const link = computed(() =>
+  typeof theme.value.logoLink === 'string'
+    ? theme.value.logoLink
+    : theme.value.logoLink?.link
+)
+
+const rel = computed(() =>
+  typeof theme.value.logoLink === 'string'
+    ? undefined
+    : theme.value.logoLink?.rel
+)
+
+const target = computed(() =>
+  typeof theme.value.logoLink === 'string'
+    ? undefined
+    : theme.value.logoLink?.target
+)
+</script>
+
+<template>
+  <div class="VPNavBarTitle" :class="{ 'has-sidebar': hasSidebar }">
+    <VPButton
+      tag="a"
+      size="big"
+      :theme="'alt-trans'"
+      class="title"
+      :href="link ?? normalizeLink(currentLang.link)"
+      :rel
+      :target
+    >
+      <slot name="nav-bar-title-before" />
+      <VPImage v-if="theme.logo" class="logo" :image="theme.logo" />
+      <span v-if="theme.siteTitle" v-html="theme.siteTitle"></span>
+      <span v-else-if="theme.siteTitle === undefined">{{ site.title }}</span>
+      <slot name="nav-bar-title-after" />
+    </VPButton>
+  </div>
+</template>
+
+<style scoped>
+.VPNavBarTitle {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid transparent;
+  width: 100%;
+  height: var(--vp-nav-height);
+}
+.VPButton.title {
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  margin-inline: -8px 2px;
+  line-height: 38px;
+  border-radius: 8px;
+}
+
+@media (min-width: 960px) {
+  .VPNavBarTitle {
+    flex-shrink: 0;
+  }
+
+  .VPNavBarTitle.has-sidebar {
+    border-bottom-color: var(--vp-c-divider);
+  }
+}
+
+:deep(.logo) {
+  margin-right: 8px;
+  height: var(--vp-nav-logo-height);
+}
+</style>

@@ -155,36 +155,6 @@ body {
     background-color: var(--vp-c-bg-alt);
 }
 
-.VPButton {
-    position: relative;
-    cursor: default;
-    margin: 2px;
-    &:hover {
-        box-shadow: 0 0 3px var(--vp-button-alt-active-bg);
-    }
-    &:active {
-        box-shadow: 0 0 3px var(--vp-button-alt-active-bg);
-        opacity: .9;
-    }
-    &::before {
-        content: "";
-        display: block;
-        position: absolute;
-        top: -2px;
-        left: -2px;
-        bottom: -2px;
-        right: -2px;
-        border: 2px solid;
-        border-color: transparent;
-        border-radius: inherit;
-        opacity: .9;
-        z-index: 0;
-    }
-    &:hover:not(:active)::before {
-        border-color: var(--lkn-theme-border);
-    }
-}
-
 .VPHero {
     &.has-image {
         .image-bg { /*配合对背景辉光图像的修改*/

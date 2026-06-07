@@ -5,6 +5,7 @@ import { useData } from 'vitepress'
 // @ts-expect-error
 import { useLayout } from 'vitepress/dist/client/theme-default/composables/layout'
 import VPLocalNavOutlineDropdown from './LKNLocalNavOutlineDropdown.vue'
+import VPButton from './LKNButton.vue'
 
 defineProps<{
   open: boolean
@@ -57,11 +58,14 @@ const classes = computed(() => {
 <template>
   <div
     ref="localNav"
-    v-if="!isHome && (hasLocalNav || hasSidebar || y >= navHeight)"
+    v-if="!isHome && (hasLocalNav || hasSidebar)"
     :class="classes"
   >
     <div class="container">
-      <button
+      <VPButton
+        tag="button"
+        size="small"
+        :theme="'alt'"
         v-if="hasSidebar"
         class="menu"
         :aria-expanded="open"
@@ -72,7 +76,7 @@ const classes = computed(() => {
         <span class="menu-text">
           {{ theme.sidebarMenuLabel || 'Menu' }}
         </span>
-      </button>
+      </VPButton>
       <Transition name="title">
         <span v-if="page.title&&showTitle" class="title">
           {{ page.title || '' }}
@@ -123,6 +127,8 @@ const classes = computed(() => {
 
 .container {
   display: flex;
+  min-height: 47px;
+  padding: 0 clamp(8px, 2.5vw, 32px);
   justify-content: space-between;
   align-items: center;
 }
@@ -130,16 +136,8 @@ const classes = computed(() => {
 .menu {
   display: flex;
   align-items: center;
-  line-height: 24px;
-  font-size: 12px;
   font-weight: 500;
-  color: var(--vp-c-text-2);
-  transition: color 0.5s;
-}
-
-.menu:hover {
-  color: var(--vp-c-text-1);
-  transition: color 0.25s;
+  backdrop-filter: blur(var(--lkn-navbar-button-blur-radius));
 }
 
 @media (min-width: 960px) {
@@ -149,20 +147,8 @@ const classes = computed(() => {
 }
 
 .menu-icon {
-  margin-right: 8px;
+  margin-right: 6px;
   font-size: 14px;
-}
-
-.menu,
-:deep(.VPLocalNavOutlineDropdown > button) {
-  padding: 12px 24px 11px;
-}
-
-@media (min-width: 768px) {
-  .menu,
-  :deep(.VPLocalNavOutlineDropdown > button) {
-    padding: 12px 32px 11px;
-  }
 }
 
 .title {
@@ -172,7 +158,7 @@ const classes = computed(() => {
   transform: translate(-50%, -50%); /*还有这种解法？*/
   width: 100%;
   /*左右内边距与localnav按钮宽度（基本）一致*/
-  padding: 2px 95px 0;
+  padding: 2px 90px 0;
   text-align: center;
   letter-spacing: -0.02em;
   font-size: 14px;
@@ -182,6 +168,7 @@ const classes = computed(() => {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webKit-line-clamp: 2;
+  line-clamp: 2;
   overflow: hidden;
 }
 

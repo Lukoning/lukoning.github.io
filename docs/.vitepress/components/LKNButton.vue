@@ -6,7 +6,7 @@ import { EXTERNAL_URL_RE } from 'vitepress/dist/client/shared'
 interface Props {
   tag?: string
   size?: 'small' | 'medium' | 'big'
-  theme?: 'brand' | 'alt' | 'sponsor'
+  theme?: 'brand' | 'alt' | 'alt-trans' | 'sponsor'
   text?: string
   href?: string
   target?: string;
@@ -14,7 +14,7 @@ interface Props {
 }
 const props = withDefaults(defineProps<Props>(), {
   size: 'medium',
-  theme: 'brand'
+  theme: 'alt'
 })
 
 const isExternal = computed(
@@ -90,6 +90,24 @@ const component = computed(() => {
   border-color: var(--vp-button-brand-active-border);
   color: var(--vp-button-brand-active-text);
   background-color: var(--vp-button-brand-active-bg);
+}
+
+.VPButton.alt-trans {
+  border-color: var(--vp-button-alt-border);
+  color: var(--vp-button-alt-text);
+  background-color: transparent;
+}
+
+.VPButton.alt-trans:hover {
+  border-color: var(--vp-button-alt-hover-border);
+  color: var(--vp-button-alt-hover-text);
+  background-color: var(--vp-button-alt-hover-bg);
+}
+
+.VPButton.alt-trans:active {
+  border-color: var(--vp-button-alt-active-border);
+  color: var(--vp-button-alt-active-text);
+  background-color: var(--vp-button-alt-active-bg);
 }
 
 .VPButton.alt {

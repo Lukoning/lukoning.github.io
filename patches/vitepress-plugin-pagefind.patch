@@ -1,7 +1,7 @@
-diff --git a/node_modules/vitepress-plugin-pagefind/dist/index.d.mts b/node_modules/vitepress-plugin-pagefind/dist/index.d.mts
-index f2a0a98..9de645f 100644
---- a/node_modules/vitepress-plugin-pagefind/dist/index.d.mts
-+++ b/node_modules/vitepress-plugin-pagefind/dist/index.d.mts
+diff --git a/dist/index.d.mts b/dist/index.d.mts
+index f2a0a985f359e7caf49e80a4c6292282b80ce2c2..9de645f84329940bca65fd530dbe094efb858e31 100644
+--- a/dist/index.d.mts
++++ b/dist/index.d.mts
 @@ -69,22 +69,37 @@ interface SearchConfig {
       * @default
       * 'Search'
@@ -44,20 +44,83 @@ index f2a0a98..9de645f 100644
      /**
       * @default
       * 'to select'
-diff --git a/node_modules/vitepress-plugin-pagefind/src/Search.vue b/node_modules/vitepress-plugin-pagefind/src/Search.vue
-index f2e4309..337caea 100644
---- a/node_modules/vitepress-plugin-pagefind/src/Search.vue
-+++ b/node_modules/vitepress-plugin-pagefind/src/Search.vue
-@@ -13,6 +13,8 @@ import type { SearchConfig } from './type'
+diff --git a/dist/index.d.ts b/dist/index.d.ts
+index f2a0a985f359e7caf49e80a4c6292282b80ce2c2..9de645f84329940bca65fd530dbe094efb858e31 100644
+--- a/dist/index.d.ts
++++ b/dist/index.d.ts
+@@ -69,22 +69,37 @@ interface SearchConfig {
+      * @default
+      * 'Search'
+      */
+-    btnPlaceholder?: string;
++    btnPlaceholder?: string
+     /**
+      * @default
+      * 'Search Docs'
+      */
+-    placeholder?: string;
++    placeholder?: string
++    /**
++     * @default
++     * 'Close search'
++     */
++    closeButtonTitle?: string
++    /**
++     * @default
++     * 'Display detailed list'
++     */
++    displayDetailsButtonTitle?: string
++    /**
++     * @default
++     * 'Reset search'
++     */
++    resetButtonTitle?: string
+     /**
+      * @default
+      * 'No results found.'
+      */
+-    emptyText?: string;
++    emptyText?: string
+     /**
+      * @default
+      * 'Total: {{searchResult}} search results.'
+      */
+-    heading?: string;
++    heading?: string
+     /**
+      * @default
+      * 'to select'
+diff --git a/src/Search.vue b/src/Search.vue
+index f2e430925b06bc508909b4fc772a72f57c038118..28764e2009af7673f982852b4dddc6b39be59268 100644
+--- a/src/Search.vue
++++ b/src/Search.vue
+@@ -13,6 +13,9 @@ import type { SearchConfig } from './type'
  import { formatPagefindResult } from './search'
  import { formatShowDate } from './utils'
  
++import VPButton from 'vitepress/dist/client/theme-default/components/VPButton.vue';
 +import { OverlayScrollbarsComponent } from 'overlayscrollbars-vue';
 +
  // 搜索结果
  const searchResult = ref<{ route: string; meta: Record<string, any> }[]>([])
  // 配置获取
-@@ -288,7 +290,7 @@ function handleToggleDetail() {
+@@ -269,7 +272,7 @@ function handleToggleDetail() {
+ 
+ <template>
+   <div class="blog-search" data-pagefind-ignore="all">
+-    <div class="nav-search-btn-wait" @click="searchModal = true">
++    <VPButton tag="div" :theme="'alt'" class="nav-search-btn-wait" @click="searchModal = true">
+       <span>
+         <svg width="14" height="14" viewBox="0 0 20 20">
+           <path
+@@ -282,13 +285,13 @@ function handleToggleDetail() {
+         finalSearchConfig?.btnPlaceholder || 'Search'
+       }}</span>
+       <span class="metaKey"> {{ metaKey }} K </span>
+-    </div>
++    </VPButton>
+     <ClientOnly>
+       <Command.Dialog :visible="searchModal" theme="algolia">
          <template #header>
            <div class="search-bar">
              <div class="search-actions before">
@@ -66,7 +129,7 @@ index f2e4309..337caea 100644
                  <span class="vpi-arrow-left local-search-icon" />
                </button>
              </div>
-@@ -299,12 +301,12 @@ function handleToggleDetail() {
+@@ -299,12 +302,12 @@ function handleToggleDetail() {
              <div class="search-actions">
                <button
                  :class="{ active: showDetail }" class="toggle-layout-button" type="button"
@@ -81,7 +144,7 @@ index f2e4309..337caea 100644
                  @click="handleClearSearch"
                >
                  <span class="vpi-delete local-search-icon" />
-@@ -315,25 +317,38 @@ function handleToggleDetail() {
+@@ -315,25 +318,38 @@ function handleToggleDetail() {
          <template #body>
            <div class="search-dialog" :class="{ 'detail-list': showDetail }">
              <Command.List>
@@ -138,7 +201,7 @@ index f2e4309..337caea 100644
              </Command.List>
            </div>
          </template>
-@@ -394,6 +409,31 @@ function handleToggleDetail() {
+@@ -394,6 +410,31 @@ function handleToggleDetail() {
    </div>
  </template>
  
@@ -170,10 +233,10 @@ index f2e4309..337caea 100644
  <style lang="css" scoped>
  .blog-search {
    flex: 1;
-diff --git a/node_modules/vitepress-plugin-pagefind/src/type.ts b/node_modules/vitepress-plugin-pagefind/src/type.ts
-index 44edf14..0bca037 100644
---- a/node_modules/vitepress-plugin-pagefind/src/type.ts
-+++ b/node_modules/vitepress-plugin-pagefind/src/type.ts
+diff --git a/src/type.ts b/src/type.ts
+index 44edf143c4669e461640aaafc5d30dfd39232505..0bca037b37402e72171374c9652493c578e275be 100644
+--- a/src/type.ts
++++ b/src/type.ts
 @@ -82,6 +82,21 @@ export interface SearchConfig {
     * 'Search Docs'
     */

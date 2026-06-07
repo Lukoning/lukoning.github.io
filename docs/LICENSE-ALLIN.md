@@ -198,10 +198,6 @@ Mozilla 公共许可协议，版本 2.0
 
 [项目仓库](https://github.com/ATQQ/sugar-blog) <lkn layout nobr v-html="License('MIT', '2020 sugar')"></lkn>
 
-## patch-package
-
-[项目仓库](https://github.com/ds300/patch-package) <lkn layout nobr v-html="License('MIT', '2017-Present David Sheldrick')"></lkn>
-
 ## Embedded Sass
 
 [项目仓库](https://github.com/sass/embedded-host-node) <lkn layout nobr v-html="License('MIT', '2019, Google LLC')"></lkn>

@@ -51,7 +51,10 @@
     .container > .title.title {//网站标题
         display: flex;
         align-items: center;
-        .title {
+        .VPNavBarTitle {
+            border-color: transparent;
+        }
+        .title:not(.VPButton) {
             height: 40px;
             padding: 0 13px;
             background-color: var(--vp-c-bg-alt);
@@ -112,6 +115,11 @@
     margin-left: max(20px, 20vw); //其实是最小边距
     backdrop-filter: blur(var(--lkn-dropdown-blur-radius));
 }
+.VPLocalNavOutlineDropdown > .VPButton + .items {
+    //如果是被此人改造后的
+    top: 45px;
+    right: clamp(8px, 2.5vw, 32px);
+}
 
 .search-bar {
     background-color: var(--vp-c-bg-alt);
@@ -119,18 +127,25 @@
 //特化 for vitepress-plugin-pagefind 的搜索按钮
 .blog-search.blog-search {
     padding-left: clamp(12px, calc(5vw - 10px), 43px);
+    
     .nav-search-btn-wait {
         // 复制自vitepress自带localsearch（MiniSearch）的图标，可以说是原汁原味了
         --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Cpath d='m21 21l-4.34-4.34'/%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3C/g%3E%3C/svg%3E");
-        &, > * {
-            color: var(--vp-c-text-2);
+        color: var(--vp-c-text-2);
+        font-weight: 400;
+        padding: 0 10px 0;
+        &.VPButton {
+            cursor: default;
+        }
+        > *:not(#ABC) {
+            color: inherit;
         }
         span:not([class]) {
             //替换图标
             background-color: currentColor;
             width: 1em;
             height: 1em;
-            font-size: 14px;
+            font-size: 16px;
             -webkit-mask: var(--icon) no-repeat;
             mask: var(--icon) no-repeat;
             -webkit-mask-size: 100% 100%;
@@ -140,14 +155,15 @@
             }
         }
         .search-tip {
-            font-size: 13px;
+            font-size: 14px;
             padding-inline: 8px;
         }
         .metaKey {
-            font-size: 12px;
-            font-weight: 500;
-            line-height: 20px;
-            margin-inline: 0 2px;
+            font-size: 10px;
+            font-weight: 600;
+            line-height: 16px;
+            padding-inline: 4px;
+            margin-inline: 0;
         }
     }
 }
@@ -164,12 +180,31 @@
     }
 }
 
+@mixin wide-search-VPButton {
+    cursor: text;
+    border-radius: 8px;
+    transition: color 0.25s, background-color 0.25s;
+    &, &:hover {
+        border: 1px solid transparent;
+    }
+    &:not(:hover, :active) {
+        background-color: transparent;
+    }
+}
+
 @media (max-width: 759.999px) { /*宽度760以下*/
     .blog-search.blog-search {
         //不然scale()动画的定位会出问题，并且这个padding没什么必要
         padding-left: 0;
         .nav-search-btn-wait:not(#ABC) {
             border: none;
+            &.VPButton {
+                border-radius: 50%;
+                transition: color 0.25s, background-color 0.25s;
+                &:active span:not([class]) { //搜索图标
+                    color: inherit;
+                }
+            }
             span:not([class]) { //搜索图标
                 color: var(--vp-c-text-1);
                 font-size: 20px;
@@ -178,7 +213,10 @@
     }
 }
 @media (min-width: 760px) { /*宽度760及以上*/
-    .nav-search-btn-wait:not(#ABC) { @include wide-search-button; }
+    .nav-search-btn-wait {
+        &:not(#ABC, .VPButton) { @include wide-search-button; }
+        &.VPButton:not(#ABC) { @include wide-search-VPButton; }
+    }
 }
 @media (min-width: 768px) { /*宽度768及以上*/
     .VPNavBarSearchButton{ @include wide-search-button; }

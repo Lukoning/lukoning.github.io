@@ -51,7 +51,7 @@ const scrollToActiveItem = async (smooth: boolean = true) => {
 
   await nextTick()
   const container = navEl.value.getElement()
-  const activeItem = container?.querySelector('.VPSidebarItem.is-active')
+  const activeItem = container?.querySelector('.VPSidebarItem.is-active > .item')
   if (!container || !activeItem) return
 
   // set flags

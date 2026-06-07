@@ -1,0 +1,55 @@
+.VPButton {
+    position: relative;
+    cursor: default;
+    margin: 2px;
+    &:active {
+        box-shadow: 0 0 3px 1px var(--vp-button-alt-active-bg);
+        opacity: .9;
+    }
+    &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        bottom: -2px;
+        right: -2px;
+        border: 2px solid;
+        border-color: transparent;
+        border-radius: inherit;
+        opacity: .9;
+        z-index: 0;
+    }
+    &:hover:not(:active)::before {
+        box-shadow: 0 0 3px -1px var(--lkn-theme-border);
+        border-color: var(--lkn-theme-border);
+    }
+
+    transition: transform .15s, color .15s, border-color .15s, background-color .15s;
+    &:active, &:active::before {
+        transition: none !important;
+    }
+    &.alt:active {
+        animation: blink .3s cubic-bezier(.08,.82,.17,1);
+    }
+    &::before {
+        transition: transform .15s, border-color .15s;
+        transition-timing-function: ease;
+        transform: scale(.9);
+    }
+    &:hover::before {
+        transition-timing-function: cubic-bezier(.08,.82,.17,1);
+    }
+    &:hover:not(:active)::before {
+        transform: scale(1);
+    }
+}
+
+@keyframes blink {
+    0% {
+        filter: brightness(1.5) contrast(1.5);
+    }
+    100% {
+        filter: brightness(1) contrast(1);
+    }
+}

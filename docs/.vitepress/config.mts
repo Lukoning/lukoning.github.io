@@ -11,6 +11,8 @@ const componentAliases = {
   'VPButton': 'LKNButton',
   'VPDocFooterLastUpdated': 'Empty',
   'VPLocalNav': 'LKNLocalNav',
+  'VPNavBarHamburger': 'LKNNavBarHamburger',
+  'VPNavBarTitle': 'LKNNavBarTitle',
   'VPSidebar': 'LKNSidebar',
 }
 
@@ -67,12 +69,13 @@ export default defineConfig({
     plugins: [
       groupIconVitePlugin(),
       pagefindPlugin({
+        pageResultCount: 300,
         locales: {
           root: {
             closeButtonTitle: '返回去喵',
             displayDetailsButtonTitle: '显示更大点喵',
             resetButtonTitle: '清掉输入喵',
-            btnPlaceholder: '搜索本站…',
+            btnPlaceholder: '搜索…',
             placeholder: '在这里输入关键词搜索喵~',
             emptyText: '找不到结果哦喵…\n试试别的表达呜喵？或者用空格分割关键词喵⭐',
             heading: '搜到了 {{searchResult}} 条结果喵！',
