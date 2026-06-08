@@ -1,0 +1,146 @@
+diff --git a/lib/giscus.d.ts b/lib/giscus.d.ts
+index b15e703bb8b32084da7fc684172ec6c95db25ceb..b9f4d57d642decc7dbc889e701e7a842022b5c6f 100644
+--- a/lib/giscus.d.ts
++++ b/lib/giscus.d.ts
+@@ -7,12 +7,13 @@ type vitepressAPI = {
+     route: Route;
+ };
+ type GiscusPropsType = GiscusProps & {
+-    lightTheme?: string;
+-    darkTheme?: string;
+-    lang?: AvailableLanguage;
+-    locales?: Record<string, string>;
+-    homePageShowComment?: boolean;
+-};
++    title?: string,
++    lightTheme?: string,
++    darkTheme?: string,
++    lang?: AvailableLanguage,
++    locales?: Record<string, string>,
++    homePageShowComment?: boolean
++}
+ /**
+  * initialize comment area
+  * <br>初始化评论区
+diff --git a/lib/giscus.js b/lib/giscus.js
+index 12b700b0547d130dd5916f047b02499b69d726bb..c9c4f27728dadc27ae216d9f65816c43576bbbb7 100644
+--- a/lib/giscus.js
++++ b/lib/giscus.js
+@@ -10,6 +10,8 @@ import { createApp, h, nextTick, onMounted, watch } from 'vue';
+ const setGiscus = (props, frontmatter, defaultEnable = true) => {
+     const defaultProps = {
+         id: 'comment',
++        title: true,
++        titleText: 'Comments',
+         host: 'https://giscus.app',
+         category: 'General',
+         mapping: 'pathname',
+@@ -37,6 +39,10 @@ const setGiscus = (props, frontmatter, defaultEnable = true) => {
+     const darkTheme = props.darkTheme || 'transparent_dark';
+     // Delete the original comment container
+     // 删除原有评论容器
++    let oldTitle = document.getElementById('comments-section');
++    if (oldTitle) {
++        oldTitle.parentNode.removeChild(oldTitle);
++    }
+     let oldCommentContainer = document.getElementById('giscus');
+     if (oldCommentContainer) {
+         oldCommentContainer.parentNode.removeChild(oldCommentContainer);
+@@ -63,14 +69,29 @@ const setGiscus = (props, frontmatter, defaultEnable = true) => {
+     // 获取父容器，并创建评论容器
+     const docContent = document.getElementsByClassName('content-container')[0];
+     if (docContent) {
++        // Lukoning: 加个标题 / Add a title
++        if (props.title instanceof Boolean ? props.title : defaultProps.title) {
++            const title = document.createElement('h1');
++            title.setAttribute('id', 'comments-section');
++            title.setAttribute('tabindex', '-1');
++            title.setAttribute('style', `
++                margin-top: 40px;
++                border-top: 1px solid var(--vp-c-divider);
++                padding-top: 20px;
++                letter-spacing: -0.02em;
++                line-height: 40px;
++                font-size: 28px;
++                font-weight: 600;
++                outline: none;
++            `);
++            title.innerText = props.titleText ?? defaultProps.titleText;
++            docContent.append(title);
++        }
+         const bindGiscus = document.createElement('div');
+         // Set the attribute and style of the comment container
+         // 设置评论容器的属性及样式
+         bindGiscus.setAttribute('id', 'giscus');
+         bindGiscus.style.height = 'auto';
+-        bindGiscus.style.marginTop = '40px';
+-        bindGiscus.style.borderTop = '1px solid var(--vp-c-divider)';
+-        bindGiscus.style.paddingTop = '20px';
+         // Add comment container
+         // 添加评论容器
+         docContent.append(bindGiscus);
+diff --git a/lib/giscus.ts b/lib/giscus.ts
+index 45d1b1dae46408faae5b837233a4e87f2a78e5f8..cb619a2e5af1964b222f36131063a5bbce5ddd7c 100644
+--- a/lib/giscus.ts
++++ b/lib/giscus.ts
+@@ -9,6 +9,7 @@ type vitepressAPI = {
+ }
+ 
+ type GiscusPropsType = GiscusProps & {
++    title?: string,
+     lightTheme?: string,
+     darkTheme?: string,
+     lang?: AvailableLanguage,
+@@ -26,6 +27,8 @@ type GiscusPropsType = GiscusProps & {
+ const setGiscus = (props: GiscusPropsType, frontmatter?: Ref<PageData['frontmatter']>, defaultEnable: boolean = true) => {
+     const defaultProps: GiscusPropsType = {
+         id: 'comment',
++        title: true,
++        titleText: 'Comments',
+         host: 'https://giscus.app',
+         category: 'General',
+         mapping: 'pathname',
+@@ -56,6 +59,10 @@ const setGiscus = (props: GiscusPropsType, frontmatter?: Ref<PageData['frontmatt
+     const darkTheme = props.darkTheme || 'transparent_dark';
+     // Delete the original comment container
+     // 删除原有评论容器
++    let oldTitle = document.getElementById('comments-section');
++    if (oldTitle) {
++        oldTitle.parentNode!.removeChild(oldTitle);
++    }
+     let oldCommentContainer = document.getElementById('giscus');
+     if (oldCommentContainer) {
+         oldCommentContainer.parentNode!.removeChild(oldCommentContainer);
+@@ -81,14 +88,29 @@ const setGiscus = (props: GiscusPropsType, frontmatter?: Ref<PageData['frontmatt
+     // 获取父容器，并创建评论容器
+     const docContent = document.getElementsByClassName('content-container')[0];
+     if (docContent) {
++        // Lukoning: 加个标题 / Add a title
++        if (props.title instanceof Boolean ? props.title : defaultProps.title) {
++            const title = document.createElement('h1');
++            title.setAttribute('id', 'comments-section');
++            title.setAttribute('tabindex', '-1');
++            title.setAttribute('style', `
++                margin-top: 40px;
++                border-top: 1px solid var(--vp-c-divider);
++                padding-top: 20px;
++                letter-spacing: -0.02em;
++                line-height: 40px;
++                font-size: 28px;
++                font-weight: 600;
++                outline: none;
++            `);
++            title.innerText = props.titleText ?? defaultProps.titleText;
++            docContent.append(title);
++        }
+         const bindGiscus = document.createElement('div');
+         // Set the attribute and style of the comment container
+         // 设置评论容器的属性及样式
+         bindGiscus.setAttribute('id', 'giscus');
+         bindGiscus.style.height = 'auto';
+-        bindGiscus.style.marginTop = '40px';
+-        bindGiscus.style.borderTop = '1px solid var(--vp-c-divider)';
+-        bindGiscus.style.paddingTop = '20px';
+         // Add comment container
+         // 添加评论容器
+         docContent.append(bindGiscus);

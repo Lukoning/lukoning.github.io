@@ -13,7 +13,7 @@ defineEmits<{
 <template>
   <VPButton
     tag="button"
-    :theme="'alt-trans'"
+    theme="alt-trans"
     class="VPNavBarHamburger"
     :class="{ active }"
     aria-label="mobile navigation"

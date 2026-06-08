@@ -65,7 +65,7 @@ const classes = computed(() => {
       <VPButton
         tag="button"
         size="small"
-        :theme="'alt'"
+        theme="alt"
         v-if="hasSidebar"
         class="menu"
         :aria-expanded="open"
@@ -79,7 +79,7 @@ const classes = computed(() => {
       </VPButton>
       <Transition name="title">
         <span v-if="page.title&&showTitle" class="title">
-          {{ page.title || '' }}
+          {{ page.title }}
         </span>
       </Transition>
 

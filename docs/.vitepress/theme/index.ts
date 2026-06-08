@@ -54,6 +54,9 @@ export default {
         loading: "lazy",
         originsRegex: ["https?://localhost:[0-9]+", "https?://lukoning.github.io"],
         homePageShowComment: false, // 首页是否显示评论区，默认为否
+        //自修改版本：
+        title: true,
+        titleText: "评论区",
       }, {
         frontmatter, route
       },

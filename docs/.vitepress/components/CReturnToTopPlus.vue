@@ -13,9 +13,9 @@ const { theme } = useData()
         <VPButton
             tag="a"
             size="small"
-            :theme="'alt'"
+            theme="alt"
             :text="theme.returnToTopLabel ?? 'Return to top'"
-            :href="'#'"
+            href="#"
             :aria-label="theme.returnToTopLabel ?? 'Return to top'"
         />
     </div>

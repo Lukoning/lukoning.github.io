@@ -47,6 +47,7 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
 
 <template>
   <DefaultTheme.Layout>
+    <!-- https://vitepress.dev/guide/extending-default-theme#layout-slots -->
     <template #doc-before>
       <div class="doc-before">
         <Breadcrumb :breadcrumb="{ homeText: '提瓦特大陆', homeLink: '/' }" />

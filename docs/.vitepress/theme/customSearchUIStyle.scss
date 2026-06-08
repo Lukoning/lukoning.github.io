@@ -28,7 +28,7 @@
         //max-width: 720px;
         margin: clamp(0px, 5vh, 160px) auto auto;
         overflow: hidden;
-        border-radius: 8px;
+        border-radius: 12px;
         > * {
             border-radius: 0;
         }
@@ -36,9 +36,10 @@
     [command-dialog-header] {
         padding: 12px 12px 0;
         .search-bar {
-            border: 1px solid var(--vp-c-divider);
+            border: 2px solid var(--vp-c-divider);
+            border-radius: 6px;
             &:focus-within {
-                border-color: var(--vp-c-brand-1);
+                border-color: var(--lkn-theme-border);
             }
         }
         .search-actions.before {
@@ -66,10 +67,11 @@
         padding: 2px 12px;
         background-color: var(--vp-local-search-result-bg);
         border: 2px solid var(--vp-local-search-result-border);
+        border-radius: 6px;
         mark:not(#ABC) {
             background-color: var(--vp-local-search-highlight-bg);
             color: var(--vp-local-search-highlight-text);
-            border-radius: 2px;
+            border-radius: 4px;
             padding: 0 2px;
             text-decoration: none;
         }

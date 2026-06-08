@@ -4,7 +4,6 @@
     margin: 2px;
     &:active {
         box-shadow: 0 0 3px 1px var(--vp-button-alt-active-bg);
-        opacity: .9;
     }
     &::before {
         content: "";

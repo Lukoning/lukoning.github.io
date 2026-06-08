@@ -65,6 +65,9 @@
                 border: 1px solid var(--vp-c-brand-1);
             }
         }
+        .title.VPButton {
+            border-radius: 24px;
+        }
         .logo {
             border-radius: 50%; //圆角
             margin: 0 6px 0 -4px; //视觉上对齐
@@ -127,7 +130,6 @@
 //特化 for vitepress-plugin-pagefind 的搜索按钮
 .blog-search.blog-search {
     padding-left: clamp(12px, calc(5vw - 10px), 43px);
-    
     .nav-search-btn-wait {
         // 复制自vitepress自带localsearch（MiniSearch）的图标，可以说是原汁原味了
         --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Cpath d='m21 21l-4.34-4.34'/%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3C/g%3E%3C/svg%3E");
@@ -136,6 +138,7 @@
         padding: 0 10px 0;
         &.VPButton {
             cursor: default;
+            border-radius: 24px;
         }
         > *:not(#ABC) {
             color: inherit;
@@ -165,6 +168,9 @@
             padding-inline: 4px;
             margin-inline: 0;
         }
+        &.VPButton .metaKey {
+            border-radius: 16px;
+        }
     }
 }
 
@@ -182,7 +188,6 @@
 
 @mixin wide-search-VPButton {
     cursor: text;
-    border-radius: 8px;
     transition: color 0.25s, background-color 0.25s;
     &, &:hover {
         border: 1px solid transparent;

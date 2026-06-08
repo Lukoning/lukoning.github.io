@@ -71,7 +71,7 @@ function onItemClick(e: Event) {
       size="small"
       @click="toggle"
       :class="{ open }"
-      :theme="'alt'"
+      theme="alt"
     >
       <span class="menu-text">{{ resolveTitle(theme) }}</span>
       <span class="vpi-chevron-right icon" />
@@ -103,7 +103,7 @@ function onItemClick(e: Event) {
             <VPDocOutlineItem :headers />
           </div>
           <div class="footer">
-            <a class="comments-link" href="#comment">
+            <a class="comments-link" href="#comments-section">
               {{ theme.jumpToCommentsLabel || 'Jump to comments' }}
             </a>
           </div>

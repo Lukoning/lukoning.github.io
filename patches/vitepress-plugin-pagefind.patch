@@ -91,7 +91,7 @@ index f2a0a985f359e7caf49e80a4c6292282b80ce2c2..9de645f84329940bca65fd530dbe094e
       * @default
       * 'to select'
 diff --git a/src/Search.vue b/src/Search.vue
-index f2e430925b06bc508909b4fc772a72f57c038118..28764e2009af7673f982852b4dddc6b39be59268 100644
+index f2e430925b06bc508909b4fc772a72f57c038118..b54f06640f06aa8f5ff7f7e4f1d5d4da77a5081e 100644
 --- a/src/Search.vue
 +++ b/src/Search.vue
 @@ -13,6 +13,9 @@ import type { SearchConfig } from './type'
@@ -109,7 +109,7 @@ index f2e430925b06bc508909b4fc772a72f57c038118..28764e2009af7673f982852b4dddc6b3
  <template>
    <div class="blog-search" data-pagefind-ignore="all">
 -    <div class="nav-search-btn-wait" @click="searchModal = true">
-+    <VPButton tag="div" :theme="'alt'" class="nav-search-btn-wait" @click="searchModal = true">
++    <VPButton tag="div" theme="alt" class="nav-search-btn-wait" @click="searchModal = true">
        <span>
          <svg width="14" height="14" viewBox="0 0 20 20">
            <path

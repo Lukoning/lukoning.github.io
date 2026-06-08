@@ -9,7 +9,7 @@ import { fileURLToPath, URL } from 'node:url'
 const componentAliases = {
   'NotFound': 'LKN404',
   'VPButton': 'LKNButton',
-  'VPDocFooterLastUpdated': 'Empty',
+  'VPDocFooter': 'LKNDocFooter',
   'VPLocalNav': 'LKNLocalNav',
   'VPNavBarHamburger': 'LKNNavBarHamburger',
   'VPNavBarTitle': 'LKNNavBarTitle',
@@ -153,6 +153,24 @@ export default defineConfig({
     LKNLocalNav: { autoTitleThreshold: true },
     // https://vitepress.dev/reference/default-theme-config
     logo: "/avatar.jpg",
+
+    lastUpdated: {
+      text: "最后更新",
+      formatOptions: {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        second: "numeric",
+        timeZone: "Asia/Shanghai",
+        timeZoneName: "longGeneric"
+      },
+    },
+    editLink: {
+      pattern: "https://github.com/Lukoning/lukoning.github.io/edit/VitePress/docs/:path",
+      text: "在GitHub上编辑本文",
+    },
 
     darkModeSwitchLabel: "切换浅色/深色模式 ->",
     lightModeSwitchTitle: "切换到浅色模式",

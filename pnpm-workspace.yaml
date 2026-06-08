@@ -1,2 +1,8 @@
+allowBuilds:
+  '@parcel/watcher': false
+  esbuild: false
+  vitepress-plugin-breadcrumb: false
+  vitepress-plugin-word-count: false
 patchedDependencies:
+  vitepress-plugin-comment-with-giscus: patches/vitepress-plugin-comment-with-giscus.patch
   vitepress-plugin-pagefind: patches/vitepress-plugin-pagefind.patch

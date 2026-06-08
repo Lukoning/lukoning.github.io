@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useData } from 'vitepress/dist/client/theme-default/composables/data'
+import { useData } from 'vitepress'
 import { useLangs } from 'vitepress/dist/client/theme-default/composables/langs'
 import { useLayout } from 'vitepress/dist/client/theme-default/composables/layout'
 import { normalizeLink } from 'vitepress/dist/client/theme-default/support/utils'
@@ -35,7 +35,7 @@ const target = computed(() =>
     <VPButton
       tag="a"
       size="big"
-      :theme="'alt-trans'"
+      theme="alt-trans"
       class="title"
       :href="link ?? normalizeLink(currentLang.link)"
       :rel

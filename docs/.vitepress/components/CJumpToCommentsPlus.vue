@@ -13,9 +13,9 @@ const { theme } = useData()
         <VPButton
             tag="a"
             size="small"
-            :theme="'alt'"
+            theme="alt"
             :text="theme.jumpToCommentsLabel ?? 'Jump to comments'"
-            :href="'#comment'"
+            href="#comments-section"
             :aria-label="theme.jumpToCommentsLabel ?? 'Jump to comments'"
         />
     </div>

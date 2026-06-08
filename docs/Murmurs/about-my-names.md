@@ -29,6 +29,8 @@ outline: 3
 
 第一次看向山进发以来，社交应用的头像、主页封面许多都有她们。不过也有例外，这些例外大多来自「原神」，就算不是至少都是二次元。
 
+[了解ヤマノススメ](/ACG/ymnssm-Introduction)
+
 ---
 ### 3. <em><lkn c green>Yuki</lkn><lkn c yellow>kura</lkn></em> (<lkn c green>雪</lkn><lkn c yellow>倉</lkn>)
 
