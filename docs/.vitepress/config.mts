@@ -190,10 +190,8 @@ export default defineConfig({
     search: undefined, //不使用内置搜索，改用pagefind
   
     nav: [
-      { text: '提瓦特大陆', link: '/' },
-      { text: '饭能市', link: '/ACG/', activeMatch: '/ACG/' },
-      { text: '虚空网络', link: '/DevJournal/', activeMatch: '/DevJournal/' },
-      { text: '蔬菜罐罐汤', link: '/Murmurs/', activeMatch: '/Murmurs/' },
+      { text: '博客', link: '/', activeMatch: '^(?!/PostZone/).*' },
+      { text: '说说（施工中）', link: '/PostZone/', activeMatch: '/PostZone/' },
     ],
 
     sidebar,
