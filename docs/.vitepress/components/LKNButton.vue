@@ -43,6 +43,7 @@ const component = computed(() => {
 .VPButton {
   display: inline-block;
   border: 1px solid transparent;
+  border-radius: var(--lkn-button-radius, 20px);
   text-align: center;
   font-weight: 600;
   white-space: nowrap;
@@ -54,21 +55,21 @@ const component = computed(() => {
 }
 
 .VPButton.small {
-  border-radius: 16px;
+  --lkn-button-radius: 16px;
   padding: 0 12px;
   line-height: 30px;
   font-size: 12px;
 }
 
 .VPButton.medium {
-  border-radius: 20px;
+  --lkn-button-radius: 20px;
   padding: 0 16px;
   line-height: 38px;
   font-size: 14px;
 }
 
 .VPButton.big {
-  border-radius: 24px;
+  --lkn-button-radius: 24px;
   padding: 0 20px;
   line-height: 46px;
   font-size: 16px;

@@ -15,7 +15,7 @@
         right: -2px;
         border: 2px solid;
         border-color: transparent;
-        border-radius: inherit;
+        border-radius: calc(var(--lkn-button-radius, 0px) + 2px);
         opacity: .9;
         z-index: 0;
     }
