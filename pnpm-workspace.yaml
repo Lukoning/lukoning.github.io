@@ -4,5 +4,6 @@ allowBuilds:
   vitepress-plugin-breadcrumb: false
   vitepress-plugin-word-count: false
 patchedDependencies:
+  '@miletorix/vitepress-image-viewer': patches/@miletorix__vitepress-image-viewer.patch
   vitepress-plugin-comment-with-giscus: patches/vitepress-plugin-comment-with-giscus.patch
   vitepress-plugin-pagefind: patches/vitepress-plugin-pagefind.patch

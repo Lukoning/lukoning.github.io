@@ -158,13 +158,9 @@ Mozilla 公共许可协议，版本 2.0
 
 [项目仓库](https://github.com/jooy2/vitepress-sidebar) <lkn layout nobr v-html="License('MIT', '2022-2026 CDGet <jooy2.contact@gmail.com> (https://cdget.com).')"></lkn>
 
-## Viewer.js
+## vitepress-image-viewer
 
-[项目仓库](https://github.com/fengyuanchen/viewerjs) <lkn layout nobr v-html="License('MIT', '2015-present Chen Fengyuan')"></lkn>
-
-## vitepress-plugin-image-viewer
-
-[项目仓库](https://github.com/T-miracle/vitepress-plugin-image-viewer) <lkn layout nobr v-html="License('MIT', 'T-miracle')"></lkn>
+[项目仓库](https://github.com/miletorix/vitepress-image-viewer) <lkn layout nobr v-html="License('MIT', '2025 miletorix')"></lkn>
 
 ## vitepress-plugin-group-icons
 

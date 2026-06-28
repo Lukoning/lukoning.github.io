@@ -5,9 +5,9 @@ import { useData, useRoute, inBrowser } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 
 import giscusTalk from 'vitepress-plugin-comment-with-giscus';
-import imageViewer from 'vitepress-plugin-image-viewer';
-// import vImageViewer from 'vitepress-plugin-image-viewer/lib/vImageViewer.vue';
-import 'viewerjs/dist/viewer.min.css';
+
+import ImageViewerP from '@miletorix/vitepress-image-viewer'
+import '@miletorix/vitepress-image-viewer/style.css'
 import { enhanceAppWithTabs } from 'vitepress-plugin-tabs/client'
 
 import NProgress from 'nprogress'
@@ -36,7 +36,6 @@ export default {
   setup() {
     const { frontmatter } = useData();
     const route = useRoute();
-    imageViewer(route); //图片查看器
     giscusTalk( //评论区组件 https://github.com/T-miracle/vitepress-plugin-comment-with-giscus
       {
         repo: "Lukoning/lukoning.github.io",
@@ -67,7 +66,11 @@ export default {
     );
   },
   enhanceApp({ app, router, siteData }) {
-    enhanceAppWithTabs(app); //vitepress-plugin-tabs
+    enhanceAppWithTabs(app); // vitepress-plugin-tabs
+    ImageViewerP(app, {
+      transparentBg: true,
+      autoShowThumbnails: false
+    }); // @miletorix/vitepress-image-viewer
     app.component('CNavTree', CNavTree);
 
     if (!inBrowser) return;//非浏览器环境下返回，否则构建时报错

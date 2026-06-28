@@ -5,6 +5,7 @@ settings:
   excludeLinksFromLockfile: false
 
 patchedDependencies:
+  '@miletorix/vitepress-image-viewer': c49706292851cacce23696329fa04e4efac58a64fee88397f02a22c447aef982
   vitepress-plugin-comment-with-giscus: b75fde243227a24767bf30868e1bb615b5ae6c7637a9ea9e1f32da3402bc8064
   vitepress-plugin-pagefind: 55a82f1083396c79f2c095d7992d64cdb1e69bf5e9b0feeccb919226d4b4be90
 
@@ -12,6 +13,9 @@ importers:
 
   .:
     dependencies:
+      '@miletorix/vitepress-image-viewer':
+        specifier: ^1.3.2
+        version: 1.3.2(patch_hash=c49706292851cacce23696329fa04e4efac58a64fee88397f02a22c447aef982)(vue@3.5.35)
       '@vueuse/core':
         specifier: ^14.3.0
         version: 14.3.0(vue@3.5.35)
@@ -27,15 +31,9 @@ importers:
       pagefind:
         specifier: ^1.5.2
         version: 1.5.2
-      viewerjs:
-        specifier: ^1.11.7
-        version: 1.11.7
       vitepress-plugin-breadcrumb:
         specifier: ^3.0.5
         version: 3.0.5(vitepress@2.0.0-alpha.17(@types/node@25.9.2)(lightningcss@1.32.0)(nprogress@0.2.0)(postcss@8.5.15)(sass-embedded@1.100.0)(sass@1.100.0)(yaml@2.8.3))
-      vitepress-plugin-image-viewer:
-        specifier: ^1.1.6
-        version: 1.1.6
       vitepress-plugin-pagefind:
         specifier: ^0.4.20
         version: 0.4.20(patch_hash=55a82f1083396c79f2c095d7992d64cdb1e69bf5e9b0feeccb919226d4b4be90)(pagefind@1.5.2)(vitepress@2.0.0-alpha.17(@types/node@25.9.2)(lightningcss@1.32.0)(nprogress@0.2.0)(postcss@8.5.15)(sass-embedded@1.100.0)(sass@1.100.0)(yaml@2.8.3))(vue@3.5.35)
@@ -301,6 +299,11 @@ packages:
 
   '@lit/reactive-element@2.1.2':
     resolution: {integrity: sha512-pbCDiVMnne1lYUIaYNN5wrwQXDtHaYtg7YEFPeW+hws6U47WeFvISGUWekPGKWOP1ygrs0ef0o1VJMk1exos5A==}
+
+  '@miletorix/vitepress-image-viewer@1.3.2':
+    resolution: {integrity: sha512-ukBJT3SGDDy0FRToKlv2v2DGNuqwmVIvUsoQ3FI+5HwU/ivBR9r1yrPJsiIl6L1iOP+kpz1dCKwci+jruWUuEQ==}
+    peerDependencies:
+      vue: ^3.0.0
 
   '@napi-rs/wasm-runtime@1.1.4':
     resolution: {integrity: sha512-3NQNNgA1YSlJb/kMH1ildASP9HW7/7kYnRI2szWJaofaS1hWmbGI4H+d3+22aGzXXN9IJ+n+GiFVcGipJP18ow==}
@@ -1507,9 +1510,6 @@ packages:
   vfile@6.0.3:
     resolution: {integrity: sha512-KzIbH/9tXat2u30jf+smMwFCsno4wHVdNmzFyL+T/L3UGqqk6JKfVqOFOZEpZSHADH1k40ab6NUIXZq422ov3Q==}
 
-  viewerjs@1.11.7:
-    resolution: {integrity: sha512-0JuVqOmL5v1jmEAlG5EBDR3XquxY8DWFQbFMprOXgaBB0F7Q/X9xWdEaQc59D8xzwkdUgXEMSSknTpriq95igg==}
-
   vite@7.3.2:
     resolution: {integrity: sha512-Bby3NOsna2jsjfLVOHKes8sGwgl4TT0E6vvpYgnAYDIF/tie7MRaFthmKuHx1NSXjiTueXH3do80FMQgvEktRg==}
     engines: {node: ^20.19.0 || >=22.12.0}
@@ -1608,9 +1608,6 @@ packages:
     peerDependenciesMeta:
       vite:
         optional: true
-
-  vitepress-plugin-image-viewer@1.1.6:
-    resolution: {integrity: sha512-ZfYy1s/bXju6vGVsE/5gPXT449+KaXZ6ZIPAvcmPM07VmC7Bv57bCvFar2II7C2EjexxfPQsxUh70vSBbe14kQ==}
 
   vitepress-plugin-pagefind@0.4.20:
     resolution: {integrity: sha512-O6mfkPzRV7V2igs51Qll31ptqJnHlNx9bmfo5JRsf6b4QuSVHjTDgtqM73rrCxRNeOSzFygPmJvSbmn7K4jd1A==}
@@ -1827,6 +1824,10 @@ snapshots:
   '@lit/reactive-element@2.1.2':
     dependencies:
       '@lit-labs/ssr-dom-shim': 1.5.1
+
+  '@miletorix/vitepress-image-viewer@1.3.2(patch_hash=c49706292851cacce23696329fa04e4efac58a64fee88397f02a22c447aef982)(vue@3.5.35)':
+    dependencies:
+      vue: 3.5.35
 
   '@napi-rs/wasm-runtime@1.1.4(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)':
     dependencies:
@@ -2907,8 +2908,6 @@ snapshots:
       '@types/unist': 3.0.3
       vfile-message: 4.0.3
 
-  viewerjs@1.11.7: {}
-
   vite@7.3.2(@types/node@25.9.2)(lightningcss@1.32.0)(sass-embedded@1.100.0)(sass@1.100.0)(yaml@2.8.3):
     dependencies:
       esbuild: 0.27.7
@@ -2957,10 +2956,6 @@ snapshots:
       '@iconify/utils': 3.1.0
     optionalDependencies:
       vite: 8.0.16(@types/node@25.9.2)(esbuild@0.27.7)(sass-embedded@1.100.0)(sass@1.100.0)(yaml@2.8.3)
-
-  vitepress-plugin-image-viewer@1.1.6:
-    dependencies:
-      viewerjs: 1.11.7
 
   vitepress-plugin-pagefind@0.4.20(patch_hash=55a82f1083396c79f2c095d7992d64cdb1e69bf5e9b0feeccb919226d4b4be90)(pagefind@1.5.2)(vitepress@2.0.0-alpha.17(@types/node@25.9.2)(lightningcss@1.32.0)(nprogress@0.2.0)(postcss@8.5.15)(sass-embedded@1.100.0)(sass@1.100.0)(yaml@2.8.3))(vue@3.5.35):
     dependencies:
