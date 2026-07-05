@@ -44,6 +44,43 @@ lkn {
             &[green-yellow] {
                 background-image: -webkit-linear-gradient(92deg, #7dffd6 10%, #ffcc69 90%);
             }
+            &[ns-blessing-Xilonen] {
+                background-image:
+                    -webkit-repeating-radial-gradient(#ffe22500 0%, #dcfbe844 10%, #ffe22500 60%),
+                    -webkit-repeating-linear-gradient(88deg, #79ffff 10%, #ffe225 50%, #fffa65 80%, #79ffff 90%);
+            }
+            &[ns-blessing-Kachina] {
+                background-image:
+                    -webkit-repeating-radial-gradient(#ffe22500 10%, #ccfffd88 20%, #ffe22500 40%),
+                    -webkit-repeating-linear-gradient(92deg, #e9fffc 10%, #ffe225 50%, #fff95a 70%, #e9fffc 95%);
+            }
+            &[ns-blessing-Kinich] {
+                background-image:
+                    -webkit-repeating-radial-gradient(#e0f9d088 30%, #e0f9d000 40%, #7ffceb88 70%),
+                    -webkit-repeating-linear-gradient(92deg, #84fcad 20%, #8ef3a7 50%, #fdf443 70%, #84fcad 90%);
+            }
+            &[ns-blessing-Mualani] {
+                background-image:
+                    -webkit-repeating-radial-gradient(#87f4fc00 10%, #9dfffc88 20%, #87f4fc00 40%),
+                    -webkit-repeating-linear-gradient(87deg, #87f4fc 30%, #fdfb8c 40%, #fbc7f9 60%, #9ed7fe 70%, #87f4fc 90%);
+            }
+            &[ns-blessing-Ororon] {
+                background-image:
+                    -webkit-repeating-radial-gradient(#aa5efa00 40%, #a59cfb88 60%, #aa5efa00 70%),
+                    -webkit-repeating-linear-gradient(89deg, #92ddff 30%, #aa5efa 40%, #fc61fa 70%, #92ddff 100%);
+            }
+            &[ns-blessing-Chasca] {
+                background-image:
+                    -webkit-repeating-radial-gradient(#5ff1eb00 50%, #b2dbdf44 60%, #5ff1eb00 70%),
+                    -webkit-repeating-linear-gradient(89deg, #5ff1eb 30%, #daadd3 35% 45%, #4afdee 80%);
+            }
+            &[ns-blessing-Iansan] {
+                background-image:
+                    -webkit-repeating-radial-gradient(#ffa69e 5%, #de48f800 50%, #ffa69e 90%),
+                    -webkit-repeating-linear-gradient(88deg, #fff7fa 20%, #de48f8 50% 60%, #fff7fa 100%);
+            }
+            /*&[ns-blessing-PyroTraveler] {
+            }*/
         }
         &[homehero] {
             color: var(--vp-home-hero-name-color);

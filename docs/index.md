@@ -96,25 +96,11 @@ features:
 
 欢迎你~！
 
+欢迎你来到被虚假之天包裹住的星球。
+
 </lkn>
 
 不论你是旅行者、开拓者、管理员、漂泊者、异能者、博士、老师、猎人小姐、队长、舰长、指挥官、绳匠……
-
----
-
-<lkn layout box-center>
-
-提瓦特大陆位于提瓦特之上。
-
-提瓦特是被虚假之天包裹住的星球。
-
-「霜月」是三月中残存的最后一轮月亮，却曾被虚假之天蒙蔽，只能在天上投下它的影子。
-
-如今的「真实之月」已经坠入虚假之天内，它虚假的投影随之消失。
-
-「霜月」上究竟有什么东西，让它被法大王抛出天外？
-
-</lkn>
 
 ---
 
@@ -142,20 +128,64 @@ features:
 
 ---
 
+<lkn layout box-center>
 <lkn layout text-center>
 
-我们『团结』一心
-<br/>经受『回火』洗礼
-<br/>肩负『祝福』古名
-<br/>知晓『力量』真意
-<br/>接纳『奉献』命运
-<br/>终迎『超越』之火
+<p><lkn c ns-blessing-Mualani>「我们『团结』一心」</lkn>
+<br/><lkn c ns-blessing-Kinich>「经受『回火』洗礼」</lkn>
+<br/><lkn c ns-blessing-Xilonen>「肩负『祝福』古名」</lkn>
+<br/><lkn c ns-blessing-Iansan>「知晓『力量』真意」</lkn>
+<br/><lkn c ns-blessing-Ororon>「接纳『奉献』命运」</lkn>
+<br/><lkn c ns-blessing-Chasca>「终迎『超越』之火」</lkn>
+</p>
 
 **为了纳塔！**
 
 **为了纳塔！！**
 
+</lkn>
+
 *——原神·提瓦特篇<br/>第五章「炽烈的还魂诗」第四幕「命定将焚的虹光·绝望高悬天之上」<br/>[过场动画「夜明之前」](https://www.bilibili.com/video/BV1ET25YtEFr)*
+</lkn>
+
+---
+
+<lkn layout box-center>
+<lkn layout box-center>
+
+仔细听。
+
+（哭喊）<lkn c ns-blessing-Kachina>我们…！
+<br/>继承了记忆与传说！
+<br/>我们…
+<br/>和太阳与风一同成长！</lkn>
+
+（齐）我们，
+<br/>铸造了命运与未来！
+<br/>这些都是纳塔的火，
+<br/>纳塔的血液！
+<br/> *<ruby>Hadithi yaendelea<rp> / </rp><rt>故事仍在延续</rt></ruby>*
+<br/> *<ruby>Heshima warithi vizazi<rp> / </rp><rt>荣耀几经传承</rt></ruby>*
+<br/> *<ruby>Ushujaa waangaza<rp> / </rp><rt>勇气点亮了</rt></ruby>*
+
+我听到了，
+是他们的声音。（背景：*<ruby>mbingu na ardhi<rp> / </rp><rt>天空与大地</rt></ruby>*）
+
+星海幽暗，（背景：*<ruby>Mara tena<rp> / </rp><rt>再一次</rt></ruby>*）
+<br/>孤寂无垠。（背景：*<ruby>ashinda Natlan<rp> / </rp><rt>纳塔迎来胜利</rt></ruby>*）
+<br/>直到有人点燃了自我，
+<br/>宇宙，
+<br/>才拥有最初的光。
+
+我们不会放弃希望！
+<br/>我们还要携手向前！
+<br/>开辟未来的答案，就在这里！
+<br/>那就是，
+<br/> **我们自己！！**
+
+</lkn>
+
+*——原神·提瓦特篇<br/>第五章「炽烈的还魂诗」第五幕「炽烈的还魂诗·众望所归」<br/>[过场动画「予夜以火，予光以歌」](https://www.bilibili.com/video/BV1MA66YvEyX)*
 </lkn>
 
 ---
