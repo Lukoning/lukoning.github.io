@@ -41,6 +41,7 @@ features:
 
 <script setup>
   import { useData } from 'vitepress'
+  import { initLknAnimation } from "/.vitepress/theme/customElements.ts"
   const { theme } = useData();
   const sb = theme.value.sidebar.map(item => ({ ...item })); //theme是只读数组，要修改的话得转换为新数组
   const items =  {
@@ -49,14 +50,20 @@ features:
     anyt: sb.filter(item => item.text === "蔬菜罐罐汤"),
   };
   Object.keys(items).forEach( key => items[key][0].collapsed = undefined)
+  initLknAnimation();
 </script>
+<style>
+  .vp-doc hr {
+    margin: 32px 0;
+  }
+</style>
 
 <lkn layout text-center>
 <lkn layout box-center >
 
 ### 导航树
 
-<lkn layout small><em>部分页面使用深色模式浏览更佳。</em></lkn>
+<lkn layout small><em>带有渐变色文字的页面使用深色模式浏览更佳。</em></lkn>
 
 </lkn>
 
@@ -101,6 +108,53 @@ features:
 </lkn>
 
 不论你是旅行者、开拓者、管理员、漂泊者、异能者、博士、老师、猎人小姐、队长、舰长、指挥官、绳匠……
+
+---
+
+<lkn layout text-center>
+
+**真正的命运将以我等的血来缔造。**
+
+*[引燃PV——「以燔燎铸名」](https://www.bilibili.com/video/BV1RZ421K7CT)*
+
+</lkn>
+
+---
+
+<lkn layout box-center>
+
+个体与个体之间只存在「借」和「还」的关系。
+<br/>我们迟早会两清，你不需要在意。
+
+不是这样的哦。
+<br/> **人与人的关系，绝不是轻易就能抚回原状的白纸。** 你一定感受过。
+<br/>生命中出现过的人不会像水滴蒸发一样消失，世上不存在真正的「两清」。
+<br/>正因为有些事不能挽回也不能改变，人间才会有情感。
+<br/>你感受的所有东西都是真实，你欠下的事物也不会被弥补。
+<br/>背负裂痕生活下去是人的行为。
+<br/>你可以选择是否成为人。
+
+*——原神·提瓦特篇<br/>间章·第三幕「倾落伽蓝·如朝露一般」*
+
+</lkn>
+
+---
+
+<lkn layout box-center>
+
+我本可以完成更多实验……我确实无法再看到更多结果了。
+<br/>不过草之主，现在的结果于我而言，也并不糟糕。
+
+我相信你说的话，但很遗憾，你的一切都结束了。
+<br/>这场实验不属于你，一切实验的成果也都不属于你。
+<br/> **智慧在必要时，也可暴烈如火焰。烧掉你的火焰里，也包含你自己。**
+<br/>我不否定你的聪慧。
+<br/>只不过，在我的表达里，这些事绝不会被定性为「实验」。
+<br/> **那是真真切切发生在世间的事，比数据更有意义。**
+
+*——原神·空月之歌<br/>第十幕「<lkn animated burning-switch script-init=enter-viewport script-delay=5000><fr>道成千壑，因果异灭</fr><fb>（</fb><to>虚空劫灰往世书</to><fb>）</fb></lkn>」*
+
+</lkn>
 
 ---
 
@@ -278,19 +332,6 @@ features:
 
 *——山中好长日·第三章「审判·最后的审判」*
 
-
-</lkn>
-
----
-
-<lkn layout box-center>
-
-*Frost Moon coordinates located.*
-
-*Please proceed to the Main Control Hall 
-<br/>for moon landing preparations.*
-
-*——[英文版「空月之歌·谐谑」版本PV](https://www.bilibili.com/video/BV1KRjF6WE4o?p=3)*
 
 </lkn>
 

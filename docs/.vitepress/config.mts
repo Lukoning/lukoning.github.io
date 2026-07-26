@@ -101,7 +101,8 @@ export default defineConfig({
   vue: {
     template: {
       compilerOptions: {
-        isCustomElement: (tag: string) => tag === "lkn" //将lkn元素视为自定义元素
+        isCustomElement: (tag: string) => 
+          ["lkn", "fr", "fb", "to"].includes(tag) //将lkn等元素视为自定义元素
       }
     }
   },

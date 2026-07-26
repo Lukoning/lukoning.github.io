@@ -25,8 +25,8 @@ watch(
   [props, navEl],
   () => {
     if (props.open) {
-      isLocked.value = true
-      navEl.value.getElement()?.focus()
+      isLocked.value = true;
+      (navEl.value as any)?.getElement()?.focus()
     } else isLocked.value = false
   },
   { immediate: true, flush: 'post' }
@@ -50,7 +50,7 @@ const scrollToActiveItem = async (smooth: boolean = true) => {
   if (!inBrowser || (window.innerWidth < 960 && !props.open)) return
 
   await nextTick()
-  const container = navEl.value.getElement()
+  const container = (navEl.value as any)?.getElement()
   const activeItem = container?.querySelector('.VPSidebarItem.is-active > .item')
   if (!container || !activeItem) return
 
@@ -64,7 +64,7 @@ const scrollToActiveItem = async (smooth: boolean = true) => {
     inline: 'nearest'
   })
 
-  const osInstance = navEl.value.osInstance()
+  const osInstance = (navEl.value as any)?.osInstance()
   const { viewport } = osInstance.elements()
 
   // reset flag when scroll ends

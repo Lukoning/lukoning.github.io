@@ -46,7 +46,7 @@ lkn {
             }
             &[ns-blessing-Xilonen] {
                 background-image:
-                    -webkit-repeating-radial-gradient(#ffe22500 0%, #dcfbe844 10%, #ffe22500 60%),
+                    -webkit-repeating-radial-gradient(#ffe22500 0%, #79ffff66 50%, #ffe22500 100%),
                     -webkit-repeating-linear-gradient(88deg, #79ffff 10%, #ffe225 50%, #fffa65 80%, #79ffff 90%);
             }
             &[ns-blessing-Kachina] {
@@ -56,8 +56,8 @@ lkn {
             }
             &[ns-blessing-Kinich] {
                 background-image:
-                    -webkit-repeating-radial-gradient(#e0f9d088 30%, #e0f9d000 40%, #7ffceb88 70%),
-                    -webkit-repeating-linear-gradient(92deg, #84fcad 20%, #8ef3a7 50%, #fdf443 70%, #84fcad 90%);
+                    -webkit-repeating-radial-gradient(#e0f9d0 30%, #e0f9d000 40%, #7ffceb 70%, #e0f9d0 100%),
+                    -webkit-repeating-linear-gradient(92deg, #84fcad 20%, #8ef3a7 40%, #fdf443 70%, #84fcad 90%);
             }
             &[ns-blessing-Mualani] {
                 background-image:
@@ -66,13 +66,13 @@ lkn {
             }
             &[ns-blessing-Ororon] {
                 background-image:
-                    -webkit-repeating-radial-gradient(#aa5efa00 40%, #a59cfb88 60%, #aa5efa00 70%),
+                    -webkit-repeating-radial-gradient(#aa5efa00 40%, #a59cfb 60%, #aa5efa00 70%),
                     -webkit-repeating-linear-gradient(89deg, #92ddff 30%, #aa5efa 40%, #fc61fa 70%, #92ddff 100%);
             }
             &[ns-blessing-Chasca] {
                 background-image:
-                    -webkit-repeating-radial-gradient(#5ff1eb00 50%, #b2dbdf44 60%, #5ff1eb00 70%),
-                    -webkit-repeating-linear-gradient(89deg, #5ff1eb 30%, #daadd3 35% 45%, #4afdee 80%);
+                    -webkit-repeating-radial-gradient(#b2dbdfaa 0% 30%, #daadd3aa 50%, #b2dbdfaa 80%),
+                    -webkit-repeating-linear-gradient(84deg, #5ff1eb 30%, #daadd3 35% 40%, #4afdee 80%);
             }
             &[ns-blessing-Iansan] {
                 background-image:
@@ -93,9 +93,6 @@ lkn {
         }
         &[green-yellow] {
             color: #acecae;
-        }
-        :root:not(.dark) & {
-            filter: brightness(.65) contrast(1.6) saturate(1.2);
         }
     }
     
@@ -121,6 +118,89 @@ lkn {
         &[box-center] {
             width: fit-content;
             margin-inline: auto;
+        }
+    }
+
+    // 仅当元素同时具备 animated 与 burning-switch 属性时启用
+    &[animated][burning-switch] {
+        display: inline-grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        place-items: center;
+        min-height: auto;
+        position: relative;
+        > fr, > to, > fb {
+            position: static;
+            display: inline;
+            grid-column: 1;
+            grid-row: 1;
+            width: auto;
+            min-width: 0;
+        }
+        > fr {
+            opacity: 1;
+            z-index: 2;
+        }
+        > to {
+            opacity: 0;
+            z-index: 3;
+        }
+        > fb {
+            font-size: 0;
+        }
+        // 通过添加 .animation-play 类触发焚烧重写
+        &.animation-play {
+            > fr {
+                animation: lkn-burnAway 3s cubic-bezier(.6, 0, .4, 1) forwards;
+            }
+            > to {
+                animation: lkn-riseFromAsh 2.5s cubic-bezier(.2, .9, .3, 1) forwards;
+                animation-delay: .6s;
+            }
+        }
+        @keyframes lkn-burnAway {
+            0% {
+                opacity: 1;
+                filter: blur(0) brightness(1);
+                transform: scale(1);
+                text-shadow: 0 0 20px rgba(200, 184, 138, .3);
+            }
+            40% {
+                opacity: 1;
+                filter: blur(6px) brightness(4);
+                transform: scale(1.1);
+                text-shadow: 0 0 10px rgba(255, 100, 20, .9), 0 0 20px rgba(255, 50, 0, .6);
+                color: #ff7a33;
+            }
+            100% {
+                opacity: 0;
+                filter: blur(20px) brightness(3);
+                transform: scale(.8);
+                text-shadow: 0 0 100px rgba(255, 50, 0, 0);
+                color: #ff3300;
+            }
+        }
+        @keyframes lkn-riseFromAsh {
+            0% {
+                opacity: 0;
+                filter: blur(24px) brightness(3);
+                transform: scale(1.3);
+                text-shadow: 0 0 60px rgba(255, 100, 20, 0.9), 0 0 120px rgba(255, 50, 0, 0.6);
+                color: #ffad33;
+            }
+            60% {
+                opacity: 1;
+                filter: blur(6px) brightness(1.6);
+                transform: scale(1.05);
+                text-shadow: 0 0 30px rgba(255, 100, 20, 0.9), 0 0 60px rgba(255, 50, 0, 0.6);
+                color: #ff7a33;
+            }
+            100% {
+                opacity: 1;
+                filter: blur(0) brightness(1.1);
+                transform: scale(1);
+                text-shadow: 0 0 10px rgba(255, 100, 20, 0.9), 0 0 30px rgba(255, 50, 0, 0.6);
+            }
         }
     }
     
