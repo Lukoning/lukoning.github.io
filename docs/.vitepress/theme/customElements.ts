@@ -1,3 +1,5 @@
+import { inBrowser } from 'vitepress'
+
 // 模块级变量（确保单例）
 let initialized = false;
 let triggeredSet = new WeakSet<Element>();
@@ -5,7 +7,7 @@ let observedSet = new WeakSet<Element>();
 const SELECTOR = "lkn[animated][script-init]";
 
 // 监听元素进入视口的监听器
-const enterViewportObserver = new IntersectionObserver( entries => {
+const enterViewportObserver = !inBrowser ? null : new IntersectionObserver( entries => {
     entries.forEach( entry => {
         const el = entry.target as HTMLElement;
         // 如果元素已经触发过动画，不再处理
@@ -42,8 +44,8 @@ const enterViewportObserver = new IntersectionObserver( entries => {
  *  初始化所有\<lkn\>元素的动画逻辑，并自动监听动态添加的元素。
  */
 export function initLknAnimation() {
-    //防止重复初始化
-    if (initialized) return;
+    //防止重复初始化&在浏览器环境下才执行初始化
+    if (initialized || !inBrowser) return;
     //遍历已有元素
     document.querySelectorAll(SELECTOR).forEach(el => { checkElement(el) });
     initialized = true;
@@ -70,6 +72,6 @@ export function initLknAnimation() {
  *  检查\<lkn\>元素script-init属性并初始化对应动画的函数
  */
 function checkElement(el: Element) {
-    if (el.getAttribute("script-init") === "enter-viewport") enterViewportObserver.observe(el);
+    if (el.getAttribute("script-init") === "enter-viewport") enterViewportObserver!.observe(el);
     observedSet!.add(el);
 }
