@@ -1,0 +1,56 @@
+diff --git a/dist/client/theme-default/fonts/inter-italic-cyrillic-ext.woff2 b/dist/client/theme-default/_fonts/inter-italic-cyrillic-ext.woff2
+similarity index 100%
+rename from dist/client/theme-default/fonts/inter-italic-cyrillic-ext.woff2
+rename to dist/client/theme-default/_fonts/inter-italic-cyrillic-ext.woff2
+diff --git a/dist/client/theme-default/fonts/inter-italic-cyrillic.woff2 b/dist/client/theme-default/_fonts/inter-italic-cyrillic.woff2
+similarity index 100%
+rename from dist/client/theme-default/fonts/inter-italic-cyrillic.woff2
+rename to dist/client/theme-default/_fonts/inter-italic-cyrillic.woff2
+diff --git a/dist/client/theme-default/fonts/inter-italic-greek-ext.woff2 b/dist/client/theme-default/_fonts/inter-italic-greek-ext.woff2
+similarity index 100%
+rename from dist/client/theme-default/fonts/inter-italic-greek-ext.woff2
+rename to dist/client/theme-default/_fonts/inter-italic-greek-ext.woff2
+diff --git a/dist/client/theme-default/fonts/inter-italic-greek.woff2 b/dist/client/theme-default/_fonts/inter-italic-greek.woff2
+similarity index 100%
+rename from dist/client/theme-default/fonts/inter-italic-greek.woff2
+rename to dist/client/theme-default/_fonts/inter-italic-greek.woff2
+diff --git a/dist/client/theme-default/fonts/inter-italic-latin-ext.woff2 b/dist/client/theme-default/_fonts/inter-italic-latin-ext.woff2
+similarity index 100%
+rename from dist/client/theme-default/fonts/inter-italic-latin-ext.woff2
+rename to dist/client/theme-default/_fonts/inter-italic-latin-ext.woff2
+diff --git a/dist/client/theme-default/fonts/inter-italic-latin.woff2 b/dist/client/theme-default/_fonts/inter-italic-latin.woff2
+similarity index 100%
+rename from dist/client/theme-default/fonts/inter-italic-latin.woff2
+rename to dist/client/theme-default/_fonts/inter-italic-latin.woff2
+diff --git a/dist/client/theme-default/fonts/inter-italic-vietnamese.woff2 b/dist/client/theme-default/_fonts/inter-italic-vietnamese.woff2
+similarity index 100%
+rename from dist/client/theme-default/fonts/inter-italic-vietnamese.woff2
+rename to dist/client/theme-default/_fonts/inter-italic-vietnamese.woff2
+diff --git a/dist/client/theme-default/fonts/inter-roman-cyrillic-ext.woff2 b/dist/client/theme-default/_fonts/inter-roman-cyrillic-ext.woff2
+similarity index 100%
+rename from dist/client/theme-default/fonts/inter-roman-cyrillic-ext.woff2
+rename to dist/client/theme-default/_fonts/inter-roman-cyrillic-ext.woff2
+diff --git a/dist/client/theme-default/fonts/inter-roman-cyrillic.woff2 b/dist/client/theme-default/_fonts/inter-roman-cyrillic.woff2
+similarity index 100%
+rename from dist/client/theme-default/fonts/inter-roman-cyrillic.woff2
+rename to dist/client/theme-default/_fonts/inter-roman-cyrillic.woff2
+diff --git a/dist/client/theme-default/fonts/inter-roman-greek-ext.woff2 b/dist/client/theme-default/_fonts/inter-roman-greek-ext.woff2
+similarity index 100%
+rename from dist/client/theme-default/fonts/inter-roman-greek-ext.woff2
+rename to dist/client/theme-default/_fonts/inter-roman-greek-ext.woff2
+diff --git a/dist/client/theme-default/fonts/inter-roman-greek.woff2 b/dist/client/theme-default/_fonts/inter-roman-greek.woff2
+similarity index 100%
+rename from dist/client/theme-default/fonts/inter-roman-greek.woff2
+rename to dist/client/theme-default/_fonts/inter-roman-greek.woff2
+diff --git a/dist/client/theme-default/fonts/inter-roman-latin-ext.woff2 b/dist/client/theme-default/_fonts/inter-roman-latin-ext.woff2
+similarity index 100%
+rename from dist/client/theme-default/fonts/inter-roman-latin-ext.woff2
+rename to dist/client/theme-default/_fonts/inter-roman-latin-ext.woff2
+diff --git a/dist/client/theme-default/fonts/inter-roman-latin.woff2 b/dist/client/theme-default/_fonts/inter-roman-latin.woff2
+similarity index 100%
+rename from dist/client/theme-default/fonts/inter-roman-latin.woff2
+rename to dist/client/theme-default/_fonts/inter-roman-latin.woff2
+diff --git a/dist/client/theme-default/fonts/inter-roman-vietnamese.woff2 b/dist/client/theme-default/_fonts/inter-roman-vietnamese.woff2
+similarity index 100%
+rename from dist/client/theme-default/fonts/inter-roman-vietnamese.woff2
+rename to dist/client/theme-default/_fonts/inter-roman-vietnamese.woff2

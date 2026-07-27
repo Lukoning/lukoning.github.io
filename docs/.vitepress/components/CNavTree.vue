@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useData, type DefaultTheme } from 'vitepress'
+import { useData } from 'vitepress'
+import { type DefaultTheme } from 'vitepress/theme-without-fonts'
 
 defineOptions({ name: 'CNavTree' })
 

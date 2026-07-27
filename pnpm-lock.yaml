@@ -6,6 +6,7 @@ settings:
 
 patchedDependencies:
   '@miletorix/vitepress-image-viewer': c49706292851cacce23696329fa04e4efac58a64fee88397f02a22c447aef982
+  vitepress: 8f83a2e943e2703951c20a5a572e7f401c1b606221b08b28830ab5f16fe5cbd9
   vitepress-plugin-comment-with-giscus: b75fde243227a24767bf30868e1bb615b5ae6c7637a9ea9e1f32da3402bc8064
   vitepress-plugin-pagefind: 55a82f1083396c79f2c095d7992d64cdb1e69bf5e9b0feeccb919226d4b4be90
 
@@ -33,10 +34,10 @@ importers:
         version: 1.5.2
       vitepress-plugin-breadcrumb:
         specifier: ^3.0.5
-        version: 3.0.5(vitepress@2.0.0-alpha.17(@types/node@25.9.2)(lightningcss@1.32.0)(nprogress@0.2.0)(postcss@8.5.15)(sass-embedded@1.100.0)(sass@1.100.0)(yaml@2.8.3))
+        version: 3.0.5(vitepress@2.0.0-alpha.17(patch_hash=8f83a2e943e2703951c20a5a572e7f401c1b606221b08b28830ab5f16fe5cbd9)(@types/node@25.9.2)(lightningcss@1.32.0)(nprogress@0.2.0)(postcss@8.5.15)(sass-embedded@1.100.0)(sass@1.100.0)(yaml@2.8.3))
       vitepress-plugin-pagefind:
         specifier: ^0.4.20
-        version: 0.4.20(patch_hash=55a82f1083396c79f2c095d7992d64cdb1e69bf5e9b0feeccb919226d4b4be90)(pagefind@1.5.2)(vitepress@2.0.0-alpha.17(@types/node@25.9.2)(lightningcss@1.32.0)(nprogress@0.2.0)(postcss@8.5.15)(sass-embedded@1.100.0)(sass@1.100.0)(yaml@2.8.3))(vue@3.5.35)
+        version: 0.4.20(patch_hash=55a82f1083396c79f2c095d7992d64cdb1e69bf5e9b0feeccb919226d4b4be90)(pagefind@1.5.2)(vitepress@2.0.0-alpha.17(patch_hash=8f83a2e943e2703951c20a5a572e7f401c1b606221b08b28830ab5f16fe5cbd9)(@types/node@25.9.2)(lightningcss@1.32.0)(nprogress@0.2.0)(postcss@8.5.15)(sass-embedded@1.100.0)(sass@1.100.0)(yaml@2.8.3))(vue@3.5.35)
       vue:
         specifier: ^3.5.35
         version: 3.5.35
@@ -55,7 +56,7 @@ importers:
         version: 8.0.16(@types/node@25.9.2)(esbuild@0.27.7)(sass-embedded@1.100.0)(sass@1.100.0)(yaml@2.8.3)
       vitepress:
         specifier: 2.0.0-alpha.17
-        version: 2.0.0-alpha.17(@types/node@25.9.2)(lightningcss@1.32.0)(nprogress@0.2.0)(postcss@8.5.15)(sass-embedded@1.100.0)(sass@1.100.0)(yaml@2.8.3)
+        version: 2.0.0-alpha.17(patch_hash=8f83a2e943e2703951c20a5a572e7f401c1b606221b08b28830ab5f16fe5cbd9)(@types/node@25.9.2)(lightningcss@1.32.0)(nprogress@0.2.0)(postcss@8.5.15)(sass-embedded@1.100.0)(sass@1.100.0)(yaml@2.8.3)
       vitepress-plugin-comment-with-giscus:
         specifier: ^1.1.15
         version: 1.1.15(patch_hash=b75fde243227a24767bf30868e1bb615b5ae6c7637a9ea9e1f32da3402bc8064)(vue@3.5.35)
@@ -64,7 +65,7 @@ importers:
         version: 1.7.5(vite@8.0.16(@types/node@25.9.2)(esbuild@0.27.7)(sass-embedded@1.100.0)(sass@1.100.0)(yaml@2.8.3))
       vitepress-plugin-tabs:
         specifier: ^0.9.0
-        version: 0.9.0(vitepress@2.0.0-alpha.17(@types/node@25.9.2)(lightningcss@1.32.0)(nprogress@0.2.0)(postcss@8.5.15)(sass-embedded@1.100.0)(sass@1.100.0)(yaml@2.8.3))(vue@3.5.35)
+        version: 0.9.0(vitepress@2.0.0-alpha.17(patch_hash=8f83a2e943e2703951c20a5a572e7f401c1b606221b08b28830ab5f16fe5cbd9)(@types/node@25.9.2)(lightningcss@1.32.0)(nprogress@0.2.0)(postcss@8.5.15)(sass-embedded@1.100.0)(sass@1.100.0)(yaml@2.8.3))(vue@3.5.35)
       vitepress-plugin-word-count:
         specifier: ^0.1.1
         version: 0.1.1(get-east-asian-width@1.6.0)(node-html-parser@7.1.0)
@@ -2939,9 +2940,9 @@ snapshots:
       sass-embedded: 1.100.0
       yaml: 2.8.3
 
-  vitepress-plugin-breadcrumb@3.0.5(vitepress@2.0.0-alpha.17(@types/node@25.9.2)(lightningcss@1.32.0)(nprogress@0.2.0)(postcss@8.5.15)(sass-embedded@1.100.0)(sass@1.100.0)(yaml@2.8.3)):
+  vitepress-plugin-breadcrumb@3.0.5(vitepress@2.0.0-alpha.17(patch_hash=8f83a2e943e2703951c20a5a572e7f401c1b606221b08b28830ab5f16fe5cbd9)(@types/node@25.9.2)(lightningcss@1.32.0)(nprogress@0.2.0)(postcss@8.5.15)(sass-embedded@1.100.0)(sass@1.100.0)(yaml@2.8.3)):
     dependencies:
-      vitepress: 2.0.0-alpha.17(@types/node@25.9.2)(lightningcss@1.32.0)(nprogress@0.2.0)(postcss@8.5.15)(sass-embedded@1.100.0)(sass@1.100.0)(yaml@2.8.3)
+      vitepress: 2.0.0-alpha.17(patch_hash=8f83a2e943e2703951c20a5a572e7f401c1b606221b08b28830ab5f16fe5cbd9)(@types/node@25.9.2)(lightningcss@1.32.0)(nprogress@0.2.0)(postcss@8.5.15)(sass-embedded@1.100.0)(sass@1.100.0)(yaml@2.8.3)
 
   vitepress-plugin-comment-with-giscus@1.1.15(patch_hash=b75fde243227a24767bf30868e1bb615b5ae6c7637a9ea9e1f32da3402bc8064)(vue@3.5.35):
     dependencies:
@@ -2957,20 +2958,20 @@ snapshots:
     optionalDependencies:
       vite: 8.0.16(@types/node@25.9.2)(esbuild@0.27.7)(sass-embedded@1.100.0)(sass@1.100.0)(yaml@2.8.3)
 
-  vitepress-plugin-pagefind@0.4.20(patch_hash=55a82f1083396c79f2c095d7992d64cdb1e69bf5e9b0feeccb919226d4b4be90)(pagefind@1.5.2)(vitepress@2.0.0-alpha.17(@types/node@25.9.2)(lightningcss@1.32.0)(nprogress@0.2.0)(postcss@8.5.15)(sass-embedded@1.100.0)(sass@1.100.0)(yaml@2.8.3))(vue@3.5.35):
+  vitepress-plugin-pagefind@0.4.20(patch_hash=55a82f1083396c79f2c095d7992d64cdb1e69bf5e9b0feeccb919226d4b4be90)(pagefind@1.5.2)(vitepress@2.0.0-alpha.17(patch_hash=8f83a2e943e2703951c20a5a572e7f401c1b606221b08b28830ab5f16fe5cbd9)(@types/node@25.9.2)(lightningcss@1.32.0)(nprogress@0.2.0)(postcss@8.5.15)(sass-embedded@1.100.0)(sass@1.100.0)(yaml@2.8.3))(vue@3.5.35):
     dependencies:
       '@sugarat/theme-shared': 0.0.7
       '@vueuse/core': 14.3.0(vue@3.5.35)
       javascript-stringify: 2.1.0
       pagefind: 1.5.2
-      vitepress: 2.0.0-alpha.17(@types/node@25.9.2)(lightningcss@1.32.0)(nprogress@0.2.0)(postcss@8.5.15)(sass-embedded@1.100.0)(sass@1.100.0)(yaml@2.8.3)
+      vitepress: 2.0.0-alpha.17(patch_hash=8f83a2e943e2703951c20a5a572e7f401c1b606221b08b28830ab5f16fe5cbd9)(@types/node@25.9.2)(lightningcss@1.32.0)(nprogress@0.2.0)(postcss@8.5.15)(sass-embedded@1.100.0)(sass@1.100.0)(yaml@2.8.3)
       vue-command-palette: 0.1.4
     transitivePeerDependencies:
       - vue
 
-  vitepress-plugin-tabs@0.9.0(vitepress@2.0.0-alpha.17(@types/node@25.9.2)(lightningcss@1.32.0)(nprogress@0.2.0)(postcss@8.5.15)(sass-embedded@1.100.0)(sass@1.100.0)(yaml@2.8.3))(vue@3.5.35):
+  vitepress-plugin-tabs@0.9.0(vitepress@2.0.0-alpha.17(patch_hash=8f83a2e943e2703951c20a5a572e7f401c1b606221b08b28830ab5f16fe5cbd9)(@types/node@25.9.2)(lightningcss@1.32.0)(nprogress@0.2.0)(postcss@8.5.15)(sass-embedded@1.100.0)(sass@1.100.0)(yaml@2.8.3))(vue@3.5.35):
     dependencies:
-      vitepress: 2.0.0-alpha.17(@types/node@25.9.2)(lightningcss@1.32.0)(nprogress@0.2.0)(postcss@8.5.15)(sass-embedded@1.100.0)(sass@1.100.0)(yaml@2.8.3)
+      vitepress: 2.0.0-alpha.17(patch_hash=8f83a2e943e2703951c20a5a572e7f401c1b606221b08b28830ab5f16fe5cbd9)(@types/node@25.9.2)(lightningcss@1.32.0)(nprogress@0.2.0)(postcss@8.5.15)(sass-embedded@1.100.0)(sass@1.100.0)(yaml@2.8.3)
       vue: 3.5.35
 
   vitepress-plugin-word-count@0.1.1(get-east-asian-width@1.6.0)(node-html-parser@7.1.0):
@@ -2984,7 +2985,7 @@ snapshots:
       gray-matter: 4.0.3
       qsu: 1.12.2
 
-  vitepress@2.0.0-alpha.17(@types/node@25.9.2)(lightningcss@1.32.0)(nprogress@0.2.0)(postcss@8.5.15)(sass-embedded@1.100.0)(sass@1.100.0)(yaml@2.8.3):
+  vitepress@2.0.0-alpha.17(patch_hash=8f83a2e943e2703951c20a5a572e7f401c1b606221b08b28830ab5f16fe5cbd9)(@types/node@25.9.2)(lightningcss@1.32.0)(nprogress@0.2.0)(postcss@8.5.15)(sass-embedded@1.100.0)(sass@1.100.0)(yaml@2.8.3):
     dependencies:
       '@docsearch/css': 4.6.2
       '@docsearch/js': 4.6.2

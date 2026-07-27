@@ -2,7 +2,7 @@
 /// <reference types="vite/client" />
 import type { Theme } from 'vitepress'
 import { useData, useRoute, inBrowser } from 'vitepress'
-import DefaultTheme from 'vitepress/theme'
+import DefaultTheme from 'vitepress/theme-without-fonts'
 
 import giscusTalk from 'vitepress-plugin-comment-with-giscus';
 

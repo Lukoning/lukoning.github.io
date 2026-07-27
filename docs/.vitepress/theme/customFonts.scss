@@ -1,5 +1,33 @@
+$font-family-base: "Inter-ArrowsOnly", "GenSenRounded2 TW Subset", "GenSenRounded2 TW", "Yuanti SC", "Inter", "HarmonyOS Sans SC", "PingFang SC", ui-sans-serif, sans-serif, -apple-system, BlinkMacSystemFont, system-ui, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+@font-face {
+    font-family: Inter-ArrowsOnly;
+    src: url("/fonts/Inter/inter-roman-latin.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    unicode-range: U+2191, U+2193, U+3C, U+2D, U+3E;
+}
+@font-face {
+    font-family: Inter4CJK;
+    src: url("/fonts/Inter/inter-roman-latin.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    unicode-range: U+0-7D, U+7F-B6, U+B8-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-2012, U+2016-2017, U+201A-201B, U+201E-2025, U+2027-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+    font-family: Inter4CJK;
+    src: url("/fonts/Inter/inter-italic-latin.woff2") format("woff2");
+    font-style: italic;
+    font-weight: 100 900;
+    font-display: swap;
+    unicode-range: U+0-7D, U+7F-B6, U+B8-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-2012, U+2016-2017, U+201A-201B, U+201E-2025, U+2027-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 :root {
-    --vp-font-family-base: "Inter4CJK", "GenSenRounded2 TW Subset", "GenSenRounded2 TW", "Yuanti SC", "Inter", "HarmonyOS Sans SC", "PingFang SC", ui-sans-serif, sans-serif, -apple-system, BlinkMacSystemFont, system-ui, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --vp-font-family-base: #{$font-family-base};
+    --lkn-font-family-use-Inter: "Inter4CJK", #{$font-family-base};
     --vp-font-family-mono: "Sarasa Mono SC", "Monaspace Neon", ui-monospace, "SFMono-Regular", "SF Mono", "Menlo", "Consolas", "Liberation Mono", monospace;
 }
 
@@ -11,7 +39,9 @@
     //分数显示优化+自然字宽喵！https://sparanoid.com/lab/opentype-features/
     font-feature-settings: "frac", "pwid";
 }
-
+.VPHero, em {
+    font-family: var(--lkn-font-family-use-Inter);
+}
 .VPFeatures,
 .VPDoc .main {
     //左右对齐喵！

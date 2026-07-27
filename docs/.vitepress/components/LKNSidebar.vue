@@ -65,12 +65,15 @@ const scrollToActiveItem = async (smooth: boolean = true) => {
   })
 
   const osInstance = (navEl.value as any)?.osInstance()
-  const { viewport } = osInstance.elements()
+  if (osInstance) {
+    const { viewport } = osInstance.elements()
+    // reset flag when scroll ends
+    viewport.addEventListener('scrollend', () => {
+      isProgrammaticScrolling.value = false
+    }, { once: true })
+  }
 
-  // reset flag when scroll ends
-  viewport.addEventListener('scrollend', () => {
-    isProgrammaticScrolling.value = false
-  }, { once: true })
+  
 }
 
 const onSidebarScroll = () => {

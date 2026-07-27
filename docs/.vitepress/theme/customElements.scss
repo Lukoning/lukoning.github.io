@@ -44,10 +44,15 @@ lkn {
             &[green-yellow] {
                 background-image: -webkit-linear-gradient(92deg, #7dffd6 10%, #ffcc69 90%);
             }
+            &[ns-blessing-Mavuika] {
+                background-image:
+                    -webkit-repeating-radial-gradient(#feee6a 0% 100%),
+                    -webkit-repeating-linear-gradient(88deg, #feee6a 0% 100%);
+            }
             &[ns-blessing-Xilonen] {
                 background-image:
-                    -webkit-repeating-radial-gradient(#ffe22500 0%, #79ffff66 50%, #ffe22500 100%),
-                    -webkit-repeating-linear-gradient(88deg, #79ffff 10%, #ffe225 50%, #fffa65 80%, #79ffff 90%);
+                    -webkit-repeating-radial-gradient(#ffe22533 0%, #79ffff66 50%, #ffe22533 100%),
+                    -webkit-repeating-linear-gradient(88deg, #79ffff 10%, #ffe225 40%, #fffa65 80%, #79ffff 90%);
             }
             &[ns-blessing-Kachina] {
                 background-image:
@@ -57,30 +62,28 @@ lkn {
             &[ns-blessing-Kinich] {
                 background-image:
                     -webkit-repeating-radial-gradient(#e0f9d0 30%, #e0f9d000 40%, #7ffceb 70%, #e0f9d0 100%),
-                    -webkit-repeating-linear-gradient(92deg, #84fcad 20%, #8ef3a7 40%, #fdf443 70%, #84fcad 90%);
+                    -webkit-repeating-linear-gradient(92deg, #84fcad 20%, #8ef3a7 60%, #fdf443 70%, #84fcad 90%);
             }
             &[ns-blessing-Mualani] {
                 background-image:
-                    -webkit-repeating-radial-gradient(#87f4fc00 10%, #9dfffc88 20%, #87f4fc00 40%),
+                    -webkit-repeating-radial-gradient(#87f4fc00 10%, #9dfffcaa 30%, #87f4fcaa 40%, #87f4fc00 50%),
                     -webkit-repeating-linear-gradient(87deg, #87f4fc 30%, #fdfb8c 40%, #fbc7f9 60%, #9ed7fe 70%, #87f4fc 90%);
             }
             &[ns-blessing-Ororon] {
                 background-image:
-                    -webkit-repeating-radial-gradient(#aa5efa00 40%, #a59cfb 60%, #aa5efa00 70%),
-                    -webkit-repeating-linear-gradient(89deg, #92ddff 30%, #aa5efa 40%, #fc61fa 70%, #92ddff 100%);
+                    -webkit-repeating-radial-gradient(#aa5efa00 30%, #a59cfb 60%, #aa5efa00 70%),
+                    -webkit-repeating-linear-gradient(86deg, #92ddff 30%, #aa5efa 40%, #fc61fa 60%, #92ddff 80%);
             }
             &[ns-blessing-Chasca] {
                 background-image:
-                    -webkit-repeating-radial-gradient(#b2dbdfaa 0% 30%, #daadd3aa 50%, #b2dbdfaa 80%),
-                    -webkit-repeating-linear-gradient(84deg, #5ff1eb 30%, #daadd3 35% 40%, #4afdee 80%);
+                    -webkit-repeating-radial-gradient(#5ff1eb88 0% 20%, #daadd388 40%, #5ff1eb88 60%),
+                    -webkit-repeating-linear-gradient(100deg, #4afdee 25%, #daadd3 30% 40%, #4afdee 80%);
             }
             &[ns-blessing-Iansan] {
                 background-image:
                     -webkit-repeating-radial-gradient(#ffa69e 5%, #de48f800 50%, #ffa69e 90%),
                     -webkit-repeating-linear-gradient(88deg, #fff7fa 20%, #de48f8 50% 60%, #fff7fa 100%);
             }
-            /*&[ns-blessing-PyroTraveler] {
-            }*/
         }
         &[homehero] {
             color: var(--vp-home-hero-name-color);
@@ -167,14 +170,14 @@ lkn {
             }
             40% {
                 opacity: 1;
-                filter: blur(6px) brightness(4);
+                filter: blur(6px) brightness(3);
                 transform: scale(1.1);
                 text-shadow: 0 0 10px rgba(255, 100, 20, .9), 0 0 20px rgba(255, 50, 0, .6);
-                color: #ff7a33;
+                color: #fd5900;
             }
             100% {
                 opacity: 0;
-                filter: blur(20px) brightness(3);
+                filter: blur(20px) brightness(2);
                 transform: scale(.8);
                 text-shadow: 0 0 100px rgba(255, 50, 0, 0);
                 color: #ff3300;

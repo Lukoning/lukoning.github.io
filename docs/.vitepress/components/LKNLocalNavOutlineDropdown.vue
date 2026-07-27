@@ -2,7 +2,7 @@
 <script setup lang="ts">
 import { onKeyStroke } from '@vueuse/core'
 import { onContentUpdated, useData } from 'vitepress'
-import type { DefaultTheme } from 'vitepress/theme'
+import type { DefaultTheme } from 'vitepress/theme-without-fonts'
 import { nextTick, ref, watch } from 'vue'
 // @ts-expect-error
 import { resolveTitle } from 'vitepress/dist/client/theme-default/composables/outline'

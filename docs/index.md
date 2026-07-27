@@ -40,8 +40,9 @@ features:
 <lkn layout box-center>
 
 <script setup>
+  import { onMounted, onUnmounted } from 'vue'
   import { useData } from 'vitepress'
-  import { initLknAnimation } from "/.vitepress/theme/customElements.ts"
+  import { initLknAnimation, destoryObserver } from "/.vitepress/theme/customElements.ts"
   const { theme } = useData();
   const sb = theme.value.sidebar.map(item => ({ ...item })); //theme是只读数组，要修改的话得转换为新数组
   const items =  {
@@ -50,7 +51,8 @@ features:
     anyt: sb.filter(item => item.text === "蔬菜罐罐汤"),
   };
   Object.keys(items).forEach( key => items[key][0].collapsed = undefined)
-  initLknAnimation();
+  onMounted(() => { initLknAnimation() });
+  onUnmounted(() => { destoryObserver() });
 </script>
 <style>
   .vp-doc hr {
@@ -152,7 +154,7 @@ features:
 <br/>只不过，在我的表达里，这些事绝不会被定性为「实验」。
 <br/> **那是真真切切发生在世间的事，比数据更有意义。**
 
-*——原神·空月之歌<br/>第十幕「<lkn animated burning-switch script-init=enter-viewport script-delay=5000><fr>道成千壑，因果异灭</fr><fb>（</fb><to>虚空劫灰往世书</to><fb>）</fb></lkn>」*
+*——原神·空月之歌<br/>第十幕「<lkn animated burning-switch script-init=enter-viewport trigger-config="{delay=5000}"><fr>道成千壑，因果异灭</fr><fb>（</fb><to>虚空劫灰往世书</to><fb>）</fb></lkn>」*
 
 </lkn>
 

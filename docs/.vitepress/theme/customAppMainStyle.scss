@@ -105,11 +105,30 @@ body {
 }
 
 .VPSidebarItem {
-    //给顶层和第一层项目加一个自定义伪元素indicator
-    &:is(.level-0, .level-1).is-active > .item .VPLink {
+    .text {
+        padding: 6px 0;
+        line-height: 1.4em;
+    }
+    // 每个指示器都亮一亮，粗一点，中一点
+    .indicator {
+        top: 6px;
+        bottom: 6px;
+        left: -18px;
+        width: 3px;
+        border-radius: 3px;
+    }
+    &:is(.level-0, .level-1) > .item > .indicator {
+        left: -9px;
+    }
+    &.is-active > .item > .indicator {
+        background-color: var(--vp-c-brand-1);
+    }
+    // 折叠了怎么办？没关系，指示器我还有一个！
+    &.has-active:not(.is-active).collapsed > .item .VPLink {
         position: relative;
         .text::before {
             content: "->";
+            color: var(--vp-c-brand-1);
             position: absolute;
             left: -16px;
             top: -1px;
@@ -117,7 +136,17 @@ body {
         }
     }
 }
-
+.VPDocAsideOutline {
+    .content {
+        margin-left: 1px; //+1px
+        padding-left: 15px; //-1px
+    }
+    .outline-marker {
+        left: -2px;
+        width: 3px;
+        border-radius: 3px;
+    }
+}
 
 .VPFlyout > .menu { // 需要背景模糊的菜单元素
     backdrop-filter: blur(var(--lkn-navmenu-blur-radius));

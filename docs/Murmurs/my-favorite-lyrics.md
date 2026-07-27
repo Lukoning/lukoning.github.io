@@ -1,20 +1,80 @@
 ---
 createdDate: 2026-03-07T20:40:01+08:00
-title: 喜欢的歌词合集
+title: 喜欢的歌（和歌词）合集
 order: 5
 license: false
 copyright: 版权归各作词者所有
 ---
+<script setup>
+import { ref } from 'vue'
+import VPButton from 'vitepress/dist/client/theme-default/components/VPButton.vue'
 
-# 喜欢的歌词合集
+let toggleTranslateButtonText = ref("隐藏翻译")
+let showTranslate = ref(true)
+function toggleTranslate() {
+    showTranslate.value = !showTranslate.value
+    const rt = document.querySelectorAll("rt")
+    if (showTranslate.value) {
+        toggleTranslateButtonText.value = "隐藏翻译"
+        rt.forEach(el => el.style.display = "");
+    } else {
+        toggleTranslateButtonText.value = "显示翻译"
+        rt.forEach(el => el.style.display = "none");
+    }
+}
 
-*以下排序不分先后哦*
+</script>
+
+# 喜欢的歌（和歌词）合集
+
+*歌词为摘抄，非完整歌词，并可能在形式上有所调整*
+
+*排序不分先后哦*
+
+<VPButton tag="span"
+    size="medium"
+    theme="alt"
+    :text="toggleTranslateButtonText"
+    :aria-label="toggleTranslateButtonText"
+    @click=toggleTranslate
+/>
 
 <lkn layout text-center fwid>
 
+## <ruby>Da Capo<rp> / </rp><rt>回到开始</rt></ruby>
+
+<Badge type="info">歌手：车子玉</Badge>
+<Badge type="info">出自：<a href="https://www.bilibili.com/video/BV1Kj411g7Lu?t=235" target="_blank" rel="noreferrer">《崩坏3》动画短片「毕业旅行」</a></Badge>
+<Badge type="info">MV：<a href="https://www.bilibili.com/video/BV1aM4y1R77W" target="_blank" rel="noreferrer">「Da Capo」——《崩坏3》印象曲</a></Badge>
+
+<ruby>When good old friends are going away<rp> / </rp><rt>当曾经的挚友离开</rt></ruby>
+
+<ruby>Will you wish them to remember your name<rp> / </rp><rt>你是否期待他们能牢记你姓名</rt></ruby>
+
+<ruby>When good old days are passing away<rp> / </rp><rt>当美好的旧日远去</rt></ruby>
+
+<ruby>Will you promise your heart remains the same<rp> / </rp><rt>你的心是否仍旧如初</rt></ruby>
+
+<ruby>Never can we suspend the time<rp> / </rp><rt>我们无法停止时间</rt></ruby>
+
+<ruby>Having to leave the tracks behind<rp> / </rp><rt>只得将车辙留在身后</rt></ruby>
+
+<ruby>There is a longer way ahead, after all<rp> / </rp><rt>毕竟前方的道路更长</rt></ruby>
+
+<ruby>One has to eventually grow up<rp> / </rp><rt>而人终究要长大</rt></ruby>
+
+<ruby>Spending a lifetime to taste the love and pain<rp> / </rp><rt>用毕生时光去体会爱与伤痛</rt></ruby>
+
+<ruby>If it's too hard to say goodbye<rp> / </rp><rt>如果难以说出再见</rt></ruby>
+
+<ruby>Give us a try to sing a rhyme<rp> / </rp><rt>那让我们试着唱出来</rt></ruby>
+
+<ruby>"May you, the beauty of this world, always shine."<rp> / </rp><rt>“你便是世界上的美好，永远闪耀。”</rt></ruby>
+
 ## <ruby>好きなので。<rp> / </rp><rt>因为喜欢你。</rt></ruby>
 
-<Badge type="info">歌手：艾拉(cv.雨宮天)</Badge> <Badge type="info">番剧《<ruby>プラスティック・メモリーズ<rp> (</rp><rt>可塑性记忆</rt><rp>) </rp></ruby>》插曲</Badge>
+<Badge type="info">歌手：艾拉(cv.雨宮天)</Badge>
+<Badge type="info">番剧《<ruby>プラスティック・メモリーズ<rp> (</rp><rt>可塑性记忆</rt><rp>) </rp></ruby>》插曲</Badge>
 
 <ruby>おはよう またね お帰りなさい<rp> / </rp><rt>早安 再见 欢迎回家</rt></ruby>
 
@@ -46,7 +106,8 @@ copyright: 版权归各作词者所有
 
 ## <ruby>*Remember*<rp> / </rp><rt>记忆</rt></ruby>
 
-<Badge type="info">歌手：月見ヤチヨ(cv.早見沙織)</Badge> <Badge type="info">电影《<ruby>超かぐや姫！<rp> (</rp><rt>超时空辉夜姬！</rt><rp>) </rp></ruby>》片头曲</Badge>
+<Badge type="info">歌手：月見ヤチヨ(cv.早見沙織)</Badge>
+<Badge type="info">电影《<ruby>超かぐや姫！<rp> (</rp><rt>超时空辉夜姬！</rt><rp>) </rp></ruby>》片头曲</Badge>
 
 <ruby>大切なメロディは流れてるよ<rp> / </rp><rt>无比珍贵的旋律正流淌着</rt></ruby>
 
@@ -58,7 +119,10 @@ copyright: 版权归各作词者所有
 
 ## 山河无恙在我胸
 
-<Badge type="info">歌手：蔡徐坤&佟丽娅</Badge> <Badge type="info">出品：中国共产党云南省委宣传部</Badge> <Badge type="info">2020武汉抗疫纪念</Badge>
+<Badge type="info">歌手：蔡徐坤&佟丽娅</Badge>
+<Badge type="info">出品：中国共产党云南省委宣传部</Badge>
+<Badge type="info">2020武汉抗疫纪念</Badge>
+<Badge type="info">MV：<a href="https://www.bilibili.com/video/BV19741127CN" target="_blank" rel="noreferrer">山河无恙在我胸 - 蔡徐坤&佟丽娅</a></Badge>
 
 选择了多少向死而生，终于等到冰雪消融
 
@@ -82,27 +146,63 @@ copyright: 版权归各作词者所有
 
 ## 玫瑰少年
 
-<Badge type="info">歌手：蔡依林/五月天</Badge> <Badge type="info">献予“玫瑰少年”</Badge>
+<Badge type="info">歌手：五月天</Badge>
+<Badge type="info">原唱：蔡依林</Badge>
+<Badge type="info">献予“玫瑰少年”</Badge>
 
-玫瑰少年在我心里
+試著想像 you switched to his body
 
-绽放着鲜艳的传奇，我们都从来没忘记
+Sexuality 當心什麼會傷你
 
-你的控诉没有声音
+多少次的重傷 多少次的冷語
 
-却倾诉更多的真理，却唤醒无数的真心
+Drowning 誰會拉你 Dreaming 誰會陪你
 
-哪朵玫瑰没有荆棘
+Same shit happen every day
 
-最好的报复是美丽，最美的盛开是反击
+你離開後 世界可改變
 
-别让谁去改变了你
+多少無知罪愆 事過不境遷
 
-你是你或是妳都行，会有人全心的爱你
+永誌不忘紀念 往事不如煙
+
+生而為人無罪 你不需要抱歉
+
+One day, I will be you, baby boy, and you gon'be me
+
+喧嘩如果不停 讓我陪你安靜
+
+I wish I could hug you, till you're really really being free
+
+玫瑰少年 在我心裡
+
+綻放著 鮮豔的 傳奇
+
+我們都 從來沒 忘記
+
+你的控訴 沒有聲音
+
+卻傾訴 更多的 真理
+
+卻喚醒 無數的 真心
+
+哪朵玫瑰沒有荊棘
+
+最好的 報復是 美麗
+
+最美的 盛開是 反擊
+
+別讓誰去 改變了你
+
+你是你 或是妳 都行
+
+會有人 全心的 愛你
 
 ## 追光者
 
-<Badge type="info">歌手：岑宁儿</Badge> <Badge type="info">电视剧《夏至未至》插曲</Badge> <Badge type="info">(私)献给松树尖上的宇夜星光</Badge>
+<Badge type="info">歌手：岑宁儿</Badge>
+<Badge type="info">电视剧《夏至未至》插曲</Badge>
+<Badge type="info">(私)献给松树尖上的宇夜星光</Badge>
 
 我可以跟在你身后，像影子追着光梦游
 
@@ -114,7 +214,8 @@ copyright: 版权归各作词者所有
 
 ## 那些年
 
-<Badge type="info">歌手：胡夏</Badge> <Badge type="info">电影《那些年，我们一起追的女孩》插曲</Badge>
+<Badge type="info">歌手：胡夏</Badge>
+<Badge type="info">电影《那些年，我们一起追的女孩》插曲</Badge>
 
 那些年错过的大雨，那些年错过的爱情
 
@@ -136,7 +237,8 @@ copyright: 版权归各作词者所有
 
 ## <ruby>あの頃<rp> (</rp><rt>那些年</rt><rp>) </rp>~紧紧抱着你~<rp> (</rp><rt>~ジンジンバオヂュオニー~</rt><rp>) </rp></ruby>
 
-<Badge type="info">歌手：whiteeeen</Badge> <Badge type="info">电视剧《<ruby>それでも僕は君が好き<rp> (</rp><rt>即使如此我还是喜欢你</rt><rp>) </rp></ruby>》插曲</Badge>
+<Badge type="info">歌手：whiteeeen</Badge>
+<Badge type="info">电视剧《<ruby>それでも僕は君が好き<rp> (</rp><rt>即使如此我还是喜欢你</rt><rp>) </rp></ruby>》插曲</Badge>
 
 <ruby>風が吹く季節 すれ違った恋<rp> / </rp><rt>风吹的季节 错过的爱情</rt></ruby>
 
@@ -158,7 +260,8 @@ copyright: 版权归各作词者所有
 
 ## 紫荆花盛开
 
-<Badge type="info">歌手：李荣浩&梁咏琪</Badge> <Badge type="info">香港回归25周年主题曲</Badge>
+<Badge type="info">歌手：李荣浩&梁咏琪</Badge>
+<Badge type="info">香港回归25周年主题曲</Badge>
 
 <ruby>永远的紫荆花 在爱之下 茁壮发芽<rp> / </rp><rt>yong yuan de zi jing hua zai ai zhi xia zhuo zhuang fa ya</rt></ruby>
 
@@ -186,7 +289,8 @@ copyright: 版权归各作词者所有
 
 ## <ruby>*Passing Memories*<rp> / </rp><rt>过去的回忆</rt></ruby>
 
-<Badge type="info">歌手：فوزية أويحيى (Faouzia)</Badge> <Badge type="info">原神4周年主题曲</Badge>
+<Badge type="info">歌手：فوزية أويحيى (Faouzia)</Badge>
+<Badge type="info">原神4周年主题曲</Badge>
 
 <ruby>See<rp> / </rp><rt>看</rt></ruby>
 
@@ -198,7 +302,8 @@ copyright: 版权归各作词者所有
 
 ## 经过
 
-<Badge type="info">歌手：张杰</Badge> <Badge type="info">原神4周年主题曲</Badge>
+<Badge type="info">歌手：张杰</Badge>
+<Badge type="info">原神4周年主题曲</Badge>
 
 去触摸
 
@@ -214,7 +319,8 @@ copyright: 版权归各作词者所有
 
 ## 你从未离去
 
-<Badge type="info">歌手：白挺</Badge> <Badge type="info">电影《熊出没之雪岭熊风》片尾曲</Badge>
+<Badge type="info">歌手：白挺</Badge>
+<Badge type="info">电影《熊出没之雪岭熊风》片尾曲</Badge>
 
 浩瀚星空里 只剩你的背影
 
@@ -236,7 +342,8 @@ copyright: 版权归各作词者所有
 
 ## <ruby>Lemon<rp> / </rp><rt>柠檬</rt></ruby>
 
-<Badge type="info">歌手：米津玄師</Badge> <Badge type="info">电视剧<ruby>《アンナチュラル》<rp> (</rp><rt>非自然死亡</rt><rp>) </rp></ruby>片尾曲</Badge>
+<Badge type="info">歌手：米津玄師</Badge>
+<Badge type="info">电视剧<ruby>《アンナチュラル》<rp> (</rp><rt>非自然死亡</rt><rp>) </rp></ruby>片尾曲</Badge>
 
 <ruby>今でもあなたはわたしの光<rp> / </rp><rt>时至今日 你仍是我的光芒</rt></ruby>
 
@@ -250,7 +357,8 @@ copyright: 版权归各作词者所有
 
 ## <ruby>*The Long Way Home*<rp> / </rp><rt>回家的路</rt></ruby>
 
-<Badge type="info">歌手：温迪(cv.Erika Harlacher)</Badge> <Badge type="info">原神5周年主题曲</Badge>
+<Badge type="info">歌手：温迪(cv.Erika Harlacher)</Badge>
+<Badge type="info">原神5周年主题曲</Badge>
 
 <ruby>You know<rp> / </rp><rt>须知</rt></ruby>
 
@@ -262,7 +370,8 @@ copyright: 版权归各作词者所有
 
 ## <ruby>*Natlan*<rp> / </rp><rt>纳塔</rt></ruby>
 
-<Badge type="info">歌手：Daniel Lewis & London Voices</Badge> <Badge type="info">原神纳塔地区主题曲</Badge>
+<Badge type="info">歌手：Daniel Lewis & London Voices</Badge>
+<Badge type="info">原神纳塔地区主题曲</Badge>
 
 <ruby>Kumbukeni majina ya mashujaa<rp> / </rp><rt>铭记英雄的名字，追随他们</rt></ruby>
 
@@ -296,7 +405,8 @@ copyright: 版权归各作词者所有
 
 ## <ruby>星屑<rp> / </rp><rt>追星星的人</rt></ruby>
 
-<Badge type="info">歌手：霜月はるか</Badge> <Badge type="info">游戏《<ruby>クドわふたー<rp> (</rp><rt>库特Wafter</rt><rp>) </rp></ruby>》片尾曲</Badge>
+<Badge type="info">歌手：霜月はるか</Badge>
+<Badge type="info">游戏《<ruby>クドわふたー<rp> (</rp><rt>库特Wafter</rt><rp>) </rp></ruby>》片尾曲</Badge>
 
 <ruby>小さな 夢の翼を<rp> / </rp><rt>幼小的梦之羽翼</rt></ruby>
 
@@ -308,7 +418,8 @@ copyright: 版权归各作词者所有
 
 ## <ruby>鹿 be free<rp> / </rp><rt>鹿 获得自由</rt></ruby>
 
-<Badge type="info">歌手：尚雯婕</Badge> <Badge type="info">电影《熊出没之奇幻空间》主题曲</Badge>
+<Badge type="info">歌手：尚雯婕</Badge>
+<Badge type="info">电影《熊出没之奇幻空间》主题曲</Badge>
 
 往前飞，穿过云霄
 
@@ -320,7 +431,8 @@ copyright: 版权归各作词者所有
 
 ## <ruby>色違いの翼<rp> / </rp><rt>异色的羽翼</rt></ruby>
 
-<Badge type="info">歌手：雪村あおい(cv.井口裕香)&倉上ひなた(cv.阿澄佳奈)</Badge> <Badge type="info">番剧《<ruby>ヤマノススメ サードシーズン<rp> (</rp><rt>向山进发 第三季</rt><rp>) </rp></ruby>》片尾曲</Badge>
+<Badge type="info">歌手：雪村あおい(cv.井口裕香)&倉上ひなた(cv.阿澄佳奈)</Badge>
+<Badge type="info">番剧《<ruby>ヤマノススメ サードシーズン<rp> (</rp><rt>向山进发 第三季</rt><rp>) </rp></ruby>》片尾曲</Badge>
 
 <ruby>繋いだ手と手を 離さないで<rp> / </rp><rt>不要将牵在一起的手松开</rt></ruby>
 
@@ -328,9 +440,24 @@ copyright: 版权归各作词者所有
 
 <ruby>片っぽずつ翼 寄せあって 飛ぼう<rp> / </rp><rt>将异色的孤翼凑到一起 结伴飞翔</rt></ruby>
 
-## 灼火之心
+## <ruby>灼火之心<rp> / </rp><rt>Blazing Heart</rt></ruby>
 
-<Badge type="info">歌手：袁娅维</Badge> <Badge type="info">原神玛薇卡角色曲</Badge>
+<Badge type="info">歌手：袁娅维</Badge>
+<Badge type="info">原神玛薇卡角色曲</Badge>
+
+<ruby>Blazing Heart!<rp> / </rp><rt>灼火之心！</rt></ruby> 再出发
+
+风来引航 光的方向
+
+超越过往 将意志武装
+
+把泪与伤燃作勋章
+
+载无畏向赛场 唤醒沉睡中的力量
+
+火 是热 是梦 是光
+
+（轻唱）Blazing Heart!
 
 <ruby>Blazing Heart!<rp> / </rp><rt>灼火之心！</rt></ruby> 去绽放
 
@@ -354,7 +481,8 @@ copyright: 版权归各作词者所有
 
 ## <ruby>なんもない<rp> / </rp><rt>一无所有</rt></ruby>
 
-<Badge type="info">歌手：星街すいせい</Badge> <Badge type="info">电影《<ruby>トラペジウム<rp> (</rp><rt>四重星</rt><rp>) </rp></ruby>》片头曲</Badge>
+<Badge type="info">歌手：星街すいせい</Badge>
+<Badge type="info">电影《<ruby>トラペジウム<rp> (</rp><rt>四重星</rt><rp>) </rp></ruby>》片头曲</Badge>
 
 <ruby>僕がいちばんなんにもないんだろう<rp> / </rp><rt>我是世上最一无所有的一人</rt></ruby>
 
