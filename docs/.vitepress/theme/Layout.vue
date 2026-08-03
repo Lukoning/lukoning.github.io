@@ -8,7 +8,7 @@ import CDocInfo from "../components/CDocInfo.vue"
 import CReturnToTopPlus from "../components/CReturnToTopPlus.vue"
 import CJumpToCommentsPlus from "../components/CJumpToCommentsPlus.vue"
 
-const { isDark } = useData()
+const { theme, frontmatter, isDark } = useData()
 
 const enableTransitions = () =>
   'startViewTransition' in document &&
@@ -51,7 +51,13 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
     <template #doc-before>
       <div class="doc-before">
         <Breadcrumb :breadcrumb="{ homeText: '提瓦特大陆', homeLink: '/' }" />
-        <CDocInfo />
+        <CDocInfo v-if="!((theme.CDocInfo?.placeDocInfoAtBottom === true && frontmatter.placeDocInfoAtBottom === undefined) || frontmatter.placeDocInfoAtBottom === true)" />
+      </div>
+    </template>
+    <template #doc-after>
+      <div class="doc-after">
+        <CDocInfo v-if="(theme.CDocInfo?.placeDocInfoAtBottom === true && frontmatter.placeDocInfoAtBottom === undefined) || frontmatter.placeDocInfoAtBottom === true" />
+        <Breadcrumb :breadcrumb="{ homeText: '提瓦特大陆', homeLink: '/' }" />
       </div>
     </template>
     <template #aside-outline-before>
@@ -65,11 +71,14 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
 
 <style>
 .doc-before {
-  margin-bottom: 16px;
-  padding-bottom: 4px;
-  border-bottom: 1px solid var(--vp-c-divider);
+  margin-block: 2px 10px;
+  padding-block: 4px;
 }
-.doc-before > * {
+.doc-after {
+  margin-top: 12px;
+  padding-top: 4px;
+}
+.doc-before > *, .doc-after > * {
   margin: 0 0 4px;
 }
 .aside-button {

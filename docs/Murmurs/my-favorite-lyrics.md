@@ -262,6 +262,7 @@ I wish I could hug you, till you're really really being free
 
 <Badge type="info">歌手：李荣浩&梁咏琪</Badge>
 <Badge type="info">香港回归25周年主题曲</Badge>
+<Badge type="info">MV：<a href="https://www.bilibili.com/video/BV1JT41137nz" target="_blank" rel="noreferrer">好听又上头！李荣浩梁咏琪首次合作演唱《紫荆花盛开》</a></Badge>
 
 <ruby>永远的紫荆花 在爱之下 茁壮发芽<rp> / </rp><rt>yong yuan de zi jing hua zai ai zhi xia zhuo zhuang fa ya</rt></ruby>
 

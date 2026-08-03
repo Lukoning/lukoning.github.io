@@ -21,6 +21,7 @@ interface CDocInfoOptions {
     defaultLicense?: string
     copyrightText?: string
     defaultCopyright?: string
+    placeDocInfoAtBottom?: boolean
     lastUpdated?: {
         text?: string
         createdText?: string

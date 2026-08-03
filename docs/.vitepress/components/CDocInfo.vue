@@ -87,9 +87,10 @@ onMounted(() => {
 
 <style scoped>
 .CDocInfo {
-  margin-bottom: 4px;
+  margin-block: 4px;
 }
 .doc-info {
+  white-space: pre-line;
   margin: 2px 4px 2px 0;
 }
 </style>
