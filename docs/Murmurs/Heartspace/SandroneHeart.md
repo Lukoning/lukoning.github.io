@@ -1,5 +1,5 @@
 ---
-createdDate: 2026-08-03T15:19:29
+createdDate: 2026-08-03T15:19:29+08:00
 title: 叙事文《内核「错谬」》
 author: 星喵
 order: -20260803151929
