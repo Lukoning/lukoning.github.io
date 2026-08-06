@@ -115,9 +115,19 @@ features:
 
 <lkn layout text-center>
 
-**真正的命运将以我等的血来缔造。**
+<lkn c ns-blessing-Mavuika><b>真正的命运将以我等的血来缔造。</b></lkn>
 
 *[引燃PV——「以燔燎铸名」](https://www.bilibili.com/video/BV1RZ421K7CT)*
+
+</lkn>
+
+---
+
+<lkn layout text-center>
+
+<lkn c ns-blessing-Mavuika><b>若我注定失败，你又为何恐惧。</b></lkn>
+
+*——原神·提瓦特篇<br/>第五章「炽烈的还魂诗」第四幕「命定将焚的虹光·绝望高悬天之上」*
 
 </lkn>
 
@@ -195,9 +205,19 @@ features:
 <br/><lkn c ns-blessing-Chasca>「终迎『超越』之火」</lkn>
 </p>
 
-**为了纳塔！**
+<lkn c ns-blessing-Mavuika><b>
+为了纳塔！
+<br/>
+为了纳塔！！
+</b></lkn>
 
-**为了纳塔！！**
+<!--
+
+「全纳塔的战士们，联合起来！」
+
+„Proletarier aller Länder vereinigt Euch!“
+
+-->
 
 </lkn>
 
