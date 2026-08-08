@@ -245,7 +245,8 @@ features:
 <br/> *<ruby>Ushujaa waangaza<rp> / </rp><rt>勇气点亮了</rt></ruby>*
 
 我听到了，
-是他们的声音。（背景：*<ruby>mbingu na ardhi<rp> / </rp><rt>天空与大地</rt></ruby>*）
+<br/>是他们的声音。
+<br/>（背景：*<ruby>mbingu na ardhi<rp> / </rp><rt>天空与大地</rt></ruby>*）
 
 星海幽暗，（背景：*<ruby>Mara tena<rp> / </rp><rt>再一次</rt></ruby>*）
 <br/>孤寂无垠。（背景：*<ruby>ashinda Natlan<rp> / </rp><rt>纳塔迎来胜利</rt></ruby>*）
@@ -253,11 +254,11 @@ features:
 <br/>宇宙，
 <br/>才拥有最初的光。
 
-我们不会放弃希望！
+<lkn c ns-blessing-Mavuika>我们不会放弃希望！
 <br/>我们还要携手向前！
 <br/>开辟未来的答案，就在这里！
 <br/>那就是，
-<br/> **我们自己！！**
+<br/><b>我们自己！！</b></lkn>
 
 </lkn>
 
