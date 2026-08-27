@@ -8,3 +8,15 @@ patchedDependencies:
   vitepress: patches/vitepress.patch
   vitepress-plugin-comment-with-giscus: patches/vitepress-plugin-comment-with-giscus.patch
   vitepress-plugin-pagefind: patches/vitepress-plugin-pagefind.patch
+minimumReleaseAgeExclude:
+  - '@types/node@26.4.0'
+  - '@vue/compiler-core@3.5.42'
+  - '@vue/compiler-dom@3.5.42'
+  - '@vue/compiler-sfc@3.5.42'
+  - '@vue/compiler-ssr@3.5.42'
+  - '@vue/reactivity@3.5.42'
+  - '@vue/runtime-core@3.5.42'
+  - '@vue/runtime-dom@3.5.42'
+  - '@vue/server-renderer@3.5.42'
+  - '@vue/shared@3.5.42'
+  - vue@3.5.42

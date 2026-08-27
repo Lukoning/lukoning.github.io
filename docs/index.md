@@ -42,7 +42,7 @@ features:
 <script setup>
   import { onMounted, onUnmounted } from 'vue'
   import { useData } from 'vitepress'
-  import { initLknAnimation, destoryObserver } from "/.vitepress/theme/customElements.ts"
+  import { initLknAnimation, destoryObserver } from "/.vitepress/utils/customElements.ts"
   const { theme } = useData();
   const sb = theme.value.sidebar.map(item => ({ ...item })); //theme是只读数组，要修改的话得转换为新数组
   const items =  {
@@ -62,6 +62,8 @@ features:
 
 <lkn layout text-center>
 <lkn layout box-center >
+
+<button @click="showInfo">打开提示</button>
 
 ### 导航树
 
@@ -109,13 +111,17 @@ features:
 
 </lkn>
 
-不论你是旅行者、开拓者、管理员、漂泊者、异能者、博士、老师、猎人小姐、队长、舰长、指挥官、绳匠……
+<p>
+不论你是<lkn title="原神">旅行者</lkn>、<lkn title="崩坏：星穹铁道">开拓者</lkn>、<lkn title="明日方舟：终末地">管理员</lkn>、<lkn title="鸣潮">漂泊者</lkn>、<lkn title="异环">异能者</lkn>、<lkn title="明日方舟">博士</lkn>、<lkn title="卡拉比丘">引航者</lkn>、
+<br/>
+<lkn title="蔚蓝档案">老师</lkn>、<lkn title="恋与深空">猎人小姐</lkn>、<lkn title="开放空间">队长</lkn>、<lkn title="崩坏3">舰长</lkn>、<lkn title="未定事件簿">律师</lkn>、<lkn title="战场双马尾/战双帕弥什/碧蓝航线/少女前线等等">指挥官</lkn>、<lkn title="尘白禁区">分析员</lkn>、<lkn title="绝区零">绳匠</lkn>……
+</p>
 
 ---
 
 <lkn layout text-center>
 
-<lkn c ns-blessing-Mavuika><b>真正的命运将以我等的血来缔造。</b></lkn>
+<lkn c ns-blessing-Mavuika><b>真正的命运将以我等的血来缔造</b></lkn>
 
 *[引燃PV——「以燔燎铸名」](https://www.bilibili.com/video/BV1RZ421K7CT)*
 
@@ -125,72 +131,21 @@ features:
 
 <lkn layout text-center>
 
-<lkn c ns-blessing-Mavuika><b>若我注定失败，你又为何恐惧。</b></lkn>
+**派蒙，这不是灾难，这是战争**
+
+</lkn>
 
 *——原神·提瓦特篇<br/>第五章「炽烈的还魂诗」第四幕「命定将焚的虹光·绝望高悬天之上」*
 
-</lkn>
-
 ---
 
-<lkn layout box-center>
+<lkn layout text-center>
 
-个体与个体之间只存在「借」和「还」的关系。
-<br/>我们迟早会两清，你不需要在意。
-
-不是这样的哦。
-<br/> **人与人的关系，绝不是轻易就能抚回原状的白纸。** 你一定感受过。
-<br/>生命中出现过的人不会像水滴蒸发一样消失，世上不存在真正的「两清」。
-<br/>正因为有些事不能挽回也不能改变，人间才会有情感。
-<br/>你感受的所有东西都是真实，你欠下的事物也不会被弥补。
-<br/>背负裂痕生活下去是人的行为。
-<br/>你可以选择是否成为人。
-
-*——原神·提瓦特篇<br/>间章·第三幕「倾落伽蓝·如朝露一般」*
+<lkn c ns-blessing-Mavuika><b>若我注定失败，你又为何恐惧</b></lkn>
 
 </lkn>
 
----
-
-<lkn layout box-center>
-
-我本可以完成更多实验……我确实无法再看到更多结果了。
-<br/>不过草之主，现在的结果于我而言，也并不糟糕。
-
-我相信你说的话，但很遗憾，你的一切都结束了。
-<br/>这场实验不属于你，一切实验的成果也都不属于你。
-<br/> **智慧在必要时，也可暴烈如火焰。烧掉你的火焰里，也包含你自己。**
-<br/>我不否定你的聪慧。
-<br/>只不过，在我的表达里，这些事绝不会被定性为「实验」。
-<br/> **那是真真切切发生在世间的事，比数据更有意义。**
-
-*——原神·空月之歌<br/>第十幕「<lkn animated burning-switch script-init=enter-viewport trigger-config="{delay=5000}"><fr>道成千壑，因果异灭</fr><fb>（</fb><to>虚空劫灰往世书</to><fb>）</fb></lkn>」*
-
-</lkn>
-
----
-
-<lkn layout box-center>
-
-并不是我们选择将武器改造成玩具，才为民众换来了安乐的生活。
-<br/>而是我们**用武器赢来了安乐的生活，才让它有了被改造成玩具的机会。**
-
-*——礁与浪的相逢·其三「留给孩子们的『玩具』」*
-
-</lkn>
-
----
-
-<lkn layout box-center>
-
-啊，不过…**如果只为了回报而去帮助，有点本末倒置了。**
-<br/>就算没有任何酬劳，看见问题被解决，原本面露难色的朋友们开心起来，
-<br/>一切事情都在向着好的方向发展…
-<br/>我喜欢这种感觉！
-
-*——斑斓色彩追逐战·「斑斓色彩在盘中！」*
-
-</lkn>
+*——原神·提瓦特篇<br/>第五章「炽烈的还魂诗」第四幕「命定将焚的虹光·绝望高悬天之上」*
 
 ---
 
@@ -263,6 +218,67 @@ features:
 </lkn>
 
 *——原神·提瓦特篇<br/>第五章「炽烈的还魂诗」第五幕「炽烈的还魂诗·众望所归」<br/>[过场动画「予夜以火，予光以歌」](https://www.bilibili.com/video/BV1MA66YvEyX)*
+</lkn>
+
+---
+
+<lkn layout box-center>
+
+个体与个体之间只存在「借」和「还」的关系。
+<br/>我们迟早会两清，你不需要在意。
+
+不是这样的哦。
+<br/> **人与人的关系，绝不是轻易就能抚回原状的白纸。** 你一定感受过。
+<br/>生命中出现过的人不会像水滴蒸发一样消失，世上不存在真正的「两清」。
+<br/>正因为有些事不能挽回也不能改变，人间才会有情感。
+<br/>你感受的所有东西都是真实，你欠下的事物也不会被弥补。
+<br/>背负裂痕生活下去是人的行为。
+<br/>你可以选择是否成为人。
+
+*——原神·提瓦特篇<br/>间章·第三幕「倾落伽蓝·如朝露一般」*
+
+</lkn>
+
+---
+
+<lkn layout box-center>
+
+我本可以完成更多实验……我确实无法再看到更多结果了。
+<br/>不过草之主，现在的结果于我而言，也并不糟糕。
+
+我相信你说的话，但很遗憾，你的一切都结束了。
+<br/>这场实验不属于你，一切实验的成果也都不属于你。
+<br/> **智慧在必要时，也可暴烈如火焰。烧掉你的火焰里，也包含你自己。**
+<br/>我不否定你的聪慧。
+<br/>只不过，在我的表达里，这些事绝不会被定性为「实验」。
+<br/> **那是真真切切发生在世间的事，比数据更有意义。**
+
+*——原神·空月之歌<br/>第十幕「<lkn animated burning-switch script-init=enter-viewport trigger-config="{delay=5000}"><fr>道成千壑，因果异灭</fr><fb>（</fb><to>虚空劫灰往世书</to><fb>）</fb></lkn>」*
+
+</lkn>
+
+---
+
+<lkn layout box-center>
+
+并不是我们选择将武器改造成玩具，才为民众换来了安乐的生活。
+<br/>而是我们**用武器赢来了安乐的生活，才让它有了被改造成玩具的机会。**
+
+*——礁与浪的相逢·其三「留给孩子们的『玩具』」*
+
+</lkn>
+
+---
+
+<lkn layout box-center>
+
+啊，不过…**如果只为了回报而去帮助，有点本末倒置了。**
+<br/>就算没有任何酬劳，看见问题被解决，原本面露难色的朋友们开心起来，
+<br/>一切事情都在向着好的方向发展…
+<br/>我喜欢这种感觉！
+
+*——斑斓色彩追逐战·「斑斓色彩在盘中！」*
+
 </lkn>
 
 ---

@@ -64,7 +64,7 @@
         animation: opacityIn .4s .1s backwards, slideDown .4s cubic-bezier(.34, .68, 0, 1) .1s backwards;
     }
 }
-.algolia {
+.algolia, .CDialog {
     border: solid transparent;
     border-width: 0;
     [command-dialog-mask]::after {

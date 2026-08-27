@@ -1,14 +1,14 @@
-.VPLocalSearchBox > .shell, .algolia [command-dialog-wrapper] {
+.VPLocalSearchBox > .shell, [command-dialog] [command-dialog-wrapper] {
     // 需要背景模糊的shell元素
     backdrop-filter: blur(var(--lkn-navmenu-blur-radius));
 }
-.VPLocalSearchBox > .backdrop, .algolia [command-dialog-mask]::after {
+.VPLocalSearchBox > .backdrop, [command-dialog] [command-dialog-mask]::after {
     // 需要轻微背景模糊的遮罩元素
     backdrop-filter: blur(var(--lkn-backdrop-blur-radius));
 }
 
-//特化 for (伪装成)algolia(的pagefind)
-.algolia {
+//特化 for (伪装成)algolia(的pagefind)，并复用至自定义弹窗
+.algolia, .CDialog {
     --font-sans: var(--vp-font-family-base);
     [command-dialog-mask] {
         background-color: transparent;
@@ -34,7 +34,7 @@
         }
     }
     [command-dialog-header] {
-        padding: 12px 12px 0;
+        padding-bottom: 0;
         .search-bar {
             border: 2px solid var(--vp-c-divider);
             border-radius: 6px;
@@ -49,7 +49,7 @@
             padding-right: 6px;
         }
     }
-    [command-dialog-body] {
+    [command-dialog-body]:not(.CDialog *) {
         min-height: 12px; //配合command-dialog-header的padding修改
         padding: 0 12px;
     }
@@ -104,7 +104,7 @@
 }
 
 @media (max-width: 560px) { /*宽度560及以下*/
-    .algolia {
+    [command-dialog] {
         [command-dialog-wrapper] {
             margin: 0;
             backdrop-filter: none; //模糊传送术
@@ -122,7 +122,7 @@
     }
 }
 @media (min-width: 560.001px) { /*宽度560以上*/
-    .algolia {
+    [command-dialog] {
         [command-dialog-wrapper] {
             background-color: var(--vp-c-bg);
             border: 1px solid var(--vp-c-border);

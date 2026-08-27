@@ -228,7 +228,10 @@ body {
     }
 }
 @media (min-width: 1067px) { /*宽度1067及以上*/
-    #app {/*变大喵！*/ //不能用html，否则vitepress-plugin-image-viewer图片的初始定位会出问题
+    #app .Layout {/*变大喵！*/
+        //注意！！！选择器不能用html或者#app，否则会出现：
+        // vitepress-plugin-image-viewer图片的初始定位错误
+        // 自定义弹窗出现位置错误
         zoom: 1.03; /*1.05在Chromium系浏览器会错位喵！*/
     }
 }
@@ -238,7 +241,7 @@ body {
     }
 }
 @media (min-width: 1510px) { /*宽度1510及以上*/
-    #app {/*变大汪！*/
+    #app .Layout {/*变大汪！*/
         zoom: 1.1; /*zoom: 1.1需要宽度1505+，否则侧边栏被裁切*/
     }
 }

@@ -77,6 +77,7 @@ export default defineConfig({
             resetButtonTitle: '清掉输入喵',
             btnPlaceholder: '搜索…',
             placeholder: '在这里输入关键词搜索喵~',
+            loadingText: '正在揪出结果喵~',
             emptyText: '找不到结果哦喵…\n试试别的表达呜喵？或者用空格分割关键词喵⭐',
             heading: '搜到了 {{searchResult}} 条结果喵！',
             toSelect: '是选择喵',

@@ -91,7 +91,7 @@ index f2a0a985f359e7caf49e80a4c6292282b80ce2c2..9de645f84329940bca65fd530dbe094e
       * @default
       * 'to select'
 diff --git a/src/Search.vue b/src/Search.vue
-index f2e430925b06bc508909b4fc772a72f57c038118..b54f06640f06aa8f5ff7f7e4f1d5d4da77a5081e 100644
+index f2e430925b06bc508909b4fc772a72f57c038118..44b5318e77db20fb4cbb2b60ab1b3dd43ad80092 100644
 --- a/src/Search.vue
 +++ b/src/Search.vue
 @@ -13,6 +13,9 @@ import type { SearchConfig } from './type'
@@ -104,16 +104,49 @@ index f2e430925b06bc508909b4fc772a72f57c038118..b54f06640f06aa8f5ff7f7e4f1d5d4da
  // 搜索结果
  const searchResult = ref<{ route: string; meta: Record<string, any> }[]>([])
  // 配置获取
-@@ -269,7 +272,7 @@ function handleToggleDetail() {
+@@ -123,6 +126,9 @@ function chineseSearchOptimize(input: string) {
+ 
+ const searchDelayTime = computed(() => finalSearchConfig.value?.delay ?? 300)
+ 
++// 是否正在搜索
++const isSearching = ref(false)
++
+ // 触发搜索
+ watch(
+   () => searchWords.value,
+@@ -130,10 +136,14 @@ watch(
+     // dev-server兜底
+     // @ts-expect-error
+     if (!window?.__pagefind__?.search) {
++      isSearching.value = true
+       inlineSearch()
++      setTimeout(()=>{isSearching.value = false}, 5000)
+       return
+     }
+ 
++    isSearching.value = true
++
+     // 拆分搜索的关键词
+     const searchText
+       = typeof finalSearchConfig.value.customSearchQuery === 'function'
+@@ -176,6 +186,7 @@ watch(
+         searchResult.value = formattedResults.filter(
+           finalSearchConfig.value.filter ?? (() => true)
+         )
++        isSearching.value = false
+       })
+ 
+     nextTick(() => {
+@@ -269,7 +280,7 @@ function handleToggleDetail() {
  
  <template>
    <div class="blog-search" data-pagefind-ignore="all">
 -    <div class="nav-search-btn-wait" @click="searchModal = true">
-+    <VPButton tag="div" theme="alt" class="nav-search-btn-wait" @click="searchModal = true">
++    <VPButton theme="alt" class="nav-search-btn-wait" @click="searchModal = true">
        <span>
          <svg width="14" height="14" viewBox="0 0 20 20">
            <path
-@@ -282,13 +285,13 @@ function handleToggleDetail() {
+@@ -282,13 +293,13 @@ function handleToggleDetail() {
          finalSearchConfig?.btnPlaceholder || 'Search'
        }}</span>
        <span class="metaKey"> {{ metaKey }} K </span>
@@ -129,7 +162,7 @@ index f2e430925b06bc508909b4fc772a72f57c038118..b54f06640f06aa8f5ff7f7e4f1d5d4da
                  <span class="vpi-arrow-left local-search-icon" />
                </button>
              </div>
-@@ -299,12 +302,12 @@ function handleToggleDetail() {
+@@ -299,12 +310,12 @@ function handleToggleDetail() {
              <div class="search-actions">
                <button
                  :class="{ active: showDetail }" class="toggle-layout-button" type="button"
@@ -144,7 +177,7 @@ index f2e430925b06bc508909b4fc772a72f57c038118..b54f06640f06aa8f5ff7f7e4f1d5d4da
                  @click="handleClearSearch"
                >
                  <span class="vpi-delete local-search-icon" />
-@@ -315,25 +318,38 @@ function handleToggleDetail() {
+@@ -315,29 +326,45 @@ function handleToggleDetail() {
          <template #body>
            <div class="search-dialog" :class="{ 'detail-list': showDetail }">
              <Command.List>
@@ -174,7 +207,10 @@ index f2e430925b06bc508909b4fc772a72f57c038118..b54f06640f06aa8f5ff7f7e4f1d5d4da
 +                  },
 +                }'
 +              >
-+                <Command.Empty v-if="!searchResult.length">
++                <Command.Empty v-if="isSearching">
++                  {{ finalSearchConfig?.loadingText || 'Searching...' }}
++                </Command.Empty>
++                <Command.Empty v-else-if="!searchResult.length">
 +                  {{ finalSearchConfig?.emptyText || 'No results found.' }}
 +                </Command.Empty>
 +                <Command.Group v-else :heading="headingText">
@@ -201,7 +237,12 @@ index f2e430925b06bc508909b4fc772a72f57c038118..b54f06640f06aa8f5ff7f7e4f1d5d4da
              </Command.List>
            </div>
          </template>
-@@ -394,6 +410,31 @@ function handleToggleDetail() {
+-        <template v-if="searchResult.length" #footer>
++        <template v-if="!!searchResult.length" #footer>
+           <div class="command-palette-logo">
+             <a href="https://github.com/cloudcannon/pagefind" target="_blank" rel="noopener noreferrer">
+               <span class="command-palette-Label">{{ finalSearchConfig?.searchBy || 'Search by' }}</span>
+@@ -394,6 +421,31 @@ function handleToggleDetail() {
    </div>
  </template>
  
@@ -234,10 +275,10 @@ index f2e430925b06bc508909b4fc772a72f57c038118..b54f06640f06aa8f5ff7f7e4f1d5d4da
  .blog-search {
    flex: 1;
 diff --git a/src/type.ts b/src/type.ts
-index 44edf143c4669e461640aaafc5d30dfd39232505..0bca037b37402e72171374c9652493c578e275be 100644
+index 44edf143c4669e461640aaafc5d30dfd39232505..22bd0af85c499ab47e50bf69814d4d7ae5ee012e 100644
 --- a/src/type.ts
 +++ b/src/type.ts
-@@ -82,6 +82,21 @@ export interface SearchConfig {
+@@ -82,11 +82,31 @@ export interface SearchConfig {
     * 'Search Docs'
     */
    placeholder?: string
@@ -259,3 +300,13 @@ index 44edf143c4669e461640aaafc5d30dfd39232505..0bca037b37402e72171374c9652493c5
    /**
     * @default
     * 'No results found.'
+    */
+   emptyText?: string
++  /**
++   * @default
++   * 'Searching...'
++   */
++  loadingText?: string
+   /**
+    * @default
+    * 'Total: {{searchResult}} search results.'
