@@ -63,8 +63,6 @@ features:
 <lkn layout text-center>
 <lkn layout box-center >
 
-<button @click="showInfo">打开提示</button>
-
 ### 导航树
 
 <lkn layout small><em>带有渐变色文字的页面使用深色模式浏览更佳。</em></lkn>
