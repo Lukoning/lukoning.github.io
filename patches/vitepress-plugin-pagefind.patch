@@ -1,189 +1,42 @@
-diff --git a/dist/index.d.mts b/dist/index.d.mts
-index f2a0a985f359e7caf49e80a4c6292282b80ce2c2..9de645f84329940bca65fd530dbe094efb858e31 100644
---- a/dist/index.d.mts
-+++ b/dist/index.d.mts
-@@ -69,22 +69,37 @@ interface SearchConfig {
-      * @default
-      * 'Search'
-      */
--    btnPlaceholder?: string;
-+    btnPlaceholder?: string
-     /**
-      * @default
-      * 'Search Docs'
-      */
--    placeholder?: string;
-+    placeholder?: string
-+    /**
-+     * @default
-+     * 'Close search'
-+     */
-+    closeButtonTitle?: string
-+    /**
-+     * @default
-+     * 'Display detailed list'
-+     */
-+    displayDetailsButtonTitle?: string
-+    /**
-+     * @default
-+     * 'Reset search'
-+     */
-+    resetButtonTitle?: string
-     /**
-      * @default
-      * 'No results found.'
-      */
--    emptyText?: string;
-+    emptyText?: string
-     /**
-      * @default
-      * 'Total: {{searchResult}} search results.'
-      */
--    heading?: string;
-+    heading?: string
-     /**
-      * @default
-      * 'to select'
-diff --git a/dist/index.d.ts b/dist/index.d.ts
-index f2a0a985f359e7caf49e80a4c6292282b80ce2c2..9de645f84329940bca65fd530dbe094efb858e31 100644
---- a/dist/index.d.ts
-+++ b/dist/index.d.ts
-@@ -69,22 +69,37 @@ interface SearchConfig {
-      * @default
-      * 'Search'
-      */
--    btnPlaceholder?: string;
-+    btnPlaceholder?: string
-     /**
-      * @default
-      * 'Search Docs'
-      */
--    placeholder?: string;
-+    placeholder?: string
-+    /**
-+     * @default
-+     * 'Close search'
-+     */
-+    closeButtonTitle?: string
-+    /**
-+     * @default
-+     * 'Display detailed list'
-+     */
-+    displayDetailsButtonTitle?: string
-+    /**
-+     * @default
-+     * 'Reset search'
-+     */
-+    resetButtonTitle?: string
-     /**
-      * @default
-      * 'No results found.'
-      */
--    emptyText?: string;
-+    emptyText?: string
-     /**
-      * @default
-      * 'Total: {{searchResult}} search results.'
-      */
--    heading?: string;
-+    heading?: string
-     /**
-      * @default
-      * 'to select'
 diff --git a/src/Search.vue b/src/Search.vue
-index f2e430925b06bc508909b4fc772a72f57c038118..44b5318e77db20fb4cbb2b60ab1b3dd43ad80092 100644
+index 7e466d132afb6461031cf10ddad1bd5c79da3b2e..71f8daee5968d057f841803dd84de140bcf6fe03 100644
 --- a/src/Search.vue
 +++ b/src/Search.vue
-@@ -13,6 +13,9 @@ import type { SearchConfig } from './type'
- import { formatPagefindResult } from './search'
+@@ -11,6 +11,9 @@ import type { SearchConfig, SearchItem } from './type'
+ import { extractFuzzyKeywordsFromExcerpts, formatPagefindResult } from './search'
  import { formatShowDate } from './utils'
  
 +import VPButton from 'vitepress/dist/client/theme-default/components/VPButton.vue';
 +import { OverlayScrollbarsComponent } from 'overlayscrollbars-vue';
 +
  // 搜索结果
- const searchResult = ref<{ route: string; meta: Record<string, any> }[]>([])
- // 配置获取
-@@ -123,6 +126,9 @@ function chineseSearchOptimize(input: string) {
- 
- const searchDelayTime = computed(() => finalSearchConfig.value?.delay ?? 300)
- 
-+// 是否正在搜索
-+const isSearching = ref(false)
-+
- // 触发搜索
- watch(
-   () => searchWords.value,
-@@ -130,10 +136,14 @@ watch(
-     // dev-server兜底
-     // @ts-expect-error
-     if (!window?.__pagefind__?.search) {
-+      isSearching.value = true
-       inlineSearch()
-+      setTimeout(()=>{isSearching.value = false}, 5000)
-       return
-     }
- 
-+    isSearching.value = true
-+
-     // 拆分搜索的关键词
-     const searchText
-       = typeof finalSearchConfig.value.customSearchQuery === 'function'
-@@ -176,6 +186,7 @@ watch(
-         searchResult.value = formattedResults.filter(
-           finalSearchConfig.value.filter ?? (() => true)
-         )
-+        isSearching.value = false
-       })
- 
-     nextTick(() => {
-@@ -269,7 +280,7 @@ function handleToggleDetail() {
+ const searchResult = ref<Omit<SearchItem, 'result'>[]>([])
+ // 是否正在搜索中
+@@ -289,9 +292,9 @@ function handleToggleDetail() {
  
  <template>
    <div class="blog-search" data-pagefind-ignore="all">
--    <div class="nav-search-btn-wait" @click="searchModal = true">
-+    <VPButton theme="alt" class="nav-search-btn-wait" @click="searchModal = true">
+-    <button class="nav-search-btn-wait" @click="showSearchModal">
++    <VPButton class="nav-search-btn-wait" @click="showSearchModal">
        <span>
-         <svg width="14" height="14" viewBox="0 0 20 20">
+-        <svg viewBox="0 0 20 20">
++        <svg width="14" height="14" viewBox="0 0 20 20">
            <path
-@@ -282,13 +293,13 @@ function handleToggleDetail() {
+             d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z"
+             stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"
+@@ -302,7 +305,7 @@ function handleToggleDetail() {
          finalSearchConfig?.btnPlaceholder || 'Search'
        }}</span>
-       <span class="metaKey"> {{ metaKey }} K </span>
--    </div>
+       <span class="metaKey" />
+-    </button>
 +    </VPButton>
      <ClientOnly>
-       <Command.Dialog :visible="searchModal" theme="algolia">
+       <Command.Dialog :visible="searchModal" theme="algolia" :footer-class="{ 'no-search-result': !searchResult.length }">
          <template #header>
-           <div class="search-bar">
-             <div class="search-actions before">
--              <button class="back-button" title="Close search" @click="searchModal = false">
-+              <button class="back-button" :title="finalSearchConfig?.closeButtonTitle || 'Close search'" @click="searchModal = false">
-                 <span class="vpi-arrow-left local-search-icon" />
-               </button>
-             </div>
-@@ -299,12 +310,12 @@ function handleToggleDetail() {
-             <div class="search-actions">
-               <button
-                 :class="{ active: showDetail }" class="toggle-layout-button" type="button"
--                title="Display detailed list" @click="handleToggleDetail"
-+                :title=" finalSearchConfig?.displayDetailsButtonTitle || 'Display detailed list'" @click="handleToggleDetail"
-               >
-                 <span class="vpi-layout-list local-search-icon" />
-               </button>
-               <button
--                :disabled="!searchWords" class="clear-button" type="reset" title="Reset search"
-+                :disabled="!searchWords" class="clear-button" type="reset" :title=" finalSearchConfig?.resetButtonTitle || 'Reset search' "
-                 @click="handleClearSearch"
-               >
-                 <span class="vpi-delete local-search-icon" />
-@@ -315,29 +326,45 @@ function handleToggleDetail() {
-         <template #body>
-           <div class="search-dialog" :class="{ 'detail-list': showDetail }">
-             <Command.List>
--              <Command.Empty v-if="!searchResult.length">
--                {{ finalSearchConfig?.emptyText || 'No results found.' }}
--              </Command.Empty>
+@@ -348,28 +351,41 @@ function handleToggleDetail() {
+                   {{ finalSearchConfig?.emptyText || 'No results found.' }}
+                 </Command.Empty>
+               </template>
 -              <Command.Group v-else :heading="headingText">
 -                <Command.Item
 -                  v-for="item in showSearchResult" :key="item.route" :data-value="item.route"
@@ -191,11 +44,17 @@ index f2e430925b06bc508909b4fc772a72f57c038118..44b5318e77db20fb4cbb2b60ab1b3dd4
 -                >
 -                  <div class="link">
 -                    <div class="title">
--                      <span class="headings"><i v-if="item.meta.title" class="prefix"># </i>{{ item.meta.title }}</span>
+-                      <span class="headings">
+-                        <i v-if="item.meta.title?.length" class="prefix">#</i>
+-                        <template v-for="(heading, i) in item.meta.title" :key="heading">
+-                          <i v-if="i" class="vpi-chevron-right local-search-icon" />
+-                          <span class="heading" v-html="heading" />
+-                        </template>
+-                      </span>
 -                      <span v-if="showDateInfo && item.meta.date" class="date">
 -                        <!-- @vue-ignore -->
 -                        {{ formatShowDateFn(item.meta.date, lang) }}</span>
-+              <OverlayScrollbarsComponent :options='{
++              <OverlayScrollbarsComponent v-else :options='{
 +                  overflow: {
 +                    x: "hidden",
 +                  },
@@ -207,20 +66,20 @@ index f2e430925b06bc508909b4fc772a72f57c038118..44b5318e77db20fb4cbb2b60ab1b3dd4
 +                  },
 +                }'
 +              >
-+                <Command.Empty v-if="isSearching">
-+                  {{ finalSearchConfig?.loadingText || 'Searching...' }}
-+                </Command.Empty>
-+                <Command.Empty v-else-if="!searchResult.length">
-+                  {{ finalSearchConfig?.emptyText || 'No results found.' }}
-+                </Command.Empty>
-+                <Command.Group v-else :heading="headingText">
++                <Command.Group :heading="headingText">
 +                  <Command.Item
 +                    v-for="item in showSearchResult" :key="item.route" :data-value="item.route"
 +                    @select="handleSelect"
 +                  >
 +                    <div class="link">
 +                      <div class="title">
-+                        <span class="headings"><i v-if="item.meta.title" class="prefix"># </i>{{ item.meta.title }}</span>
++                        <span class="headings">
++                          <i v-if="item.meta.title?.length" class="prefix">#</i>
++                          <template v-for="(heading, i) in item.meta.title" :key="heading">
++                            <i v-if="i" class="vpi-chevron-right local-search-icon" />
++                            <span class="heading" v-html="heading" />
++                          </template>
++                        </span>
 +                        <span v-if="showDateInfo && item.meta.date" class="date">
 +                          <!-- @vue-ignore -->
 +                          {{ formatShowDateFn(item.meta.date, lang) }}</span>
@@ -235,14 +94,9 @@ index f2e430925b06bc508909b4fc772a72f57c038118..44b5318e77db20fb4cbb2b60ab1b3dd4
 +                </Command.Group>
 +              </OverlayScrollbarsComponent>
              </Command.List>
-           </div>
-         </template>
--        <template v-if="searchResult.length" #footer>
-+        <template v-if="!!searchResult.length" #footer>
-           <div class="command-palette-logo">
-             <a href="https://github.com/cloudcannon/pagefind" target="_blank" rel="noopener noreferrer">
-               <span class="command-palette-Label">{{ finalSearchConfig?.searchBy || 'Search by' }}</span>
-@@ -394,6 +421,31 @@ function handleToggleDetail() {
+             <div
+               v-if="isSearching && showLoadingMask && searchResult.length"
+@@ -430,6 +446,31 @@ function handleToggleDetail() {
    </div>
  </template>
  
@@ -274,39 +128,44 @@ index f2e430925b06bc508909b4fc772a72f57c038118..44b5318e77db20fb4cbb2b60ab1b3dd4
  <style lang="css" scoped>
  .blog-search {
    flex: 1;
-diff --git a/src/type.ts b/src/type.ts
-index 44edf143c4669e461640aaafc5d30dfd39232505..22bd0af85c499ab47e50bf69814d4d7ae5ee012e 100644
---- a/src/type.ts
-+++ b/src/type.ts
-@@ -82,11 +82,31 @@ export interface SearchConfig {
-    * 'Search Docs'
-    */
-   placeholder?: string
-+  /**
-+   * @default
-+   * 'Close search'
-+   */
-+  closeButtonTitle?: string
-+  /**
-+   * @default
-+   * 'Display detailed list'
-+   */
-+  displayDetailsButtonTitle?: string
-+  /**
-+   * @default
-+   * 'Reset search'
-+   */
-+  resetButtonTitle?: string
-   /**
-    * @default
-    * 'No results found.'
-    */
-   emptyText?: string
-+  /**
-+   * @default
-+   * 'Searching...'
-+   */
-+  loadingText?: string
-   /**
-    * @default
-    * 'Total: {{searchResult}} search results.'
+diff --git a/src/assets/scss/algolia.scss b/src/assets/scss/algolia.scss
+index 933fb0f22c2216849f3fcbc0c48fbba73d79b09a..9766e22446be5e2c1b951e483598ef9c0397ddac 100644
+--- a/src/assets/scss/algolia.scss
++++ b/src/assets/scss/algolia.scss
+@@ -208,7 +208,7 @@
+   box-shadow: none;
+ }
+ 
+-// transition for command-dialog
++/* transition for command-dialog
+ .algolia {
+   &.command-dialog-enter-active,
+   &.command-dialog-leave-active {
+@@ -231,3 +231,4 @@
+     }
+   }
+ }
++*/
+\ No newline at end of file
+diff --git a/src/assets/scss/search.css b/src/assets/scss/search.css
+index 04e0d04f454b6a6a037106a39c855ecc6dfdddb2..cdf88907e7e931b984454ee1201827815f1de97b 100644
+--- a/src/assets/scss/search.css
++++ b/src/assets/scss/search.css
+@@ -568,7 +568,7 @@ label.search-icon {
+   margin-left: 12px;
+ }
+ 
+-.algolia.command-dialog-enter-active [command-dialog-mask],
++/*.algolia.command-dialog-enter-active [command-dialog-mask],
+ .algolia.command-dialog-enter-active [command-dialog-wrapper],
+ .algolia.command-dialog-leave-active [command-dialog-mask],
+ .algolia.command-dialog-leave-active [command-dialog-wrapper] {
+@@ -585,7 +585,7 @@ label.search-icon {
+ .algolia.command-dialog-leave-to [command-dialog-wrapper] {
+   opacity: 0;
+   translate: 0 -1rem;
+-}
++}*/
+ 
+ .mpa .algolia [command-dialog-mask],
+ .mpa .algolia [command-dialog-wrapper] {

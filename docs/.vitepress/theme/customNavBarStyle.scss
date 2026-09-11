@@ -199,15 +199,20 @@
 
 @media (max-width: 759.999px) { /*宽度760以下*/
     .blog-search.blog-search {
-        //不然scale()动画的定位会出问题，并且这个padding没什么必要
-        padding-left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        margin-right: 4px;
+        padding: 0;
         .nav-search-btn-wait:not(#ABC) {
             border: none;
             &.VPButton {
                 border-radius: 50%;
                 transition: color 0.25s, background-color 0.25s;
                 &:active span:not([class]) { //搜索图标
-                    color: inherit;
+                    color: var(--vp-button-alt-active-text); //没招了
                 }
             }
             span:not([class]) { //搜索图标

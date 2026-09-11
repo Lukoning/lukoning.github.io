@@ -9,20 +9,25 @@
 
 首先得有Node.js喵，建议安装版本24（LTS）或最新版喵，最低版本20喵
 
-猫猫喜欢pnpm姐姐喵~pnpm姐姐不在的话，请在corepack处召唤pnpm姐姐喵：
+猫猫喜欢pnpm姐姐喵\~
+
+pnpm姐姐不在的话，请在仓库根目录的corepack处召唤pnpm姐姐喵：
 
 ```bash
+cd /path/to/repo # 替换路径为仓库根目录喵~
 corepack enable
-corepack prepare pnpm@latest --activate
+corepack pnpm install
 ```
 
-克隆本仓库，然后在仓库根目录润这行神秘代码喵：
+有了pnpm姐姐，猫猫才有动力工作哦喵。
+
+姐姐在的时候，就可以在仓库根目录润这行神秘代码喵：
 
 ```bash
 pnpm install --frozen-lockfile
 ```
 
-这样构建猫猫的依赖环境就完成了喵\~！
+等代码成功执行完毕，构建猫猫的依赖环境就完成了喵\~！
 
 猫猫提醒喵：之后每次拉取仓库更新，最好都润一次神秘代码喵。
 

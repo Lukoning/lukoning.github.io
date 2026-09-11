@@ -72,9 +72,9 @@ export default defineConfig({
         pageResultCount: 300,
         locales: {
           root: {
-            closeButtonTitle: '返回去喵',
-            displayDetailsButtonTitle: '显示更大点喵',
-            resetButtonTitle: '清掉输入喵',
+            closeSearch: '返回去喵',
+            displayDetailedList: '显示更大点喵',
+            resetSearch: '清掉输入喵',
             btnPlaceholder: '搜索…',
             placeholder: '在这里输入关键词搜索喵~',
             loadingText: '正在揪出结果喵~',

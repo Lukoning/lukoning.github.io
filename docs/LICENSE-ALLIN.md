@@ -2,7 +2,7 @@
 createdDate: 2026-04-17T22:15:08+08:00
 title: 开放源代码许可
 author: false
-order: .Inf
+order: 9876543210
 license: false
 ---
 

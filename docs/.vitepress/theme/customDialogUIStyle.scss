@@ -28,7 +28,6 @@
         //max-width: 720px;
         margin: clamp(0px, 5vh, 160px) auto auto;
         overflow: hidden;
-        border-radius: 12px;
         > * {
             border-radius: 0;
         }
@@ -107,6 +106,7 @@
     [command-dialog] {
         [command-dialog-wrapper] {
             margin: 0;
+            border-radius: 0;
             backdrop-filter: none; //模糊传送术
         }
         [command-dialog-mask]::after {
@@ -126,6 +126,7 @@
         [command-dialog-wrapper] {
             background-color: var(--vp-c-bg);
             border: 1px solid var(--vp-c-border);
+            border-radius: 12px;
             box-shadow: var(--vp-shadow-3);
         }
         [command-list] {
