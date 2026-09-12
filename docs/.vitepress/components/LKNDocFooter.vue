@@ -143,8 +143,8 @@ const showFooter = computed(
 }
 
 .pager-link.VPButton {
+  --lkn-button-radius: 56px;
   padding: 6px 16px;
-  border-radius: 56px;
 }
 .pager-link.prev {
   text-align: left;

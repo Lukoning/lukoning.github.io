@@ -2,6 +2,7 @@
 createdDate: 2026-05-22T21:40:14+08:00
 title: 一些旧项目
 order: 100
+placeDocInfoAtBottom: true
 ---
 
 # 一些旧项目

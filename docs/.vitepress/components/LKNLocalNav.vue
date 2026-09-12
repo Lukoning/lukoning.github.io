@@ -167,8 +167,10 @@ const classes = computed(() => {
   /*超出两行后自动截断标题，防止行数过多*/
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webKit-line-clamp: 2;
+  -webkit-line-clamp: 2;
   line-clamp: 2;
+  /*使多行标题每行长度尽量一致*/
+  text-wrap: balance;
   overflow: hidden;
 }
 

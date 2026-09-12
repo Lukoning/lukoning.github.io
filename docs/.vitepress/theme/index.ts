@@ -18,6 +18,7 @@ import 'virtual:group-icons.css'
 
 import CustomLayout from './Layout.vue'
 import CNavTree from "../components/CNavTree.vue"
+import CDocArchive from "../components/CDocArchive.vue"
 
 import './style.css'
 import "./customCollection.scss"
@@ -71,7 +72,8 @@ export default {
       transparentBg: true,
       autoShowThumbnails: false
     }); // @miletorix/vitepress-image-viewer
-    app.component('CNavTree', CNavTree);
+    app.component("CNavTree", CNavTree);
+    app.component("CDocArchive", CDocArchive);
 
     if (!inBrowser) return;//非浏览器环境下返回，否则构建时报错
 

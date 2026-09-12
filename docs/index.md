@@ -17,14 +17,11 @@ hero:
       text: 转至导航树
       link: \#导航树
     - theme: alt
-      text: 饭能市
-      link: /ACG/
+      text: 查看归档页
+      link: /Archive
     - theme: alt
-      text: 虚空网络
-      link: /DevJournal/
-    - theme: alt
-      text: 蔬菜罐罐汤
-      link: /Murmurs/
+      text: 白河豚是谁？
+      link: /About
 
 features:
   - title: "关于<em><lkn c green> Ao</lkn><lkn c yellow>hina</lkn></em>"
@@ -33,8 +30,6 @@ features:
     details: "这个名字嘛……<br>「白河豚」即「百合豚」，<br>而「🌻」跟<em><lkn c green>Ao</lkn><lkn c yellow>hina</lkn></em>同源哦。<br><a link href='Murmurs/about-my-names'>关于我的「名字」 -></a>"
   - title: "碎碎念…"
     details: "其实从这个站点的内容上能看出，此人是有亿点抽象且成分极为复杂之人。好吧我摊牌了其实我是来自外星的伪人我将攻入地球⚠️⚠️⚠️"
-  - title: "MBTI？"
-    details: "我知道你没问，也许你不想知道。<br/>但是高Ti+INFP会擦出什么花火呢？"
 ---
 
 <lkn layout box-center>

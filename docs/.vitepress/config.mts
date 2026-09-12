@@ -60,7 +60,6 @@ export default defineConfig({
   cleanUrls: true,
   ignoreDeadLinks: true,
   lastUpdated: true, //保留这个用来获取更新时间，原有显示组件在alias处替换为空组件
-  metaChunk: true,
   appearance: "dark", //默认深色
 
   sitemap: { hostname: "https://lukoning.github.io" },
@@ -116,7 +115,7 @@ export default defineConfig({
     },
     lineNumbers: true,
     image: {
-      lazyLoading: true //仅在滚动到图片位置时加载图片
+      lazyLoad: true //仅在滚动到图片位置时加载图片
     },
     container: {
       tipLabel: '提示',
@@ -124,31 +123,50 @@ export default defineConfig({
       dangerLabel: '危险',
       infoLabel: '信息',
       detailsLabel: '详细信息'
+    },
+    codeCopyButton: {
+      tooltipText: "复制代码",
+      copiedText: "复制成功！"
     }
   },
 
   themeConfig: {
     CDocInfo: {
-      authorText: "👤",
-      defaultAuthor: "白河豚🌻",
-      wordCountText: "🔤",
-      wordCountUnitText: "字/单词",
-      readingTimeText: "⌛",
-      readingTimeUnitText: "分钟",
-      licenseText: "📃 版权协议",
-      defaultLicense: "CC BY-NC-SA 4.0",
-      copyrightText: "📃 版权声明",
+      author: {
+        icon: true,
+        text: "作者：",
+        default: "白河豚🌻"
+      },
+      wordCount: {
+        icon: true,
+        text: false,
+        unitText: "字/单词"
+      },
+      readingTime: {
+        icon: true,
+        text: false,
+        unitText: "分钟"
+      },
+      license: {
+        icon: true,
+        text: "版权协议：",
+        default: "CC BY-NC-SA 4.0"
+      },
+      copyright: {
+        icon: true,
+        text: "版权声明："
+      },
       lastUpdated: {
-        text: "🕒 最后更新",
-        createdText: "📝 创建时间",
+        icon: true,
+        createdIcon: true,
+        text: "最后更新：",
+        createdText: "内容创建：",
         formatOptions: {
           year: "numeric",
           month: "numeric",
           day: "numeric",
-          hour: "numeric",
-          minute: "numeric",
           timeZone: "Asia/Shanghai",
-          timeZoneName: "shortGeneric"
+          timeZoneName: "shortOffset"
         },
       },
     },
@@ -182,7 +200,9 @@ export default defineConfig({
       prev: "<- 上一篇",
       next: "下一篇 ->",
     },
-    outlineTitle: "跳转至",
+    outline: {
+      label: "跳转至",
+    },
     returnToTopLabel: "↑ 页面顶部",
     jumpToCommentsLabel: "↓ 评论区",
     sidebarMenuLabel: "目录",
@@ -192,8 +212,9 @@ export default defineConfig({
     search: undefined, //不使用内置搜索，改用pagefind
   
     nav: [
-      { text: '博客', link: '/', activeMatch: '^(?!/PostZone/).*' },
-      { text: '说说（施工中）', link: '/PostZone/', activeMatch: '/PostZone/' },
+      { text: '主页', link: '/', activeMatch: '^/$' },
+      { text: '文章', link: '/Archive/', activeMatch: '^(?!/$)(?!/Moments).*' },
+      { text: '说说', link: '/Moments/', activeMatch: '^/Moments' },
     ],
 
     sidebar,

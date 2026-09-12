@@ -24,6 +24,7 @@
 
 .VPNavBar:not(#ABC) {
     --vp-nav-bg-color: var(--lkn-page-bg);
+    --vp-nav-backdrop-filter: blur(var(--lkn-navbar-blur-radius));
     background-color: transparent;
     &.home {
         --vp-nav-bg-color: var(--lkn-home-bg);
@@ -34,17 +35,17 @@
     .divider {//分割线
         display: none;
     }
-    &::after {
+    &::before {
         @include all-navbar-bg-pseudo;
         opacity: .95;
         -webkit-mask: var(--lkn-navbar-mask);
         mask: var(--lkn-navbar-mask);
     }
-    .container::after {
+    .container::before {
         @include all-navbar-bg-pseudo;
         background-image: none;
         background-color: transparent;
-        backdrop-filter: blur(var(--lkn-navbar-blur-radius));
+        backdrop-filter: var(--vp-nav-backdrop-filter);
         -webkit-mask: var(--lkn-navbar-container-mask);
         mask: var(--lkn-navbar-container-mask);
     }
@@ -78,7 +79,7 @@
     }
 }
 .VPNavBarSocialLinks, .VPNavScreenSocialLinks { //导航栏和导航菜单的个人链接
-    & > a {
+    & > li {
         background-color: var(--vp-c-bg);
         &:first-child {
             padding-inline-start: 2px;
@@ -94,13 +95,13 @@
 .VPLocalNav.VPLocalNav {
     background-color: transparent;
     border-bottom: none;
-    &::after {
+    &::before {
         @include all-navbar-bg-pseudo;
         opacity: .95;
         -webkit-mask: var(--lkn-local-navbar-mask);
         mask: var(--lkn-local-navbar-mask);
     }
-    > .container::after {
+    > .container::before {
         @include all-navbar-bg-pseudo;
         background-image: none;
         background-color: transparent;
@@ -197,7 +198,7 @@
     }
 }
 
-@media (max-width: 759.999px) { /*宽度760以下*/
+@media (max-width: 767.999px) { /*宽度768以下*/
     .blog-search.blog-search {
         display: flex;
         justify-content: center;
@@ -222,21 +223,19 @@
         }
     }
 }
-@media (min-width: 760px) { /*宽度760及以上*/
+@media (min-width: 768px) { /*宽度768及以上*/
+    .VPNavBarSearchButton{ @include wide-search-button; }
     .nav-search-btn-wait {
         &:not(#ABC, .VPButton) { @include wide-search-button; }
         &.VPButton:not(#ABC) { @include wide-search-VPButton; }
     }
-}
-@media (min-width: 768px) { /*宽度768及以上*/
-    .VPNavBarSearchButton{ @include wide-search-button; }
 }
 @media (max-width: 959.999px) { /*宽度960以下*/
     .VPContent:not(.is-home) { //穿帮咯
         box-shadow: 0 -120px 0 0 var(--lkn-page-bg);
     }
     .VPNavBar {
-         &::after, .container::after { //背景 给我 咔掉 ！
+         &::before, .container::before { //背景 给我 咔掉 ！
             display: none;
          }
     }
@@ -251,7 +250,7 @@
     .VPLocalNav {
         pointer-events: none;
         &, >.container {//背景不要哦
-            &::after { display: none }
+            &::before { display: none }
         }
         button.menu {
             //侧边栏展开按钮：为了本篇目录按钮可以正常定位在右侧

@@ -11,20 +11,37 @@ declare module 'vitepress' {
 }
 
 interface CDocInfoOptions {
-    authorText?: string
-    defaultAuthor?: string
-    wordCountText?: string
-    wordCountUnitText?: string
-    readingTimeText?: string
-    readingTimeUnitText?: string
-    licenseText?: string
-    defaultLicense?: string
-    copyrightText?: string
-    defaultCopyright?: string
+    author?: {
+        icon?: boolean
+        text?: string | boolean
+        default?: string
+    }
+    wordCount?: {
+        icon?: boolean
+        text?: string | boolean
+        unitText?: string
+    }
+    readingTime?: {
+        icon?: boolean
+        text?: string | boolean
+        unitText?: string
+    }
+    license?: {
+        icon?: boolean
+        text?: string | boolean
+        default?: string
+    }
+    copyright?: {
+        icon?: boolean
+        text?: string | boolean
+        default?: string
+    }
     placeDocInfoAtBottom?: boolean
     lastUpdated?: {
-        text?: string
-        createdText?: string
+        icon?: boolean
+        text?: string | boolean
+        createdIcon?: boolean
+        createdText?: string | boolean
         formatOptions?: Intl.DateTimeFormatOptions & { forceLocale?: boolean }
     }
 }
