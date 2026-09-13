@@ -28,7 +28,7 @@ function formatDate(iso: string): string {
         <p v-if="!data.length" class="archive-empty">暂无归档文章。</p>
 
         <section v-for="group in grouped" :key="`${group.year}-${group.month}`" class="archive-group">
-            <h3 class="archive-month">
+            <h3 :id="`archive-${group.year}-${group.month}`" class="archive-month">
                 {{ group.year }} 年 {{ group.month }} 月
                 <span class="archive-count">（{{ group.items.length }}）</span>
             </h3>

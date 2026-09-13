@@ -164,9 +164,7 @@ export default defineConfig({
         formatOptions: {
           year: "numeric",
           month: "numeric",
-          day: "numeric",
-          timeZone: "Asia/Shanghai",
-          timeZoneName: "shortOffset"
+          day: "numeric"
         },
       },
     },

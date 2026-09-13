@@ -42,7 +42,7 @@ onConnected((index) => {
   )
 })
 
-const { theme, frontmatter, isDark } = useData()
+const { site, theme, frontmatter, isDark } = useData()
 const { isVisible, options, close } = useCDialog()
 
 const enableTransitions = () =>
@@ -85,14 +85,14 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
     <!-- https://vitepress.dev/guide/extending-default-theme#layout-slots -->
     <template #doc-before>
       <div class="doc-before">
-        <Breadcrumb :breadcrumb="{ homeText: '提瓦特大陆', homeLink: '/' }" />
+        <Breadcrumb :breadcrumb="{ homeText: site.title, homeLink: '/' }" />
         <CDocInfo v-if="!((theme.CDocInfo?.placeDocInfoAtBottom === true && frontmatter.placeDocInfoAtBottom === undefined) || frontmatter.placeDocInfoAtBottom === true)" />
       </div>
     </template>
     <template #doc-after>
       <div class="doc-after">
         <CDocInfo v-if="(theme.CDocInfo?.placeDocInfoAtBottom === true && frontmatter.placeDocInfoAtBottom === undefined) || frontmatter.placeDocInfoAtBottom === true" />
-        <Breadcrumb :breadcrumb="{ homeText: '提瓦特大陆', homeLink: '/' }" />
+        <Breadcrumb :breadcrumb="{ homeText: site.title, homeLink: '/' }" />
       </div>
     </template>
     <template #aside-outline-before>
