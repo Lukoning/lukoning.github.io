@@ -149,7 +149,7 @@ export default defineConfig({
       },
       license: {
         icon: true,
-        text: "版权协议：",
+        text: false,
         default: "CC BY-NC-SA 4.0"
       },
       copyright: {
@@ -212,7 +212,7 @@ export default defineConfig({
     nav: [
       { text: '主页', link: '/', activeMatch: '^/$' },
       { text: '文章', link: '/Archive/', activeMatch: '^(?!/$)(?!/Moments).*' },
-      { text: '说说', link: '/Moments/', activeMatch: '^/Moments' },
+      { text: '说说（正在鸽…）', link: '/Moments/', activeMatch: '^/Moments' },
     ],
 
     sidebar,
