@@ -14,6 +14,7 @@
 import os
 import subprocess
 import sys
+import argparse
 from pathlib import Path
 from collections import OrderedDict
 
@@ -32,7 +33,14 @@ FONT_WEIGHTS = {
 OUTPUT_DIR = "./docs/public/fonts/GenSenRounded2TW"
 # 输出文件名后缀（自动添加 -subset.woff2）
 OUTPUT_SUFFIX = "-subset.woff2"
+
+# 缓存文件：记录上次扫描得到的字符集。
+# 建议纳入版本控制，否则 CI 环境下每次都无缓存，会重新生成所有字重。
+CHARS_CACHE_FILE = "font-subset-chars.txt"
 # ========================================================================
+
+# 全局详细输出开关，由 --verbose / -v 控制
+VERBOSE = False
 
 def generate_gb2312_level1():
     """
@@ -61,7 +69,7 @@ def get_gb2312_level1():
 def collect_chars_from_dir(root_dir):
     """扫描 root_dir 下符合条件的文本文件，提取所有字符（包括换行、空格），返回去重后的字符串。"""
     # 需要扫描的文件扩展名
-    extensions = {'.md', '.scss', 'css', '.ts', '.mts', '.vue'}
+    extensions = {'.md', '.scss', '.css', '.ts', '.mts', '.vue'}
     # 需要跳过的目录名（不区分大小写，若需精确匹配可去掉 .lower()）
     skip_dirs = {'cache', 'dist', 'Standalone'}
     # 需要跳过的文件名（不区分大小写）
@@ -95,8 +103,8 @@ def collect_chars_from_dir(root_dir):
                 if content:
                     char_set.update(content)
                     file_count += 1
-                    # 可选：打印扫描的文件名（调试时可取消注释）
-                    # print(f"已扫描: {file_path}")
+                    if VERBOSE:
+                        print(f"已扫描: {file_path}")
             except Exception as e:
                 print(f"警告：无法读取文件 {file_path}: {e}")
 
@@ -104,6 +112,19 @@ def collect_chars_from_dir(root_dir):
     # 排序后返回字符串
     sorted_chars = ''.join(sorted(char_set))
     return sorted_chars
+
+def read_cached_chars():
+    """读取缓存的字符集，文件不存在时返回 None。"""
+    cache_path = Path(CHARS_CACHE_FILE)
+    if not cache_path.exists():
+        return None
+    return cache_path.read_text(encoding='utf-8')
+
+def write_cached_chars(chars_string):
+    """写入字符集缓存。"""
+    cache_path = Path(CHARS_CACHE_FILE)
+    cache_path.parent.mkdir(parents=True, exist_ok=True)
+    cache_path.write_text(chars_string, encoding='utf-8')
 
 def run_pyftsubset(font_path, chars_string, output_path, no_hinting=True):
     """调用 pyftsubset 生成子集化 woff2 字体"""
@@ -137,6 +158,17 @@ def run_pyftsubset(font_path, chars_string, output_path, no_hinting=True):
         print(f"成功生成: {output_path} ({size_kb:.2f} KB)")
 
 def main():
+    global VERBOSE
+
+    parser = argparse.ArgumentParser(description="GenSenRounded2TW 字体子集化")
+    parser.add_argument('--force', action='store_true',
+                        help='忽略字符集缓存，强制重新生成所有字重')
+    parser.add_argument('--verbose', '-v', action='store_true',
+                        help='输出详细子集化信息（例如扫描到的文件）')
+    args = parser.parse_args()
+
+    VERBOSE = args.verbose
+
     # 1. 扫描目录获取实际字符
     print(f"开始扫描目录: {SOURCE_DIR}")
     actual_chars = collect_chars_from_dir(SOURCE_DIR)
@@ -144,7 +176,21 @@ def main():
         print("错误：未提取到任何字符，请检查 SOURCE_DIR 配置或文件扩展名。")
         sys.exit(1)
 
-    # 2. 准备 GB2312 一级汉字（仅 R 字重需要）
+    # 2. 与上次扫描结果比对
+    if not args.force:
+        cached = read_cached_chars()
+        if cached is not None and cached == actual_chars:
+            print("字符集与上次扫描结果一致，跳过所有字重的子集化。")
+            print("如需强制重新生成，请加 --force 参数。")
+            return
+        if cached is None:
+            print("未找到字符集缓存，将进行完整子集化。")
+        else:
+            print("字符集发生变化，将重新生成所有字重。")
+    else:
+        print("已指定 --force，强制重新生成所有字重。")
+
+    # 3. 准备 GB2312 一级汉字（仅 R 字重需要）
     gb2312_chars = get_gb2312_level1()
     # 合并 R 字重的字符集（去重，保持原顺序）
     r_chars = actual_chars + gb2312_chars
@@ -154,7 +200,7 @@ def main():
     print(f"M/B 字重最终字符数: {len(actual_chars)}")
 
     
-    # 3. 确保输入/输出目录存在
+    # 4. 确保输入/输出目录存在
     font_dir = Path(FONT_DIR)
     if not font_dir.exists():
         print(f"错误：字体目录不存在 - {FONT_DIR}")
@@ -162,7 +208,7 @@ def main():
     output_root = Path(OUTPUT_DIR)
     output_root.mkdir(parents=True, exist_ok=True)
 
-    # 4. 对每个字重进行子集化
+    # 5. 对每个字重进行子集化
     for weight_code, weight_num in FONT_WEIGHTS.items():
         src_font = font_dir / f"GenSenRounded2TW-{weight_code}.otf"
         out_font = output_root / f"GenSenRounded2TW-{weight_code}{OUTPUT_SUFFIX}"   # 输出到指定目录
@@ -171,14 +217,14 @@ def main():
             continue
 
         print(f"\n处理字重: {weight_code} (font-weight: {weight_num})")
-        if weight_code == "R":
-            chars_to_use = r_chars
-        else:
-            chars_to_use = actual_chars
-
+        chars_to_use = r_chars if weight_code == "R" else actual_chars
         run_pyftsubset(str(src_font), chars_to_use, str(out_font), no_hinting=True)
 
-    print("\n所有字重处理完成！")
+    # 6. 所有字重成功后再写入缓存
+    write_cached_chars(actual_chars)
+    print(f"\n字符集缓存已更新: {CHARS_CACHE_FILE}")
+    print("所有字重处理完成！")
+
 
 if __name__ == "__main__":
     main()

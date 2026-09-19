@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { data } from '../data/archive.data.ts'
+import { data } from '../../data/archive.data.ts'
 
 // 按年月分组
 const grouped = computed(() => {
@@ -85,12 +85,6 @@ function formatDate(iso: string): string {
     align-items: baseline;
     justify-content: space-between;
     gap: 1rem;
-    border-radius: 36px;
-    transition: background-color 0.2s ease;
-}
-
-.archive-item:hover {
-    background-color: var(--vp-c-bg-soft);
 }
 
 .archive-link {
@@ -100,6 +94,7 @@ function formatDate(iso: string): string {
     flex: 1;
     min-width: 0;
     padding: 0.35rem 0.25rem;
+    border-radius: 36px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -107,6 +102,7 @@ function formatDate(iso: string): string {
 
 .archive-link:hover {
     color: var(--vp-c-brand);
+    background-color: var(--vp-c-bg-alt);
 }
 
 .archive-date {

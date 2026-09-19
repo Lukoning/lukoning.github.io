@@ -4,11 +4,11 @@ import DefaultTheme from 'vitepress/theme-without-fonts'
 import { nextTick, provide, watch, ref, computed } from 'vue'
 
 import Breadcrumb from 'vitepress-plugin-breadcrumb/Breadcrumb.vue'
-import CDocInfo from "../components/CDocInfo.vue"
-import CReturnToTopPlus from "../components/CReturnToTopPlus.vue"
-import CJumpToCommentsPlus from "../components/CJumpToCommentsPlus.vue"
-import CDialog from "../components/CDialog.vue"
-import { useCDialog } from '../composables/useCDialog.ts'
+import CDocInfo from "./components/CDocInfo.vue"
+import CReturnToTopPlus from "./components/CReturnToTopPlus.vue"
+import CJumpToCommentsPlus from "./components/CJumpToCommentsPlus.vue"
+import CDialog from "./components/CDialog.vue"
+import { useCDialog } from './composables/useCDialog.ts'
 import { useGamepad } from "@vueuse/core"
 
 const dialog = useCDialog()
@@ -120,6 +120,9 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
 }
 .doc-before > *, .doc-after > * {
   margin: 0 0 4px;
+}
+.breadcrumb-item[href="/"] {
+  display: none;
 }
 .aside-button {
   margin-block: 6px;

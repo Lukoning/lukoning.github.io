@@ -9,12 +9,10 @@ next: false
 
 # 归档：北陆图书馆
 
-*本页测试中*
-
 *目前按照页面对应内容的创建时间进行归档，可能与页面第一次发布日期不一致*
 
 <script setup>
-import CDocArchive from "./.vitepress/components/CDocArchive.vue"
+import CDocArchive from "@theme/components/CDocArchive.vue"
 </script>
 
 <CDocArchive />

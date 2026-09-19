@@ -93,7 +93,7 @@ export default defineConfig({
     resolve: {
       alias: Object.entries(componentAliases).map(([origin, newC]) => ({ //组件替换
         find: new RegExp(`.*/${origin}\\.vue$`),
-        replacement: fileURLToPath(new URL(`./components/${newC}.vue`, import.meta.url))
+        replacement: fileURLToPath(new URL(`./theme/components/${newC}.vue`, import.meta.url))
       })),
     }
   },

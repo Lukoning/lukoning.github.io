@@ -19,6 +19,7 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "docs:dev": "vitepress dev docs --host 0.0.0.0",
+    "predocs:build": "python subsetFont.py",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs"
   },

@@ -37,7 +37,7 @@ features:
 <script setup>
   import { onMounted, onUnmounted } from 'vue'
   import { useData } from 'vitepress'
-  import { initLknAnimation, destoryObserver } from "/.vitepress/utils/customElements.ts"
+  import { initLknAnimation, destoryObserver } from "@theme/utils/customElements.ts"
   const { theme } = useData();
   const sb = theme.value.sidebar.map(item => ({ ...item })); //theme是只读数组，要修改的话得转换为新数组
   const items =  {

@@ -109,6 +109,9 @@ body {
         padding: 6px 0;
         line-height: 1.4em;
     }
+    &.level-0 > .item .text {
+        font-size: 0.95rem;
+    }
     // 每个指示器都亮一亮，粗一点，中一点
     .indicator {
         top: 6px;
@@ -207,6 +210,12 @@ body {
             }
         }
     }
+}
+
+//vitepress-plugin-breadcrumb
+.breadcrumb.breadcrumb .breadcrumb-symbol { //路径分隔符
+    fill: var(--vp-c-divider);
+    opacity: 1;
 }
 
 @media (max-width: 639.999px) { /*宽度640以下*/

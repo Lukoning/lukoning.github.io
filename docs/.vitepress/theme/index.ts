@@ -17,10 +17,10 @@ import 'overlayscrollbars/overlayscrollbars.css'
 import 'virtual:group-icons.css'
 
 import CustomLayout from './Layout.vue'
-import CNavTree from "../components/CNavTree.vue"
+import CNavTree from "./components/CNavTree.vue"
 
-import './style.css'
-import "./customCollection.scss"
+import "./styles/default.css"
+import './styles/index.scss'
 
 //https://www.npmjs.com/package/nprogress
 NProgress.configure({
@@ -76,6 +76,7 @@ export default {
     if (!inBrowser) return;//非浏览器环境下返回，否则构建时报错
 
     initVisitorCount();
+    initNj1213();
 
     // 页面加载时（何时？）开始进度条（会在路由切换结束时顺便结束）
     NProgress.start();
@@ -142,24 +143,25 @@ function startOverflowSync(osInstance: OverlayScrollbars) {
 
 function initVisitorCount() {
   if (
+    // @ts-ignore
     import.meta.env.PROD/*如果是生产环境*/
     && !location.href.includes("://localhost")/*并且不是本地预览*/
   ) new MutationObserver((_, obs) => { //加载图像访问者计数器
     const img = document.querySelector("img[id='visitorCounter!']") as HTMLImageElement | undefined;
     if (img) {
       const url = "https://count.getloli.com/@LukoningPersonalWebsite?name=LukoningPersonalWebsite&theme=love-and-deepspace&scale=0.5&pixelated=1&darkmode=0";
+      img.crossOrigin = "Anonymous"; //解决跨域问题
       //替换src为计数器URL
       img.src =
         /*先用本地sessionStorage存储的图片，防止每次刷新都计数+1*/
         sessionStorage.getItem("image.visitorCounter") ?? url;
       img.loading = "eager"; //立即加载
-      img.crossOrigin = "Anonymous"; //解决跨域问题
       img.addEventListener("load", () => {
         if (img.src !== url) return;
         // 用canvas转图片为Base64
         const canvas = document.createElement("canvas");
-        canvas.width = img.width;
-        canvas.height = img.height;
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
         const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
         // 绘制图像（包括透明度）
         ctx.drawImage(img, 0, 0);
@@ -169,4 +171,11 @@ function initVisitorCount() {
       obs.disconnect();
     }
   }).observe(document.body, { childList: true, subtree: true });
+}
+
+function initNj1213() {
+  let date = new Date();
+  if (date.getMonth() == 11 && date.getDate() == 13) { //如果今天是12月13日
+    document.documentElement.style.filter = "grayscale(1)";
+  }
 }

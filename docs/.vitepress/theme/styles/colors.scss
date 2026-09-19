@@ -1,0 +1,131 @@
+@use "sass:color";
+$lkn-theme-accent-light: #007951;
+$lkn-theme-accent-bg-light: color.mix(white, $lkn-theme-accent-light, 90%, $method: oklch);
+$lkn-theme-accent-bg-alt-light:
+    color.mix(white, color.mix(
+        #00FFAA, $lkn-theme-accent-light, 60%, $method: oklch
+    ), 40%, $method: oklch);
+$lkn-theme-accent-dark:#D170FF;
+$lkn-theme-accent-bg-dark: color.mix(black, $lkn-theme-accent-dark, 80%, $method: oklch);
+$lkn-theme-accent-bg-alt-dark:
+    color.mix(black, color.mix(
+        #AE00FF, $lkn-theme-accent-dark, 20%, $method: oklch
+    ), 40%, $method: oklch);
+:root {
+    --vp-c-border: #88888822; /*边框*/
+    --vp-code-block-bg: var(--vp-code-bg);
+    --vp-backdrop-bg-color: var(--vp-c-bg-soft); /*侧边栏展开遮罩*/
+
+    --vp-button-brand-bg: var(--lkn-theme-accent);
+    --vp-button-brand-hover-bg: var(--lkn-theme-accent-brighter);
+    --vp-button-brand-active-bg: var(--lkn-theme-accent-darker);
+    --vp-button-brand-hover-text: var(--lkn-theme-text);
+    --vp-button-alt-active-text: var(--lkn-theme-accent);
+
+    --vp-c-bg-alt: var(--vp-button-alt-bg);
+    --vp-c-bg-elv: var(--vp-c-bg);
+    --vp-c-gutter: var(--vp-c-bg);
+    --vp-c-brand-1: var(--lkn-theme-accent-brighter);
+    --vp-c-brand-2: var(--lkn-theme-accent);
+    --vp-c-brand-3: var(--lkn-theme-accent-darker);
+    --vp-sidebar-bg-color: transparent;
+    --vp-nav-bg-color: var(--lkn-page-bg);
+    --vp-local-nav-bg-color: var(--vp-nav-bg-color);
+
+    &:not(.dark) {
+        --lkn-current-bg-image: url("/bgImage/bg-Nahida-light-0.webp");
+
+        --lkn-theme-accent: #{$lkn-theme-accent-light};
+        --lkn-theme-accent-bg: #{$lkn-theme-accent-bg-light};
+        --lkn-theme-accent-brighter: #{color.mix(white, $lkn-theme-accent-light, 20%, $method: oklch)};
+        --lkn-theme-accent-darker: #{color.mix(black, $lkn-theme-accent-light, 20%, $method: oklch)};
+        --lkn-theme-text: #{color.mix(white, $lkn-theme-accent-light, 90%, $method: oklch)};
+        --lkn-theme-text-brighter: #{color.mix(white, $lkn-theme-accent-light, 95%, $method: oklch)};
+        --lkn-theme-text-darker: #{color.mix(white, $lkn-theme-accent-light, 50%, $method: oklch)};
+        --lkn-theme-border: #{color.mix(white, $lkn-theme-accent-light, 30%, $method: oklch)};
+        --lkn-home-bg: #{color.mix($lkn-theme-accent-bg-light, transparent, 30%, $method: oklch)};
+        --lkn-page-bg: #{color.mix($lkn-theme-accent-bg-light, transparent, 70%, $method: oklch)};
+        --lkn-selection-color: #{color.mix($lkn-theme-accent-light, transparent, 40%, $method: oklch)};
+        --lkn-scrollbar-handle-bg: #{color.mix(rgba(black, .2), $lkn-theme-accent-bg-light, 90%, $method: oklch)};
+        --lkn-scrollbar-handle-bg-hover: #{color.mix(rgba(black, .4), $lkn-theme-accent-bg-light, 80%, $method: oklch)};
+        --lkn-scrollbar-handle-bg-active: #{color.mix(rgba(white, .1), $lkn-theme-accent-light, 60%, $method: oklch)};
+
+        --vp-c-text-1: #{color.mix(black, $lkn-theme-accent-light, 90%, $method: oklch)}; //主文字色
+        --vp-c-text-2: #{color.mix(black, $lkn-theme-accent-bg-light, 60%, $method: oklch)}; //副文字色
+        --vp-c-text-3: #{color.mix(black, $lkn-theme-accent-bg-light, 30%, $method: oklch)}; //placeholder
+
+        --vp-c-bg: #{color.mix($lkn-theme-accent-bg-light, transparent, 30%, $method: oklch)};
+        --vp-c-bg-soft: #{color.mix($lkn-theme-accent-bg-light, transparent, 40%, $method: oklch)};
+        --vp-c-divider: #{color.mix($lkn-theme-accent-light, transparent, 35%, $method: oklch)};/*分隔条*/
+        --vp-c-default-soft: #{color.mix($lkn-theme-accent-bg-light, transparent, 50%, $method: oklch)}; /*Info框、代码块等*/
+        --vp-c-brand-soft: #{color.mix($lkn-theme-accent-light, transparent, 15%, $method: oklch)}; /*Tip框*/
+        --vp-code-line-highlight-color: #{color.mix($lkn-theme-accent-light, transparent, 20%, $method: oklch)};
+
+        --vp-button-brand-text: var(--lkn-theme-text-brighter);
+        --vp-button-brand-active-text: var(--lkn-theme-text-darker);
+        --vp-button-alt-bg: #{color.mix($lkn-theme-accent-bg-alt-light, transparent, 40%, $method: oklch)};
+        --vp-button-alt-hover-bg: #{color.mix($lkn-theme-accent-bg-alt-light, transparent, 60%, $method: oklch)};
+        --vp-button-alt-active-bg: #{color.mix($lkn-theme-accent-light, transparent, 20%, $method: oklch)};
+    }
+
+    &.dark {
+        --lkn-current-bg-image: url("/bgImage/bg-Klee-dark-0.webp");
+
+        --lkn-theme-accent: #{$lkn-theme-accent-dark};
+        --lkn-theme-accent-bg: #{$lkn-theme-accent-bg-dark};
+        --lkn-theme-accent-brighter: #{color.mix(white, $lkn-theme-accent-dark, 20%, $method: oklch)};
+        --lkn-theme-accent-darker: #{color.mix(black, $lkn-theme-accent-dark, 20%, $method: oklch)};
+        --lkn-theme-text: #{color.mix(black, $lkn-theme-accent-dark, 70%, $method: oklch)};
+        --lkn-theme-text-brighter: #{color.mix(black, $lkn-theme-accent-dark, 50%, $method: oklch)};
+        --lkn-theme-text-darker: #{color.mix(black, $lkn-theme-accent-dark, 90%, $method: oklch)};
+        --lkn-theme-border: #{color.mix(white, $lkn-theme-accent-dark, 50%, $method: oklch)};
+        --lkn-home-bg: #{color.mix($lkn-theme-accent-bg-dark, transparent, 60%, $method: oklch)};
+        --lkn-page-bg: #{color.mix($lkn-theme-accent-bg-dark, transparent, 80%, $method: oklch)};
+        --lkn-selection-color: #{color.mix($lkn-theme-accent-dark, transparent, 40%, $method: oklch)};
+        --lkn-scrollbar-handle-bg: #{color.mix(rgba(white, .2), $lkn-theme-accent-bg-dark, 95%, $method: oklch)};
+        --lkn-scrollbar-handle-bg-hover: #{color.mix(rgba(white, .5), $lkn-theme-accent-bg-dark, 80%, $method: oklch)};
+        --lkn-scrollbar-handle-bg-active: #{color.mix(rgba(black, .1), $lkn-theme-accent-dark, 60%, $method: oklch)};
+
+        --vp-c-text-1: #{color.mix(white, $lkn-theme-accent-dark, 90%, $method: oklch)}; //主文字色
+        --vp-c-text-2: #{color.mix(white, $lkn-theme-accent-bg-dark, 70%, $method: oklch)}; //副文字色
+        --vp-c-text-3: #{color.mix(white, $lkn-theme-accent-bg-dark, 50%, $method: oklch)}; //placeholder
+        
+        --vp-c-bg: #{color.mix($lkn-theme-accent-bg-dark, transparent, 30%, $method: oklch)};
+        --vp-c-bg-soft: #{color.mix($lkn-theme-accent-bg-dark, transparent, 40%, $method: oklch)};
+        --vp-c-divider: #{color.mix($lkn-theme-accent-dark, transparent, 30%, $method: oklch)}; /*分隔条*/
+        --vp-c-default-soft: #{color.mix($lkn-theme-accent-bg-dark, transparent, 50%, $method: oklch)}; /*Info框、代码块等*/
+        --vp-c-brand-soft: #{color.mix($lkn-theme-accent-dark, transparent, 15%, $method: oklch)}; /*Tip框*/
+        --vp-code-line-highlight-color: #{color.mix($lkn-theme-accent-dark, transparent, 20%, $method: oklch)};
+
+        --vp-button-brand-text: var(--lkn-theme-text-darker);
+        --vp-button-brand-active-text: var(--lkn-theme-text-brighter);
+        --vp-button-alt-bg: #{color.mix($lkn-theme-accent-bg-alt-dark, transparent, 30%, $method: oklch)};
+        --vp-button-alt-hover-bg: #{color.mix($lkn-theme-accent-bg-alt-dark, transparent, 45%, $method: oklch)};
+        --vp-button-alt-active-bg: #{color.mix($lkn-theme-accent-dark, transparent, 40%, $method: oklch)};
+    }
+
+    --lkn-navbar-blur-radius: 4px;
+    --lkn-navbar-button-blur-radius: 8px;
+    --lkn-local-navbar-blur-radius: 4px;
+    --lkn-navmenu-blur-radius: 16px;
+    --lkn-backdrop-blur-radius: 4px;
+    --lkn-dropdown-blur-radius: 12px;
+    --lkn-navbar-mask: /*用两层渐变，观感会比只有一层要好，下同*/
+        linear-gradient(to bottom, #FFFFFF 0%, transparent 100%),
+        linear-gradient(to bottom, #FFFFFF 5%, transparent 100%);
+    --lkn-navbar-container-mask:
+        linear-gradient(to bottom, #FFFFFF 40%, transparent 90%),
+        linear-gradient(to bottom, #FFFFFF 45%, transparent 90%);
+    --lkn-local-navbar-mask:
+        linear-gradient(to bottom, #FFFFFF 0%, transparent 100%),
+        linear-gradient(to bottom, #FFFFFF 5%, transparent 100%);
+    --lkn-local-navbar-container-mask:
+        linear-gradient(to bottom, #FFFFFF 35%, transparent 90%),
+        linear-gradient(to bottom, #FFFFFF 45%, transparent 90%);
+}
+
+@media (max-width: 959.999px) { /*宽度960以下*/
+    :root {
+        --vp-sidebar-bg-color: var(--lkn-page-bg);
+    }
+}
