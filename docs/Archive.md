@@ -5,6 +5,7 @@ order: 1
 showDocInfo: false
 prev: false
 next: false
+outline: 2
 ---
 
 # 归档：北陆图书馆
