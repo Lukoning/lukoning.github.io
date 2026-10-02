@@ -63,7 +63,7 @@ function formatDate(iso: string): string {
                         <a :href="item.link" class="archive-link">
                             <span class="archive-head">
                                 <time class="archive-date" :datetime="item.date">
-                                    {{ formatDate(item.date) }}
+                                    {{ formatDate(item.date) }}日
                                 </time>
                                 <span class="archive-title">{{ item.title }}</span>
                             </span>
@@ -95,7 +95,7 @@ function formatDate(iso: string): string {
     font-weight: 700;
     color: var(--vp-c-text-1);
     margin: 0 auto 1rem;
-    padding: 1rem;
+    padding: 0 1rem;
     border-block: none;
     border-inline: 2px solid var(--vp-c-divider);
 }
@@ -105,11 +105,22 @@ function formatDate(iso: string): string {
 }
 
 .archive-month {
+    width: fit-content;
     font-size: 1.2rem;
     font-weight: 600;
     color: var(--vp-c-text-1);
-    margin: 0.5rem 0;
+    margin: 0.5rem auto;
     padding: 0.5rem 0 0.25rem;
+}
+
+.archive-date {
+    color: var(--vp-c-text-2);
+    align-self: center;
+    line-height: 1rem;
+    font-size: 0.9rem;
+    font-variant-numeric: tabular-nums;
+    flex-shrink: 0;
+    border-bottom: 2px solid var(--vp-c-divider);
 }
 
 .archive-count {
@@ -148,13 +159,6 @@ function formatDate(iso: string): string {
     align-items: baseline;
     gap: 0.5rem;
     min-width: 0;
-}
-
-.archive-date {
-    color: var(--vp-c-text-2);
-    font-size: 0.85rem;
-    font-variant-numeric: tabular-nums;
-    flex-shrink: 0;
 }
 
 .archive-title {

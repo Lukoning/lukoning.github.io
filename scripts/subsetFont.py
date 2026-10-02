@@ -5,24 +5,33 @@
 1. 扫描指定目录（如 docs）中的所有文本文件，提取所有使用的字符。
 2. 对 R 字重：字符集 = 实际字符 + GB2312 一级汉字（3755字）
 3. 对 M、B 字重：字符集 = 实际字符
-4. 调用 pyftsubset 生成子集化的 woff2 文件，输出到字体原目录。
+4. 调用 fontTools API 生成子集化的 woff2 文件，输出到字体原目录。
 
 使用前请安装依赖：
     pip install fonttools brotli
 """
 
-import os
-import subprocess
-import sys
-import argparse
-from pathlib import Path
-from collections import OrderedDict
+try:
+    import argparse
+    import sys
+    from collections import OrderedDict
+    from pathlib import Path
+
+    import brotli  # noqa: F401  仅为确认 brotli 可用
+    from fontTools import subset
+    from fontTools.ttLib import TTFont
+except ImportError as e:
+    print(f"缺少依赖: {e.name}，请运行: pip install fonttools brotli")
+    raise SystemExit(1)
 
 # ==================== 配置区域（请根据你的项目调整） ====================
+SCRIPT_DIR = Path(__file__).resolve().parent
+PROJECT_ROOT = SCRIPT_DIR.parent
+
 # 需要扫描的目录（会递归查找符合条件的文本文件）
-SOURCE_DIR = "./docs"
+SOURCE_DIR = PROJECT_ROOT / "docs"
 # 字体源文件所在目录
-FONT_DIR = "./fonts/GenSenRounded2TW-otf"
+FONT_DIR = PROJECT_ROOT / "fonts/GenSenRounded2TW-otf"
 # 字体各字重的文件名（不含扩展名，扩展名为 .otf）
 FONT_WEIGHTS = {
     "R": "400",   # Regular 字重数值为 400
@@ -30,13 +39,13 @@ FONT_WEIGHTS = {
     "B": "700",   # Bold
 }
 # 字体输出目录
-OUTPUT_DIR = "./docs/public/fonts/GenSenRounded2TW"
+OUTPUT_DIR = PROJECT_ROOT / "docs/public/fonts/GenSenRounded2TW"
 # 输出文件名后缀（自动添加 -subset.woff2）
 OUTPUT_SUFFIX = "-subset.woff2"
 
 # 缓存文件：记录上次扫描得到的字符集。
 # 建议纳入版本控制，否则 CI 环境下每次都无缓存，会重新生成所有字重。
-CHARS_CACHE_FILE = "font-subset-chars.txt"
+CHARS_CACHE_FILE = SCRIPT_DIR / "font-subset-chars.txt"
 # ========================================================================
 
 # 全局详细输出开关，由 --verbose / -v 控制
@@ -68,11 +77,11 @@ def get_gb2312_level1():
 
 def collect_chars_from_dir(root_dir):
     """扫描 root_dir 下符合条件的文本文件，提取所有字符（包括换行、空格），返回去重后的字符串。"""
-    # 需要扫描的文件扩展名
+    # 需要扫描的文件扩展名（不区分大小写，请在此输入全小写）
     extensions = {'.md', '.scss', '.css', '.ts', '.mts', '.vue'}
-    # 需要跳过的目录名（不区分大小写，若需精确匹配可去掉 .lower()）
+    # 需要跳过的目录名（区分大小写）
     skip_dirs = {'cache', 'dist', 'Standalone'}
-    # 需要跳过的文件名（不区分大小写）
+    # 需要跳过的文件名（区分大小写）
     skip_files = {''}
 
     char_set = set()
@@ -89,24 +98,26 @@ def collect_chars_from_dir(root_dir):
         # 检查文件路径中的任何一部分是否在 skip_dirs 中
         # 例如：docs/.vitepress/cache/xxx 会命中 cache
         path_parts = file_path.parts
-        if any(part.lower() in skip_dirs for part in path_parts):
+        if any(part in skip_dirs for part in path_parts):
             continue
 
         # 检查文件名是否在 skip_files 中
-        if file_path.name.lower() in skip_files:
+        if file_path.name in skip_files:
             continue
 
         # 检查扩展名
         if file_path.suffix.lower() in extensions:
             try:
                 content = file_path.read_text(encoding='utf-8', errors='ignore')
-                if content:
-                    char_set.update(content)
-                    file_count += 1
-                    if VERBOSE:
-                        print(f"已扫描: {file_path}")
-            except Exception as e:
+            except OSError as e:
                 print(f"警告：无法读取文件 {file_path}: {e}")
+                continue
+
+            if content:
+                char_set.update(content)
+                file_count += 1
+                if VERBOSE:
+                    print(f"已扫描: {file_path}")
 
     print(f"扫描完成：共处理 {file_count} 个文件，发现 {len(char_set)} 个不同字符。")
     # 排序后返回字符串
@@ -126,36 +137,30 @@ def write_cached_chars(chars_string):
     cache_path.parent.mkdir(parents=True, exist_ok=True)
     cache_path.write_text(chars_string, encoding='utf-8')
 
-def run_pyftsubset(font_path, chars_string, output_path, no_hinting=True):
-    """调用 pyftsubset 生成子集化 woff2 字体"""
-    if not os.path.exists(font_path):
+def run_pyftsubset(font_path, chars_string, output_path, hinting=False):
+    """使用 fontTools API 生成子集化 woff2 字体"""
+    font_path = Path(font_path)
+    output_path = Path(output_path)
+
+    if not font_path.exists():
         raise FileNotFoundError(f"字体文件不存在: {font_path}")
 
-    # 创建临时字符文件
-    temp_chars = Path(output_path).parent / f"temp_chars_{os.getpid()}.txt"
-    temp_chars.write_text(chars_string, encoding='utf-8')
+    font = TTFont(str(font_path))
+    try:
+        options = subset.Options()
+        options.hinting = hinting  # hinting 默认为 False，等价于 --no-hinting
 
-    cmd = [
-        'pyftsubset',
-        font_path,
-        f'--text-file={temp_chars}',
-        f'--output-file={output_path}',
-        '--flavor=woff2'
-    ]
-    if no_hinting:
-        cmd.append('--no-hinting')
+        subsetter = subset.Subsetter(options=options)
+        subsetter.populate(text=chars_string)  # 等价于 --text-file
+        subsetter.subset(font)
 
-    print(f"执行命令: {' '.join(cmd)}")
-    result = subprocess.run(cmd, capture_output=True, text=True)
-    temp_chars.unlink(missing_ok=True)
+        font.flavor = 'woff2'  # 等价于 --flavor=woff2
+        font.save(str(output_path))
+    finally:
+        font.close()
 
-    if result.returncode != 0:
-        print("子集化失败：")
-        print(result.stderr)
-        sys.exit(1)
-    else:
-        size_kb = os.path.getsize(output_path) / 1024
-        print(f"成功生成: {output_path} ({size_kb:.2f} KB)")
+    size_kb = output_path.stat().st_size / 1024
+    print(f"成功生成: {output_path} ({size_kb:.2f} KB)")
 
 def main():
     global VERBOSE
@@ -165,6 +170,8 @@ def main():
                         help='忽略字符集缓存，强制重新生成所有字重')
     parser.add_argument('--verbose', '-v', action='store_true',
                         help='输出详细子集化信息（例如扫描到的文件）')
+    parser.add_argument('--keep-hinting', action='store_true',
+                        help='保留 hinting（默认不保留）')
     args = parser.parse_args()
 
     VERBOSE = args.verbose
@@ -213,17 +220,17 @@ def main():
         src_font = font_dir / f"GenSenRounded2TW-{weight_code}.otf"
         out_font = output_root / f"GenSenRounded2TW-{weight_code}{OUTPUT_SUFFIX}"   # 输出到指定目录
         if not src_font.exists():
-            print(f"警告：源字体不存在 {src_font}，跳过该字重")
+            print(f"警告：源字体不存在 {src_font}，跳过该字重。如需重新生成，请使用 --force 参数。")
             continue
 
         print(f"\n处理字重: {weight_code} (font-weight: {weight_num})")
         chars_to_use = r_chars if weight_code == "R" else actual_chars
-        run_pyftsubset(str(src_font), chars_to_use, str(out_font), no_hinting=True)
+        run_pyftsubset(str(src_font), chars_to_use, str(out_font), args.keep_hinting)
 
-    # 6. 所有字重成功后再写入缓存
+    # 6. 写入缓存
     write_cached_chars(actual_chars)
     print(f"\n字符集缓存已更新: {CHARS_CACHE_FILE}")
-    print("所有字重处理完成！")
+    print("处理完成！")
 
 
 if __name__ == "__main__":

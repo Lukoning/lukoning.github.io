@@ -11,12 +11,10 @@
 
 猫猫喜欢pnpm姐姐喵\~
 
-pnpm姐姐不在的话，请在仓库根目录的corepack处召唤pnpm姐姐喵：
+pnpm姐姐不在的话，请在corepack处召唤pnpm姐姐喵：
 
 ```bash
-cd /path/to/repo # 替换路径为仓库根目录喵~
-corepack enable
-corepack pnpm install
+corepack enable pnpm
 ```
 
 有了pnpm姐姐，猫猫才有动力工作哦喵。
@@ -45,7 +43,7 @@ pnpm docs:build
 pnpm docs:preview
 ```
 
-如不想构建，或者想要喵实时预览修改，也可以润以下代码喵：
+如不想构建，或者想要实时预览修改，也可以润以下代码喵：
 
 ```bash
 pnpm docs:dev
@@ -58,6 +56,24 @@ pnpm docs:dev
 可以哦喵\~不过请遵守CCPL协议（知识共享协议）和MPL协议哦喵，具体可以看看项目根目录的[LICENSE-CCPL](/LICENSE-CCPL)和[LICENSE-MPL](/LICENSE-MPL)哦喵\~
 
 看不明白鸟语可以请教AI先森喵，也可以在猫猫身上找找有没有小纸条解析哦喵\~
+
+## 额外说明喵
+
+猫猫使用 Python fontTools 库对所用字体进行子集化喵。
+
+如果需要修改 docs 文件夹内的文件，请在修改后运行以下代码喵：
+
+```bash
+py -3 scripts/subsetFont.py  # Windows
+```
+
+如果上面的代码跑不通，那么可以换成以下代码喵：
+
+```bash
+python3 scripts/subsetFont.py  # macOS / Linux
+```
+
+运行前请确认 Python 3.8+ 以及 pip 包 fonttools 和 brotli 已经安装喵\~
 
 ## 开源许可喵\~
 
