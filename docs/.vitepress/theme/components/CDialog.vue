@@ -1,23 +1,24 @@
 <script setup lang="ts">
+import type { DialogButton, DialogOptions } from "../composables/useCDialog.ts"
 import VPButton from './LKNButton.vue'
-
-interface DialogButton {
-    theme?: 'brand' | 'alt' | 'alt-trans' | 'sponsor'
-    text: string
-    icon?: string
-    callback?: () => void | Promise<void>    // 点击回调，支持异步
-    closeAfter?: boolean    // 点击后是否自动关闭，默认 true
-}
+import { computed } from 'vue'
 
 const props = defineProps<{
     visible: boolean
-    options: {
-        title?: string
-        content?: string
-        closeOnMaskClick?: boolean
-        buttons?: DialogButton[] | readonly DialogButton[]// 新增动态按钮数组
-    }
+    options?: DialogOptions
 }>()
+
+const defaultOptions: DialogOptions = {
+    title: "提示",
+    content: "",
+    closeOnMaskClick: false,
+    buttons: [{
+        theme: "alt",
+        text: "确定"
+    }]
+}
+
+const options = computed(() => ({ ...defaultOptions, ...props.options }))
 
 const emit = defineEmits<{
     (e: 'update:visible', value: boolean): void
@@ -30,7 +31,7 @@ const close = () => {
 }
 
 const handleMaskClick = () => {
-    if (props.options.closeOnMaskClick !== false) {
+    if (options.value.closeOnMaskClick !== false) {
         close()
     }
 }

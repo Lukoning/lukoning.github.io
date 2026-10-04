@@ -1,5 +1,4 @@
 // https://vitepress.dev/guide/custom-theme
-/// <reference types="vite/client" />
 import type { Theme } from 'vitepress'
 import { useData, useRoute, inBrowser } from 'vitepress'
 import DefaultTheme from 'vitepress/theme-without-fonts'
@@ -18,6 +17,9 @@ import 'virtual:group-icons.css'
 
 import CustomLayout from './Layout.vue'
 import CNavTree from "./components/CNavTree.vue"
+import { useGamepadNavigation } from './composables/useGamepadNavigation.ts'
+
+const nav = useGamepadNavigation()
 
 import "./styles/default.css"
 import './styles/index.scss'
@@ -87,6 +89,7 @@ export default {
     }
     router.onAfterRouteChange = () => {
       NProgress.done(); // 路由切换完成后结束进度条
+      if (nav.isStarted()) nav.focusContent(); // 手柄下聚焦内容区
     }
 
     //初始化自定义叠加滚动条

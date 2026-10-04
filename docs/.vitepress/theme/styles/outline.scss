@@ -1,5 +1,22 @@
-*:focus-visible {
+*:focus-visible, :root.gamepad-nav *:focus {
     outline: 2px solid var(--lkn-theme-border);
+}
+.gamepad-region-focus {
+    position: relative;
+    &::before {
+        content: "";
+        pointer-events: none;
+        display: block;
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        bottom: 2px;
+        right: 2px;
+        border: 3px solid var(--lkn-theme-border);
+        border-radius: 6px;
+        opacity: .8;
+        z-index: 2;
+    }
 }
 
 .VPButton {

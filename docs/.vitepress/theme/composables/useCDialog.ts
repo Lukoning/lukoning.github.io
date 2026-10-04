@@ -1,6 +1,6 @@
 import { ref, readonly } from 'vue'
 
-interface DialogButton {
+export interface DialogButton {
   theme?: 'brand' | 'alt' | 'alt-trans' | 'sponsor'
   text: string
   icon?: string
@@ -8,11 +8,11 @@ interface DialogButton {
   closeAfter?: boolean    // 点击后是否自动关闭，默认 true
 }
 
-type DialogOptions = {
+export type DialogOptions = {
   title?: string
   content?: string
   closeOnMaskClick?: boolean
-  buttons?: DialogButton[] // 新增动态按钮数组
+  buttons?: readonly DialogButton[] // 新增动态按钮数组
 }
 
 const isVisible = ref(false)

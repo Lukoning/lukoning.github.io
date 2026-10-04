@@ -1,5 +1,4 @@
-<!--- 原文件：VPSidebar.vue -->
-
+<!-- 原文件：VPSidebar.vue -->
 <script lang="ts" setup>
 import { useScrollLock } from '@vueuse/core'
 import { inBrowser, useRoute } from 'vitepress'
@@ -9,6 +8,7 @@ import { useLayout } from 'vitepress/dist/client/theme-default/composables/layou
 import VPSidebarGroup from 'vitepress/dist/client/theme-default/components/VPSidebarGroup.vue'
 import 'overlayscrollbars/overlayscrollbars.css';
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-vue';
+import { useGamepadNavigation } from '../composables/useGamepadNavigation.ts'
 
 const { sidebarGroups, hasSidebar } = useLayout()
 const route = useRoute()
@@ -20,6 +20,57 @@ const props = defineProps<{
 // a11y: focus Nav element when menu has opened
 const navEl = ref<HTMLElement | null>(null)
 const isLocked = useScrollLock(inBrowser ? document.body : null)
+
+// ==================== 手柄导航集成 ====================
+const nav = useGamepadNavigation()
+
+/** 是否移动端布局（960 是 VitePress 的桌面断点） */
+function isMobileLayout(): boolean {
+  return inBrowser && window.innerWidth < 960
+}
+
+/** 拿到底层真实 DOM（OverlayScrollbarsComponent 包了一层） */
+function getSidebarEl(): HTMLElement | null {
+  const raw = navEl.value as any
+  const el = raw?.getElement?.() ?? raw?.$el ?? raw
+  return el instanceof HTMLElement ? el : null
+}
+
+/** 点击 VitePress 顶栏上的菜单按钮，切换侧边栏开/关 */
+function toggleLocalNavMenu() {
+  document.querySelector<HTMLElement>('.VPLocalNav .menu')?.click()
+}
+
+/**
+ * 移动端：侧边栏打开时把它作为一个“手柄作用域”推入，
+ * 焦点锁定在侧边栏内部；用户按 B 时通过 onCancel 通知我们关闭它。
+ */
+watch(
+  () => props.open,
+  async (isOpen) => {
+    if (!isMobileLayout()) return
+
+    if (isOpen) {
+      await nextTick()
+      const el = getSidebarEl()
+      if (!el) return
+      nav.pushScope(el, {
+        onCancel: () => {
+          // 只有当侧边栏当前仍打开时才去通知关闭，
+          // 避免外部已关闭的情况下再次 toggle 导致侧边栏闪回
+          if (!props.open) return
+          toggleLocalNavMenu()
+        },
+      })
+    } else {
+      // 外部关闭（鼠标点击菜单、路由跳转）→ 弹出作用域
+      // 若栈已因按 B 弹过，这里是 no-op
+      nav.popScope()
+    }
+  },
+  { immediate: true, flush: 'post' }
+)
+// ==================== 手柄导航集成结束 ====================
 
 watch(
   [props, navEl],
