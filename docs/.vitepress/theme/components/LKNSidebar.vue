@@ -28,11 +28,6 @@ const isLocked = useScrollLock(inBrowser ? document.body : null)
 // ==================== 手柄导航集成 ====================
 const nav = useGamepadNavigation()
 
-/** 是否移动端布局（960 是 VitePress 的桌面断点） */
-function isMobileLayout(): boolean {
-  return inBrowser && window.innerWidth < 960
-}
-
 /** 拿到底层真实 DOM（OverlayScrollbarsComponent 包了一层） */
 function getSidebarEl(): HTMLElement | null {
   const raw = navEl.value as any
@@ -52,8 +47,10 @@ function closeSidebar() {
 watch(
   () => props.open,
   async (isOpen) => {
+    if (!inBrowser) return
     let isGamepadMode = document.documentElement.classList.contains("gamepad-nav-started")
-    if (!isMobileLayout() || !isGamepadMode) return
+    /** 是否移动端布局（960 是 VitePress 的桌面断点）且手柄导航已开启 */
+    if (window.innerWidth >= 960 || !isGamepadMode) return
 
     if (isOpen) {
       await nextTick()
