@@ -17,6 +17,10 @@ const props = defineProps<{
   open: boolean
 }>()
 
+defineEmits<{
+  (e: 'close-menu'): void
+}>()
+
 // a11y: focus Nav element when menu has opened
 const navEl = ref<HTMLElement | null>(null)
 const isLocked = useScrollLock(inBrowser ? document.body : null)
@@ -36,9 +40,9 @@ function getSidebarEl(): HTMLElement | null {
   return el instanceof HTMLElement ? el : null
 }
 
-/** 点击 VitePress 顶栏上的菜单按钮，切换侧边栏开/关 */
-function toggleLocalNavMenu() {
-  document.querySelector<HTMLElement>('.VPLocalNav .menu')?.click()
+/** 点击侧边栏背景层，关闭侧边栏 */
+function closeSidebar() {
+  document.querySelector<HTMLElement>('.VPBackdrop')?.click()
 }
 
 /**
@@ -48,19 +52,16 @@ function toggleLocalNavMenu() {
 watch(
   () => props.open,
   async (isOpen) => {
-    if (!isMobileLayout()) return
+    let isGamepadMode = document.documentElement.classList.contains("gamepad-nav-started")
+    if (!isMobileLayout() || !isGamepadMode) return
 
     if (isOpen) {
       await nextTick()
       const el = getSidebarEl()
       if (!el) return
       nav.pushScope(el, {
-        onCancel: () => {
-          // 只有当侧边栏当前仍打开时才去通知关闭，
-          // 避免外部已关闭的情况下再次 toggle 导致侧边栏闪回
-          if (!props.open) return
-          toggleLocalNavMenu()
-        },
+        target: el.querySelector(".is-active > .item > .link") as HTMLElement | undefined,
+        onCancel: () => closeSidebar(),
       })
     } else {
       // 外部关闭（鼠标点击菜单、路由跳转）→ 弹出作用域

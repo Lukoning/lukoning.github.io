@@ -18,14 +18,15 @@ const props = withDefaults(defineProps<{
     toggleKey?: number
 }>(), {
     hints: () => [
-        { key: '方向键/左摇杆', label: '移动焦点' },
         { key: 'A', color: '#59bf40', label: '确认 / 进入区域' },
         { key: 'B', color: '#d94126', label: '返回 / 退出区域' },
-        { key: 'Y', color: '#ffc82c', label: '展开 / 折叠' },
+        { key: 'Y', color: '#ffc82c', label: '展开 / 折叠列表' },
+        { key: '左摇杆/方向键', label: '移动焦点' },
+        { key: '按下左摇杆', label: '临时隐藏焦点' },
         { key: '右摇杆', label: '滚动页面' },
-        { key: 'LS', label: '折叠按键提示' },
+        { key: '按下右摇杆', label: '展开 / 折叠此提示' },
     ],
-    toggleKey: GP.LS,
+    toggleKey: GP.RS,
 })
 
 const collapsed = ref(false)
@@ -41,7 +42,7 @@ function keyStyle(color?: string) {
     }
 }
 
-// 独立订阅：只关心 LS 一个按键，不感知导航状态
+// 独立订阅：只关心 RS 一个按键，不感知导航状态
 const nav = useGamepadNavigation()
 const off = nav.addButtonHandler((e) => {
     if (e.type === 'down' && e.button === props.toggleKey) {
@@ -53,10 +54,10 @@ onUnmounted(() => off())
 
 <template>
     <div class="gamepad-hint" :class="{ 'is-collapsed': collapsed }">
-        <!-- 折叠态：只留一个 LS 展开提示 -->
+        <!-- 折叠态：只留一个展开提示 -->
         <button v-if="collapsed" type="button" class="gamepad-hint__toggle" aria-label="展开手柄按键提示"
             @click="collapsed = false">
-            <kbd class="gamepad-hint__key">LS</kbd>
+            <kbd class="gamepad-hint__key">RS</kbd>
             <span class="gamepad-hint__toggle-label">展开</span>
         </button>
 
@@ -117,7 +118,7 @@ onUnmounted(() => off())
 
 /* ---------- 展开态 ---------- */
 .gamepad-hint__panel {
-    width: 220px;
+    min-width: 150px;
     background: var(--vp-c-bg-elv);
     border: 1px solid var(--vp-c-divider);
     border-radius: 10px;
@@ -167,6 +168,7 @@ onUnmounted(() => off())
 .gamepad-hint__item {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 8px;
     padding: 3px 0;
 }

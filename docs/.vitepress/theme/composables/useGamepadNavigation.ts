@@ -12,7 +12,7 @@ export { GP, AXIS } from './useGamepadWatcher'
 
 // ==================== 类型 ====================
 export type NavDirection = 'up' | 'down' | 'left' | 'right'
-export type NavIntent = NavDirection | 'confirm' | 'cancel' | 'toggle'
+export type NavIntent = NavDirection | 'confirm' | 'cancel' | 'toggle' | 'hideHighlights'
 
 export interface GamepadNavigationOptions {
     /** 透传给 useGamepadWatcher 的配置 */
@@ -39,7 +39,7 @@ const FOCUSABLE_SELECTOR = [
     'input:not([disabled])',
     'select:not([disabled])',
     'textarea:not([disabled])',
-    '[tabindex]:not([tabindex="-1"])',
+    '[tabindex]:not([tabindex="-1"]):not([role="tabpanel"])',
     '.VPButton',
 ].join(',')
 
@@ -48,6 +48,7 @@ const FOCUSABLE_SELECTOR = [
 const VERTICAL_REGION_SELECTORS = [
     '.VPNav', // 顶部导航栏
     '.VPLocalNav', // 移动端顶栏
+    '.VPHome > *:not(h1)', // 首页内容，展开应为 VPHomeHero, VPHomeFeatures, VPHomeContent
     '.VPDoc .content-container > *:not(h1)', // 正文内容，展开应为 doc-before, main, VPDocFooter, doc-after
     '#giscus', // 评论区
     '.VPFooter', // 页脚
@@ -87,7 +88,7 @@ interface ScopeFrame {
 }
 const scopeStack: ScopeFrame[] = []
 
-// 区域导航状态
+// 导航状态
 let navMode: 'region' | 'element' = 'region'
 let currentRegion: HTMLElement | null = null
 
@@ -141,69 +142,96 @@ function getOrders(regionSelectors: string[]): HTMLElement[] {
     return result
 }
 
-/** 把元素的矩形裁剪到视口内。元素完全在视口外时退化为一个零尺寸点（贴近最近的边缘）。 */
-function clampInto(el: HTMLElement, out: { top: number; bottom: number; left: number; right: number }) {
-    const r = el.getBoundingClientRect()
-    const vw = window.innerWidth, vh = window.innerHeight
-    out.top    = Math.max(0, Math.min(vh, r.top))
-    out.bottom = Math.max(0, Math.min(vh, r.bottom))
-    out.left   = Math.max(0, Math.min(vw, r.left))
-    out.right  = Math.max(0, Math.min(vw, r.right))
-}
-
-// 复用对象，减少对象创建销毁操作
-const _rA = { top: 0, bottom: 0, left: 0, right: 0 }
-const _rB = { top: 0, bottom: 0, left: 0, right: 0 }
-
-/** 几何最近邻：在候选数组里找离 current 最近的元素 */
+/**
+ * 扫描线导航算法。
+ * 沿 direction 方向推进一条扫描带，第一条被扫到的候选元素成为下一焦点。
+ *
+ * 三个阶段（优先级递减）：
+ *   1. 扫描带 = 当前元素的次轴投影（精确）
+ *   2. 扫描带 = 所在区域的次轴投影（宽容，处理"孤岛元素"）
+ *   3. 加权距离兜底（尊重 crossAxisWeight）
+ */
 function findNearest(
     current: HTMLElement,
     direction: NavDirection,
     candidates: HTMLElement[],
+    container: HTMLElement,
 ): HTMLElement | null {
     const list = candidates.filter(el => el !== current)
     if (!list.length) return null
 
-    clampInto(current, _rA)
-    const cCx = (_rA.left + _rA.right) / 2
-    const cCy = (_rA.top + _rA.bottom) / 2
+    const cr = current.getBoundingClientRect()
+    const vertical = direction === 'up' || direction === 'down'
+    const forward = direction === 'down' || direction === 'right'
 
-    let best: HTMLElement | null = null
-    let bestScore = Infinity
+    // 扫描起点：当前元素在主轴上的"后缘"
+    const rayOrigin = forward
+        ? (vertical ? cr.bottom : cr.right)
+        : (vertical ? cr.top : cr.left)
 
+    // 预计算所有候选的方向过滤结果
+    type Info = { el: HTMLElement; distance: number; crossMin: number; crossMax: number }
+    const infos: Info[] = []
     for (const cand of list) {
-        clampInto(cand, _rB)
-        const cx = (_rB.left + _rB.right) / 2
-        const cy = (_rB.top + _rB.bottom) / 2
-        const dx = cx - cCx
-        const dy = cy - cCy
+        const r = cand.getBoundingClientRect()
+        const candNear = forward
+            ? (vertical ? r.top : r.left)
+            : (vertical ? r.bottom : r.right)
+        const distance = forward ? candNear - rayOrigin : rayOrigin - candNear
+        if (distance < 0) continue
+        infos.push({
+            el: cand,
+            distance,
+            crossMin: vertical ? r.left : r.top,
+            crossMax: vertical ? r.right : r.bottom,
+        })
+    }
+    if (!infos.length) return null
 
-        let main: number
-        let cross: number
-        switch (direction) {
-            case 'right':
-                if (dx <= 0) continue
-                main = dx; cross = Math.abs(dy); break
-            case 'left':
-                if (dx >= 0) continue
-                main = -dx; cross = Math.abs(dy); break
-            case 'down':
-                if (dy <= 0) continue
-                main = dy; cross = Math.abs(dx); break
-            case 'up':
-                if (dy >= 0) continue
-                main = -dy; cross = Math.abs(dx); break
+    /** 在候选里找与 [bandMin, bandMax] 投影重叠、主轴距离最近的 */
+    function pickByBand(infos: { el: HTMLElement; distance: number; crossMin: number; crossMax: number }[], bandMin: number, bandMax: number) {
+        let best: typeof infos[number] | null = null
+        let bestDistance = Infinity
+        for (const info of infos) {
+            const overlap = Math.min(bandMax, info.crossMax) - Math.max(bandMin, info.crossMin)
+            if (overlap <= 0) continue
+            if (info.distance < bestDistance) {
+                bestDistance = info.distance
+                best = info
+            }
         }
-
-        // 打分：主轴距离 + 次轴偏移 * 权重
-        const score = main + cross * crossAxisWeight
-        if (score < bestScore) {
-            bestScore = score
-            best = cand
-        }
+        return best
     }
 
-    return best
+    // 阶段 1：元素投影
+    const elBandMin = vertical ? cr.left : cr.top
+    const elBandMax = vertical ? cr.right : cr.bottom
+    let hit = pickByBand(infos, elBandMin, elBandMax)
+    if (hit) return hit.el
+
+    // 阶段 2：区域投影（裁剪到视口）
+    const kr = container.getBoundingClientRect()
+    const vw = window.innerWidth, vh = window.innerHeight
+    const rgBandMin = vertical ? Math.max(0, kr.left) : Math.max(0, kr.top)
+    const rgBandMax = vertical ? Math.min(vw, kr.right) : Math.min(vh, kr.bottom)
+    if (rgBandMax > rgBandMin) {
+        hit = pickByBand(infos, rgBandMin, rgBandMax)
+        if (hit) return hit.el
+    }
+
+    // 阶段 3：加权距离兜底
+    const refCenter = (rgBandMin + rgBandMax) / 2 || (elBandMin + elBandMax) / 2
+    let fallback: Info | null = null
+    let fallbackScore = Infinity
+    for (const info of infos) {
+        const candCenter = (info.crossMin + info.crossMax) / 2
+        const score = info.distance + Math.abs(candCenter - refCenter) * crossAxisWeight
+        if (score < fallbackScore) {
+            fallbackScore = score
+            fallback = info
+        }
+    }
+    return fallback?.el ?? null
 }
 
 function focusElement(el: HTMLElement) {
@@ -213,9 +241,9 @@ function focusElement(el: HTMLElement) {
 }
 
 /** 清除元素焦点与 gamepad-nav 类（进入区域模式时用） */
-function clearElementFocus() {
+function clearElementFocus(blur = true) {
     const active = document.activeElement as HTMLElement | null
-    if (active && active !== document.body) active.blur()
+    if (active && active !== document.body && blur) active.blur()
     document.documentElement.classList.remove('gamepad-nav')
 }
 
@@ -298,10 +326,10 @@ function highlightRegion(el: HTMLElement, direction: NavDirection | null = null)
 }
 
 /** 清除区域高亮 */
-function clearRegionHighlight() {
+function clearRegionHighlight(clearCache = true) {
     if (_highlighted) {
         _highlighted.classList.remove('gamepad-region-focus')
-        _highlighted = null
+        if (clearCache) _highlighted = null
     }
 }
 
@@ -395,41 +423,26 @@ function exitRegion() {
 }
 
 function moveFocus(direction: NavDirection) {
-    // 1. 弹窗作用域（最高优先级）
+    let container = currentRegion
+    // 弹窗作用域（最高优先级）
     if (scopeStack.length > 0) {
-        const container = scopeStack[scopeStack.length - 1].el
-        const active = document.activeElement as HTMLElement | null
-        if (!active || !container.contains(active)) {
-            const first = getFocusable(container)[0]
-            if (first) focusElement(first)
-            return
-        }
-        const next = findNearest(active, direction, getFocusable(container))
-        if (next) focusElement(next)
-        return
+        container = scopeStack[scopeStack.length - 1].el
     }
-
-    // 2. 区域模式
+    // 区域模式
     if (navMode === 'region') {
         moveRegionFocus(direction)
         return
     }
-
-    // 3. 元素模式（在区域内）
-    const container = currentRegion
+    // 遇到不合法状态时降级
     if (!container || !document.contains(container)) {
         navMode = 'region'
         moveRegionFocus(direction)
         return
     }
     const active = document.activeElement as HTMLElement | null
-    if (!active || !container.contains(active)) {
-        const first = getFocusable(container)[0]
-        if (first) focusElement(first)
-        return
-    }
-    
-    const next = findNearest(active, direction, getFocusable(container))
+    const next = (!active || !container.contains(active))
+        ? getFocusable(container)[0]
+        : findNearest(active, direction, getFocusable(container), container)
     if (next) focusElement(next)
 }
 
@@ -543,13 +556,14 @@ function scrollTick() {
 function resolveIntent(e: GPButtonEvent): NavIntent | null {
     if (e.type !== 'down') return null
     switch (e.button) {
+        case GP.A: return 'confirm'
+        case GP.B: return 'cancel'
+        case GP.Y: return 'toggle'
         case GP.Up: case GP.LSUp: return 'up'
         case GP.Down: case GP.LSDown: return 'down'
         case GP.Left: case GP.LSLeft: return 'left'
         case GP.Right: case GP.LSRight: return 'right'
-        case GP.A: return 'confirm'
-        case GP.B: return 'cancel'
-        case GP.Y: return 'toggle'
+        case GP.LS: return 'hideHighlights'
         default: return null
     }
 }
@@ -588,27 +602,21 @@ function _createGamepadNavigation(options?: GamepadNavigationOptions) {
     /** 注册按钮 handler：区域模式 → 进入；元素模式 → 确认；B → 退出/关弹窗 */
     const offButton = watcher.addButtonHandler((e) => {
         const intent = resolveIntent(e)
-        if (!intent) return
-
         switch (intent) {
+            case null:
+                return
             case 'up': case 'down': case 'left': case 'right':
                 moveFocus(intent)
                 break
             case 'confirm':
-                if (scopeStack.length > 0) {
-                    triggerConfirm()
-                } else if (navMode === 'region' && currentRegion) {
+                if (navMode === 'region' && currentRegion) {
                     enterRegion(currentRegion)
-                } else {
-                    triggerConfirm()
-                }
+                } else triggerConfirm()
                 break
             case 'cancel':
                 if (scopeStack.length > 0) {
                     popScope()
-                } else if (navMode === 'element') {
-                    exitRegion()
-                }
+                } else exitRegion()
                 break
             case 'toggle': {
                 const el = document.activeElement as HTMLElement | null
@@ -618,6 +626,10 @@ function _createGamepadNavigation(options?: GamepadNavigationOptions) {
                 }
                 break
             }
+            case 'hideHighlights':
+                clearElementFocus(false)
+                clearRegionHighlight(false)
+                break
         }
     })
 
@@ -634,10 +646,10 @@ function _createGamepadNavigation(options?: GamepadNavigationOptions) {
 
     /**
      * 压入一个作用域（如弹窗）：焦点被限制在其内，
-     * 并自动聚焦作用域内第一个可聚焦元素。
+     * 并自动聚焦作用域内指定元素或第一个可聚焦元素。
      * 会自动保存压入前的模式与区域。
      */
-    function pushScope(container: HTMLElement, opts?: { onCancel?: () => void }) {
+    function pushScope(container: HTMLElement, opts?: { target?: HTMLElement | null, onCancel?: () => void }) {
         scopeStack.push({
             el: container,
             prevFocus: document.activeElement as HTMLElement | null,
@@ -648,8 +660,8 @@ function _createGamepadNavigation(options?: GamepadNavigationOptions) {
         navMode = 'element'
         clearRegionHighlight()
         nextTick(() => {
-            const first = getFocusable(container)[0]
-            if (first) focusElement(first)
+            const el = opts?.target ?? getFocusable(container)[0]
+            if (el) focusElement(el)
         })
     }
 
@@ -704,6 +716,7 @@ function _createGamepadNavigation(options?: GamepadNavigationOptions) {
         if (navMode === 'region' && !currentRegion) {
             focusContent()
         }
+        document.documentElement.classList.add('gamepad-nav-started')
     }
 
     /** 停止手柄导航 */
@@ -721,6 +734,7 @@ function _createGamepadNavigation(options?: GamepadNavigationOptions) {
         clearRegionHighlight()
         navMode = 'region'
         currentRegion = null
+        document.documentElement.classList.remove('gamepad-nav-started')
     }
 
     /** 注销 handler 并停止手柄导航 */

@@ -41,11 +41,13 @@ function toggleTranslate() {
 
 <lkn layout text-center fwid>
 
-## <ruby>Da Capo<rp> / </rp><rt>回到开始</rt></ruby>
+## <ruby>Da Capo<rp> / </rp><rt>返始</rt></ruby>
 
 <Badge type="info">歌手：车子玉</Badge>
 <Badge type="info">出自：<a href="https://www.bilibili.com/video/BV1Kj411g7Lu?t=235" target="_blank" rel="noreferrer">《崩坏3》动画短片「毕业旅行」</a></Badge>
 <Badge type="info">MV：<a href="https://www.bilibili.com/video/BV1aM4y1R77W" target="_blank" rel="noreferrer">「Da Capo」——《崩坏3》印象曲</a></Badge>
+
+#### 原版
 
 <ruby>When good old friends are going away<rp> / </rp><rt>当曾经的挚友离开</rt></ruby>
 
@@ -70,6 +72,22 @@ function toggleTranslate() {
 <ruby>Give us a try to sing a rhyme<rp> / </rp><rt>那让我们试着唱出来</rt></ruby>
 
 <ruby>"May you, the beauty of this world, always shine."<rp> / </rp><rt>“你便是世界上的美好，永远闪耀。”</rt></ruby>
+
+#### 自填词版
+
+当昔日好友渐渐离去
+
+是否你会，愿其回忆如新？
+
+当旧日美好缓缓逝去
+
+是否你能，承诺初心不泯？
+
+我们无法停止时间
+
+只能吹散过往如烟
+
+终究仍将迈步前行，路漫漫
 
 ## <ruby>好きなので。<rp> / </rp><rt>因为喜欢你。</rt></ruby>
 
